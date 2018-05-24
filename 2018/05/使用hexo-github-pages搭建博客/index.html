@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>使用hexo+github pages搭建博客 | 小旋锋</title>
+  <meta name="keywords" content=" 博客 ">
+  <meta name="description" content="使用hexo+github pages搭建博客 | 小旋锋">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="为什么写博客就如我在博客主页上所说，主要有三点：  记录与分享 锤炼技术，提高写作能力和表达能力 树立个人品牌，提高影响力  而在此博客之前，我在CSDN上（小旋锋的博客）写过一些博客，截止于2018年5月23日，个人资料如下：  当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事">
+<meta name="keywords" content="博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo+github pages搭建博客">
+<meta property="og:url" content="http://laijianfeng.org/2018/05/使用hexo-github-pages搭建博客/index.html">
+<meta property="og:site_name" content="小旋锋">
+<meta property="og:description" content="为什么写博客就如我在博客主页上所说，主要有三点：  记录与分享 锤炼技术，提高写作能力和表达能力 树立个人品牌，提高影响力  而在此博客之前，我在CSDN上（小旋锋的博客）写过一些博客，截止于2018年5月23日，个人资料如下：  当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.laijianfeng.org/static/images/201805/20180523_232554.png">
+<meta property="og:image" content="http://image.laijianfeng.org/static/images/201805/20180523_230522.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/static/images/201805/20180524_003246.png">
+<meta property="og:updated_time" content="2018-05-24T09:33:24.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用hexo+github pages搭建博客">
+<meta name="twitter:description" content="为什么写博客就如我在博客主页上所说，主要有三点：  记录与分享 锤炼技术，提高写作能力和表达能力 树立个人品牌，提高影响力  而在此博客之前，我在CSDN上（小旋锋的博客）写过一些博客，截止于2018年5月23日，个人资料如下：  当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事">
+<meta name="twitter:image" content="http://image.laijianfeng.org/static/images/201805/20180523_232554.png">
+
+
+<link rel="icon" href="/img/favicon.jpg">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/hl_theme/atom-light.css">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/photoswipe/4.1.2/default-skin/default-skin.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>小旋锋</span>
+</div>
+
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/whirlys" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="email" title="email" href="mailto:whirlys@163.com"></a>
+    
+</div>
+
+
+
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="后端"> 后端 </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="1">
+<input type="hidden" id="yelog_site_word_count" value="1.2k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/05/使用hexo-github-pages搭建博客/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="使用hexo+github pages搭建博客">使用hexo+github pages搭建博客</span>
+            <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-使用hexo-github-pages搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">使用hexo+github pages搭建博客</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+            <a href="javascript:" data-rel="后端">后端</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">博客</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2018-05-24 17:33:24'>2018-05-23 11:35</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1,212</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么写博客"><span class="toc-text">为什么写博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo主题选择"><span class="toc-text">Hexo主题选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建步骤"><span class="toc-text">搭建步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-根据-Hexo官网-步骤安装-git，node-js"><span class="toc-text">1. 根据 Hexo官网 步骤安装 git，node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装Hexo"><span class="toc-text">2. 安装Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo"><span class="toc-text">3. 根据 Hexo文档 对网站做一些简单的配置，然后修改主题为 3-hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-配置-github-pages"><span class="toc-text">4. 配置 github pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-绑定私有域名"><span class="toc-text">5. 绑定私有域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-其他的配置"><span class="toc-text">6. 其他的配置</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为什么写博客"><a href="#为什么写博客" class="headerlink" title="为什么写博客"></a>为什么写博客</h2><p>就如我在博客主页上所说，主要有三点：</p>
+<ol>
+<li>记录与分享</li>
+<li>锤炼技术，提高写作能力和表达能力</li>
+<li>树立个人品牌，提高影响力</li>
+</ol>
+<p>而在此博客之前，我在CSDN上（<a href="https://blog.csdn.net/wwwdc1012" target="_blank" rel="noopener">小旋锋的博客</a>）写过一些博客，截止于2018年5月23日，个人资料如下：</p>
+<img title="小旋锋的csdn个人资料" alt="小旋锋的csdn个人资料" src="http://image.laijianfeng.org/static/images/201805/20180523_232554.png">
+<p>当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事情，并且反过来推动我学习和记录，写更多的博客。</p>
+<p>而为什么现在要重新整一个博客呢？主要是因为之前CSDN的博客更多的是转载和低质量的，而博主即将毕业，正走在程序员的职业道路上，需要树立个人品牌，写博客是目前对我比较合适且能做到的方式。</p>
+<p>而独立博客自由度更高，第三方博客平台推广则更快，所以最终决定采用独立博客首发，第三方平台分发引流的模式。</p>
+<p>我的第三方平台账户：</p>
+<ul>
+<li><a href="https://www.jianshu.com/u/ae269fd3620a" target="_blank" rel="noopener">小旋锋的简书</a></li>
+<li><a href="https://blog.csdn.net/wwwdc1012" target="_blank" rel="noopener">小旋锋的csdn博客</a></li>
+<li><a href="https://www.zhihu.com/people/whirlys/activities" target="_blank" rel="noopener">小旋锋的知乎</a></li>
+</ul>
+<img title="小旋锋的微信公众号" alt="小旋锋的微信公众号" src="http://image.laijianfeng.org/static/images/201805/20180523_230522.jpg">
+<h2 id="Hexo主题选择"><a href="#Hexo主题选择" class="headerlink" title="Hexo主题选择"></a>Hexo主题选择</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架，可托管于github pages，可免去维护服务器的麻烦，博主们可更专注于内容的创作，并且Hexo主题众多，总有一款适合你。</p>
+<p>我对主题的要求主要有：</p>
+<ol>
+<li>不要太大众</li>
+<li>大气美观</li>
+<li>功能齐全</li>
+</ol>
+<p>经过了几天的搜索之后，筛选了几个比较满意的Hexo主题如下：</p>
+<ol>
+<li><a href="http://blog.zhangruipeng.me/hexo-theme-hueman/about/index.html" target="_blank" rel="noopener">Hueman</a></li>
+<li><a href="http://jacman.wuchong.me/2014/11/20/how-to-use-jacman/" target="_blank" rel="noopener">jacman</a></li>
+<li><a href="https://www.haomwei.com/" target="_blank" rel="noopener">大道至简</a></li>
+<li><a href="http://threehao.com/" target="_blank" rel="noopener">Loo’s Blog</a></li>
+<li><a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a></li>
+</ol>
+<p>最终选择了 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a> 这款主题，当然还有很多不错的主题。</p>
+<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><h3 id="1-根据-Hexo官网-步骤安装-git，node-js"><a href="#1-根据-Hexo官网-步骤安装-git，node-js" class="headerlink" title="1. 根据 Hexo官网 步骤安装 git，node.js"></a>1. 根据 <a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo官网</a> 步骤安装 git，node.js</h3><h3 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2. 安装Hexo"></a>2. 安装Hexo</h3><pre><code class="javascript">npm install -g hexo-cli
+</code></pre>
+<p>安装 Hexo 完成后，新建一个博客的主目录，然后执行以下命令：</p>
+<pre><code class="shell">hexo init &lt;folder&gt;
+cd &lt;folder&gt;
+npm install
+</code></pre>
+<p>新建完成之后该目录的目录结构如下:</p>
+<p>.</p>
+<p>├── _config.yml        # 网站的 配置 信息</p>
+<p>├── package.json        # 应用程序的信息</p>
+<p>├── scaffolds            # 模板文件夹</p>
+<p>├── source            # 博文源文件目录</p>
+<p>|   ├── _drafts        # 草稿文件夹</p>
+<p>|   └── _posts            # 博文文件夹</p>
+<p>└── themes            # 主题文件夹</p>
+<p>再执行以下命令，访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可快速体验Hexo</p>
+<pre><code class="shell">hexo g
+hexo s
+</code></pre>
+<img src="http://image.laijianfeng.org/static/images/201805/20180524_003246.png">
+<h3 id="3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo"><a href="#3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo" class="headerlink" title="3. 根据 Hexo文档 对网站做一些简单的配置，然后修改主题为 3-hexo"></a>3. 根据 <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo文档</a> 对网站做一些简单的配置，然后修改主题为 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a></h3><p>安装</p>
+<pre><code class="shell">git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo
+</code></pre>
+<p>修改hexo根目录的_config.yml中的theme参数</p>
+<pre><code class="javascript">theme: 3-hexo
+</code></pre>
+<p>然后执行 hexo clean &amp; hexo g &amp; hexo s 即可看到效果</p>
+<p>更多的主题配置可见 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo使用说明</a></p>
+<h3 id="4-配置-github-pages"><a href="#4-配置-github-pages" class="headerlink" title="4. 配置 github pages"></a>4. 配置 github pages</h3><p>到github上创建一个新的空仓库，名字格式为 账户名.github.io，譬如我的github账户名是 <a href="https://github.com/whirlys" target="_blank" rel="noopener">whirlys</a>，所以我的github pages 仓库的名字应为 whirlys.github.io</p>
+<p>安装插件</p>
+<pre><code class="shell">npm install hexo-deployer-git --save
+</code></pre>
+<p>然后配置 Hexo根目录的 _config.yml，xxx为你的用户名，注意还需要加入你的 github 用户名和密码，不然后面推送失败（但是上传代码时注意防止密码泄露）</p>
+<pre><code class="shell">deploy:
+  type: git
+  repo: https://[github用户名]:[github密码]@github.com/xxx/xxx.github.io.git
+  branch: master
+</code></pre>
+<p>如果你是第一次配置 github 远程仓库，你还须将你电脑的ssh key 配置到 github 上，具体可参考 <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000" target="_blank" rel="noopener">git远程仓库</a></p>
+<p>推送Hexo到github</p>
+<pre><code class="shell">hexo deploy
+</code></pre>
+<p>访问 xxx.github.io 即可看到你的 github pages 博客了</p>
+<h3 id="5-绑定私有域名"><a href="#5-绑定私有域名" class="headerlink" title="5. 绑定私有域名"></a>5. 绑定私有域名</h3><p>我的域名为 laijianfeng.org，是一年前买 腾讯云1元学生主机 时送的，当然可以选择其他域名提供商</p>
+<p>在 hexo source 目录下新建一个 CNAME 文件（没有后缀名），在文件里填入你的域名，然后 hexo d 推送到github</p>
+<p>登录域名提供商网站，进入域名解析页面，分别添加两条记录</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>线路类型</th>
+<th>记录值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@</td>
+<td>CNAME</td>
+<td>默认</td>
+<td>xxx.github.io</td>
+</tr>
+<tr>
+<td>www</td>
+<td>CNAME</td>
+<td>默认</td>
+<td><a href="http://www.xxx.github.io" target="_blank" rel="noopener">www.xxx.github.io</a></td>
+</tr>
+</tbody>
+</table>
+<p>等待十分钟之后，访问你的域名即可跳转到你的博客</p>
+<h3 id="6-其他的配置"><a href="#6-其他的配置" class="headerlink" title="6. 其他的配置"></a>6. 其他的配置</h3><ul>
+<li>接入评论，3-hexo主题中已经集成了多种评论，我选择了gitment，具体的配置参考 <a href="http://yelog.org/2017/06/26/gitment/" target="_blank" rel="noopener">完美替代多说-gitment</a>，如果gitment遇到问题，譬如报Error：validation failed异常，可参考 <a href="http://xichen.pub/2018/01/31/2018-01-31-gitment/" target="_blank" rel="noopener">添加Gitment评论系统踩过的坑</a> 以及 <a href="https://github.com/imsun/gitment/issues" target="_blank" rel="noopener">gitment issue</a>上的解决方法</li>
+<li>使用七牛云图床，参考 <a href="http://skyhacks.org/2017/08/02/UseQiniudnToStorePic/" target="_blank" rel="noopener">使用七牛为Hexo存储图片</a> 和 <a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="noopener">Hexo七牛同步插件</a></li>
+<li>代码高亮，字数统计，参考 <a href="http://yelog.org/2017/03/07/3-hexo/" target="_blank" rel="noopener">Hexo主题3-hexo</a></li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>使用hexo+github pages搭建博客</p>
+    <p><span>文章字数:</span><span class="post-count">1,212</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
+    <p><span>发布时间:</span>2018-05-23, 11:35:46</p>
+    <p><span>最后更新:</span>2018-05-24, 17:33:24</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/05/使用hexo-github-pages搭建博客/" title="使用hexo+github pages搭建博客">http://laijianfeng.org/2018/05/使用hexo-github-pages搭建博客/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '使用hexo+github pages搭建博客', // 可选。默认为 location.href
+        owner: 'whirlys',
+        repo: 'whirlys.github.io',
+        oauth: {
+            client_id: 'f1bd5294d498cdda9693',
+            client_secret: '959bbaf23dae12023b1b9ee3e63e882a099ca65a',
+        },
+        perPage : 3
+    })
+    gitment.render('comments')
+</script>
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018 小旋锋</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/weixin.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+</body>
+<script src="//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+
+<script src="/js/script.js"></script>
+<script>
+    var img_resize = 'photoSwipe';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#博客',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering').attr("unselectable","on");
+            $(this).addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+            for(i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+
+        // PhotoSwipe
+        $('article').each(function(i){
+            $(this).find('img').each(function(){
+                if ($(this).closest('figure').hasClass('article-gallery-img')) {
+                    return;
+                }
+                var alt = this.alt;
+                $(this)
+                    .wrap('<figure class="article-gallery-img" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"></figure>')
+                    .wrap('<a href="' + this.src + '" title="' + alt + '"></a>');
+                $(this).after('<div class="img_alt"><span>' + (alt || '') + '</span></div>');
+            });
+        });
+
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+        if (pswpElement) {
+            var gallerySelector = '.article-gallery, article';
+
+            var initPhotoSwipeFromDOM = function(gallerySelector) {
+
+                // parse slide data (url, title, size ...) from DOM elements
+                // (children of gallerySelector)
+                var parseThumbnailElements = function(el) {
+                    var thumbElements = $(el).find('figure.article-gallery-img').toArray(),
+                        numNodes = thumbElements.length,
+                        items = [],
+                        figureEl,
+                        linkEl,
+                        size,
+                        imgEl,
+                        item;
+
+                    for (var i = 0; i < numNodes; i++) {
+
+                        figureEl = thumbElements[i]; // <figure> element
+
+                        // include only element nodes
+                        if (figureEl.nodeType !== 1) {
+                            continue;
+                        }
+
+                        linkEl = figureEl.children[0]; // <a> element
+                        imgEl = linkEl.children[0]; // <img>
+
+                        size = linkEl.getAttribute('data-size');
+                        size = size && size.split('x');
+
+                        // create slide object
+                        item = {
+                            src: linkEl.getAttribute('href'),
+                            w: size && parseInt(size[0], 10) || imgEl.width,
+                            h: size && parseInt(size[1], 10) || imgEl.height
+                        };
+
+                        if (figureEl.children.length > 1) {
+                            // <figcaption> content
+                            item.title = figureEl.children[1].innerHTML;
+                        }
+
+                        if (linkEl.children.length > 0) {
+                            // <img> thumbnail element, retrieving thumbnail url
+                            item.msrc = linkEl.children[0].getAttribute('src');
+                        }
+
+                        item.el = figureEl; // save link to element for getThumbBoundsFn
+                        items.push(item);
+                    }
+
+                    return items;
+                };
+
+                // find nearest parent element
+                var closest = function closest(el, fn) {
+                    return el && (fn(el) ? el : closest(el.parentNode, fn));
+                };
+
+                // triggers when user clicks on thumbnail
+                var onThumbnailsClick = function(e) {
+                    e = e || window.event;
+
+                    var eTarget = e.target || e.srcElement;
+
+                    // find root element of slide
+                    var clickedListItem = closest(eTarget, function(el) {
+                        return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+                    });
+
+                    if (!clickedListItem) {
+                        return;
+                    }
+
+                    if (e.preventDefault) {
+                        e.preventDefault();
+                    } else {
+                        e.returnValue = false;
+                    }
+
+                    // find index of clicked item by looping through all child nodes
+                    // alternatively, you may define index via data- attribute
+                    var clickedGallery = $(clickedListItem).closest(gallerySelector)[0],
+                        childNodes = $(clickedGallery).find('figure.article-gallery-img').toArray(),
+                        numChildNodes = childNodes.length,
+                        nodeIndex = 0,
+                        index;
+
+                    for (var i = 0; i < numChildNodes; i++) {
+                        if (childNodes[i].nodeType !== 1) {
+                            continue;
+                        }
+
+                        if (childNodes[i] === clickedListItem) {
+                            index = nodeIndex;
+                            break;
+                        }
+                        nodeIndex++;
+                    }
+
+
+
+                    if (index >= 0) {
+                        // open PhotoSwipe if valid index found
+                        openPhotoSwipe(index, clickedGallery);
+                    }
+                    return false;
+                };
+
+                // parse picture index and gallery index from URL (#&pid=1&gid=2)
+                var photoswipeParseHash = function() {
+                    var hash = window.location.hash.substring(1),
+                        params = {};
+
+                    if (hash.length < 5) {
+                        return params;
+                    }
+
+                    var vars = hash.split('&');
+                    for (var i = 0; i < vars.length; i++) {
+                        if (!vars[i]) {
+                            continue;
+                        }
+                        var pair = vars[i].split('=');
+                        if (pair.length < 2) {
+                            continue;
+                        }
+                        params[pair[0]] = pair[1];
+                    }
+
+                    if (params.gid) {
+                        params.gid = parseInt(params.gid, 10);
+                    }
+
+                    return params;
+                };
+
+                var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+                    var pswpElement = document.querySelectorAll('.pswp')[0],
+                        gallery,
+                        options,
+                        items;
+
+                    items = parseThumbnailElements(galleryElement);
+
+                    // define options (if needed)
+                    options = {
+
+                        // define gallery index (for URL)
+                        galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+
+                        getThumbBoundsFn: function(index) {
+                            // See Options -> getThumbBoundsFn section of documentation for more info
+                            var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                                pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                                rect = thumbnail.getBoundingClientRect();
+
+                            return {
+                                x: rect.left,
+                                y: rect.top + pageYScroll,
+                                w: rect.width
+                            };
+                        }
+                    };
+
+                    // PhotoSwipe opened from URL
+                    if (fromURL) {
+                        if (options.galleryPIDs) {
+                            // parse real index when custom PIDs are used
+                            // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                            for (var j = 0; j < items.length; j++) {
+                                if (items[j].pid == index) {
+                                    options.index = j;
+                                    break;
+                                }
+                            }
+                        } else {
+                            // in URL indexes start from 1
+                            options.index = parseInt(index, 10) - 1;
+                        }
+                    } else {
+                        options.index = parseInt(index, 10);
+                    }
+
+                    // exit if index not found
+                    if (isNaN(options.index)) {
+                        return;
+                    }
+
+                    if (disableAnimation) {
+                        options.showAnimationDuration = 0;
+                    }
+
+                    // Pass data to PhotoSwipe and initialize it
+                    gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+
+                    gallery.listen('imageLoadComplete', function(index, item) {
+                        var linkEl = item.el.children[0];
+                        var img = item.container.children[0];
+                        if (!linkEl.getAttribute('data-size')) {
+                            linkEl.setAttribute('data-size', img.naturalWidth + 'x' + img.naturalHeight);
+                            item.w = img.naturalWidth;
+                            item.h = img.naturalHeight;
+                            gallery.invalidateCurrItems();
+                            gallery.updateSize(true);
+                        }
+                    });
+
+                    gallery.init();
+                };
+
+                // loop through all gallery elements and bind events
+                var galleryElements = document.querySelectorAll(gallerySelector);
+
+                for (var i = 0, l = galleryElements.length; i < l; i++) {
+                    galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+                    galleryElements[i].onclick = onThumbnailsClick;
+                }
+
+                // Parse URL and open gallery if it contains #&pid=3&gid=1
+                var hashData = photoswipeParseHash();
+                if (hashData.pid && hashData.gid) {
+                    openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
+                }
+            };
+
+            // execute above function
+            initPhotoSwipeFromDOM(gallerySelector);
+        }
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 2px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 2px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /*引用块样式*/
+    
+    .post .pjax article blockquote {
+        padding: 10px 20px;
+        background-color: white;
+        border: none;
+        border-left: 4px solid #42b983;
+        border-right: 4px solid #42b983;
+        border-radius: 10px;
+    }
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        background: url("http://image.laijianfeng.org/v2-cdcf5d00f2e9106f1fd0a70a18cbdf15_r1.jpg");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+</style>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+</html>
