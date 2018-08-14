@@ -1,21 +1,21 @@
 # Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
-
+  
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
-language:
-timezone:
+title: 小旋锋
+subtitle: 更努力，只为了我们想要的明天
+description: 小旋锋的个人独立博客，计算机后端和大数据方向的高质量原创博客
+keywords: 小旋锋,小旋锋的博客,大数据,技术博客,高质量博客,个人博客,独立博客,Java,hadoop,spark
+author: 小旋锋
+language: zh-Hans
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://laijianfeng.org/
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:title/
 permalink_defaults:
 
 # Directory
@@ -39,9 +39,9 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
   
 # Home page setting
@@ -54,7 +54,7 @@ index_generator:
   order_by: -date
   
 # Category & Tag
-default_category: uncategorized
+default_category: 后端
 category_map:
 tag_map:
 
@@ -73,11 +73,43 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: 3-hexo
+
+#plugin:
+#- hexo-generator-feed
+#- hexo-generator-sitemap
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/whirlys/whirlys.github.io.git
+  repo: https://[github用户名]:[github密码]@github.com/whirlys/whirlys.github.io.git
   branch: master
+
+
+search:
+  path: search.xml
+  field: post
+
+qiniu:
+  offline: false
+  sync: true
+  bucket: whirlysblog
+  # secret_file: sec/qn.json or C:
+  access_key: 
+  secret_key: 
+  dirPrefix: static
+  urlPrefix: http://image.laijianfeng.org/static
+  up_host: http://upload.qiniu.com
+  local_dir: static
+  update_exist: true
+  image: 
+    folder: images
+    extend: 
+  js:
+    folder: js
+  css:
+    folder: css
+
+sitemap:
+  path: sitemap.xml
