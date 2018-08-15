@@ -2,26 +2,27 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>初识elasticsearch | 小旋锋</title>
-  <meta name="keywords" content=" Elasticsearch ">
-  <meta name="description" content="初识elasticsearch | 小旋锋">
+  <title>小旋锋</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="为什么写博客就如我在博客主页上所说，主要有三点：  记录与分享 锤炼技术，提高写作能力和表达能力 树立个人品牌，提高影响力  而在此博客之前，我在CSDN上（小旋锋的博客）写过一些博客，截止于2018年5月23日，个人资料如下：  当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事">
-<meta name="keywords" content="博客">
+<meta name="description" content="需要明白的问题 什么是倒排索引？它的组成是什么？ 常见的相关性算分方法有哪些？ 为什么查询语句没有返回预期的文档？ 常用的数据类型有哪些？Text和Keyword的区别是什么？ 集群是如何搭建起来的？是如何实现故障转移的？ Shard具体是由什么组成的？  Elastic Stack构建在开源基础之上, Elastic Stack 让您能够安全可靠地获取任何来源、任何格式的数据，并且能够实时地对数">
+<meta name="keywords" content="elastic,elasticsearch,elk,elasticsearch教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用hexo+github pages搭建博客">
-<meta property="og:url" content="http://laijianfeng.org/2018/05/使用hexo-github-pages搭建博客/index.html">
+<meta property="og:title" content="ElasticSearch初体验">
+<meta property="og:url" content="http://laijianfeng.org/2018/08/ElasticSearch初体验/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="为什么写博客就如我在博客主页上所说，主要有三点：  记录与分享 锤炼技术，提高写作能力和表达能力 树立个人品牌，提高影响力  而在此博客之前，我在CSDN上（小旋锋的博客）写过一些博客，截止于2018年5月23日，个人资料如下：  当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事">
+<meta property="og:description" content="需要明白的问题 什么是倒排索引？它的组成是什么？ 常见的相关性算分方法有哪些？ 为什么查询语句没有返回预期的文档？ 常用的数据类型有哪些？Text和Keyword的区别是什么？ 集群是如何搭建起来的？是如何实现故障转移的？ Shard具体是由什么组成的？  Elastic Stack构建在开源基础之上, Elastic Stack 让您能够安全可靠地获取任何来源、任何格式的数据，并且能够实时地对数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/static/images/201805/20180523_232554.png">
-<meta property="og:image" content="http://image.laijianfeng.org/static/images/201805/20180523_230522.jpg">
-<meta property="og:image" content="http://image.laijianfeng.org/static/images/201805/20180524_003246.png">
-<meta property="og:updated_time" content="2018-05-24T09:33:24.061Z">
+<meta property="og:image" content="http://image.laijianfeng.org/20180815_153244.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180815_153435.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180815_154136.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180815_164226.png">
+<meta property="og:updated_time" content="2018-08-15T11:43:46.489Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用hexo+github pages搭建博客">
-<meta name="twitter:description" content="为什么写博客就如我在博客主页上所说，主要有三点：  记录与分享 锤炼技术，提高写作能力和表达能力 树立个人品牌，提高影响力  而在此博客之前，我在CSDN上（小旋锋的博客）写过一些博客，截止于2018年5月23日，个人资料如下：  当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事">
-<meta name="twitter:image" content="http://image.laijianfeng.org/static/images/201805/20180523_232554.png">
+<meta name="twitter:title" content="ElasticSearch初体验">
+<meta name="twitter:description" content="需要明白的问题 什么是倒排索引？它的组成是什么？ 常见的相关性算分方法有哪些？ 为什么查询语句没有返回预期的文档？ 常用的数据类型有哪些？Text和Keyword的区别是什么？ 集群是如何搭建起来的？是如何实现故障转移的？ Shard具体是由什么组成的？  Elastic Stack构建在开源基础之上, Elastic Stack 让您能够安全可靠地获取任何来源、任何格式的数据，并且能够实时地对数">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180815_153244.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -53,7 +54,7 @@
   <input class="theme_preload_comment" value="true">
 </div>
 <body>
-<aside class="nav">
+<aside class="nav mobile">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg" />
@@ -85,13 +86,7 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="专题"> 专题 </li>
-    
     <li data-rel="大数据"> 大数据 </li>
-    
-    <li data-rel="读书"> 读书 </li>
-    
-    <li data-rel="生活杂记"> 生活杂记 </li>
     
     <li data-rel="后端"> 后端 </li>
     
@@ -102,8 +97,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
-<input type="hidden" id="yelog_site_word_count" value="1.2k">
+<input type="hidden" id="yelog_site_posts_number" value="2">
+<input type="hidden" id="yelog_site_word_count" value="4.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -135,15 +130,7 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">ELK</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">Elasticsearch</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">成长</a>
+        <a href="javascript:" class="color4">elasticsearch</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -160,36 +147,12 @@
     
     <nav id="title-list-nav">
         
-        <a  class="专题 "
-           href="/2018/06/ELK专题/"
-           data-tag="ELK"
-           data-author="" >
-            <span class="post-title" title="ELK专题">ELK专题</span>
-            <span class="post-date" title="2018-06-10 20:08:14">2018/06/10</span>
-        </a>
-        
         <a  class="大数据 "
-           href="/2018/06/初识elasticsearch/"
-           data-tag="Elasticsearch"
+           href="/2018/08/ElasticSearch初体验/"
+           data-tag="elasticsearch"
            data-author="" >
-            <span class="post-title" title="初识elasticsearch">初识elasticsearch</span>
-            <span class="post-date" title="2018-06-10 20:06:03">2018/06/10</span>
-        </a>
-        
-        <a  class="读书 "
-           href="/2018/06/少有人走的路/"
-           data-tag="成长"
-           data-author="" >
-            <span class="post-title" title="少有人走的路">少有人走的路</span>
-            <span class="post-date" title="2018-06-10 20:09:47">2018/06/10</span>
-        </a>
-        
-        <a  class="生活杂记 "
-           href="/2018/06/我毕业了/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="我毕业了">我毕业了</span>
-            <span class="post-date" title="2018-06-10 20:11:27">2018/06/10</span>
+            <span class="post-title" title="ElasticSearch初体验">ElasticSearch初体验</span>
+            <span class="post-date" title="2018-08-15 19:37:25">2018/08/15</span>
         </a>
         
         <a  class="后端 "
@@ -212,66 +175,10 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-初识elasticsearch" class="article article-type-post" itemscope itemprop="blogPost">
+        <article class="index">
+            <div class="toc-ref">
     
-        <h1 class="article-title">初识elasticsearch</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            
-            <a href="javascript:" data-rel="大数据">大数据</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color4">Elasticsearch</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-        创建时间:<time class="date" title='更新时间: 2018-06-10 20:07:51'>2018-06-10 20:06</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字数:2</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            阅读:<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                评论:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
-        
-    </div>
-    
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#待更"><span class="toc-text">待更</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么写博客"><span class="toc-text">为什么写博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写博客的原则"><span class="toc-text">写博客的原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容规划"><span class="toc-text">内容规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个人信息"><span class="toc-text">个人信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -284,39 +191,54 @@
     }
 </style>
 </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h1>
-      
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
-    </div>
-</article>
+            <h2 id="为什么写博客"><a href="#为什么写博客" class="headerlink" title="为什么写博客"></a>为什么写博客</h2><blockquote>
+<ol>
+<li>记录与分享</li>
+<li>锤炼技术，提高写作能力和表达能力</li>
+<li>树立个人品牌，提高影响力</li>
+</ol>
+</blockquote>
+<h2 id="写博客的原则"><a href="#写博客的原则" class="headerlink" title="写博客的原则"></a>写博客的原则</h2><blockquote>
+<ol>
+<li>原创：即须经过自己学习、思考或实践后写出来的，而不是复制粘贴而来</li>
+<li>高质量：内容充实，足够深入透彻，引用可循</li>
+<li>成体系：对一个技术须成体系的学习，再整理成一系列的博文发表出来，而不是散乱地记录</li>
+</ol>
+</blockquote>
+<h2 id="内容规划"><a href="#内容规划" class="headerlink" title="内容规划"></a>内容规划</h2><blockquote>
+<ul>
+<li>后端：包括计算机基础、Java编程、JVM、软件工程、设计模式、Linux、数据库、算法与数据结构、分布式系统、算法实践等</li>
+<li>大数据：Hadoop、spark、hive、hdfs、kafka等hadoop生态圈组件</li>
+<li>专题：对以上两个大分类中的博文进行索引，形成专题</li>
+<li>读书：非技术书籍的阅读笔记或读后感</li>
+<li>生活杂记：记录生活故事与感悟</li>
+</ul>
+</blockquote>
+<h2 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h2><blockquote>
+<ul>
+<li>姓名：赖键锋</li>
+<li>邮箱： <a href="mailto:whirlys@163.com">whirlys@163.com</a></li>
+<li>微信号：whirlys </li>
+<li>QQ:1550700956</li>
+</ul>
+</blockquote>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题为 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> </p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
 
-
-<p>
-    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-</p>
-
-
-<div class="article_copyright">
-    <p><span>文章标题:</span>初识elasticsearch</p>
-    <p><span>文章字数:</span><span class="post-count">2</span></p>
-    <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-06-10, 20:06:03</p>
-    <p><span>最后更新:</span>2018-06-10, 20:07:51</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/06/初识elasticsearch/" title="初识elasticsearch">http://laijianfeng.org/2018/06/初识elasticsearch/</a>
-    <p>
-        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-    </p>
-</div>
-
-
+        </article>
+        
+        <p>
+            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
     <div id="comments"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '初识elasticsearch', // 可选。默认为 location.href
+        id: '', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
@@ -327,8 +249,6 @@
     })
     gitment.render('comments')
 </script>
-
-
 
     </div>
     <div class="copyright">
@@ -378,7 +298,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#ELK','#Elasticsearch','#成长','#博客',],
+            'data': ['#elasticsearch','#博客',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
