@@ -3,88 +3,10 @@
   
     
     <entry>
-      <title>我毕业了</title>
-      <link href="/2018/06/%E6%88%91%E6%AF%95%E4%B8%9A%E4%BA%86/"/>
-      <url>/2018/06/%E6%88%91%E6%AF%95%E4%B8%9A%E4%BA%86/</url>
-      <content type="html"><![CDATA[<h1 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h1>]]></content>
-      
-      <categories>
-          
-          <category> 生活杂记 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
-      <title>少有人走的路</title>
-      <link href="/2018/06/%E5%B0%91%E6%9C%89%E4%BA%BA%E8%B5%B0%E7%9A%84%E8%B7%AF/"/>
-      <url>/2018/06/%E5%B0%91%E6%9C%89%E4%BA%BA%E8%B5%B0%E7%9A%84%E8%B7%AF/</url>
-      <content type="html"><![CDATA[<h1 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h1>]]></content>
-      
-      <categories>
-          
-          <category> 读书 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 成长 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>ELK专题</title>
-      <link href="/2018/06/ELK%E4%B8%93%E9%A2%98/"/>
-      <url>/2018/06/ELK%E4%B8%93%E9%A2%98/</url>
-      <content type="html"><![CDATA[<h1 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h1>]]></content>
-      
-      <categories>
-          
-          <category> 专题 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ELK </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>初识elasticsearch</title>
-      <link href="/2018/06/%E5%88%9D%E8%AF%86elasticsearch/"/>
-      <url>/2018/06/%E5%88%9D%E8%AF%86elasticsearch/</url>
-      <content type="html"><![CDATA[<h1 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h1>]]></content>
-      
-      <categories>
-          
-          <category> 大数据 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Elasticsearch </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>使用hexo+github pages搭建博客</title>
       <link href="/2018/05/%E4%BD%BF%E7%94%A8hexo-github-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
       <url>/2018/05/%E4%BD%BF%E7%94%A8hexo-github-pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
-      <content type="html"><![CDATA[<h2 id="为什么写博客"><a href="#为什么写博客" class="headerlink" title="为什么写博客"></a>为什么写博客</h2><p>就如我在博客主页上所说，主要有三点：</p><ol><li>记录与分享</li><li>锤炼技术，提高写作能力和表达能力</li><li>树立个人品牌，提高影响力</li></ol><p>而在此博客之前，我在CSDN上（<a href="https://blog.csdn.net/wwwdc1012" target="_blank" rel="noopener">小旋锋的博客</a>）写过一些博客，截止于2018年5月23日，个人资料如下：</p><img title="小旋锋的csdn个人资料" alt="小旋锋的csdn个人资料" src="http://image.laijianfeng.org/static/images/201805/20180523_232554.png"><p>当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事情，并且反过来推动我学习和记录，写更多的博客。</p><p>而为什么现在要重新整一个博客呢？主要是因为之前CSDN的博客更多的是转载和低质量的，而博主即将毕业，正走在程序员的职业道路上，需要树立个人品牌，写博客是目前对我比较合适且能做到的方式。</p><p>而独立博客自由度更高，第三方博客平台推广则更快，所以最终决定采用独立博客首发，第三方平台分发引流的模式。</p><p>我的第三方平台账户：</p><ul><li><a href="https://www.jianshu.com/u/ae269fd3620a" target="_blank" rel="noopener">小旋锋的简书</a></li><li><a href="https://blog.csdn.net/wwwdc1012" target="_blank" rel="noopener">小旋锋的csdn博客</a></li><li><a href="https://www.zhihu.com/people/whirlys/activities" target="_blank" rel="noopener">小旋锋的知乎</a></li></ul><img title="小旋锋的微信公众号" alt="小旋锋的微信公众号" src="http://image.laijianfeng.org/static/images/201805/20180523_230522.jpg"><h2 id="Hexo主题选择"><a href="#Hexo主题选择" class="headerlink" title="Hexo主题选择"></a>Hexo主题选择</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架，可托管于github pages，可免去维护服务器的麻烦，博主们可更专注于内容的创作，并且Hexo主题众多，总有一款适合你。</p><p>我对主题的要求主要有：</p><ol><li>不要太大众</li><li>大气美观</li><li>功能齐全</li></ol><p>经过了几天的搜索之后，筛选了几个比较满意的Hexo主题如下：</p><ol><li><a href="http://blog.zhangruipeng.me/hexo-theme-hueman/about/index.html" target="_blank" rel="noopener">Hueman</a></li><li><a href="http://jacman.wuchong.me/2014/11/20/how-to-use-jacman/" target="_blank" rel="noopener">jacman</a></li><li><a href="https://www.haomwei.com/" target="_blank" rel="noopener">大道至简</a></li><li><a href="http://threehao.com/" target="_blank" rel="noopener">Loo’s Blog</a></li><li><a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a></li></ol><p>最终选择了 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a> 这款主题，当然还有很多不错的主题。</p><h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><h3 id="1-根据-Hexo官网-步骤安装-git，node-js"><a href="#1-根据-Hexo官网-步骤安装-git，node-js" class="headerlink" title="1. 根据 Hexo官网 步骤安装 git，node.js"></a>1. 根据 <a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo官网</a> 步骤安装 git，node.js</h3><h3 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2. 安装Hexo"></a>2. 安装Hexo</h3><pre><code class="javascript">npm install -g hexo-cli</code></pre><p>安装 Hexo 完成后，新建一个博客的主目录，然后执行以下命令：</p><pre><code class="shell">hexo init &lt;folder&gt;cd &lt;folder&gt;npm install</code></pre><p>新建完成之后该目录的目录结构如下:</p><p>.</p><p>├── _config.yml        # 网站的 配置 信息</p><p>├── package.json        # 应用程序的信息</p><p>├── scaffolds            # 模板文件夹</p><p>├── source            # 博文源文件目录</p><p>|   ├── _drafts        # 草稿文件夹</p><p>|   └── _posts            # 博文文件夹</p><p>└── themes            # 主题文件夹</p><p>再执行以下命令，访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可快速体验Hexo</p><pre><code class="shell">hexo ghexo s</code></pre><img src="http://image.laijianfeng.org/static/images/201805/20180524_003246.png"><h3 id="3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo"><a href="#3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo" class="headerlink" title="3. 根据 Hexo文档 对网站做一些简单的配置，然后修改主题为 3-hexo"></a>3. 根据 <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo文档</a> 对网站做一些简单的配置，然后修改主题为 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a></h3><p>安装</p><pre><code class="shell">git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo</code></pre><p>修改hexo根目录的_config.yml中的theme参数</p><pre><code class="javascript">theme: 3-hexo</code></pre><p>然后执行 hexo clean &amp; hexo g &amp; hexo s 即可看到效果</p><p>更多的主题配置可见 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo使用说明</a></p><h3 id="4-配置-github-pages"><a href="#4-配置-github-pages" class="headerlink" title="4. 配置 github pages"></a>4. 配置 github pages</h3><p>到github上创建一个新的空仓库，名字格式为 账户名.github.io，譬如我的github账户名是 <a href="https://github.com/whirlys" target="_blank" rel="noopener">whirlys</a>，所以我的github pages 仓库的名字应为 whirlys.github.io</p><p>安装插件</p><pre><code class="shell">npm install hexo-deployer-git --save</code></pre><p>然后配置 Hexo根目录的 _config.yml，xxx为你的用户名，注意还需要加入你的 github 用户名和密码，不然后面推送失败（但是上传代码时注意防止密码泄露）</p><pre><code class="shell">deploy:  type: git  repo: https://[github用户名]:[github密码]@github.com/xxx/xxx.github.io.git  branch: master</code></pre><p>如果你是第一次配置 github 远程仓库，你还须将你电脑的ssh key 配置到 github 上，具体可参考 <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000" target="_blank" rel="noopener">git远程仓库</a></p><p>推送Hexo到github</p><pre><code class="shell">hexo deploy</code></pre><p>访问 xxx.github.io 即可看到你的 github pages 博客了</p><h3 id="5-绑定私有域名"><a href="#5-绑定私有域名" class="headerlink" title="5. 绑定私有域名"></a>5. 绑定私有域名</h3><p>我的域名为 laijianfeng.org，是一年前买 腾讯云1元学生主机 时送的，当然可以选择其他域名提供商</p><p>在 hexo source 目录下新建一个 CNAME 文件（没有后缀名），在文件里填入你的域名，然后 hexo d 推送到github</p><p>登录域名提供商网站，进入域名解析页面，分别添加两条记录</p><table><thead><tr><th>主机记录</th><th>记录类型</th><th>线路类型</th><th>记录值</th></tr></thead><tbody><tr><td>@</td><td>CNAME</td><td>默认</td><td>xxx.github.io</td></tr><tr><td>www</td><td>CNAME</td><td>默认</td><td><a href="http://www.xxx.github.io" target="_blank" rel="noopener">www.xxx.github.io</a></td></tr></tbody></table><p>等待十分钟之后，访问你的域名即可跳转到你的博客</p><h3 id="6-其他的配置"><a href="#6-其他的配置" class="headerlink" title="6. 其他的配置"></a>6. 其他的配置</h3><ul><li>接入评论，3-hexo主题中已经集成了多种评论，我选择了gitment，具体的配置参考 <a href="http://yelog.org/2017/06/26/gitment/" target="_blank" rel="noopener">完美替代多说-gitment</a>，如果gitment遇到问题，譬如报Error：validation failed异常，可参考 <a href="http://xichen.pub/2018/01/31/2018-01-31-gitment/" target="_blank" rel="noopener">添加Gitment评论系统踩过的坑</a> 以及 <a href="https://github.com/imsun/gitment/issues" target="_blank" rel="noopener">gitment issue</a>上的解决方法</li><li>使用七牛云图床，参考 <a href="http://skyhacks.org/2017/08/02/UseQiniudnToStorePic/" target="_blank" rel="noopener">使用七牛为Hexo存储图片</a> 和 <a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="noopener">Hexo七牛同步插件</a></li><li>代码高亮，字数统计，参考 <a href="http://yelog.org/2017/03/07/3-hexo/" target="_blank" rel="noopener">Hexo主题3-hexo</a></li></ul>]]></content>
+      <content type="html"><![CDATA[<h2 id="为什么写博客"><a href="#为什么写博客" class="headerlink" title="为什么写博客"></a>为什么写博客</h2><p>就如我在博客主页上所说，主要有三点：</p><ol><li>记录与分享</li><li>锤炼技术，提高写作能力和表达能力</li><li>树立个人品牌，提高影响力</li></ol><p>而在此博客之前，我在CSDN上写过一些博客，截止于2018年5月23日，个人资料如下：</p><img title="小旋锋的csdn个人资料" alt="小旋锋的csdn个人资料" src="http://image.laijianfeng.org/static/images/201805/20180523_232554.png"><p>当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事情，并且反过来推动我学习和记录，写更多的博客。</p><p>而为什么现在要重新整一个博客呢？主要是因为之前CSDN的博客更多的是转载和低质量的，而博主即将毕业，正走在程序员的职业道路上，需要树立个人品牌，写博客是目前对我比较合适且能做到的方式。</p><p>而独立博客自由度更高，第三方博客平台推广则更快，所以最终决定采用独立博客首发，第三方平台分发引流的模式。</p><p>我的第三方平台账户：</p><ul><li><a href="https://www.jianshu.com/u/ae269fd3620a" target="_blank" rel="noopener">小旋锋的简书</a></li><li><a href="https://blog.csdn.net/wwwdc1012" target="_blank" rel="noopener">小旋锋的csdn博客</a></li><li><a href="https://www.zhihu.com/people/whirlys/activities" target="_blank" rel="noopener">小旋锋的知乎</a></li><li><a href="http://image.laijianfeng.org/static/images/201805/20180523_230522.jpg" target="_blank" rel="noopener">小旋锋的微信公众号</a></li></ul><h2 id="Hexo主题选择"><a href="#Hexo主题选择" class="headerlink" title="Hexo主题选择"></a>Hexo主题选择</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架，可托管于github pages，可免去维护服务器的麻烦，博主们可更专注于内容的创作，并且Hexo主题众多，总有一款适合你。</p><p>我对主题的要求主要有：</p><ol><li>不要太大众</li><li>大气美观</li><li>功能齐全</li></ol><p>经过了几天的搜索之后，筛选了几个比较满意的Hexo主题如下：</p><ol><li><a href="http://blog.zhangruipeng.me/hexo-theme-hueman/about/index.html" target="_blank" rel="noopener">Hueman</a></li><li><a href="http://jacman.wuchong.me/2014/11/20/how-to-use-jacman/" target="_blank" rel="noopener">jacman</a></li><li><a href="https://www.haomwei.com/" target="_blank" rel="noopener">大道至简</a></li><li><a href="http://threehao.com/" target="_blank" rel="noopener">Loo’s Blog</a></li><li><a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a></li></ol><p>最终选择了 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a> 这款主题，当然还有很多不错的主题。</p><h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><h3 id="1-根据-Hexo官网-步骤安装-git，node-js"><a href="#1-根据-Hexo官网-步骤安装-git，node-js" class="headerlink" title="1. 根据 Hexo官网 步骤安装 git，node.js"></a>1. 根据 <a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo官网</a> 步骤安装 git，node.js</h3><h3 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2. 安装Hexo"></a>2. 安装Hexo</h3><pre><code class="javascript">npm install -g hexo-cli</code></pre><p>安装 Hexo 完成后，新建一个博客的主目录，然后执行以下命令：</p><pre><code class="shell">hexo init &lt;folder&gt;cd &lt;folder&gt;npm install</code></pre><p>新建完成之后该目录的目录结构如下:</p><p>.</p><p>├── _config.yml        # 网站的 配置 信息</p><p>├── package.json        # 应用程序的信息</p><p>├── scaffolds            # 模板文件夹</p><p>├── source            # 博文源文件目录</p><p>|   ├── _drafts        # 草稿文件夹</p><p>|   └── _posts            # 博文文件夹</p><p>└── themes            # 主题文件夹</p><p>再执行以下命令，访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可快速体验Hexo</p><pre><code class="shell">hexo ghexo s</code></pre><img src="http://image.laijianfeng.org/static/images/201805/20180524_003246.png"><h3 id="3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo"><a href="#3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo" class="headerlink" title="3. 根据 Hexo文档 对网站做一些简单的配置，然后修改主题为 3-hexo"></a>3. 根据 <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo文档</a> 对网站做一些简单的配置，然后修改主题为 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a></h3><p>安装</p><pre><code class="shell">git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo</code></pre><p>修改hexo根目录的_config.yml中的theme参数</p><pre><code class="javascript">theme: 3-hexo</code></pre><p>然后执行 hexo clean &amp; hexo g &amp; hexo s 即可看到效果</p><p>更多的主题配置可见 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo使用说明</a></p><h3 id="4-配置-github-pages"><a href="#4-配置-github-pages" class="headerlink" title="4. 配置 github pages"></a>4. 配置 github pages</h3><p>到github上创建一个新的空仓库，名字格式为 账户名.github.io，譬如我的github账户名是 <a href="https://github.com/whirlys" target="_blank" rel="noopener">whirlys</a>，所以我的github pages 仓库的名字应为 whirlys.github.io</p><p>安装插件</p><pre><code class="shell">npm install hexo-deployer-git --save</code></pre><p>然后配置 Hexo根目录的 _config.yml，xxx为你的用户名，注意还需要加入你的 github 用户名和密码，不然后面推送失败（但是上传代码时注意防止密码泄露）</p><pre><code class="shell">deploy:  type: git  repo: https://[github用户名]:[github密码]@github.com/xxx/xxx.github.io.git  branch: master</code></pre><p>如果你是第一次配置 github 远程仓库，你还须将你电脑的ssh key 配置到 github 上，具体可参考 <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000" target="_blank" rel="noopener">git远程仓库</a></p><p>推送Hexo到github</p><pre><code class="shell">hexo deploy</code></pre><p>访问 xxx.github.io 即可看到你的 github pages 博客了</p><h3 id="5-绑定私有域名"><a href="#5-绑定私有域名" class="headerlink" title="5. 绑定私有域名"></a>5. 绑定私有域名</h3><p>我的域名为 laijianfeng.org，是一年前买 腾讯云1元学生主机 时送的，当然可以选择其他域名提供商</p><p>在 hexo source 目录下新建一个 CNAME 文件（没有后缀名），在文件里填入你的域名，然后 hexo d 推送到github</p><p>登录域名提供商网站，进入域名解析页面，分别添加两条记录</p><table><thead><tr><th>主机记录</th><th>记录类型</th><th>线路类型</th><th>记录值</th></tr></thead><tbody><tr><td>@</td><td>CNAME</td><td>默认</td><td>xxx.github.io</td></tr><tr><td>www</td><td>CNAME</td><td>默认</td><td><a href="http://www.xxx.github.io" target="_blank" rel="noopener">www.xxx.github.io</a></td></tr></tbody></table><p>等待十分钟之后，访问你的域名即可跳转到你的博客</p><h3 id="6-其他的配置"><a href="#6-其他的配置" class="headerlink" title="6. 其他的配置"></a>6. 其他的配置</h3><ul><li>接入评论，3-hexo主题中已经集成了多种评论，我选择了gitment，具体的配置参考 <a href="http://yelog.org/2017/06/26/gitment/" target="_blank" rel="noopener">完美替代多说-gitment</a>，如果gitment遇到问题，譬如报Error：validation failed异常，可参考 <a href="http://xichen.pub/2018/01/31/2018-01-31-gitment/" target="_blank" rel="noopener">添加Gitment评论系统踩过的坑</a> 以及 <a href="https://github.com/imsun/gitment/issues" target="_blank" rel="noopener">gitment issue</a>上的解决方法</li><li>使用七牛云图床，参考 <a href="http://skyhacks.org/2017/08/02/UseQiniudnToStorePic/" target="_blank" rel="noopener">使用七牛为Hexo存储图片</a> 和 <a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="noopener">Hexo七牛同步插件</a></li><li>代码高亮，字数统计，参考 <a href="http://yelog.org/2017/03/07/3-hexo/" target="_blank" rel="noopener">Hexo主题3-hexo</a></li></ul>]]></content>
       
       <categories>
           
