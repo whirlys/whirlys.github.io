@@ -6,23 +6,20 @@
   <meta name="keywords" content=" 博客 ">
   <meta name="description" content="使用hexo+github pages搭建博客 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="需要明白的问题 什么是倒排索引？它的组成是什么？ 常见的相关性算分方法有哪些？ 为什么查询语句没有返回预期的文档？ 常用的数据类型有哪些？Text和Keyword的区别是什么？ 集群是如何搭建起来的？是如何实现故障转移的？ Shard具体是由什么组成的？  Elastic Stack构建在开源基础之上, Elastic Stack 让您能够安全可靠地获取任何来源、任何格式的数据，并且能够实时地对数">
-<meta name="keywords" content="elastic,elasticsearch,elk,elasticsearch教程">
+<meta name="description" content="Mapping类似于数据库中的表结构定义，主要作用如下：  定义Index下字段名（Field Name） 定义字段的类型，比如数值型，字符串型、布尔型等 定义倒排索引的相关配置，比如是否索引、记录postion等     需要注意的是，在索引中定义太多字段可能会导致索引膨胀，出现内存不足和难以恢复的情况，下面有几个设置：  index.mapping.total_fields.limit：一个索">
+<meta name="keywords" content="Elasticsearch，Elasticsearch6.x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ElasticSearch初体验">
-<meta property="og:url" content="http://laijianfeng.org/2018/08/ElasticSearch初体验/index.html">
+<meta property="og:title" content="Elasticsearch 6.x Mapping设置">
+<meta property="og:url" content="http://laijianfeng.org/2018/08/Elasticsearch-6-x-Mapping设置/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="需要明白的问题 什么是倒排索引？它的组成是什么？ 常见的相关性算分方法有哪些？ 为什么查询语句没有返回预期的文档？ 常用的数据类型有哪些？Text和Keyword的区别是什么？ 集群是如何搭建起来的？是如何实现故障转移的？ Shard具体是由什么组成的？  Elastic Stack构建在开源基础之上, Elastic Stack 让您能够安全可靠地获取任何来源、任何格式的数据，并且能够实时地对数">
+<meta property="og:description" content="Mapping类似于数据库中的表结构定义，主要作用如下：  定义Index下字段名（Field Name） 定义字段的类型，比如数值型，字符串型、布尔型等 定义倒排索引的相关配置，比如是否索引、记录postion等     需要注意的是，在索引中定义太多字段可能会导致索引膨胀，出现内存不足和难以恢复的情况，下面有几个设置：  index.mapping.total_fields.limit：一个索">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20180815_153244.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180815_153435.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180815_154136.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180815_164226.png">
-<meta property="og:updated_time" content="2018-08-15T11:43:46.489Z">
+<meta property="og:image" content="http://image.laijianfeng.org/20180804_024134.png">
+<meta property="og:updated_time" content="2018-08-16T13:19:49.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElasticSearch初体验">
-<meta name="twitter:description" content="需要明白的问题 什么是倒排索引？它的组成是什么？ 常见的相关性算分方法有哪些？ 为什么查询语句没有返回预期的文档？ 常用的数据类型有哪些？Text和Keyword的区别是什么？ 集群是如何搭建起来的？是如何实现故障转移的？ Shard具体是由什么组成的？  Elastic Stack构建在开源基础之上, Elastic Stack 让您能够安全可靠地获取任何来源、任何格式的数据，并且能够实时地对数">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20180815_153244.png">
+<meta name="twitter:title" content="Elasticsearch 6.x Mapping设置">
+<meta name="twitter:description" content="Mapping类似于数据库中的表结构定义，主要作用如下：  定义Index下字段名（Field Name） 定义字段的类型，比如数值型，字符串型、布尔型等 定义倒排索引的相关配置，比如是否索引、记录postion等     需要注意的是，在索引中定义太多字段可能会导致索引膨胀，出现内存不足和难以恢复的情况，下面有几个设置：  index.mapping.total_fields.limit：一个索">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180804_024134.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -90,8 +87,6 @@
     
     <li data-rel="后端"> 后端 </li>
     
-    <li data-rel="打手机开"> 打手机开 </li>
-    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -99,8 +94,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="3">
-<input type="hidden" id="yelog_site_word_count" value="6.5k">
+<input type="hidden" id="yelog_site_posts_number" value="4">
+<input type="hidden" id="yelog_site_word_count" value="10.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -165,12 +160,20 @@
             <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
         </a>
         
-        <a  class="打手机开 "
+        <a  class="大数据 "
            href="/2018/08/倒排索引与分词/"
            data-tag="elasticsearch"
            data-author="" >
             <span class="post-title" title="倒排索引与分词">倒排索引与分词</span>
             <span class="post-date" title="2018-08-15 23:50:57">2018/08/15</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/Elasticsearch-6-x-Mapping设置/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 6.x Mapping设置">Elasticsearch 6.x Mapping设置</span>
+            <span class="post-date" title="2018-08-16 21:14:33">2018/08/16</span>
         </a>
         
     </nav>
