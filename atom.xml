@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://laijianfeng.org/"/>
-  <updated>2018-08-18T08:27:00.998Z</updated>
+  <updated>2018-08-18T15:02:13.767Z</updated>
   <id>http://laijianfeng.org/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>20180818音乐会</title>
+    <link href="http://laijianfeng.org/2018/08/20180818%E9%9F%B3%E4%B9%90%E4%BC%9A/"/>
+    <id>http://laijianfeng.org/2018/08/20180818音乐会/</id>
+    <published>2018-08-18T14:44:24.000Z</published>
+    <updated>2018-08-18T15:02:13.767Z</updated>
+    
+    <content type="html"><![CDATA[<div style="text-align: center"><br><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=116837&auto=1&height=66"></iframe><br><br></div><p>感受幸福，感受快乐，感受…悲伤….</p><p><img src="http://image.laijianfeng.org/20180818224224.jpg" alt="丹麦钢琴家克里斯蒂娜·比约克独奏音乐会"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;div style=&quot;text-align: center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//
+      
+    
+    </summary>
+    
+      <category term="生活杂记" scheme="http://laijianfeng.org/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Lucene初体验</title>
