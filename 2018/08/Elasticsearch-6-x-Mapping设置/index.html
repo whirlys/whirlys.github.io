@@ -6,20 +6,32 @@
   <meta name="keywords" content=" elasticsearch ">
   <meta name="description" content="Elasticsearch 6.x Mapping设置 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="感受幸福，感受快乐，感受…悲伤….">
-<meta name="keywords" content="小旋锋,小旋锋的博客,大数据,技术博客,高质量博客,个人博客,独立博客,Java,hadoop,spark">
+<meta name="description" content="前言想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等 阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋 软件环境 操作系统：win7 Elasticsearch">
+<meta name="keywords" content="elasticsearch,elasticsearch源码,调试elasticsearch源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20180818音乐会">
-<meta property="og:url" content="http://laijianfeng.org/2018/08/20180818音乐会/index.html">
+<meta property="og:title" content="教你编译调试Elasticsearch 6.3.2源码">
+<meta property="og:url" content="http://laijianfeng.org/2018/08/教你编译调试Elasticsearch-6-3-2源码/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="感受幸福，感受快乐，感受…悲伤….">
+<meta property="og:description" content="前言想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等 阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋 软件环境 操作系统：win7 Elasticsearch">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20180818224224.jpg">
-<meta property="og:updated_time" content="2018-08-18T15:02:13.767Z">
+<meta property="og:image" content="http://image.laijianfeng.org/20180822_142155.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180822_144736.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_013945.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_011036.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_013422.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_012205.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_012641.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_012827.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_111933.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_104521.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_110657.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_113341.png">
+<meta property="og:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2018-08-23T03:44:32.293Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20180818音乐会">
-<meta name="twitter:description" content="感受幸福，感受快乐，感受…悲伤….">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20180818224224.jpg">
+<meta name="twitter:title" content="教你编译调试Elasticsearch 6.3.2源码">
+<meta name="twitter:description" content="前言想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等 阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋 软件环境 操作系统：win7 Elasticsearch">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180822_142155.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -150,30 +162,6 @@
     
     <nav id="title-list-nav">
         
-        <a  class="生活杂记 "
-           href="/2018/08/20180818音乐会/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="20180818音乐会">20180818音乐会</span>
-            <span class="post-date" title="2018-08-18 22:44:24">2018/08/18</span>
-        </a>
-        
-        <a  class="大数据 "
-           href="/2018/08/Elasticsearch-6-x-Mapping设置/"
-           data-tag="elasticsearch"
-           data-author="" >
-            <span class="post-title" title="Elasticsearch 6.x Mapping设置">Elasticsearch 6.x Mapping设置</span>
-            <span class="post-date" title="2018-08-16 21:14:33">2018/08/16</span>
-        </a>
-        
-        <a  class="大数据 "
-           href="/2018/08/ElasticSearch初体验/"
-           data-tag="elasticsearch"
-           data-author="" >
-            <span class="post-title" title="ElasticSearch初体验">ElasticSearch初体验</span>
-            <span class="post-date" title="2018-08-15 19:37:25">2018/08/15</span>
-        </a>
-        
         <a  class="大数据 "
            href="/2018/08/教你编译调试Elasticsearch-6-3-2源码/"
            data-tag="elasticsearch"
@@ -182,12 +170,12 @@
             <span class="post-date" title="2018-08-23 11:39:34">2018/08/23</span>
         </a>
         
-        <a  class="后端 "
-           href="/2018/05/使用hexo-github-pages搭建博客/"
-           data-tag="博客"
+        <a  class="生活杂记 "
+           href="/2018/08/20180818音乐会/"
+           data-tag=""
            data-author="" >
-            <span class="post-title" title="使用hexo+github pages搭建博客">使用hexo+github pages搭建博客</span>
-            <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
+            <span class="post-title" title="20180818音乐会">20180818音乐会</span>
+            <span class="post-date" title="2018-08-18 22:44:24">2018/08/18</span>
         </a>
         
         <a  class="大数据 "
@@ -199,11 +187,35 @@
         </a>
         
         <a  class="大数据 "
+           href="/2018/08/Elasticsearch-6-x-Mapping设置/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 6.x Mapping设置">Elasticsearch 6.x Mapping设置</span>
+            <span class="post-date" title="2018-08-16 21:14:33">2018/08/16</span>
+        </a>
+        
+        <a  class="大数据 "
            href="/2018/08/倒排索引与分词/"
            data-tag="elasticsearch"
            data-author="" >
             <span class="post-title" title="倒排索引与分词">倒排索引与分词</span>
             <span class="post-date" title="2018-08-15 23:50:57">2018/08/15</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/ElasticSearch初体验/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="ElasticSearch初体验">ElasticSearch初体验</span>
+            <span class="post-date" title="2018-08-15 19:37:25">2018/08/15</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2018/05/使用hexo-github-pages搭建博客/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="使用hexo+github pages搭建博客">使用hexo+github pages搭建博客</span>
+            <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
         </a>
         
     </nav>
