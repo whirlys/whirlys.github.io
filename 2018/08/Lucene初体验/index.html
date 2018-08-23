@@ -6,23 +6,20 @@
   <meta name="keywords" content=" lucene ">
   <meta name="description" content="Lucene初体验 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本文的简要内容：  Lucene简介 体验Lucene Demo Lucene 核心类介绍 Lucene 索引文件格式  Lucene简介Lucene是目前最流行的Java开源搜索引擎类库,最新版本为7.4.0。Lucene通常用于全文检索,Lucene具有简单高效跨平台等特点,因此有不少搜索引擎都是基于Lucene构建的,例如:Elasticsearch,Solr等等。 现代搜索引擎的两大核">
-<meta name="keywords" content="lucene, lucene7.4">
+<meta name="description" content="感受幸福，感受快乐，感受…悲伤….">
+<meta name="keywords" content="小旋锋,小旋锋的博客,大数据,技术博客,高质量博客,个人博客,独立博客,Java,hadoop,spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lucene初体验">
-<meta property="og:url" content="http://laijianfeng.org/2018/08/Lucene初体验/index.html">
+<meta property="og:title" content="20180818音乐会">
+<meta property="og:url" content="http://laijianfeng.org/2018/08/20180818音乐会/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="前言本文的简要内容：  Lucene简介 体验Lucene Demo Lucene 核心类介绍 Lucene 索引文件格式  Lucene简介Lucene是目前最流行的Java开源搜索引擎类库,最新版本为7.4.0。Lucene通常用于全文检索,Lucene具有简单高效跨平台等特点,因此有不少搜索引擎都是基于Lucene构建的,例如:Elasticsearch,Solr等等。 现代搜索引擎的两大核">
+<meta property="og:description" content="感受幸福，感受快乐，感受…悲伤….">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20180818_132723.jpg">
-<meta property="og:image" content="http://image.laijianfeng.org/fig001.jpg">
-<meta property="og:image" content="http://image.laijianfeng.org/20180818_135449.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180818_161352.png">
-<meta property="og:updated_time" content="2018-08-18T08:27:00.998Z">
+<meta property="og:image" content="http://image.laijianfeng.org/20180818224224.jpg">
+<meta property="og:updated_time" content="2018-08-18T15:02:13.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lucene初体验">
-<meta name="twitter:description" content="前言本文的简要内容：  Lucene简介 体验Lucene Demo Lucene 核心类介绍 Lucene 索引文件格式  Lucene简介Lucene是目前最流行的Java开源搜索引擎类库,最新版本为7.4.0。Lucene通常用于全文检索,Lucene具有简单高效跨平台等特点,因此有不少搜索引擎都是基于Lucene构建的,例如:Elasticsearch,Solr等等。 现代搜索引擎的两大核">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20180818_132723.jpg">
+<meta name="twitter:title" content="20180818音乐会">
+<meta name="twitter:description" content="感受幸福，感受快乐，感受…悲伤….">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180818224224.jpg">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -99,8 +96,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="6">
-<input type="hidden" id="yelog_site_word_count" value="13.7k">
+<input type="hidden" id="yelog_site_posts_number" value="7">
+<input type="hidden" id="yelog_site_word_count" value="16.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -136,11 +133,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <div class="clearfix"></div>
@@ -178,6 +175,22 @@
         </a>
         
         <a  class="大数据 "
+           href="/2018/08/教你编译调试Elasticsearch-6-3-2源码/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="教你编译调试Elasticsearch 6.3.2源码">教你编译调试Elasticsearch 6.3.2源码</span>
+            <span class="post-date" title="2018-08-23 11:39:34">2018/08/23</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2018/05/使用hexo-github-pages搭建博客/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="使用hexo+github pages搭建博客">使用hexo+github pages搭建博客</span>
+            <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
+        </a>
+        
+        <a  class="大数据 "
            href="/2018/08/Lucene初体验/"
            data-tag="lucene"
            data-author="" >
@@ -191,14 +204,6 @@
            data-author="" >
             <span class="post-title" title="倒排索引与分词">倒排索引与分词</span>
             <span class="post-date" title="2018-08-15 23:50:57">2018/08/15</span>
-        </a>
-        
-        <a  class="后端 "
-           href="/2018/05/使用hexo-github-pages搭建博客/"
-           data-tag="博客"
-           data-author="" >
-            <span class="post-title" title="使用hexo+github pages搭建博客">使用hexo+github pages搭建博客</span>
-            <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
         </a>
         
     </nav>
@@ -826,7 +831,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#lucene','#博客',],
+            'data': ['#elasticsearch','#博客','#lucene',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

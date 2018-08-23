@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>使用hexo+github pages搭建博客 | 小旋锋</title>
-  <meta name="keywords" content=" 博客 ">
-  <meta name="description" content="使用hexo+github pages搭建博客 | 小旋锋">
+  <title>教你编译调试Elasticsearch 6.3.2源码 | 小旋锋</title>
+  <meta name="keywords" content=" elasticsearch ">
+  <meta name="description" content="教你编译调试Elasticsearch 6.3.2源码 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="感受幸福，感受快乐，感受…悲伤….">
 <meta name="keywords" content="小旋锋,小旋锋的博客,大数据,技术博客,高质量博客,个人博客,独立博客,Java,hadoop,spark">
@@ -218,9 +218,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-使用hexo-github-pages搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-教你编译调试Elasticsearch-6-3-2源码" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">使用hexo+github pages搭建博客</h1>
+        <h1 class="article-title">教你编译调试Elasticsearch 6.3.2源码</h1>
     
     <div class="article-meta">
         
@@ -228,26 +228,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="后端">后端</a>
+            <a href="javascript:" data-rel="大数据">大数据</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">博客</a>
+            <a href="javascript:" class="color4">elasticsearch</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-06-10 20:17:39'>2018-05-23 11:35</time>
+        创建时间:<time class="date" title='更新时间: 2018-08-23 11:44:32'>2018-08-23 11:39</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1,215</span>
+        <span>字数:2,503</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -277,7 +277,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么写博客"><span class="toc-text">为什么写博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo主题选择"><span class="toc-text">Hexo主题选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建步骤"><span class="toc-text">搭建步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-根据-Hexo官网-步骤安装-git，node-js"><span class="toc-text">1. 根据 Hexo官网 步骤安装 git，node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装Hexo"><span class="toc-text">2. 安装Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo"><span class="toc-text">3. 根据 Hexo文档 对网站做一些简单的配置，然后修改主题为 3-hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-配置-github-pages"><span class="toc-text">4. 配置 github pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-绑定私有域名"><span class="toc-text">5. 绑定私有域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-其他的配置"><span class="toc-text">6. 其他的配置</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#软件环境"><span class="toc-text">软件环境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备及工程导入"><span class="toc-text">环境准备及工程导入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装JDK"><span class="toc-text">1.安装JDK</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-下载Elasticsearch源码，并且切换到6-3-2分支"><span class="toc-text">2.下载Elasticsearch源码，并且切换到6.3.2分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-下载gradle的安装包"><span class="toc-text">3.下载gradle的安装包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-拷贝文件"><span class="toc-text">4.拷贝文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-修改源码Maven仓库地址"><span class="toc-text">5.修改源码Maven仓库地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-修改全局Maven仓库地址"><span class="toc-text">6.修改全局Maven仓库地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-gradle编译源码"><span class="toc-text">7.gradle编译源码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-idea-导入elasticsearch工程"><span class="toc-text">8. idea 导入elasticsearch工程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行，开始-solve-error-模式"><span class="toc-text">运行，开始 solve error 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#另一种源码调试方式：远程调试"><span class="toc-text">另一种源码调试方式：远程调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他可能遇到的问题"><span class="toc-text">其他可能遇到的问题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -292,117 +292,214 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="为什么写博客"><a href="#为什么写博客" class="headerlink" title="为什么写博客"></a>为什么写博客</h2><p>就如我在博客主页上所说，主要有三点：</p>
-<ol>
-<li>记录与分享</li>
-<li>锤炼技术，提高写作能力和表达能力</li>
-<li>树立个人品牌，提高影响力</li>
-</ol>
-<p>而在此博客之前，我在CSDN上写过一些博客，截止于2018年5月23日，个人资料如下：</p>
-<img title="小旋锋的csdn个人资料" alt="小旋锋的csdn个人资料" src="http://image.laijianfeng.org/static/images/201805/20180523_232554.png">
-<p>当我在CSDN上写博客的时候，几乎每天都会去看看阅读量增加了多少，排名增加了多少，又增加了几个粉丝或者新评论，每每都会带给我兴奋感，让我感到写博客其实是一件很有意义的事情，并且反过来推动我学习和记录，写更多的博客。</p>
-<p>而为什么现在要重新整一个博客呢？主要是因为之前CSDN的博客更多的是转载和低质量的，而博主即将毕业，正走在程序员的职业道路上，需要树立个人品牌，写博客是目前对我比较合适且能做到的方式。</p>
-<p>而独立博客自由度更高，第三方博客平台推广则更快，所以最终决定采用独立博客首发，第三方平台分发引流的模式。</p>
-<p>我的第三方平台账户：</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等</p>
+<p>阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋</p>
+<h4 id="软件环境"><a href="#软件环境" class="headerlink" title="软件环境"></a>软件环境</h4><ul>
+<li>操作系统：win7</li>
+<li>Elasticsearch 源码版本: 6.3.2</li>
+<li>JDK版本： 10.0.2</li>
+<li>Gradle版本： 4.7</li>
+<li>Intellij Idea版本： 2018.2</li>
+</ul>
+<h3 id="环境准备及工程导入"><a href="#环境准备及工程导入" class="headerlink" title="环境准备及工程导入"></a>环境准备及工程导入</h3><h4 id="1-安装JDK"><a href="#1-安装JDK" class="headerlink" title="1.安装JDK"></a>1.安装JDK</h4><p>Elasticsearch 6.3.3需要JDK1.9编译，否则后面步骤会报错。</p>
+<p>Java SE Downloads 地址：<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+<p>作者装的是 JDK 10.0.2</p>
+<h4 id="2-下载Elasticsearch源码，并且切换到6-3-2分支"><a href="#2-下载Elasticsearch源码，并且切换到6-3-2分支" class="headerlink" title="2.下载Elasticsearch源码，并且切换到6.3.2分支"></a>2.下载Elasticsearch源码，并且切换到6.3.2分支</h4><p>Elasticsearch github源码托管地址：<br><a href="https://github.com/elastic/elasticsearch.git" target="_blank" rel="noopener">https://github.com/elastic/elasticsearch.git</a></p>
+<pre><code>git checkout v6.3.2
+</code></pre><p>也可直接下载源码包，地址在 <a href="https://github.com/elastic/elasticsearch/releases" target="_blank" rel="noopener">https://github.com/elastic/elasticsearch/releases</a></p>
+<h4 id="3-下载gradle的安装包"><a href="#3-下载gradle的安装包" class="headerlink" title="3.下载gradle的安装包"></a>3.下载gradle的安装包</h4><p>查看 <code>elasticsearch\gradle\wrapper\gradle-wrapper.properties</code> 发现如下配置：</p>
+<pre><code>distributionUrl=https://services.gradle.org/distributions/gradle-4.5-all.zip
+</code></pre><p>Elasticsearch 6.3.2需要安装gradle-4.5，官方下载地址：<br><a href="https://services.gradle.org/distributions/gradle-4.5-all.zip" target="_blank" rel="noopener">https://services.gradle.org/distributions/gradle-4.5-all.zip</a></p>
+<blockquote>
+<p>注意：由于国内网速问题，为了加快速度，进行第4步操作</p>
+</blockquote>
+<h4 id="4-拷贝文件"><a href="#4-拷贝文件" class="headerlink" title="4.拷贝文件"></a>4.拷贝文件</h4><p>将下载的gradle-4.5-all.zip包放到 <code>elasticsearch\gradle\wrapper</code> 目录下，<br>确保和 <code>elasticsearch\gradle\wrapper\gradle-wrapper.properties</code> 在同级目录，<br>然后修改 <code>elasticsearch\gradle\wrapper\gradle-wrapper.properties</code> 配置如下：</p>
+<pre><code>distributionUrl=gradle-4.5-all.zip
+</code></pre><h4 id="5-修改源码Maven仓库地址"><a href="#5-修改源码Maven仓库地址" class="headerlink" title="5.修改源码Maven仓库地址"></a>5.修改源码Maven仓库地址</h4><p>国内下载国外仓库的jar包速度慢，需要替换Maven地址，设置为本地或者国内可用的Maven仓库。</p>
+<p>需要修改下列文件的 maven URL 配置：</p>
 <ul>
-<li><a href="https://www.jianshu.com/u/ae269fd3620a" target="_blank" rel="noopener">小旋锋的简书</a></li>
-<li><a href="https://blog.csdn.net/wwwdc1012" target="_blank" rel="noopener">小旋锋的csdn博客</a></li>
-<li><a href="https://www.zhihu.com/people/whirlys/activities" target="_blank" rel="noopener">小旋锋的知乎</a></li>
-<li><a href="http://image.laijianfeng.org/static/images/201805/20180523_230522.jpg" target="_blank" rel="noopener">小旋锋的微信公众号</a></li>
+<li>elasticsearch\benchmarks\build.gradle</li>
+<li>elasticsearch\client\benchmark\build.gradle</li>
 </ul>
-<h2 id="Hexo主题选择"><a href="#Hexo主题选择" class="headerlink" title="Hexo主题选择"></a>Hexo主题选择</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架，可托管于github pages，可免去维护服务器的麻烦，博主们可更专注于内容的创作，并且Hexo主题众多，总有一款适合你。</p>
-<p>我对主题的要求主要有：</p>
+<p>修改源码中上面build.gradle文件里面的<code>repositories-maven-url</code>的值，<br>配置为可用的仓库地址，譬如修改为阿里云maven地址 <code>http://maven.aliyun.com/nexus/content/groups/public/</code>，修改示例如下：</p>
+<pre><code>buildscript {
+    repositories {
+        maven {
+            url &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;
+        }
+    }
+    dependencies {
+        classpath &#39;com.github.jengelman.gradle.plugins:shadow:2.0.2&#39;
+    }
+}
+</code></pre><h4 id="6-修改全局Maven仓库地址"><a href="#6-修改全局Maven仓库地址" class="headerlink" title="6.修改全局Maven仓库地址"></a>6.修改全局Maven仓库地址</h4><p>在<code>USER_HOME/.gradle/</code>下面创建新文件 <code>init.gradle</code>，输入下面的内容并保存。</p>
+<pre><code>allprojects{
+    repositories {
+        def REPOSITORY_URL = &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;
+        all {
+            ArtifactRepository repo -&gt;
+    if (repo instanceof MavenArtifactRepository) {
+                def url = repo.url.toString()
+                if (url.startsWith(&#39;https://repo.maven.org/maven2&#39;) || url.startsWith(&#39;https://jcenter.bintray.com/&#39;)) {
+                    project.logger.lifecycle &quot;Repository ${repo.url} replaced by $REPOSITORY_URL.&quot;
+                    remove repo
+                }
+            }
+        }
+        maven {
+            url REPOSITORY_URL
+        }
+    }
+}
+</code></pre><p>其中<code>USER_HOME/.gradle/</code>是自己的gradle安装目录，示例值：<code>C:\Users\Administrator\.gradle</code>，<br>如果没有<code>.gradle</code>目录，可用自己创建，或者先执行第7步，等gradle安装后再回来修改。<br>上面脚本把url匹配到的仓库都替换成了阿里云的仓库，<br>如果有未匹配到的导致编译失败，可用自己仿照着添加匹配条件。</p>
+<h4 id="7-gradle编译源码"><a href="#7-gradle编译源码" class="headerlink" title="7.gradle编译源码"></a>7.gradle编译源码</h4><p>windows运行cmd，进入DOS命令行，然后切换到elasticsearch源码的根目录，执行如下命令，把elasticsearch编译为 idea 工程：</p>
+<pre><code>gradlew idea
+</code></pre><p>编译失败则按照错误信息解决问题，可用使用如下命令帮助定位问题：</p>
+<pre><code>gradlew idea -info
+gradlew idea -debug
+</code></pre><p>一般是Maven仓库地址不可用导致jar包无法下载，从而编译失败，此时请参考步骤5和6修改相关的仓库地址。</p>
+<p>编译成功后打印日志：</p>
+<pre><code>BUILD SUCCESSFUL in 1m 23s
+</code></pre><h4 id="8-idea-导入elasticsearch工程"><a href="#8-idea-导入elasticsearch工程" class="headerlink" title="8. idea 导入elasticsearch工程"></a>8. idea 导入elasticsearch工程</h4><p>idea 中 <code>File -&gt; New Project From Existing Sources</code> 选择你下载的 Elasticsearch 根目录，然后点 <code>open</code> ，之后 <code>Import project from external model -&gt; Gradle</code> , 选中 <code>Use auto-import</code>, 然后就可以了</p>
+<p>导入进去后，gradle 又会编译一遍，需要等一会，好了之后如下：</p>
+<p><img src="http://image.laijianfeng.org/20180822_142155.png" alt="IDEA导入Elasticsearch6.3.2之后"></p>
+<h3 id="运行，开始-solve-error-模式"><a href="#运行，开始-solve-error-模式" class="headerlink" title="运行，开始 solve error 模式"></a>运行，开始 solve error 模式</h3><blockquote>
+<p>前面的步骤都挺顺利，接下来遇到的 ERROR &amp; EXCEPTION 让作者耗费了好几天，心力交瘁，好在最终运行成功   </p>
+</blockquote>
+<p>在 <code>elasticsearch/server/src/main/org/elasticsearch/bootstrap</code> 下找到Elasticsearch的启动类 <code>Elasticsearch.java</code>，打开文件，右键 <code>Run Elasticsearch.main()</code>，运行main方法</p>
+<p><strong>1、 报错如下：</strong></p>
+<pre><code>ERROR: the system property [es.path.conf] must be set
+</code></pre><p>这是需要配置 es.path.conf 参数，我们先在 elasticsearch 源码目录下新建一个 home 目录，然后在 <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener"><code>https://www.elastic.co/downloads/elasticsearch</code></a> 下载一个同版本号的 Elasticsearch6.3.2 发行版，解压，将 config 目录拷贝到 home 目录中</p>
+<p>然后打开 <code>Edit Configurations</code>，在 <code>VM options</code> 加入如下配置：</p>
+<p><img src="http://image.laijianfeng.org/20180822_144736.png" alt="Edit Configurations"></p>
+<pre><code>-Des.path.conf=D:\elasticsearch-6.3.2\home\config
+</code></pre><p>再次运行 <code>Run Elasticsearch.main()</code></p>
+<p><strong>2、报错如下：</strong></p>
+<pre><code>Exception in thread &quot;main&quot; java.lang.IllegalStateException: path.home is not configured
+    at org.elasticsearch.env.Environment.&lt;init&gt;(Environment.java:103)
+...
+</code></pre><p>需要配置 <code>path.home</code> 这个参数，在 VM options 中添加如下配置：</p>
+<pre><code>-Des.path.home=D:\elasticsearch-6.3.2
+</code></pre><p>再次RUN</p>
+<p><strong>3、报错如下：</strong></p>
+<pre><code>2018-08-22 15:07:17,094 main ERROR Could not register mbeans java.security.AccessControlException: access denied (&quot;javax.management.MBeanTrustPermission&quot; &quot;register&quot;)
+...
+
+Caused by: java.nio.file.NoSuchFileException: D:\elasticsearch-6.3.2\modules\aggs-matrix-stats\plugin-descriptor.properties
+...
+</code></pre><p>在 VM options 中把 path.home 的值修改为如下：</p>
+<pre><code>-Des.path.home=D:\elasticsearch-6.3.2\home
+</code></pre><p>然后把 ES6.3.2 发行版中的 <code>modules</code> 文件夹复制到 <code>home</code> 目录下，然后再次RUN</p>
+<p><strong>4、报错如下：</strong></p>
+<pre><code>2018-08-22 15:12:29,876 main ERROR Could not register mbeans java.security.AccessControlException: access denied (&quot;javax.management.MBeanTrustPermission&quot; &quot;register&quot;)
+...
+</code></pre><p>在 <code>VM options</code> 中加入</p>
+<pre><code>-Dlog4j2.disable.jmx=true
+</code></pre><p>1、2、3、4 的配置最终如下：</p>
+<p><img src="http://image.laijianfeng.org/20180823_013945.png" alt="image"></p>
+<p>再次RUN</p>
+<p><strong>5、报错如下：</strong></p>
+<pre><code>[2018-08-23T00:53:17,003][ERROR][o.e.b.ElasticsearchUncaughtExceptionHandler] [] fatal error in thread [main], exiting
+java.lang.NoClassDefFoundError: org/elasticsearch/plugins/ExtendedPluginsClassLoader
+    at org.elasticsearch.plugins.PluginsService.loadBundle(PluginsService.java:632) ~[main/:?]
+    at org.elasticsearch.plugins.PluginsService.loadBundles(PluginsService.java:557) ~[main/:?]
+    at org.elasticsearch.plugins.PluginsService.&lt;init&gt;(PluginsService.java:162) ~[main/:?]
+    at org.elasticsearch.node.Node.&lt;init&gt;(Node.java:311) ~[main/:?]
+    at org.elasticsearch.node.Node.&lt;init&gt;(Node.java:252) ~[main/:?]
+    at org.elasticsearch.bootstrap.Bootstrap$5.&lt;init&gt;(Bootstrap.java:213) ~[main/:?]
+    at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:213) ~[main/:?]
+    at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:326) ~[main/:?]
+    at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:136) ~[main/:?]
+    at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:127) ~[main/:?]
+    at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:86) ~[main/:?]
+    at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:124) ~[main/:?]
+    at org.elasticsearch.cli.Command.main(Command.java:90) ~[main/:?]
+    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:93) ~[main/:?]
+    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:86) ~[main/:?]
+Caused by: java.lang.ClassNotFoundException: org.elasticsearch.plugins.ExtendedPluginsClassLoader
+    at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:582) ~[?:?]
+    at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:190) ~[?:?]
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:499) ~[?:?]
+    ... 15 more
+</code></pre><p>这个问题其实不算真正的问题，但是说起来挺好笑，为了解决这个问题耗费了作者好几天，心力交瘁，当最后发现问题所在的时候，哭笑不得 ~_~  正是所谓的 <code>踏破铁鞋无觅处，得来全不费工夫</code> </p>
+<p><strong>解决方法：</strong> 打开 IDEA <code>Edit Configurations</code> ，给 <code>Include dependencies with Provided scope</code> 打上勾即可解决，很简单吧！！</p>
+<p><img src="http://image.laijianfeng.org/20180823_011036.png" alt="image"></p>
+<p>继续RUN，又来一个 EXceptin</p>
+<p><strong>6、报错如下：</strong></p>
+<pre><code>[2018-08-23T01:13:38,551][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]
+org.elasticsearch.bootstrap.StartupException: java.security.AccessControlException: access denied (&quot;java.lang.RuntimePermission&quot; &quot;createClassLoader&quot;)
+    at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:140) ~[main/:?]
+    at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:127) ~[main/:?]
+    at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:86) ~[main/:?]
+    at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:124) ~[main/:?]
+    at org.elasticsearch.cli.Command.main(Command.java:90) ~[main/:?]
+    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:93) ~[main/:?]
+    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:86) ~[main/:?]
+Caused by: java.security.AccessControlException: access denied (&quot;java.lang.RuntimePermission&quot; &quot;createClassLoader&quot;)
+    at java.security.AccessControlContext.checkPermission(AccessControlContext.java:472) ~[?:?]
+    at java.security.AccessController.checkPermission(AccessController.java:895) ~[?:?]
+    at java.lang.SecurityManager.checkPermission(SecurityManager.java:335) ~[?:?]
+    at java.lang.SecurityManager.checkCreateClassLoader(SecurityManager.java:397) ~[?:?]
+...
+
+Exception: java.security.AccessControlException thrown from the UncaughtExceptionHandler in thread &quot;Thread-2&quot;
+
+</code></pre><p>这个问题也找了挺久，最终才发现解决方法（两种）：</p>
+<p><strong>第一种：</strong> 在 <code>home/config</code> 目录下新建 <code>java.policy</code> 文件，填入下面内容</p>
+<pre><code>grant {
+    permission java.lang.RuntimePermission &quot;createClassLoader&quot;;
+};
+</code></pre><p>然后在 <code>VM options</code> 加入 <code>java.security.policy</code> 的设置，指向该文件即可</p>
+<pre><code>-Djava.security.policy=D:\elasticsearch-6.3.2\home\config\java.policy
+</code></pre><p><strong>第二种：</strong> 就是在 <code>%JAVA_HOME%/conf/security</code> 目录下（JDK10是这个路径，之前的版本不确定），我的目录是 <code>C:\Program Files\Java\jdk-10.0.2\conf\security</code>，打开 <code>java.policy</code> 文件，在 <code>grant</code> 中加入下面这句，赋予权限</p>
+<pre><code>permission java.lang.RuntimePermission &quot;createClassLoader&quot;;
+</code></pre><p>效果如下：</p>
+<p><img src="http://image.laijianfeng.org/20180823_013422.png" alt="java.policy"><br><img src="http://image.laijianfeng.org/20180823_012205.png" alt="createClassLoader"></p>
+<p>再RUN，这次可终于运行起来了！！！</p>
+<p>来看一下效果，浏览器访问 <code>http://localhost:9200/</code></p>
+<p><img src="http://image.laijianfeng.org/20180823_012641.png" alt="image1"></p>
+<p>浏览器访问 <code>http://localhost:9200/_cat/health?v</code></p>
+<p><img src="http://image.laijianfeng.org/20180823_012827.png" alt="image"></p>
+<p>一切正常，终于可以愉快的 DEBUG 源码啦！！！</p>
+<h3 id="另一种源码调试方式：远程调试"><a href="#另一种源码调试方式：远程调试" class="headerlink" title="另一种源码调试方式：远程调试"></a>另一种源码调试方式：远程调试</h3><p>如果上面第五个报错之后解决不了无法继续进行，可以选择这种方式:</p>
+<p>在 Elasticsearch 源码目录下打开 CMD，输入下面的命令启动一个 debug 实例</p>
+<pre><code>gradlew run --debug-jvm
+</code></pre><p>如果启动失败可能需要先执行 <code>gradlew clean</code> 再 <code>gradlew run --debug-jvm</code> 或者 先退出 IDEA</p>
+<p><img src="http://image.laijianfeng.org/20180823_111933.png" alt="image"></p>
+<p>在 IDEA 中打开 <code>Edit Configurations</code>，添加 remote</p>
+<p><img src="http://image.laijianfeng.org/20180823_104521.png" alt="image"></p>
+<p>配置 host 和 port</p>
+<p><img src="http://image.laijianfeng.org/20180823_110657.png" alt="image"></p>
+<p>点击 debug，浏览器访问 <code>http://localhost:9200/</code>，即可看到ES返回的信息</p>
+<p>随机调试一下， 打开 <code>elasticsearch/server/src/main/org/elasticsearch/rest/action/cat</code> 下的 <code>RestHealthAction</code> 类，在第 54 行出设置一个断点，然后浏览器访问 <code>http://localhost:9200/_cat/health</code>，可以看到断点已经捕获到该请求了</p>
+<p><img src="http://image.laijianfeng.org/20180823_113341.png" alt="image"></p>
+<p>运行成功，可以开始设置断点进行其他调试</p>
+<h3 id="其他可能遇到的问题"><a href="#其他可能遇到的问题" class="headerlink" title="其他可能遇到的问题"></a>其他可能遇到的问题</h3><p><strong>1. 错误信息如下</strong></p>
+<pre><code>JAVA8_HOME required to run tasks gradle
+</code></pre><p>配置环境变量 <code>JAVA8_HOME</code>，值为 JDK8 的安装目录</p>
+<p><strong>2. 错误信息如下</strong></p>
+<pre><code>[2018-08-22T13:07:23,197][INFO ][o.e.t.TransportService   ] [EFQliuV] publish_address {10.100.99.118:9300}, bound_addresses {[::]:9300}
+[2018-08-22T13:07:23,211][INFO ][o.e.b.BootstrapChecks    ] [EFQliuV] bound or publishing to a non-loopback address, enforcing bootstrap checks
+ERROR: [1] bootstrap checks failed
+[1]: initial heap size [268435456] not equal to maximum heap size [4273995776]; this can cause resize pauses and prevents mlockall from locking the entire heap
+[2018-08-22T13:07:23,219][INFO ][o.e.n.Node               ] [EFQliuV] stopping ...
+2018-08-22 13:07:23,269 Thread-2 ERROR No log4j2 configuration file found. Using default configuration: logging only errors to the console. Set system property &#39;log4j2.debug&#39; to show Log4j2 internal initialization logging.
+Disconnected from the target VM, address: &#39;127.0.0.1:5272&#39;, transport: &#39;socket&#39;
+</code></pre><p>在 <code>Edit Configurations</code> 的 <code>VM options</code> 加入下面配置</p>
+<pre><code>-Xms2g 
+-Xmx2g 
+</code></pre><blockquote>
+<p>参考文档：</p>
 <ol>
-<li>不要太大众</li>
-<li>大气美观</li>
-<li>功能齐全</li>
+<li><a href="https://www.jianshu.com/p/61dfe6fb6625" target="_blank" rel="noopener">Eclipse导入Elasticsearch源码</a></li>
+<li><a href="https://www.felayman.com/articles/2017/11/10/1510291087246.html" target="_blank" rel="noopener">Elasticsearch源码分析—环境准备(一)</a></li>
+<li><a href="http://www.54tianzhisheng.cn/2018/08/05/es-code01/" target="_blank" rel="noopener">渣渣菜鸡的 ElasticSearch 源码解析 —— 环境搭建</a></li>
+<li><a href="http://www.54tianzhisheng.cn/2018/08/14/idea-remote-debug-elasticsearch" target="_blank" rel="noopener">教你如何在 IDEA 远程 Debug ElasticSearch</a></li>
 </ol>
-<p>经过了几天的搜索之后，筛选了几个比较满意的Hexo主题如下：</p>
-<ol>
-<li><a href="http://blog.zhangruipeng.me/hexo-theme-hueman/about/index.html" target="_blank" rel="noopener">Hueman</a></li>
-<li><a href="http://jacman.wuchong.me/2014/11/20/how-to-use-jacman/" target="_blank" rel="noopener">jacman</a></li>
-<li><a href="https://www.haomwei.com/" target="_blank" rel="noopener">大道至简</a></li>
-<li><a href="http://threehao.com/" target="_blank" rel="noopener">Loo’s Blog</a></li>
-<li><a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a></li>
-</ol>
-<p>最终选择了 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo</a> 这款主题，当然还有很多不错的主题。</p>
-<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><h3 id="1-根据-Hexo官网-步骤安装-git，node-js"><a href="#1-根据-Hexo官网-步骤安装-git，node-js" class="headerlink" title="1. 根据 Hexo官网 步骤安装 git，node.js"></a>1. 根据 <a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo官网</a> 步骤安装 git，node.js</h3><h3 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2. 安装Hexo"></a>2. 安装Hexo</h3><pre><code class="javascript">npm install -g hexo-cli
-</code></pre>
-<p>安装 Hexo 完成后，新建一个博客的主目录，然后执行以下命令：</p>
-<pre><code class="shell">hexo init &lt;folder&gt;
-cd &lt;folder&gt;
-npm install
-</code></pre>
-<p>新建完成之后该目录的目录结构如下:</p>
-<p>.</p>
-<p>├── _config.yml        # 网站的 配置 信息</p>
-<p>├── package.json        # 应用程序的信息</p>
-<p>├── scaffolds            # 模板文件夹</p>
-<p>├── source            # 博文源文件目录</p>
-<p>|   ├── _drafts        # 草稿文件夹</p>
-<p>|   └── _posts            # 博文文件夹</p>
-<p>└── themes            # 主题文件夹</p>
-<p>再执行以下命令，访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可快速体验Hexo</p>
-<pre><code class="shell">hexo g
-hexo s
-</code></pre>
-<img src="http://image.laijianfeng.org/static/images/201805/20180524_003246.png">
-<h3 id="3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo"><a href="#3-根据-Hexo文档-对网站做一些简单的配置，然后修改主题为-3-hexo" class="headerlink" title="3. 根据 Hexo文档 对网站做一些简单的配置，然后修改主题为 3-hexo"></a>3. 根据 <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo文档</a> 对网站做一些简单的配置，然后修改主题为 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a></h3><p>安装</p>
-<pre><code class="shell">git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo
-</code></pre>
-<p>修改hexo根目录的_config.yml中的theme参数</p>
-<pre><code class="javascript">theme: 3-hexo
-</code></pre>
-<p>然后执行 hexo clean &amp; hexo g &amp; hexo s 即可看到效果</p>
-<p>更多的主题配置可见 <a href="http://yelog.org/2017/03/23/3-hexo-instruction/" target="_blank" rel="noopener">3-hexo使用说明</a></p>
-<h3 id="4-配置-github-pages"><a href="#4-配置-github-pages" class="headerlink" title="4. 配置 github pages"></a>4. 配置 github pages</h3><p>到github上创建一个新的空仓库，名字格式为 账户名.github.io，譬如我的github账户名是 <a href="https://github.com/whirlys" target="_blank" rel="noopener">whirlys</a>，所以我的github pages 仓库的名字应为 whirlys.github.io</p>
-<p>安装插件</p>
-<pre><code class="shell">npm install hexo-deployer-git --save
-</code></pre>
-<p>然后配置 Hexo根目录的 _config.yml，xxx为你的用户名，注意还需要加入你的 github 用户名和密码，不然后面推送失败（但是上传代码时注意防止密码泄露）</p>
-<pre><code class="shell">deploy:
-  type: git
-  repo: https://[github用户名]:[github密码]@github.com/xxx/xxx.github.io.git
-  branch: master
-</code></pre>
-<p>如果你是第一次配置 github 远程仓库，你还须将你电脑的ssh key 配置到 github 上，具体可参考 <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000" target="_blank" rel="noopener">git远程仓库</a></p>
-<p>推送Hexo到github</p>
-<pre><code class="shell">hexo deploy
-</code></pre>
-<p>访问 xxx.github.io 即可看到你的 github pages 博客了</p>
-<h3 id="5-绑定私有域名"><a href="#5-绑定私有域名" class="headerlink" title="5. 绑定私有域名"></a>5. 绑定私有域名</h3><p>我的域名为 laijianfeng.org，是一年前买 腾讯云1元学生主机 时送的，当然可以选择其他域名提供商</p>
-<p>在 hexo source 目录下新建一个 CNAME 文件（没有后缀名），在文件里填入你的域名，然后 hexo d 推送到github</p>
-<p>登录域名提供商网站，进入域名解析页面，分别添加两条记录</p>
-<table>
-<thead>
-<tr>
-<th>主机记录</th>
-<th>记录类型</th>
-<th>线路类型</th>
-<th>记录值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>@</td>
-<td>CNAME</td>
-<td>默认</td>
-<td>xxx.github.io</td>
-</tr>
-<tr>
-<td>www</td>
-<td>CNAME</td>
-<td>默认</td>
-<td><a href="http://www.xxx.github.io" target="_blank" rel="noopener">www.xxx.github.io</a></td>
-</tr>
-</tbody>
-</table>
-<p>等待十分钟之后，访问你的域名即可跳转到你的博客</p>
-<h3 id="6-其他的配置"><a href="#6-其他的配置" class="headerlink" title="6. 其他的配置"></a>6. 其他的配置</h3><ul>
-<li>接入评论，3-hexo主题中已经集成了多种评论，我选择了gitment，具体的配置参考 <a href="http://yelog.org/2017/06/26/gitment/" target="_blank" rel="noopener">完美替代多说-gitment</a>，如果gitment遇到问题，譬如报Error：validation failed异常，可参考 <a href="http://xichen.pub/2018/01/31/2018-01-31-gitment/" target="_blank" rel="noopener">添加Gitment评论系统踩过的坑</a> 以及 <a href="https://github.com/imsun/gitment/issues" target="_blank" rel="noopener">gitment issue</a>上的解决方法</li>
-<li>使用七牛云图床，参考 <a href="http://skyhacks.org/2017/08/02/UseQiniudnToStorePic/" target="_blank" rel="noopener">使用七牛为Hexo存储图片</a> 和 <a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="noopener">Hexo七牛同步插件</a></li>
-<li>代码高亮，字数统计，参考 <a href="http://yelog.org/2017/03/07/3-hexo/" target="_blank" rel="noopener">Hexo主题3-hexo</a></li>
-</ul>
+</blockquote>
+<hr>
+<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
+<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -416,12 +513,12 @@ hexo s
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>使用hexo+github pages搭建博客</p>
-    <p><span>文章字数:</span><span class="post-count">1,215</span></p>
+    <p><span>文章标题:</span>教你编译调试Elasticsearch 6.3.2源码</p>
+    <p><span>文章字数:</span><span class="post-count">2,503</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-05-23, 11:35:46</p>
-    <p><span>最后更新:</span>2018-06-10, 20:17:39</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/05/使用hexo-github-pages搭建博客/" title="使用hexo+github pages搭建博客">http://laijianfeng.org/2018/05/使用hexo-github-pages搭建博客/</a>
+    <p><span>发布时间:</span>2018-08-23, 11:39:34</p>
+    <p><span>最后更新:</span>2018-08-23, 11:44:32</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/08/教你编译调试Elasticsearch-6-3-2源码/" title="教你编译调试Elasticsearch 6.3.2源码">http://laijianfeng.org/2018/08/教你编译调试Elasticsearch-6-3-2源码/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -433,7 +530,7 @@ hexo s
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '使用hexo+github pages搭建博客', // 可选。默认为 location.href
+        id: '教你编译调试Elasticsearch 6.3.2源码', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
