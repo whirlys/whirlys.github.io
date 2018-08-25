@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>23个最有用的ES检索技巧(Java API实现) | 小旋锋</title>
+  <meta name="keywords" content=" elasticsearch ">
+  <meta name="description" content="23个最有用的ES检索技巧(Java API实现) | 小旋锋">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="前言想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等 阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋 软件环境 操作系统：win7 Elasticsearch">
+<meta name="keywords" content="elasticsearch,elasticsearch源码,调试elasticsearch源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教你编译调试Elasticsearch 6.3.2源码">
+<meta property="og:url" content="http://laijianfeng.org/2018/08/教你编译调试Elasticsearch-6-3-2源码/index.html">
+<meta property="og:site_name" content="小旋锋">
+<meta property="og:description" content="前言想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等 阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋 软件环境 操作系统：win7 Elasticsearch">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.laijianfeng.org/20180822_142155.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180822_144736.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_013945.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_011036.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_013422.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_012205.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_012641.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_012827.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_111933.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_104521.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_110657.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180823_113341.png">
+<meta property="og:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2018-08-23T03:44:32.293Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="教你编译调试Elasticsearch 6.3.2源码">
+<meta name="twitter:description" content="前言想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等 阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋 软件环境 操作系统：win7 Elasticsearch">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180822_142155.png">
+
+
+<link rel="icon" href="/img/favicon.jpg">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/hl_theme/atom-light.css">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/photoswipe/4.1.2/default-skin/default-skin.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>小旋锋</span>
+</div>
+
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/whirlys" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="email" title="email" href="mailto:whirlys@163.com"></a>
+    
+</div>
+
+
+
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="生活杂记"> 生活杂记 </li>
+    
+    <li data-rel="大数据"> 大数据 </li>
+    
+    <li data-rel="后端"> 后端 </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_word_count" value="19.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">elasticsearch</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lucene</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="大数据 "
+           href="/2018/08/23个最有用的ES检索技巧-Java-API实现/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="23个最有用的ES检索技巧(Java API实现)">23个最有用的ES检索技巧(Java API实现)</span>
+            <span class="post-date" title="2018-08-25 13:19:00">2018/08/25</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/教你编译调试Elasticsearch-6-3-2源码/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="教你编译调试Elasticsearch 6.3.2源码">教你编译调试Elasticsearch 6.3.2源码</span>
+            <span class="post-date" title="2018-08-23 11:39:34">2018/08/23</span>
+        </a>
+        
+        <a  class="生活杂记 "
+           href="/2018/08/20180818音乐会/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20180818音乐会">20180818音乐会</span>
+            <span class="post-date" title="2018-08-18 22:44:24">2018/08/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/Lucene初体验/"
+           data-tag="lucene"
+           data-author="" >
+            <span class="post-title" title="Lucene初体验">Lucene初体验</span>
+            <span class="post-date" title="2018-08-18 16:23:02">2018/08/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/Elasticsearch-6-x-Mapping设置/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 6.x Mapping设置">Elasticsearch 6.x Mapping设置</span>
+            <span class="post-date" title="2018-08-16 21:14:33">2018/08/16</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/倒排索引与分词/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="倒排索引与分词">倒排索引与分词</span>
+            <span class="post-date" title="2018-08-15 23:50:57">2018/08/15</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/ElasticSearch初体验/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="ElasticSearch初体验">ElasticSearch初体验</span>
+            <span class="post-date" title="2018-08-15 19:37:25">2018/08/15</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2018/05/使用hexo-github-pages搭建博客/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="使用hexo+github pages搭建博客">使用hexo+github pages搭建博客</span>
+            <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-23个最有用的ES检索技巧-Java-API实现" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">23个最有用的ES检索技巧(Java API实现)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+            <a href="javascript:" data-rel="大数据">大数据</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color4">elasticsearch</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2018-08-25 13:21:32'>2018-08-25 13:19</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3,199</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#运行环境"><span class="toc-text">运行环境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类介绍"><span class="toc-text">类介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实体类-Book"><span class="toc-text">实体类 Book</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公共类-Constants"><span class="toc-text">公共类 Constants</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公共类-EsConfig"><span class="toc-text">公共类 EsConfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据获取工具类-DataUtil"><span class="toc-text">数据获取工具类 DataUtil</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#公共查询工具类-CommonQueryUtils"><span class="toc-text">公共查询工具类 CommonQueryUtils</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据准备"><span class="toc-text">数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BulkTests"><span class="toc-text">BulkTests</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始查询"><span class="toc-text">开始查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#控制类"><span class="toc-text">控制类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务类"><span class="toc-text">服务类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-对-“guide”-执行全文检索-Multi-Match-Query"><span class="toc-text">1.1 对 “guide” 执行全文检索 Multi Match Query</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-在标题字段-title-中搜索带有-“in-action”-字样的图书"><span class="toc-text">1.2 在标题字段(title)中搜索带有 “in action” 字样的图书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多字段检索-Multi-field-Search"><span class="toc-text">多字段检索 (Multi-field Search)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、-Boosting提升某字段得分的检索-Boosting-将“摘要”字段的得分提高了3倍"><span class="toc-text">3、 Boosting提升某字段得分的检索( Boosting),将“摘要”字段的得分提高了3倍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、Bool检索-Bool-Query"><span class="toc-text">4、Bool检索( Bool Query)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、-Fuzzy-模糊检索-Fuzzy-Queries"><span class="toc-text">5、 Fuzzy 模糊检索( Fuzzy Queries)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6、-Wildcard-Query-通配符检索"><span class="toc-text">6、 Wildcard Query 通配符检索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7、正则表达式检索-Regexp-Query"><span class="toc-text">7、正则表达式检索( Regexp Query)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8、匹配短语检索-Match-Phrase-Query"><span class="toc-text">8、匹配短语检索( Match Phrase Query)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9、匹配词组前缀检索"><span class="toc-text">9、匹配词组前缀检索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10、字符串检索（-Query-String）"><span class="toc-text">10、字符串检索（ Query String）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11、简化的字符串检索-（Simple-Query-String）"><span class="toc-text">11、简化的字符串检索 （Simple Query String）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12、Term-Terms检索（指定字段检索）"><span class="toc-text">12、Term/Terms检索（指定字段检索）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13、Term排序检索-（Term-Query-Sorted）"><span class="toc-text">13、Term排序检索-（Term Query - Sorted）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14、范围检索（Range-query）"><span class="toc-text">14、范围检索（Range query）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-过滤检索"><span class="toc-text">15. 过滤检索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17、-Function-得分：Field值因子（-Function-Score-Field-Value-Factor）"><span class="toc-text">17、 Function 得分：Field值因子（ Function Score: Field Value Factor）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18、-Function-得分：衰减函数-Function-Score-Decay-Functions"><span class="toc-text">18、 Function 得分：衰减函数( Function Score: Decay Functions )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19、Function得分：脚本得分（-Function-Score-Script-Scoring-）"><span class="toc-text">19、Function得分：脚本得分（ Function Score: Script Scoring ）</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文是对 <code>23个最有用的Elasticseaerch检索技巧</code> 一文提到的ES检索技巧进行 Java API 的简单实现，但仅限于简单实现，并不考虑包括参数校验，异常处理，日志处理，安全等问题，仅供参考</p>
+<p>代码见 <a href="https://github.com/whirlys/elastic-example/tree/master/UsefullESSearchSkill" target="_blank" rel="noopener">UsefullESSearchSkill</a> ,<strong>原查询语句请对照原文</strong></p>
+<h4 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h4><p>JDK version : 10.0.2<br>gradle version : 4.7<br>Elasticsearch version : 6.3.2<br>IDEA version : 2018.2</p>
+<p>运行前请启动 ES 实例，并修改 <code>application.properties</code> 文件中的ES配置</p>
+<h3 id="类介绍"><a href="#类介绍" class="headerlink" title="类介绍"></a>类介绍</h3><h4 id="实体类-Book"><a href="#实体类-Book" class="headerlink" title="实体类 Book"></a>实体类 Book</h4><p>注意：日期 publish_date 的类型设置为 String 是避免 Java 到 ES 之间复杂的转换工作，在ES中该字段仍然被识别为 date 类型</p>
+<pre><code>public class Book {
+    public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+    private String id;
+    private String title;
+    private List&lt;String&gt; authors;
+    private String summary;
+    private String publish_date;
+    private Integer num_reviews;
+    private String publisher;
+    ...
+}
+</code></pre><h4 id="公共类-Constants"><a href="#公共类-Constants" class="headerlink" title="公共类 Constants"></a>公共类 Constants</h4><p>定义了一些常用的常量</p>
+<pre><code>public class Constants {
+    // 字段名
+
+    public static String ID = &quot;id&quot;;
+    public static String TITLE = &quot;title&quot;;
+    public static String AUTHORS = &quot;authors&quot;;
+    public static String SUMMARY = &quot;summary&quot;;
+    public static String PUBLISHDATE = &quot;publish_date&quot;;
+    public static String PUBLISHER = &quot;publisher&quot;;
+    public static String NUM_REVIEWS = &quot;num_reviews&quot;;
+
+    public static String TITLE_KEYWORD = &quot;title.keyword&quot;;
+    public static String PUBLISHER_KEYWORD = &quot;publisher.keyword&quot;;
+
+
+    // 过滤要返回的字段
+
+    public static String[] fetchFieldsTSPD = {ID, TITLE, SUMMARY, PUBLISHDATE};
+    public static String[] fetchFieldsTA = {ID, TITLE, AUTHORS};
+    public static String[] fetchFieldsSA = {ID, SUMMARY, AUTHORS};
+    public static String[] fetchFieldsTSA = {ID, TITLE, SUMMARY, AUTHORS};
+    public static String[] fetchFieldsTPPD = {ID, TITLE, PUBLISHER, PUBLISHDATE};
+    public static String[] fetchFieldsTSPN = {ID, TITLE, SUMMARY, PUBLISHER, NUM_REVIEWS};
+
+
+    // 高亮
+
+    public static HighlightBuilder highlightS = new HighlightBuilder().field(SUMMARY);
+}
+</code></pre><h4 id="公共类-EsConfig"><a href="#公共类-EsConfig" class="headerlink" title="公共类 EsConfig"></a>公共类 EsConfig</h4><p>创建 ES 客户端实例，ES 客户端用于与 ES 集群进行交互</p>
+<pre><code>@Configuration
+public class EsConfig {
+
+    @Value(&quot;${elasticsearch.cluster-nodes}&quot;)
+    private String clusterNodes;
+
+    @Value(&quot;${elasticsearch.cluster-name}&quot;)
+    private String clusterName;
+
+    @Bean
+    public Client client() {
+        Settings settings = Settings.builder().put(&quot;cluster.name&quot;, clusterName)
+                .put(&quot;client.transport.sniff&quot;, true).build();
+
+        TransportClient client = new PreBuiltTransportClient(settings);
+        try {
+            if (clusterNodes != null &amp;&amp; !&quot;&quot;.equals(clusterNodes)) {
+                for (String node : clusterNodes.split(&quot;,&quot;)) {
+                    String[] nodeInfo = node.split(&quot;:&quot;);
+                    client.addTransportAddress(new TransportAddress(InetAddress.getByName(nodeInfo[0]), Integer.parseInt(nodeInfo[1])));
+                }
+            }
+        } catch (UnknownHostException e) {
+        }
+
+        return client;
+    }
+}
+
+</code></pre><h4 id="数据获取工具类-DataUtil"><a href="#数据获取工具类-DataUtil" class="headerlink" title="数据获取工具类 DataUtil"></a>数据获取工具类 DataUtil</h4><p>这里的数据也就是 <code>23个最有用的ES检索技巧</code> 文中用于实验的4条数据</p>
+<pre><code>public class DataUtil {
+
+    public static SimpleDateFormat dateFormater = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+
+    /**
+     * 模拟获取数据
+     */
+    public static List&lt;Book&gt; batchData() {
+        List&lt;Book&gt; list = new LinkedList&lt;&gt;();
+        Book book1 = new Book(&quot;1&quot;, &quot;Elasticsearch: The Definitive Guide&quot;, Arrays.asList(&quot;clinton gormley&quot;, &quot;zachary tong&quot;),
+                &quot;A distibuted real-time search and analytics engine&quot;, &quot;2015-02-07&quot;, 20, &quot;oreilly&quot;);
+        Book book2 = new Book(&quot;2&quot;, &quot;Taming Text: How to Find, Organize, and Manipulate It&quot;, Arrays.asList(&quot;grant ingersoll&quot;, &quot;thomas morton&quot;, &quot;drew farris&quot;),
+                &quot;organize text using approaches such as full-text search, proper name recognition, clustering, tagging, information extraction, and summarization&quot;,
+                &quot;2013-01-24&quot;, 12, &quot;manning&quot;);
+        Book book3 = new Book(&quot;3&quot;, &quot;Elasticsearch in Action&quot;, Arrays.asList(&quot;radu gheorge&quot;, &quot;matthew lee hinman&quot;, &quot;roy russo&quot;),
+                &quot;build scalable search applications using Elasticsearch without having to do complex low-level programming or understand advanced data science algorithms&quot;,
+                &quot;2015-12-03&quot;, 18, &quot;manning&quot;);
+        Book book4 = new Book(&quot;4&quot;, &quot;Solr in Action&quot;, Arrays.asList(&quot;trey grainger&quot;, &quot;timothy potter&quot;), &quot;Comprehensive guide to implementing a scalable search engine using Apache Solr&quot;,
+                &quot;2014-04-05&quot;, 23, &quot;manning&quot;);
+
+        list.add(book1);
+        list.add(book2);
+        list.add(book3);
+        list.add(book4);
+
+        return list;
+    }
+
+    public static Date parseDate(String dateStr) {
+        try {
+            return dateFormater.parse(dateStr);
+        } catch (ParseException e) {
+        }
+        return null;
+    }
+
+</code></pre><h4 id="公共查询工具类-CommonQueryUtils"><a href="#公共查询工具类-CommonQueryUtils" class="headerlink" title="公共查询工具类 CommonQueryUtils"></a>公共查询工具类 CommonQueryUtils</h4><p>对执行完ES查询请求后的数据进行解析</p>
+<pre><code>public class CommonQueryUtils {
+
+    public static Gson gson = new GsonBuilder().setDateFormat(&quot;YYYY-MM-dd&quot;).create();
+
+    /**
+     * 处理ES返回的数据，封装
+     */
+    public static List&lt;Book&gt; parseResponse(SearchResponse searchResponse) {
+        List&lt;Book&gt; list = new LinkedList&lt;&gt;();
+        for (SearchHit hit : searchResponse.getHits().getHits()) {
+            // 用gson直接解析
+            Book book = gson.fromJson(hit.getSourceAsString(), Book.class);
+
+            list.add(book);
+        }
+        return list;
+    }
+
+    /**
+     * 解析完数据后，构建 Response 对象
+     */
+    public static Response&lt;List&lt;Book&gt;&gt; buildResponse(SearchResponse searchResponse) {
+        // 超时处理
+        if (searchResponse.isTimedOut()) {
+            return new Response&lt;&gt;(ResponseCode.ESTIMEOUT);
+        }
+        // 处理ES返回的数据
+        List&lt;Book&gt; list = parseResponse(searchResponse);
+        // 有shard执行失败
+        if (searchResponse.getFailedShards() &gt; 0) {
+            return new Response&lt;&gt;(ResponseCode.FAILEDSHARDS, list);
+        }
+        return new Response&lt;&gt;(ResponseCode.OK, list);
+    }
+    ...
+}
+</code></pre><h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><h4 id="BulkTests"><a href="#BulkTests" class="headerlink" title="BulkTests"></a>BulkTests</h4><p>创建索引，以及使用 bulk API 批量插入数据</p>
+<pre><code>@RunWith(SpringRunner.class)
+@SpringBootTest
+public class BulkTests {
+
+    // 在Test中 Autowired需要引入包 org.elasticsearch.plugin:transport-netty4-client:6.3.2，否则异常找不到Transport类
+    @Autowired
+    private Client client;
+
+    @Value(&quot;${elasticsearch.bookIndex}&quot;)
+    private String bookIndex;
+
+    @Value(&quot;${elasticsearch.bookType}&quot;)
+    private String bookType;
+
+    private Gson gson = new GsonBuilder().setDateFormat(&quot;YYYY-MM-dd&quot;).create();
+
+    /**
+     * 创建索引，设置 settings，设置mappings
+     */
+    @Test
+    public void createIndex() {
+        int settingShards = 1;
+        int settingReplicas = 0;
+
+        // 判断索引是否存在，存在则删除
+        IndicesExistsResponse indicesExistsResponse = client.admin().indices().prepareExists(bookIndex).get();
+
+        if (indicesExistsResponse.isExists()) {
+            System.out.println(&quot;索引 &quot; + bookIndex + &quot; 存在！&quot;);
+            // 删除索引，防止报异常  ResourceAlreadyExistsException[index [bookdb_index/yL05ZfXFQ4GjgOEM5x8tFQ] already exists
+            DeleteIndexResponse deleteResponse = client.admin().indices().prepareDelete(bookIndex).get();
+            if (deleteResponse.isAcknowledged()){
+                System.out.println(&quot;索引&quot; + bookIndex + &quot;已删除&quot;);
+            }else {
+                System.out.println(&quot;索引&quot; + bookIndex + &quot;删除失败&quot;);
+            }
+
+
+        } else {
+            System.out.println(&quot;索引 &quot; + bookIndex + &quot; 不存在！&quot;);
+        }
+
+        // 设置Settings
+        CreateIndexResponse response = client.admin().indices().prepareCreate(bookIndex)
+                .setSettings(Settings.builder()
+                        .put(&quot;index.number_of_shards&quot;, settingShards)
+                        .put(&quot;index.number_of_replicas&quot;, settingReplicas))
+                .get();
+
+        // 查看结果
+        GetSettingsResponse getSettingsResponse = client.admin().indices()
+                .prepareGetSettings(bookIndex).get();
+        System.out.println(&quot;索引设置结果&quot;);
+        for (ObjectObjectCursor&lt;String, Settings&gt; cursor : getSettingsResponse.getIndexToSettings()) {
+            String index = cursor.key;
+            Settings settings = cursor.value;
+            Integer shards = settings.getAsInt(&quot;index.number_of_shards&quot;, null);
+            Integer replicas = settings.getAsInt(&quot;index.number_of_replicas&quot;, null);
+            System.out.println(&quot;index:&quot; + index + &quot;, shards:&quot; + shards + &quot;, replicas:&quot; + replicas);
+
+            Assert.assertEquals(java.util.Optional.of(settingShards), java.util.Optional.of(shards));
+            Assert.assertEquals(java.util.Optional.of(settingReplicas), java.util.Optional.of(replicas));
+        }
+    }
+
+    /**
+     * Bulk 批量插入数据
+     */
+    @Test
+    public void bulk() {
+        List&lt;Book&gt; list = DateUtil.batchData();
+
+        BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();
+
+        // 添加index操作到 bulk 中
+        list.forEach(book -&gt; {
+            // 新版的API中使用setSource时，参数的个数必须是偶数，否则需要加上 setSource(json, XContentType.JSON)
+            bulkRequestBuilder.add(client.prepareIndex(bookIndex, bookType, book.getId()).setSource(gson.toJson(book), XContentType.JSON));
+        });
+
+        BulkResponse responses = bulkRequestBuilder.get();
+        if (responses.hasFailures()) {
+            // bulk有失败
+            for (BulkItemResponse res : responses) {
+                System.out.println(res.getFailure());
+            }
+            Assert.assertTrue(false);
+        }
+    }
+}
+</code></pre><h3 id="开始查询"><a href="#开始查询" class="headerlink" title="开始查询"></a>开始查询</h3><h4 id="控制类"><a href="#控制类" class="headerlink" title="控制类"></a>控制类</h4><p>查询接口</p>
+<pre><code>@RestController
+@RequestMapping(&quot;basicmatch&quot;)
+public class BasicMatchQueryController {
+
+    @Autowired
+    private BasicMatchQueryService basicMatchQueryService;
+
+    /**
+     * 1.1 对 &quot;guide&quot; 执行全文检索
+     * 测试：http://localhost:8080/basicmatch/multimatch?query=guide
+     */
+    @RequestMapping(&quot;multimatch&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; multiMatch(@RequestParam(value = &quot;query&quot;, required = true) String query) {
+        return basicMatchQueryService.multiBatch(query);
+    }
+
+    /**
+     * 1.2 指定特定字段检索
+     * 测试：http://localhost:8080/basicmatch/match?title=in action&amp;from=0&amp;size=4
+     */
+    @RequestMapping(&quot;match&quot;)
+    public ResponsePage&lt;List&lt;Book&gt;&gt; match(MatchForm form) {
+        return basicMatchQueryService.match(form);
+    }
+
+    /**
+     * 2 对 &quot;guide&quot; 执行多字段检索
+     * 测试：http://localhost:8080/basicmatch/multifield?query=guide
+     */
+    @RequestMapping(&quot;multifield&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; multiField(@RequestParam(value = &quot;query&quot;, required = true) String query) {
+        return basicMatchQueryService.multiField(query);
+    }
+
+    /**
+     * 3、 Boosting提升某字段得分的检索( Boosting): 将“摘要”字段的得分提高了3倍
+     * 测试：http://localhost:8080/basicmatch/multifieldboost?query=elasticsearch guide
+     */
+    @RequestMapping(&quot;multifieldboost&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; multiFieldboost(@RequestParam(value = &quot;query&quot;, required = true) String query) {
+        return basicMatchQueryService.multiFieldboost(query);
+    }
+
+    /**
+     * 4、Bool检索( Bool Query)
+     * 测试：http://localhost:8080/basicmatch/bool?shouldTitles=Elasticsearch&amp;shouldTitles=Solr&amp;mustAuthors=clinton gormely&amp;mustNotAuthors=radu gheorge
+     */
+    @RequestMapping(&quot;bool&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; bool(@ModelAttribute BoolForm form) {
+        return basicMatchQueryService.bool(form);
+    }
+
+    /**
+     * 5、 Fuzzy 模糊检索( Fuzzy Queries)
+     */
+    @RequestMapping(&quot;fuzzy&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; fuzzy(String query) {
+        return basicMatchQueryService.fuzzy(query);
+    }
+
+    /**
+     * 6、 Wildcard Query 通配符检索
+     * 测试：http://localhost:8080/basicmatch/wildcard?pattern=t*
+     */
+    @RequestMapping(&quot;wildcard&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; wildcard(String pattern) {
+        return basicMatchQueryService.wildcard(Constants.AUTHORS, pattern);
+    }
+
+
+    /**
+     * 7、正则表达式检索( Regexp Query)
+     * 测试：http://localhost:8080/basicmatch/regexp
+     */
+    @RequestMapping(&quot;regexp&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; regexp(String regexp) {
+        // 由于Tomcat的原因，直接接收有特殊字符的 正则表达式 会异常，所以这里写死，不过多探究
+        // 若
+        regexp = &quot;t[a-z]*y&quot;;
+        return basicMatchQueryService.regexp(Constants.AUTHORS, regexp);
+    }
+
+    /**
+     * 8、匹配短语检索( Match Phrase Query)
+     * 测试：http://localhost:8080/basicmatch/phrase?query=search engine
+     */
+    @RequestMapping(&quot;phrase&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; phrase(String query) {
+        return basicMatchQueryService.phrase(query);
+    }
+
+    /**
+     * 9、匹配词组前缀检索
+     * 测试：http://localhost:8080/basicmatch/phraseprefix?query=search en
+     */
+    @RequestMapping(&quot;phraseprefix&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; phrasePrefix(String query) {
+        return basicMatchQueryService.phrasePrefix(query);
+    }
+
+    /**
+     * 10、字符串检索（ Query String）
+     * 测试：http://localhost:8080/basicmatch/querystring?query=(saerch~1 algorithm~1) AND (grant ingersoll)  OR (tom morton)
+     */
+    @RequestMapping(&quot;querystring&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; queryString(String query) {
+        return basicMatchQueryService.queryString(query);
+    }
+
+    /**
+     * 11、简化的字符串检索 （Simple Query String）
+     * 测试：http://localhost:8080/basicmatch/simplequerystring?query=(saerch~1 algorithm~1) AND (grant ingersoll)  OR (tom morton)
+     */
+    @RequestMapping(&quot;simplequerystring&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; simplequerystring(String query) {
+        // 这里写死，仅为测试
+        query = &quot;(saerch~1 algorithm~1) + (grant ingersoll)  | (tom morton)&quot;;
+        return basicMatchQueryService.simpleQueryString(query);
+    }
+
+    /**
+     * 12、Term=检索（指定字段检索）
+     * 测试：http://localhost:8080/basicmatch/term?query=manning
+     */
+    @RequestMapping(&quot;term&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; term(String query) {
+        return basicMatchQueryService.term(query);
+    }
+
+    /**
+     * 13、Term排序检索-（Term Query - Sorted）
+     * 测试：http://localhost:8080/basicmatch/termsort?query=manning
+     */
+    @RequestMapping(&quot;termsort&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; termsort(String query) {
+        return basicMatchQueryService.termsort(query);
+    }
+
+    /**
+     * 14、范围检索（Range query）
+     * 测试：http://localhost:8080/basicmatch/range?startDate=2015-01-01&amp;endDate=2015-12-31
+     */
+    @RequestMapping(&quot;range&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; range(String startDate, String endDate) {
+        return basicMatchQueryService.range(startDate, endDate);
+    }
+
+    /**
+     * 15. 过滤检索
+     * 测试：http://localhost:8080/basicmatch/filter?query=elasticsearch&amp;gte=20
+     */
+    @RequestMapping(&quot;filter&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; filter(String query, Integer gte, Integer lte) {
+        return basicMatchQueryService.filter(query, gte, lte);
+    }
+
+    /**
+     * 17、 Function 得分：Field值因子（ Function Score: Field Value Factor）
+     * 测试：http://localhost:8080/basicmatch/fieldvaluefactor?query=search engine
+     */
+    @RequestMapping(&quot;fieldvaluefactor&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; fieldValueFactor(String query) {
+        return basicMatchQueryService.fieldValueFactor(query);
+    }
+
+    /**
+     * 18、 Function 得分：衰减函数( Function Score: Decay Functions )
+     * 测试：http://localhost:8080/basicmatch/decay?query=search engines&amp;origin=2014-06-15
+     */
+    @RequestMapping(&quot;decay&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; decay(String query, @RequestParam(value = &quot;origin&quot;, defaultValue = &quot;2014-06-15&quot;) String origin) {
+        return basicMatchQueryService.decay(query, origin);
+    }
+
+    /**
+     * 19、Function得分：脚本得分（ Function Score: Script Scoring ）
+     * 测试：ES需要配置允许groovy脚本运行才可以
+     */
+    @RequestMapping(&quot;script&quot;)
+    public Response&lt;List&lt;Book&gt;&gt; script(String query, @RequestParam(value = &quot;threshold&quot;, defaultValue = &quot;2015-07-30&quot;) String threshold) {
+        return basicMatchQueryService.script(query, threshold);
+    }
+}
+
+</code></pre><h3 id="服务类"><a href="#服务类" class="headerlink" title="服务类"></a>服务类</h3><pre><code>@Service
+public class BasicMatchQueryService {
+    @Autowired
+    private Client client;
+
+    @Value(&quot;${elasticsearch.bookIndex}&quot;)
+    private String bookIndex;
+
+    @Value(&quot;${elasticsearch.bookType}&quot;)
+    private String bookType;
+
+    /**
+     * 进行ES查询，执行请求前后打印出 查询语句 和 查询结果
+     */
+    private SearchResponse requestGet(String queryName, SearchRequestBuilder requestBuilder) {
+        System.out.println(queryName + &quot; 构建的查询：&quot; + requestBuilder.toString());
+        SearchResponse searchResponse = requestBuilder.get();
+        System.out.println(queryName + &quot; 搜索结果：&quot; + searchResponse.toString());
+        return searchResponse;
+    }
+    ...
+}
+</code></pre><h4 id="1-1-对-“guide”-执行全文检索-Multi-Match-Query"><a href="#1-1-对-“guide”-执行全文检索-Multi-Match-Query" class="headerlink" title="1.1 对 “guide” 执行全文检索 Multi Match Query"></a>1.1 对 “guide” 执行全文检索 Multi Match Query</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; multiBatch(String query) {
+        MultiMatchQueryBuilder queryBuilder = new MultiMatchQueryBuilder(query);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex)
+                .setTypes(bookType).setQuery(queryBuilder);
+
+        SearchResponse searchResponse = requestGet(&quot;multiBatch&quot;, requestBuilder);
+
+        return CommonQueryUtils.buildResponse(searchResponse);
+    }
+</code></pre><h4 id="1-2-在标题字段-title-中搜索带有-“in-action”-字样的图书"><a href="#1-2-在标题字段-title-中搜索带有-“in-action”-字样的图书" class="headerlink" title="1.2 在标题字段(title)中搜索带有 “in action” 字样的图书"></a>1.2 在标题字段(title)中搜索带有 “in action” 字样的图书</h4><pre><code>    public ResponsePage&lt;List&lt;Book&gt;&gt; match(MatchForm form) {
+        MatchQueryBuilder matchQueryBuilder = new MatchQueryBuilder(&quot;title&quot;, form.getTitle());
+        // 高亮
+        HighlightBuilder highlightBuilder = new HighlightBuilder().field(&quot;title&quot;).fragmentSize(200);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex)
+                .setTypes(bookType).setQuery(matchQueryBuilder)
+                .setFrom(form.getFrom()).setSize(form.getSize())
+                .highlighter(highlightBuilder)
+                // 设置 _source 要返回的字段
+                .setFetchSource(Constants.fetchFieldsTSPD, null);
+        ...
+    }
+</code></pre><h4 id="多字段检索-Multi-field-Search"><a href="#多字段检索-Multi-field-Search" class="headerlink" title="多字段检索 (Multi-field Search)"></a>多字段检索 (Multi-field Search)</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; multiField(String query) {
+        MultiMatchQueryBuilder queryBuilder = new MultiMatchQueryBuilder(query).field(&quot;title&quot;).field(&quot;summary&quot;);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex)
+                .setTypes(bookType).setQuery(queryBuilder);
+        ...
+    }
+</code></pre><h4 id="3、-Boosting提升某字段得分的检索-Boosting-将“摘要”字段的得分提高了3倍"><a href="#3、-Boosting提升某字段得分的检索-Boosting-将“摘要”字段的得分提高了3倍" class="headerlink" title="3、 Boosting提升某字段得分的检索( Boosting),将“摘要”字段的得分提高了3倍"></a>3、 Boosting提升某字段得分的检索( Boosting),将“摘要”字段的得分提高了3倍</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; multiFieldboost(String query) {
+        MultiMatchQueryBuilder queryBuilder = new MultiMatchQueryBuilder(query).field(&quot;title&quot;).field(&quot;summary&quot;, 3);
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex)
+                .setTypes(bookType).setQuery(queryBuilder);
+        ...
+    }
+</code></pre><h4 id="4、Bool检索-Bool-Query"><a href="#4、Bool检索-Bool-Query" class="headerlink" title="4、Bool检索( Bool Query)"></a>4、Bool检索( Bool Query)</h4><pre><code>    /**
+     * 在标题中搜索一本名为 &quot;Elasticsearch&quot; 或 &quot;Solr&quot; 的书，
+     * AND由 &quot;clinton gormley&quot; 创作，但NOT由 &quot;radu gheorge&quot; 创作
+     */
+    public Response&lt;List&lt;Book&gt;&gt; bool(BoolForm form) {
+        BoolQueryBuilder boolQuery = new BoolQueryBuilder();
+        // 搜索标题 should
+        BoolQueryBuilder shouldTitleBool = new BoolQueryBuilder();
+        form.getShouldTitles().forEach(title -&gt; {
+            shouldTitleBool.should().add(new MatchQueryBuilder(&quot;title&quot;, title));
+        });
+        boolQuery.must().add(shouldTitleBool);
+        // match 作者
+        form.getMustAuthors().forEach(author -&gt; {
+            boolQuery.must().add(new MatchQueryBuilder(&quot;authors&quot;, author));
+        });
+        // not match 作者
+        form.getMustNotAuthors().forEach(author -&gt; {
+            boolQuery.mustNot().add(new MatchQueryBuilder(&quot;authors&quot;, author));
+        });
+        ...
+    }
+</code></pre><h4 id="5、-Fuzzy-模糊检索-Fuzzy-Queries"><a href="#5、-Fuzzy-模糊检索-Fuzzy-Queries" class="headerlink" title="5、 Fuzzy 模糊检索( Fuzzy Queries)"></a>5、 Fuzzy 模糊检索( Fuzzy Queries)</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; fuzzy(String query) {
+        MultiMatchQueryBuilder queryBuilder = new MultiMatchQueryBuilder(query)
+                .field(&quot;title&quot;).field(&quot;summary&quot;)
+                .fuzziness(Fuzziness.AUTO);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex)
+                .setTypes(bookType).setQuery(queryBuilder)
+                .setFetchSource(Constants.fetchFieldsTSPD, null)
+                .setSize(2);
+        ...
+    }
+</code></pre><h4 id="6、-Wildcard-Query-通配符检索"><a href="#6、-Wildcard-Query-通配符检索" class="headerlink" title="6、 Wildcard Query 通配符检索"></a>6、 Wildcard Query 通配符检索</h4><pre><code>    /**
+     * 要查找具有以 &quot;t&quot; 字母开头的作者的所有记录
+     */
+    public Response&lt;List&lt;Book&gt;&gt; wildcard(String fieldName, String pattern) {
+        WildcardQueryBuilder wildcardQueryBuilder = new WildcardQueryBuilder(fieldName, pattern);
+        HighlightBuilder highlightBuilder = new HighlightBuilder().field(Constants.AUTHORS, 200);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex)
+                .setTypes(bookType).setQuery(wildcardQueryBuilder)
+                .setFetchSource(Constants.fetchFieldsTA, null)
+                .highlighter(highlightBuilder);
+    }
+</code></pre><h4 id="7、正则表达式检索-Regexp-Query"><a href="#7、正则表达式检索-Regexp-Query" class="headerlink" title="7、正则表达式检索( Regexp Query)"></a>7、正则表达式检索( Regexp Query)</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; regexp(String fieldName, String regexp) {
+        RegexpQueryBuilder queryBuilder = new RegexpQueryBuilder(fieldName, regexp);
+        HighlightBuilder highlightBuilder = new HighlightBuilder().field(Constants.AUTHORS);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex)
+                .setQuery(queryBuilder).setTypes(bookType).highlighter(highlightBuilder)
+                .setFetchSource(Constants.fetchFieldsTA, null);
+    }
+</code></pre><h4 id="8、匹配短语检索-Match-Phrase-Query"><a href="#8、匹配短语检索-Match-Phrase-Query" class="headerlink" title="8、匹配短语检索( Match Phrase Query)"></a>8、匹配短语检索( Match Phrase Query)</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; phrase(String query) {
+        MultiMatchQueryBuilder queryBuilder = new MultiMatchQueryBuilder(query)
+                .field(Constants.TITLE).field(Constants.SUMMARY)
+                .type(MultiMatchQueryBuilder.Type.PHRASE).slop(3);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder)
+                .setFetchSource(Constants.fetchFieldsTSPD, null);
+    }
+</code></pre><h4 id="9、匹配词组前缀检索"><a href="#9、匹配词组前缀检索" class="headerlink" title="9、匹配词组前缀检索"></a>9、匹配词组前缀检索</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; phrasePrefix(String query) {
+        MatchPhrasePrefixQueryBuilder queryBuilder = new MatchPhrasePrefixQueryBuilder(Constants.SUMMARY, query)
+                .slop(3).maxExpansions(10);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder).setFetchSource(Constants.fetchFieldsTSPD, null);
+    }
+</code></pre><h4 id="10、字符串检索（-Query-String）"><a href="#10、字符串检索（-Query-String）" class="headerlink" title="10、字符串检索（ Query String）"></a>10、字符串检索（ Query String）</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; queryString(String query) {
+        QueryStringQueryBuilder queryBuilder = new QueryStringQueryBuilder(query);
+        queryBuilder.field(Constants.SUMMARY, 2).field(Constants.TITLE)
+                .field(Constants.AUTHORS).field(Constants.PUBLISHER);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder).setFetchSource(Constants.fetchFieldsTSA, null);
+    }
+</code></pre><h4 id="11、简化的字符串检索-（Simple-Query-String）"><a href="#11、简化的字符串检索-（Simple-Query-String）" class="headerlink" title="11、简化的字符串检索 （Simple Query String）"></a>11、简化的字符串检索 （Simple Query String）</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; simpleQueryString(String query) {
+        SimpleQueryStringBuilder queryBuilder = new SimpleQueryStringBuilder(query);
+        queryBuilder.field(Constants.SUMMARY, 2).field(Constants.TITLE)
+                .field(Constants.AUTHORS).field(Constants.PUBLISHER);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder).setFetchSource(Constants.fetchFieldsTSA, null)
+                .highlighter(Constants.highlightS);
+    }
+</code></pre><h4 id="12、Term-Terms检索（指定字段检索）"><a href="#12、Term-Terms检索（指定字段检索）" class="headerlink" title="12、Term/Terms检索（指定字段检索）"></a>12、Term/Terms检索（指定字段检索）</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; term(String query) {
+        TermQueryBuilder termQueryBuilder = new TermQueryBuilder(Constants.PUBLISHER, query);
+
+        // terms 查询
+        /*String[] values = {&quot;manning&quot;, &quot;oreilly&quot;};
+        TermsQueryBuilder termsQueryBuilder = new TermsQueryBuilder(Constants.PUBLISHER, values);*/
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(termQueryBuilder)
+                .setFetchSource(Constants.fetchFieldsTPPD, null);
+    }
+</code></pre><h4 id="13、Term排序检索-（Term-Query-Sorted）"><a href="#13、Term排序检索-（Term-Query-Sorted）" class="headerlink" title="13、Term排序检索-（Term Query - Sorted）"></a>13、Term排序检索-（Term Query - Sorted）</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; termsort(String query) {
+        TermQueryBuilder termQueryBuilder = new TermQueryBuilder(Constants.PUBLISHER, query);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(termQueryBuilder)
+                .addSort(Constants.PUBLISHER_KEYWORD, SortOrder.DESC)
+                .addSort(Constants.TITLE_KEYWORD, SortOrder.ASC)
+                .setFetchSource(Constants.fetchFieldsTPPD, null);
+    }
+</code></pre><h4 id="14、范围检索（Range-query）"><a href="#14、范围检索（Range-query）" class="headerlink" title="14、范围检索（Range query）"></a>14、范围检索（Range query）</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; range(String startDate, String endDate) {
+        RangeQueryBuilder queryBuilder = new RangeQueryBuilder(Constants.PUBLISHDATE)
+                .gte(startDate).lte(endDate);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder)
+                .setFetchSource(Constants.fetchFieldsTPPD, null);
+    }
+</code></pre><h4 id="15-过滤检索"><a href="#15-过滤检索" class="headerlink" title="15. 过滤检索"></a>15. 过滤检索</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; filter(String query, Integer gte, Integer lte) {
+        BoolQueryBuilder queryBuilder = new BoolQueryBuilder();
+        queryBuilder.must().add(new MultiMatchQueryBuilder(query).field(Constants.TITLE).field(Constants.SUMMARY));
+        if (gte != null || lte != null) {
+            RangeQueryBuilder rangeQueryBuilder = new RangeQueryBuilder(Constants.NUM_REVIEWS);
+            if (gte != null) {
+                rangeQueryBuilder.gte(gte);
+            }
+            if (lte != null) {
+                rangeQueryBuilder.lte(lte);
+            }
+            queryBuilder.filter().add(rangeQueryBuilder);
+        }
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder).setFetchSource(Constants.fetchFieldsTSPN, null);
+    }
+</code></pre><h4 id="17、-Function-得分：Field值因子（-Function-Score-Field-Value-Factor）"><a href="#17、-Function-得分：Field值因子（-Function-Score-Field-Value-Factor）" class="headerlink" title="17、 Function 得分：Field值因子（ Function Score: Field Value Factor）"></a>17、 Function 得分：Field值因子（ Function Score: Field Value Factor）</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; fieldValueFactor(String query) {
+        // query
+        MultiMatchQueryBuilder multiMatchQueryBuilder = new MultiMatchQueryBuilder(query)
+                .field(Constants.TITLE).field(Constants.SUMMARY);
+        // fieldValueFactor
+        FieldValueFactorFunctionBuilder fieldValueFactor = ScoreFunctionBuilders.fieldValueFactorFunction(Constants.NUM_REVIEWS)
+                .factor(2).modifier(FieldValueFactorFunction.Modifier.LOG1P);
+        // functionscore
+        FunctionScoreQueryBuilder queryBuilder = QueryBuilders.functionScoreQuery(multiMatchQueryBuilder, fieldValueFactor);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder).setFetchSource(Constants.fetchFieldsTSPN, null);
+    }
+</code></pre><h4 id="18、-Function-得分：衰减函数-Function-Score-Decay-Functions"><a href="#18、-Function-得分：衰减函数-Function-Score-Decay-Functions" class="headerlink" title="18、 Function 得分：衰减函数( Function Score: Decay Functions )"></a>18、 Function 得分：衰减函数( Function Score: Decay Functions )</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; decay(String query, String origin) {
+        MultiMatchQueryBuilder multiMatchQueryBuilder = new MultiMatchQueryBuilder(query)
+                .field(Constants.TITLE).field(Constants.SUMMARY);
+        ExponentialDecayFunctionBuilder exp = ScoreFunctionBuilders.exponentialDecayFunction(Constants.PUBLISHDATE, origin, &quot;30d&quot;, &quot;7d&quot;);
+
+        FunctionScoreQueryBuilder queryBuilder = QueryBuilders.functionScoreQuery(multiMatchQueryBuilder, exp).boostMode(CombineFunction.REPLACE);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder).setFetchSource(Constants.fetchFieldsTSPN, null);
+    }
+</code></pre><h4 id="19、Function得分：脚本得分（-Function-Score-Script-Scoring-）"><a href="#19、Function得分：脚本得分（-Function-Score-Script-Scoring-）" class="headerlink" title="19、Function得分：脚本得分（ Function Score: Script Scoring ）"></a>19、Function得分：脚本得分（ Function Score: Script Scoring ）</h4><pre><code>    public Response&lt;List&lt;Book&gt;&gt; script(String query, String threshold) {
+        MultiMatchQueryBuilder multiMatchQueryBuilder = new MultiMatchQueryBuilder(query)
+                .field(Constants.TITLE).field(Constants.SUMMARY);
+        // 参数
+        Map&lt;String, Object&gt; params = new HashMap&lt;&gt;();
+        params.put(&quot;threshold&quot;, threshold);
+        // 脚本
+        String scriptStr = &quot;publish_date = doc[&#39;publish_date&#39;].value; num_reviews = doc[&#39;num_reviews&#39;].value; if (publish_date &gt; Date.parse(&#39;yyyy-MM-dd&#39;, threshold).getTime()) { return log(2.5 + num_reviews) }; return log(1 + num_reviews);&quot;;
+        Script script = new Script(ScriptType.INLINE, &quot;painless&quot;, scriptStr, params);
+
+        ScriptScoreFunctionBuilder scriptScoreFunctionBuilder = ScoreFunctionBuilders.scriptFunction(script);
+
+        FunctionScoreQueryBuilder queryBuilder = QueryBuilders.functionScoreQuery(multiMatchQueryBuilder, scriptScoreFunctionBuilder);
+
+        SearchRequestBuilder requestBuilder = client.prepareSearch(bookIndex).setTypes(bookType)
+                .setQuery(queryBuilder).setFetchSource(Constants.fetchFieldsTSPN, null);
+    }
+</code></pre><hr>
+<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
+<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>23个最有用的ES检索技巧(Java API实现)</p>
+    <p><span>文章字数:</span><span class="post-count">3,199</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
+    <p><span>发布时间:</span>2018-08-25, 13:19:00</p>
+    <p><span>最后更新:</span>2018-08-25, 13:21:32</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/08/23个最有用的ES检索技巧-Java-API实现/" title="23个最有用的ES检索技巧(Java API实现)">http://laijianfeng.org/2018/08/23个最有用的ES检索技巧-Java-API实现/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '23个最有用的ES检索技巧(Java API实现)', // 可选。默认为 location.href
+        owner: 'whirlys',
+        repo: 'whirlys.github.io',
+        oauth: {
+            client_id: 'f1bd5294d498cdda9693',
+            client_secret: '959bbaf23dae12023b1b9ee3e63e882a099ca65a',
+        },
+        perPage : 3
+    })
+    gitment.render('comments')
+</script>
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018 小旋锋</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/weixin.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+</body>
+<script src="//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+
+<script src="/js/script.js"></script>
+<script>
+    var img_resize = 'photoSwipe';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#elasticsearch','#lucene','#博客',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering').attr("unselectable","on");
+            $(this).addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+            for(i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+
+        // PhotoSwipe
+        $('article').each(function(i){
+            $(this).find('img').each(function(){
+                if ($(this).closest('figure').hasClass('article-gallery-img')) {
+                    return;
+                }
+                var alt = this.alt;
+                $(this)
+                    .wrap('<figure class="article-gallery-img" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"></figure>')
+                    .wrap('<a href="' + this.src + '" title="' + alt + '"></a>');
+                $(this).after('<div class="img_alt"><span>' + (alt || '') + '</span></div>');
+            });
+        });
+
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+        if (pswpElement) {
+            var gallerySelector = '.article-gallery, article';
+
+            var initPhotoSwipeFromDOM = function(gallerySelector) {
+
+                // parse slide data (url, title, size ...) from DOM elements
+                // (children of gallerySelector)
+                var parseThumbnailElements = function(el) {
+                    var thumbElements = $(el).find('figure.article-gallery-img').toArray(),
+                        numNodes = thumbElements.length,
+                        items = [],
+                        figureEl,
+                        linkEl,
+                        size,
+                        imgEl,
+                        item;
+
+                    for (var i = 0; i < numNodes; i++) {
+
+                        figureEl = thumbElements[i]; // <figure> element
+
+                        // include only element nodes
+                        if (figureEl.nodeType !== 1) {
+                            continue;
+                        }
+
+                        linkEl = figureEl.children[0]; // <a> element
+                        imgEl = linkEl.children[0]; // <img>
+
+                        size = linkEl.getAttribute('data-size');
+                        size = size && size.split('x');
+
+                        // create slide object
+                        item = {
+                            src: linkEl.getAttribute('href'),
+                            w: size && parseInt(size[0], 10) || imgEl.width,
+                            h: size && parseInt(size[1], 10) || imgEl.height
+                        };
+
+                        if (figureEl.children.length > 1) {
+                            // <figcaption> content
+                            item.title = figureEl.children[1].innerHTML;
+                        }
+
+                        if (linkEl.children.length > 0) {
+                            // <img> thumbnail element, retrieving thumbnail url
+                            item.msrc = linkEl.children[0].getAttribute('src');
+                        }
+
+                        item.el = figureEl; // save link to element for getThumbBoundsFn
+                        items.push(item);
+                    }
+
+                    return items;
+                };
+
+                // find nearest parent element
+                var closest = function closest(el, fn) {
+                    return el && (fn(el) ? el : closest(el.parentNode, fn));
+                };
+
+                // triggers when user clicks on thumbnail
+                var onThumbnailsClick = function(e) {
+                    e = e || window.event;
+
+                    var eTarget = e.target || e.srcElement;
+
+                    // find root element of slide
+                    var clickedListItem = closest(eTarget, function(el) {
+                        return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+                    });
+
+                    if (!clickedListItem) {
+                        return;
+                    }
+
+                    if (e.preventDefault) {
+                        e.preventDefault();
+                    } else {
+                        e.returnValue = false;
+                    }
+
+                    // find index of clicked item by looping through all child nodes
+                    // alternatively, you may define index via data- attribute
+                    var clickedGallery = $(clickedListItem).closest(gallerySelector)[0],
+                        childNodes = $(clickedGallery).find('figure.article-gallery-img').toArray(),
+                        numChildNodes = childNodes.length,
+                        nodeIndex = 0,
+                        index;
+
+                    for (var i = 0; i < numChildNodes; i++) {
+                        if (childNodes[i].nodeType !== 1) {
+                            continue;
+                        }
+
+                        if (childNodes[i] === clickedListItem) {
+                            index = nodeIndex;
+                            break;
+                        }
+                        nodeIndex++;
+                    }
+
+
+
+                    if (index >= 0) {
+                        // open PhotoSwipe if valid index found
+                        openPhotoSwipe(index, clickedGallery);
+                    }
+                    return false;
+                };
+
+                // parse picture index and gallery index from URL (#&pid=1&gid=2)
+                var photoswipeParseHash = function() {
+                    var hash = window.location.hash.substring(1),
+                        params = {};
+
+                    if (hash.length < 5) {
+                        return params;
+                    }
+
+                    var vars = hash.split('&');
+                    for (var i = 0; i < vars.length; i++) {
+                        if (!vars[i]) {
+                            continue;
+                        }
+                        var pair = vars[i].split('=');
+                        if (pair.length < 2) {
+                            continue;
+                        }
+                        params[pair[0]] = pair[1];
+                    }
+
+                    if (params.gid) {
+                        params.gid = parseInt(params.gid, 10);
+                    }
+
+                    return params;
+                };
+
+                var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+                    var pswpElement = document.querySelectorAll('.pswp')[0],
+                        gallery,
+                        options,
+                        items;
+
+                    items = parseThumbnailElements(galleryElement);
+
+                    // define options (if needed)
+                    options = {
+
+                        // define gallery index (for URL)
+                        galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+
+                        getThumbBoundsFn: function(index) {
+                            // See Options -> getThumbBoundsFn section of documentation for more info
+                            var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                                pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                                rect = thumbnail.getBoundingClientRect();
+
+                            return {
+                                x: rect.left,
+                                y: rect.top + pageYScroll,
+                                w: rect.width
+                            };
+                        }
+                    };
+
+                    // PhotoSwipe opened from URL
+                    if (fromURL) {
+                        if (options.galleryPIDs) {
+                            // parse real index when custom PIDs are used
+                            // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                            for (var j = 0; j < items.length; j++) {
+                                if (items[j].pid == index) {
+                                    options.index = j;
+                                    break;
+                                }
+                            }
+                        } else {
+                            // in URL indexes start from 1
+                            options.index = parseInt(index, 10) - 1;
+                        }
+                    } else {
+                        options.index = parseInt(index, 10);
+                    }
+
+                    // exit if index not found
+                    if (isNaN(options.index)) {
+                        return;
+                    }
+
+                    if (disableAnimation) {
+                        options.showAnimationDuration = 0;
+                    }
+
+                    // Pass data to PhotoSwipe and initialize it
+                    gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+
+                    gallery.listen('imageLoadComplete', function(index, item) {
+                        var linkEl = item.el.children[0];
+                        var img = item.container.children[0];
+                        if (!linkEl.getAttribute('data-size')) {
+                            linkEl.setAttribute('data-size', img.naturalWidth + 'x' + img.naturalHeight);
+                            item.w = img.naturalWidth;
+                            item.h = img.naturalHeight;
+                            gallery.invalidateCurrItems();
+                            gallery.updateSize(true);
+                        }
+                    });
+
+                    gallery.init();
+                };
+
+                // loop through all gallery elements and bind events
+                var galleryElements = document.querySelectorAll(gallerySelector);
+
+                for (var i = 0, l = galleryElements.length; i < l; i++) {
+                    galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+                    galleryElements[i].onclick = onThumbnailsClick;
+                }
+
+                // Parse URL and open gallery if it contains #&pid=3&gid=1
+                var hashData = photoswipeParseHash();
+                if (hashData.pid && hashData.gid) {
+                    openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
+                }
+            };
+
+            // execute above function
+            initPhotoSwipeFromDOM(gallerySelector);
+        }
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 2px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 2px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /*引用块样式*/
+    
+    .post .pjax article blockquote {
+        padding: 10px 20px;
+        background-color: white;
+        border: none;
+        border-left: 4px solid #42b983;
+        border-right: 4px solid #42b983;
+        border-radius: 10px;
+    }
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        background: url("http://image.laijianfeng.org/v2-cdcf5d00f2e9106f1fd0a70a18cbdf15_r1.jpg");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+</style>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+</html>
