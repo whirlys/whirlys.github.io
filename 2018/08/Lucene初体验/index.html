@@ -6,27 +6,29 @@
   <meta name="keywords" content=" lucene ">
   <meta name="description" content="Lucene初体验 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="所有的伟大，源于一个勇敢的开始   打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送">
-<meta name="keywords" content="Java">
+<meta name="description" content="前言Elasticsearch 源代码中使用了Guice框架进行依赖注入. 为了方便阅读源码, 此处我先通过模仿ES guice的使用方式简单写了一个基本Demo 方便理解, 之后再来理一下ES的Guice使用. 编写的测试类原理图如下:  总共有两个Module，一个是ToolModule，用于绑定IAnimal接口、ITool接口以及Map对象. 另一个是HumanModule 用于绑定Per">
+<meta name="keywords" content="elasticsearch,guice">
 <meta property="og:type" content="article">
-<meta property="og:title" content="鼓舞人心">
-<meta property="og:url" content="http://laijianfeng.org/2018/08/鼓舞人心/index.html">
+<meta property="og:title" content="Elasticsearch 中的 Guice">
+<meta property="og:url" content="http://laijianfeng.org/2018/08/Elasticsearch-中的-Guice/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="所有的伟大，源于一个勇敢的开始   打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送">
+<meta property="og:description" content="前言Elasticsearch 源代码中使用了Guice框架进行依赖注入. 为了方便阅读源码, 此处我先通过模仿ES guice的使用方式简单写了一个基本Demo 方便理解, 之后再来理一下ES的Guice使用. 编写的测试类原理图如下:  总共有两个Module，一个是ToolModule，用于绑定IAnimal接口、ITool接口以及Map对象. 另一个是HumanModule 用于绑定Per">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.laijianfeng.org/2778947-7847f61cf5180bdc.webp">
+<meta property="og:image" content="http://image.laijianfeng.org/2778947-ab2035e865492a2b.png">
 <meta property="og:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
-<meta property="og:updated_time" content="2018-08-27T11:52:52.757Z">
+<meta property="og:updated_time" content="2018-08-30T16:40:14.535Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鼓舞人心">
-<meta name="twitter:description" content="所有的伟大，源于一个勇敢的开始   打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送">
-<meta name="twitter:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta name="twitter:title" content="Elasticsearch 中的 Guice">
+<meta name="twitter:description" content="前言Elasticsearch 源代码中使用了Guice框架进行依赖注入. 为了方便阅读源码, 此处我先通过模仿ES guice的使用方式简单写了一个基本Demo 方便理解, 之后再来理一下ES的Guice使用. 编写的测试类原理图如下:  总共有两个Module，一个是ToolModule，用于绑定IAnimal接口、ITool接口以及Map对象. 另一个是HumanModule 用于绑定Per">
+<meta name="twitter:image" content="http://image.laijianfeng.org/2778947-7847f61cf5180bdc.webp">
 
 
 <link rel="icon" href="/img/favicon.jpg">
 
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="stylesheet" href="/css/hl_theme/gruvbox-dark.css">
+<link rel="stylesheet" href="/css/hl_theme/darcula.css">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -83,13 +85,13 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="大数据"> 大数据 </li>
-    
     <li data-rel="生活杂记"> 生活杂记 </li>
     
-    <li data-rel="后端"> 后端 </li>
+    <li data-rel="大数据"> 大数据 </li>
     
     <li data-rel="读书"> 读书 </li>
+    
+    <li data-rel="后端"> 后端 </li>
     
 </ul>
 <div class="left-bottom">
@@ -98,8 +100,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="10">
-<input type="hidden" id="yelog_site_word_count" value="22.9k">
+<input type="hidden" id="yelog_site_posts_number" value="11">
+<input type="hidden" id="yelog_site_word_count" value="24.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -135,11 +137,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
+        <a href="javascript:" class="color2">Java编程</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <div class="clearfix"></div>
@@ -151,6 +157,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="大数据 "
+           href="/2018/08/Elasticsearch-中的-Guice/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 中的 Guice">Elasticsearch 中的 Guice</span>
+            <span class="post-date" title="2018-08-31 00:39:17">2018/08/31</span>
+        </a>
         
         <a  class="读书 "
            href="/2018/08/鼓舞人心/"
@@ -857,15 +871,13 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#博客','#lucene',],
+            'data': ['#elasticsearch','#lucene','#Java编程','#博客',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
     })
     function initArticle() {
         /*渲染对应的表格样式*/
-        
-            $(".post .pjax table").addClass("green_title");
         
 
         /*渲染打赏样式*/
@@ -1163,24 +1175,6 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     
 
     /*列表样式*/
-    
-    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
-        border: #e2dede solid 2px;
-        border-radius: 10px;
-        padding: 10px 32px 10px 56px;
-    }
-    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
     
 
     /*引用块样式*/
