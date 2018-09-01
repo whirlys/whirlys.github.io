@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Elasticsearch 6.3.2 启动过程 | 小旋锋</title>
+  <meta name="keywords" content=" elasticsearch ">
+  <meta name="description" content="Elasticsearch 6.3.2 启动过程 | 小旋锋">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="前言本文探究Elasticsearch 6.3.2的启动流程 环境准备使用工具：IDEA，XMind 关于ES调试环境的搭建，可以参考前面的文章 《教你编译调试Elasticsearch 6.3.2源码》 然后通过设置断点，从 org.elasticsearch.bootstrap.ElasticSearch 的入口函数开始，一步一步调试  上图为使用 IDEA 2018.2 进行调试的一个截图，">
+<meta name="keywords" content="elasticsearch,elasticsearch启动流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch 6.3.2 启动过程">
+<meta property="og:url" content="http://laijianfeng.org/2018/09/Elasticsearch-6-3-2-启动过程/index.html">
+<meta property="og:site_name" content="小旋锋">
+<meta property="og:description" content="前言本文探究Elasticsearch 6.3.2的启动流程 环境准备使用工具：IDEA，XMind 关于ES调试环境的搭建，可以参考前面的文章 《教你编译调试Elasticsearch 6.3.2源码》 然后通过设置断点，从 org.elasticsearch.bootstrap.ElasticSearch 的入口函数开始，一步一步调试  上图为使用 IDEA 2018.2 进行调试的一个截图，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.laijianfeng.org/20180901_131938.png">
+<meta property="og:image" content="http://image.laijianfeng.org/ES_startup_process.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20180901_143515.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180901_144410.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180901_160825.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180901_175542.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180901_181500.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180901_192545.png">
+<meta property="og:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2018-09-01T12:29:11.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Elasticsearch 6.3.2 启动过程">
+<meta name="twitter:description" content="前言本文探究Elasticsearch 6.3.2的启动流程 环境准备使用工具：IDEA，XMind 关于ES调试环境的搭建，可以参考前面的文章 《教你编译调试Elasticsearch 6.3.2源码》 然后通过设置断点，从 org.elasticsearch.bootstrap.ElasticSearch 的入口函数开始，一步一步调试  上图为使用 IDEA 2018.2 进行调试的一个截图，">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180901_131938.png">
+
+
+<link rel="icon" href="/img/favicon.jpg">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/hl_theme/darcula.css">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/photoswipe/4.1.2/default-skin/default-skin.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>小旋锋</span>
+</div>
+
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/whirlys" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="email" title="email" href="mailto:whirlys@163.com"></a>
+    
+</div>
+
+
+
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="生活杂记"> 生活杂记 </li>
+    
+    <li data-rel="大数据"> 大数据 </li>
+    
+    <li data-rel="后端"> 后端 </li>
+    
+    <li data-rel="读书"> 读书 </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    </div>
+    <div><a  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="13">
+<input type="hidden" id="yelog_site_word_count" value="32.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">elasticsearch</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lucene</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">java</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="大数据 "
+           href="/2018/09/Elasticsearch-6-3-2-启动过程/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 6.3.2 启动过程">Elasticsearch 6.3.2 启动过程</span>
+            <span class="post-date" title="2018-09-01 20:25:45">2018/09/01</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2018/08/Google-guava工具类的介绍和使用/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="Google guava工具类的介绍和使用">Google guava工具类的介绍和使用</span>
+            <span class="post-date" title="2018-08-31 00:58:57">2018/08/31</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/Elasticsearch-中的-Guice/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 中的 Guice">Elasticsearch 中的 Guice</span>
+            <span class="post-date" title="2018-08-31 00:39:17">2018/08/31</span>
+        </a>
+        
+        <a  class="读书 "
+           href="/2018/08/鼓舞人心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鼓舞人心">鼓舞人心</span>
+            <span class="post-date" title="2018-08-27 19:51:31">2018/08/27</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/Elasticsearch-分布式特性/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 分布式特性">Elasticsearch 分布式特性</span>
+            <span class="post-date" title="2018-08-25 18:29:15">2018/08/25</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/23个最有用的ES检索技巧-Java-API实现/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="23个最有用的ES检索技巧(Java API实现)">23个最有用的ES检索技巧(Java API实现)</span>
+            <span class="post-date" title="2018-08-25 13:19:00">2018/08/25</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/教你编译调试Elasticsearch-6-3-2源码/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="教你编译调试Elasticsearch 6.3.2源码">教你编译调试Elasticsearch 6.3.2源码</span>
+            <span class="post-date" title="2018-08-23 11:39:34">2018/08/23</span>
+        </a>
+        
+        <a  class="生活杂记 "
+           href="/2018/08/20180818音乐会/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20180818音乐会">20180818音乐会</span>
+            <span class="post-date" title="2018-08-18 22:44:24">2018/08/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/Lucene初体验/"
+           data-tag="lucene"
+           data-author="" >
+            <span class="post-title" title="Lucene初体验">Lucene初体验</span>
+            <span class="post-date" title="2018-08-18 16:23:02">2018/08/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/Elasticsearch-6-x-Mapping设置/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="Elasticsearch 6.x Mapping设置">Elasticsearch 6.x Mapping设置</span>
+            <span class="post-date" title="2018-08-16 21:14:33">2018/08/16</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/倒排索引与分词/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="倒排索引与分词">倒排索引与分词</span>
+            <span class="post-date" title="2018-08-15 23:50:57">2018/08/15</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2018/08/ElasticSearch初体验/"
+           data-tag="elasticsearch"
+           data-author="" >
+            <span class="post-title" title="ElasticSearch初体验">ElasticSearch初体验</span>
+            <span class="post-date" title="2018-08-15 19:37:25">2018/08/15</span>
+        </a>
+        
+        <a  class="后端 "
+           href="/2018/05/使用hexo-github-pages搭建博客/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="使用hexo+github pages搭建博客">使用hexo+github pages搭建博客</span>
+            <span class="post-date" title="2018-05-23 11:35:46">2018/05/23</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-Elasticsearch-6-3-2-启动过程" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Elasticsearch 6.3.2 启动过程</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+            <a href="javascript:" data-rel="大数据">大数据</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color4">elasticsearch</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2018-09-01 20:29:11'>2018-09-01 20:25</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5,372</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境准备"><span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过XMind记录ES启动流程的整个过程"><span class="toc-text">通过XMind记录ES启动流程的整个过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elasticsearch-解析-Command，加载配置"><span class="toc-text">Elasticsearch 解析 Command，加载配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bootstrap初始化阶段"><span class="toc-text">Bootstrap初始化阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bootstrap-init"><span class="toc-text">Bootstrap.init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#INSTANCE-setup-true-environment"><span class="toc-text">INSTANCE.setup(true, environment);</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-node-节点"><span class="toc-text">创建 node 节点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PluginsService"><span class="toc-text">PluginsService</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadPool-线程池"><span class="toc-text">ThreadPool 线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线程池类型-ThreadPoolType"><span class="toc-text">线程池类型 ThreadPoolType</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一些重要的线程池"><span class="toc-text">一些重要的线程池</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于线程"><span class="toc-text">关于线程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回到-Node-节点的创建"><span class="toc-text">回到 Node 节点的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bootstrap-启动"><span class="toc-text">Bootstrap 启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文探究Elasticsearch 6.3.2的启动流程</p>
+<h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><p>使用工具：IDEA，XMind</p>
+<p>关于ES调试环境的搭建，可以参考前面的文章 《<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483676&amp;idx=1&amp;sn=1d88a883ce21d7dcacd073a8fa85dbfc&amp;chksm=e9c2ed11deb56407879ba0b22a4ef96916f8a9e7931e1efb99df57991966a3dc475eb3e23101&amp;mpshare=1&amp;scene=1&amp;srcid=0901DM6ZqcQqSqyujfIApsDj#rd" target="_blank" rel="noopener">教你编译调试Elasticsearch 6.3.2源码</a>》</p>
+<p>然后通过设置断点，从 <code>org.elasticsearch.bootstrap.ElasticSearch</code> 的入口函数开始，一步一步调试</p>
+<p><img src="http://image.laijianfeng.org/20180901_131938.png" alt="IDEA 2018.2 调试按钮"></p>
+<p>上图为使用 IDEA 2018.2 进行调试的一个截图，左上角84行出红点为一个断点，1、2、3编号的3个按钮是较为常用的按钮，作用如下：</p>
+<ul>
+<li>按钮1：step over，执行到下一行，遇到方法<strong>不进入</strong>方法内部</li>
+<li>按钮2：step into，执行到下一句代码，遇到方法则<strong>进入</strong>方法内部</li>
+<li>按钮3：Run to cursor，执行到下一个断点处，后面没有断点则执行到结束</li>
+</ul>
+<h4 id="通过XMind记录ES启动流程的整个过程"><a href="#通过XMind记录ES启动流程的整个过程" class="headerlink" title="通过XMind记录ES启动流程的整个过程"></a>通过XMind记录ES启动流程的整个过程</h4><p><img src="http://image.laijianfeng.org/ES_startup_process.jpg" alt="ES 6.3.2 启动流程"></p>
+<p>根据上图，作者大概地把ES启动流程分为四个阶段：</p>
+<ul>
+<li>Elasticsearch 解析 Command，加载配置</li>
+<li>Bootstrap 初始化，资源检查</li>
+<li>Node 创建节点</li>
+<li>Bootstrap 启动节点和保活线程</li>
+</ul>
+<h3 id="Elasticsearch-解析-Command，加载配置"><a href="#Elasticsearch-解析-Command，加载配置" class="headerlink" title="Elasticsearch 解析 Command，加载配置"></a>Elasticsearch 解析 Command，加载配置</h3><p>首先可以看一下入口方法 <code>Elasticsearch.main</code>：</p>
+<pre><code>    public static void main(final String[] args) throws Exception {
+        System.setSecurityManager(new SecurityManager() {
+            @Override
+            public void checkPermission(Permission perm) {
+                // grant all permissions so that we can later set the security manager to the one that we want
+            }
+        });
+        LogConfigurator.registerErrorListener();
+        final Elasticsearch elasticsearch = new Elasticsearch();
+        int status = main(args, elasticsearch, Terminal.DEFAULT);
+        if (status != ExitCodes.OK) {
+            exit(status);
+        }
+    }
+</code></pre><p>1.1, 创建 SecurityManager 安全管理器</p>
+<blockquote>
+<p>关于 SecurityManager:<br>安全管理器在Java语言中的作用就是<strong>检查操作是否有权限执行</strong>，通过则顺序进行，否则抛出一个异常<br>网上一篇文章：<a href="https://blog.csdn.net/wwwdc1012/article/details/82287474" target="_blank" rel="noopener">Java安全——安全管理器、访问控制器和类装载器</a></p>
+</blockquote>
+<p>1.2, LogConfigurator.registerErrorListener() 注册侦听器</p>
+<p>1.3, 创建Elasticsearch对象</p>
+<p>Elasticsearch 入口类的继承关系如下：</p>
+<p><img src="http://image.laijianfeng.org/20180901_143515.png" alt="Elasticsearch 入口类的继承关系"></p>
+<p>可以看到Elasticsearch继承了EnvironmentAwareCommand，Command，这几个类的功能简要介绍如下：</p>
+<ul>
+<li>Elasticsearch: This class starts elasticsearch.</li>
+<li>EnvironmentAwareCommand: A cli command which requires an <code>org.elasticsearch.env.Environment</code> to use current paths and settings</li>
+<li>Command: An action to execute within a cli.</li>
+</ul>
+<p>可以看出Elasticsearch的一个重要作用是解析命令参数</p>
+<p>执行带 <code>-h</code> 参数的Elasticsearch启动命令</p>
+<p><img src="http://image.laijianfeng.org/20180901_144410.png" alt="带参数的Elasticsearch启动命令"></p>
+<p>可以发现这几个参数与 Cammand 类 和 Elasticsearch 的几个私有变量是对应的</p>
+<p>Elasticsearch的构造函数如下：</p>
+<pre><code>Elasticsearch() {
+    super(&quot;starts elasticsearch&quot;, () -&gt; {}); // we configure logging later so we override the base class from configuring logging
+    versionOption = parser.acceptsAll(Arrays.asList(&quot;V&quot;, &quot;version&quot;), &quot;Prints elasticsearch version information and exits&quot;);
+    daemonizeOption = parser.acceptsAll(Arrays.asList(&quot;d&quot;, &quot;daemonize&quot;), &quot;Starts Elasticsearch in the background&quot;)
+        .availableUnless(versionOption);
+    pidfileOption = parser.acceptsAll(Arrays.asList(&quot;p&quot;, &quot;pidfile&quot;), &quot;Creates a pid file in the specified path on start&quot;)
+        .availableUnless(versionOption).withRequiredArg().withValuesConvertedBy(new PathConverter());
+    quietOption = parser.acceptsAll(Arrays.asList(&quot;q&quot;, &quot;quiet&quot;), &quot;Turns off standard output/error streams logging in console&quot;)
+        .availableUnless(versionOption).availableUnless(daemonizeOption);
+}
+</code></pre><p>1.4, 接着进入 <code>Command.main</code> 方法</p>
+<p>该方法给当前Runtime类添加一个hook线程，该线程作用是：当Runtime异常关闭时打印异常信息</p>
+<p>1.5, <code>Command.mainWithoutErrorHandling</code> 方法，根据命令行参数，打印或者设置参数，然后执行命令，有异常则抛出所有异常</p>
+<p>1.6, <code>EnvironmentAwareCommand.execute</code>，确保 <code>es.path.data</code>, <code>es.path.home</code>, <code>es.path.logs</code> 等参数已设置，否则从 <code>System.properties</code> 中读取</p>
+<pre><code>putSystemPropertyIfSettingIsMissing(settings, &quot;path.data&quot;, &quot;es.path.data&quot;);
+putSystemPropertyIfSettingIsMissing(settings, &quot;path.home&quot;, &quot;es.path.home&quot;);
+putSystemPropertyIfSettingIsMissing(settings, &quot;path.logs&quot;, &quot;es.path.logs&quot;);
+
+execute(terminal, options, createEnv(terminal, settings));
+</code></pre><p>1.7, <code>EnvironmentAwareCommand.createEnv</code>，读取config下的配置文件<code>elasticsearch.yml</code>内容，收集plugins，bin，lib，modules等目录下的文件信息</p>
+<p>createEnv最后返回一个 Environment 对象，执行结果如下</p>
+<p><img src="http://image.laijianfeng.org/20180901_160825.png" alt="EnvironmentAwareCommand.createEnv"></p>
+<p>1.8, <code>Elasticsearch.execute</code> ，读取daemonize， pidFile，quiet 的值，并 确保配置的临时目录(temp)是有效目录</p>
+<p>进入Bootstrap初始化阶段</p>
+<pre><code>Bootstrap.init(!daemonize, pidFile, quiet, initialEnv);
+</code></pre><h3 id="Bootstrap初始化阶段"><a href="#Bootstrap初始化阶段" class="headerlink" title="Bootstrap初始化阶段"></a>Bootstrap初始化阶段</h3><h4 id="Bootstrap-init"><a href="#Bootstrap-init" class="headerlink" title="Bootstrap.init"></a>Bootstrap.init</h4><p>2.1, 进入 <code>Bootstrap.init</code>, This method is invoked by <code>Elasticsearch#main(String[])</code> to startup elasticsearch.</p>
+<p><code>INSTANCE = new Bootstrap();</code>, 创建一个Bootstrap对象作为类对象，该类构造函数会创建一个用户线程，添加到Runtime Hook中，进行 countDown 操作</p>
+<pre><code> private final CountDownLatch keepAliveLatch = new CountDownLatch(1);
+
+ /** creates a new instance */
+    Bootstrap() {
+        keepAliveThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    keepAliveLatch.await();
+                } catch (InterruptedException e) {
+                }
+            }
+        }, &quot;elasticsearch[keepAlive/&quot; + Version.CURRENT + &quot;]&quot;);
+        keepAliveThread.setDaemon(false);
+        // keep this thread alive (non daemon thread) until we shutdown
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                keepAliveLatch.countDown();
+            }
+        });
+    }
+</code></pre><blockquote>
+<p>CountDownLatch是一个同步工具类，它允许一个或多个线程一直等待，直到其他线程执行完后再执行。例如，应用程序的主线程希望在负责启动框架服务的线程已经启动所有框架服务之后执行。<br>CountDownLatch是通过一个计数器来实现的，计数器的初始化值为线程的数量。每当一个线程完成了自己的任务后，计数器的值就相应得减1。当计数器到达0时，表示所有的线程都已完成任务，然后在闭锁上等待的线程就可以恢复执行任务。<br>更多介绍请看文章：<a href="https://blog.csdn.net/wwwdc1012/article/details/82288473" target="_blank" rel="noopener">并发工具类 CountDownLatch</a></p>
+</blockquote>
+<p>2.2, 加载 keystore 安全配置，keystore文件不存在则创建，保存；存在则解密，更新keystore</p>
+<p>2.3, 根据已有的配置信息，创建一个Environment对象</p>
+<p>2.4, LogConfigurator log4j日志配置</p>
+<p>2.5, 检查pid文件是否存在，不存在则创建</p>
+<blockquote>
+<p>关于 pid 文件：<br>(1) <strong>pid文件的内容</strong>：pid文件为文本文件，内容只有一行，记录了该进程的ID，用cat命令可以看到。<br>(2) <strong>pid文件的作用</strong>：防止进程启动多个副本。只有获得pid文件(固定路径固定文件名)写入权限(F_WRLCK)的进程才能正常启动并把自身的PID写入该文件中，其它同一个程序的多余进程则自动退出。</p>
+</blockquote>
+<p>2.6, 检查Lucene版本与实际的Lucene Jar文件的版本是否一致，不一致则抛异常</p>
+<p>2.7, 设置未捕获异常的处理 Thread.setDefaultUncaughtExceptionHandler</p>
+<p>在Thread ApI中提供了UncaughtExceptionHandle，它能检测出某个由于未捕获的异常而终结的情况</p>
+<blockquote>
+<p>朱小厮 <a href="https://blog.csdn.net/u013256816/article/details/50417822" target="_blank" rel="noopener">JAVA多线程之UncaughtExceptionHandler——处理非正常的线程中止</a></p>
+</blockquote>
+<h4 id="INSTANCE-setup-true-environment"><a href="#INSTANCE-setup-true-environment" class="headerlink" title="INSTANCE.setup(true, environment);"></a>INSTANCE.setup(true, environment);</h4><p>3.1，<code>spawner.spawnNativeControllers(environment);</code></p>
+<p>遍历每个模块，生成本机控制类（native Controller）：读取modules文件夹下所有的文件夹中的模块信息，保存为一个 PluginInfo  对象，为合适的模块生成控制类，通过 <code>Files.isRegularFile(spawnPath)</code> 来判断</p>
+<p>尝试为给定模块生成控制器(native Controller)守护程序。    生成的进程将通过其stdin，stdout和stderr流保持与此JVM的连接，但对此包之外的代码不能使用对这些流的引用。</p>
+<p>3.2， <code>initializeNatives(Path tmpFile, boolean mlockAll, boolean systemCallFilter, boolean ctrlHandler)</code>初始化本地资源</p>
+<p>检查用户是否为root用户，是则抛异常;<br>尝试启用 系统调用过滤器 system call filter;<br>如果设置了则进行 mlockall<br>Windows关闭事件监听器<br>init lucene random seed.   </p>
+<p>这个过程中使用到了 Natives 类:<br>Natives类是一个包装类，用于检查调用本机方法所需的类是否在启动时可用。如果它们不可用，则此类将避免调用加载这些类的代码</p>
+<p>3.3, 添加一个Hook： Runtime.getRuntime().addShutdownHook，当ES退出时用于关闭必要的IO流，日志器上下文和配置器等</p>
+<p>3.4, 使用 JarHell 检查重复的 jar 文件</p>
+<p>3.5, 初始化 SecurityManager</p>
+<pre><code>// install SM after natives, shutdown hooks, etc.
+Security.configure(environment, BootstrapSettings.SECURITY_FILTER_BAD_DEFAULTS_SETTING.get(settings));
+</code></pre><h3 id="创建-node-节点"><a href="#创建-node-节点" class="headerlink" title="创建 node 节点"></a>创建 node 节点</h3><pre><code>node = new Node(environment) {
+    @Override
+    protected void validateNodeBeforeAcceptingRequests(
+        final BootstrapContext context,
+        final BoundTransportAddress boundTransportAddress, List&lt;BootstrapCheck&gt; checks) throws NodeValidationException {
+        BootstrapChecks.check(context, boundTransportAddress, checks);
+    }
+};
+</code></pre><p>4.1, 这里直接贴一下代码（前半部分）</p>
+<pre><code>    protected Node(final Environment environment, Collection&lt;Class&lt;? extends Plugin&gt;&gt; classpathPlugins) {
+        final List&lt;Closeable&gt; resourcesToClose = new ArrayList&lt;&gt;(); // register everything we need to release in the case of an error
+        boolean success = false;
+        {
+            // use temp logger just to say we are starting. we can&#39;t use it later on because the node name might not be set
+            Logger logger = Loggers.getLogger(Node.class, NODE_NAME_SETTING.get(environment.settings()));
+            logger.info(&quot;initializing ...&quot;);
+        }
+        try {
+            originalSettings = environment.settings();
+            Settings tmpSettings = Settings.builder().put(environment.settings())
+                .put(Client.CLIENT_TYPE_SETTING_S.getKey(), CLIENT_TYPE).build();
+
+            // create the node environment as soon as possible, to recover the node id and enable logging
+            try {
+                nodeEnvironment = new NodeEnvironment(tmpSettings, environment);
+                resourcesToClose.add(nodeEnvironment);
+            } catch (IOException ex) {
+                throw new IllegalStateException(&quot;Failed to create node environment&quot;, ex);
+            }
+            final boolean hadPredefinedNodeName = NODE_NAME_SETTING.exists(tmpSettings);
+            final String nodeId = nodeEnvironment.nodeId();
+            tmpSettings = addNodeNameIfNeeded(tmpSettings, nodeId);
+            final Logger logger = Loggers.getLogger(Node.class, tmpSettings);
+            // this must be captured after the node name is possibly added to the settings
+            final String nodeName = NODE_NAME_SETTING.get(tmpSettings);
+            if (hadPredefinedNodeName == false) {
+                logger.info(&quot;node name derived from node ID [{}]; set [{}] to override&quot;, nodeId, NODE_NAME_SETTING.getKey());
+            } else {
+                logger.info(&quot;node name [{}], node ID [{}]&quot;, nodeName, nodeId);
+            }
+
+            final JvmInfo jvmInfo = JvmInfo.jvmInfo();
+            logger.info(
+                &quot;version[{}], pid[{}], build[{}/{}/{}/{}], OS[{}/{}/{}], JVM[{}/{}/{}/{}]&quot;,
+                Version.displayVersion(Version.CURRENT, Build.CURRENT.isSnapshot()),
+                jvmInfo.pid(),
+                Build.CURRENT.flavor().displayName(),
+                Build.CURRENT.type().displayName(),
+                Build.CURRENT.shortHash(),
+                Build.CURRENT.date(),
+                Constants.OS_NAME,
+                Constants.OS_VERSION,
+                Constants.OS_ARCH,
+                Constants.JVM_VENDOR,
+                Constants.JVM_NAME,
+                Constants.JAVA_VERSION,
+                Constants.JVM_VERSION);
+            logger.info(&quot;JVM arguments {}&quot;, Arrays.toString(jvmInfo.getInputArguments()));
+            warnIfPreRelease(Version.CURRENT, Build.CURRENT.isSnapshot(), logger);
+
+            if (logger.isDebugEnabled()) {
+                logger.debug(&quot;using config [{}], data [{}], logs [{}], plugins [{}]&quot;,
+                    environment.configFile(), Arrays.toString(environment.dataFiles()), environment.logsFile(), environment.pluginsFile());
+            }
+
+            this.pluginsService = new PluginsService(tmpSettings, environment.configFile(), environment.modulesFile(), environment.pluginsFile(), classpathPlugins);
+            this.settings = pluginsService.updatedSettings();
+            localNodeFactory = new LocalNodeFactory(settings, nodeEnvironment.nodeId());
+
+            // create the environment based on the finalized (processed) view of the settings
+            // this is just to makes sure that people get the same settings, no matter where they ask them from
+            this.environment = new Environment(this.settings, environment.configFile());
+            Environment.assertEquivalent(environment, this.environment);
+
+            final List&lt;ExecutorBuilder&lt;?&gt;&gt; executorBuilders = pluginsService.getExecutorBuilders(settings);
+
+            final ThreadPool threadPool = new ThreadPool(settings, executorBuilders.toArray(new ExecutorBuilder[0]));
+            resourcesToClose.add(() -&gt; ThreadPool.terminate(threadPool, 10, TimeUnit.SECONDS));
+            // adds the context to the DeprecationLogger so that it does not need to be injected everywhere
+            DeprecationLogger.setThreadContext(threadPool.getThreadContext());
+            resourcesToClose.add(() -&gt; DeprecationLogger.removeThreadContext(threadPool.getThreadContext()));
+
+            final List&lt;Setting&lt;?&gt;&gt; additionalSettings = new ArrayList&lt;&gt;(pluginsService.getPluginSettings());
+            final List&lt;String&gt; additionalSettingsFilter = new ArrayList&lt;&gt;(pluginsService.getPluginSettingsFilter());
+            for (final ExecutorBuilder&lt;?&gt; builder : threadPool.builders()) {
+                additionalSettings.addAll(builder.getRegisteredSettings());
+            }
+            client = new NodeClient(settings, threadPool);
+    ...
+</code></pre><p>这里进行的主要操作有:</p>
+<ol>
+<li>生命周期Lifecycle设置为 初始化状态 INITIALIZED</li>
+<li>创建一个 NodeEnvironment 对象保存节点环境信息，如各种数据文件的路径</li>
+<li>读取JVM信息</li>
+<li>创建 PluginsService 对象，创建过程中会读取并加载所有的模块和插件</li>
+<li>创建一个最终的 Environment 对象</li>
+<li>创建线程池 ThreadPool 后面各类对象基本都是通过线程来提供服务，这个线程池可以管理各类线程</li>
+<li>创建 节点客户端 NodeClient</li>
+</ol>
+<p><strong>这里重点介绍 PluginsService 和 ThreadPool 这两个类</strong></p>
+<h4 id="PluginsService"><a href="#PluginsService" class="headerlink" title="PluginsService"></a>PluginsService</h4><p>在构造该类对象是传入的参数如下：</p>
+<p><img src="http://image.laijianfeng.org/20180901_175542.png" alt="PluginsService 构造方法的参数"></p>
+<p>在构造方法中加载所有的模块</p>
+<pre><code>Set&lt;Bundle&gt; seenBundles = new LinkedHashSet&lt;&gt;();
+List&lt;PluginInfo&gt; modulesList = new ArrayList&lt;&gt;();
+
+Set&lt;Bundle&gt; modules = getModuleBundles(modulesDirectory); 
+
+for (Bundle bundle : modules) {
+   modulesList.add(bundle.plugin);
+}
+seenBundles.addAll(modules);
+
+/** Get bundles for plugins installed in the given modules directory. */
+static Set&lt;Bundle&gt; getModuleBundles(Path modulesDirectory) throws IOException {
+    return findBundles(modulesDirectory, &quot;module&quot;).stream().flatMap(b -&gt; b.bundles().stream()).collect(Collectors.toSet());
+}
+</code></pre><p>其中的 Bundle是一个内部类（a “bundle” is a group of plugins in a single classloader）<br>而 PluginInfo 则是 An in-memory representation of the plugin descriptor. 存在内存中的用来描述一个 plugin 的类</p>
+<p>插件加载的实际代码如下：</p>
+<pre><code>    /**
+     * Reads the plugin descriptor file.
+     *
+     * @param path           the path to the root directory for the plugin
+     * @return the plugin info
+     * @throws IOException if an I/O exception occurred reading the plugin descriptor
+     */
+    public static PluginInfo readFromProperties(final Path path) throws IOException {
+        final Path descriptor = path.resolve(ES_PLUGIN_PROPERTIES);
+
+        final Map&lt;String, String&gt; propsMap;
+        {
+            final Properties props = new Properties();
+            try (InputStream stream = Files.newInputStream(descriptor)) {
+                props.load(stream);
+            }
+            propsMap = props.stringPropertyNames().stream().collect(Collectors.toMap(Function.identity(), props::getProperty));
+        }
+
+        final String name = propsMap.remove(&quot;name&quot;);
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException(
+                    &quot;property [name] is missing in [&quot; + descriptor + &quot;]&quot;);
+        }
+        final String description = propsMap.remove(&quot;description&quot;);
+        if (description == null) {
+            throw new IllegalArgumentException(
+                    &quot;property [description] is missing for plugin [&quot; + name + &quot;]&quot;);
+        }
+        final String version = propsMap.remove(&quot;version&quot;);
+        if (version == null) {
+            throw new IllegalArgumentException(
+                    &quot;property [version] is missing for plugin [&quot; + name + &quot;]&quot;);
+        }
+
+        final String esVersionString = propsMap.remove(&quot;elasticsearch.version&quot;);
+        if (esVersionString == null) {
+            throw new IllegalArgumentException(
+                    &quot;property [elasticsearch.version] is missing for plugin [&quot; + name + &quot;]&quot;);
+        }
+        final Version esVersion = Version.fromString(esVersionString);
+        final String javaVersionString = propsMap.remove(&quot;java.version&quot;);
+        if (javaVersionString == null) {
+            throw new IllegalArgumentException(
+                    &quot;property [java.version] is missing for plugin [&quot; + name + &quot;]&quot;);
+        }
+        JarHell.checkVersionFormat(javaVersionString);
+        final String classname = propsMap.remove(&quot;classname&quot;);
+        if (classname == null) {
+            throw new IllegalArgumentException(
+                    &quot;property [classname] is missing for plugin [&quot; + name + &quot;]&quot;);
+        }
+
+        final String extendedString = propsMap.remove(&quot;extended.plugins&quot;);
+        final List&lt;String&gt; extendedPlugins;
+        if (extendedString == null) {
+            extendedPlugins = Collections.emptyList();
+        } else {
+            extendedPlugins = Arrays.asList(Strings.delimitedListToStringArray(extendedString, &quot;,&quot;));
+        }
+
+        final String hasNativeControllerValue = propsMap.remove(&quot;has.native.controller&quot;);
+        final boolean hasNativeController;
+        if (hasNativeControllerValue == null) {
+            hasNativeController = false;
+        } else {
+            switch (hasNativeControllerValue) {
+                case &quot;true&quot;:
+                    hasNativeController = true;
+                    break;
+                case &quot;false&quot;:
+                    hasNativeController = false;
+                    break;
+                default:
+                    final String message = String.format(
+                            Locale.ROOT,
+                            &quot;property [%s] must be [%s], [%s], or unspecified but was [%s]&quot;,
+                            &quot;has_native_controller&quot;,
+                            &quot;true&quot;,
+                            &quot;false&quot;,
+                            hasNativeControllerValue);
+                    throw new IllegalArgumentException(message);
+            }
+        }
+
+        if (esVersion.before(Version.V_6_3_0) &amp;&amp; esVersion.onOrAfter(Version.V_6_0_0_beta2)) {
+            propsMap.remove(&quot;requires.keystore&quot;);
+        }
+
+        if (propsMap.isEmpty() == false) {
+            throw new IllegalArgumentException(&quot;Unknown properties in plugin descriptor: &quot; + propsMap.keySet());
+        }
+
+        return new PluginInfo(name, description, version, esVersion, javaVersionString,
+                              classname, extendedPlugins, hasNativeController);
+    }
+</code></pre><p>其中的两个常量的值</p>
+<pre><code>    public static final String ES_PLUGIN_PROPERTIES = &quot;plugin-descriptor.properties&quot;;
+    public static final String ES_PLUGIN_POLICY = &quot;plugin-security.policy&quot;;
+</code></pre><p>从以上代码可以看出<strong>模块的加载过程</strong>：</p>
+<ol>
+<li>读取模块的配置文件 <code>plugin-descriptor.properties</code>，解析出内容并存储到 Map 中</li>
+<li>分别校验 <code>name</code>, <code>description</code>, <code>version</code>, <code>elasticsearch.version</code>, <code>java.version</code>, <code>classname</code>, <code>extended.plugins</code>, <code>has.native.controller</code>, <code>requires.keystore</code> 这些配置项，缺失或者不按要求则抛出异常</li>
+<li>根据配置项构造一个 PluginInfo 对象返回</li>
+</ol>
+<p>举例：读取出的 aggs-matrix-stats 模块的配置项信息如下</p>
+<p><img src="http://image.laijianfeng.org/20180901_181500.png" alt="读取插件配置文件并解析文件内容"></p>
+<p>加载插件与加载模块调用的是相同的方法</p>
+<h3 id="ThreadPool-线程池"><a href="#ThreadPool-线程池" class="headerlink" title="ThreadPool 线程池"></a>ThreadPool 线程池</h3><p>线程池的构造方法如下：</p>
+<pre><code>    public ThreadPool(final Settings settings, final ExecutorBuilder&lt;?&gt;... customBuilders) {
+        super(settings);
+
+        assert Node.NODE_NAME_SETTING.exists(settings);
+
+        final Map&lt;String, ExecutorBuilder&gt; builders = new HashMap&lt;&gt;();
+        final int availableProcessors = EsExecutors.numberOfProcessors(settings);
+        final int halfProcMaxAt5 = halfNumberOfProcessorsMaxFive(availableProcessors);
+        final int halfProcMaxAt10 = halfNumberOfProcessorsMaxTen(availableProcessors);
+        final int genericThreadPoolMax = boundedBy(4 * availableProcessors, 128, 512);
+
+        builders.put(Names.GENERIC, new ScalingExecutorBuilder(Names.GENERIC, 4, genericThreadPoolMax, TimeValue.timeValueSeconds(30)));
+        builders.put(Names.INDEX, new FixedExecutorBuilder(settings, Names.INDEX, availableProcessors, 200, true));
+        builders.put(Names.WRITE, new FixedExecutorBuilder(settings, Names.WRITE, &quot;bulk&quot;, availableProcessors, 200));
+        builders.put(Names.GET, new FixedExecutorBuilder(settings, Names.GET, availableProcessors, 1000));
+        builders.put(Names.ANALYZE, new FixedExecutorBuilder(settings, Names.ANALYZE, 1, 16));
+        builders.put(Names.SEARCH, new AutoQueueAdjustingExecutorBuilder(settings,
+                        Names.SEARCH, searchThreadPoolSize(availableProcessors), 1000, 1000, 1000, 2000));
+        builders.put(Names.MANAGEMENT, new ScalingExecutorBuilder(Names.MANAGEMENT, 1, 5, TimeValue.timeValueMinutes(5)));
+        // no queue as this means clients will need to handle rejections on listener queue even if the operation succeeded
+        // the assumption here is that the listeners should be very lightweight on the listeners side
+        builders.put(Names.LISTENER, new FixedExecutorBuilder(settings, Names.LISTENER, halfProcMaxAt10, -1));
+        builders.put(Names.FLUSH, new ScalingExecutorBuilder(Names.FLUSH, 1, halfProcMaxAt5, TimeValue.timeValueMinutes(5)));
+        builders.put(Names.REFRESH, new ScalingExecutorBuilder(Names.REFRESH, 1, halfProcMaxAt10, TimeValue.timeValueMinutes(5)));
+        builders.put(Names.WARMER, new ScalingExecutorBuilder(Names.WARMER, 1, halfProcMaxAt5, TimeValue.timeValueMinutes(5)));
+        builders.put(Names.SNAPSHOT, new ScalingExecutorBuilder(Names.SNAPSHOT, 1, halfProcMaxAt5, TimeValue.timeValueMinutes(5)));
+        builders.put(Names.FETCH_SHARD_STARTED, new ScalingExecutorBuilder(Names.FETCH_SHARD_STARTED, 1, 2 * availableProcessors, TimeValue.timeValueMinutes(5)));
+        builders.put(Names.FORCE_MERGE, new FixedExecutorBuilder(settings, Names.FORCE_MERGE, 1, -1));
+        builders.put(Names.FETCH_SHARD_STORE, new ScalingExecutorBuilder(Names.FETCH_SHARD_STORE, 1, 2 * availableProcessors, TimeValue.timeValueMinutes(5)));
+
+        for (final ExecutorBuilder&lt;?&gt; builder : customBuilders) {
+            if (builders.containsKey(builder.name())) {
+                throw new IllegalArgumentException(&quot;builder with name [&quot; + builder.name() + &quot;] already exists&quot;);
+            }
+            builders.put(builder.name(), builder);
+        }
+        this.builders = Collections.unmodifiableMap(builders);
+
+        threadContext = new ThreadContext(settings);
+
+        final Map&lt;String, ExecutorHolder&gt; executors = new HashMap&lt;&gt;();
+        for (@SuppressWarnings(&quot;unchecked&quot;) final Map.Entry&lt;String, ExecutorBuilder&gt; entry : builders.entrySet()) {
+            final ExecutorBuilder.ExecutorSettings executorSettings = entry.getValue().getSettings(settings);
+            final ExecutorHolder executorHolder = entry.getValue().build(executorSettings, threadContext);
+            if (executors.containsKey(executorHolder.info.getName())) {
+                throw new IllegalStateException(&quot;duplicate executors with name [&quot; + executorHolder.info.getName() + &quot;] registered&quot;);
+            }
+            logger.debug(&quot;created thread pool: {}&quot;, entry.getValue().formatInfo(executorHolder.info));
+            executors.put(entry.getKey(), executorHolder);
+        }
+
+        executors.put(Names.SAME, new ExecutorHolder(DIRECT_EXECUTOR, new Info(Names.SAME, ThreadPoolType.DIRECT)));
+        this.executors = unmodifiableMap(executors);
+        this.scheduler = Scheduler.initScheduler(settings);
+        TimeValue estimatedTimeInterval = ESTIMATED_TIME_INTERVAL_SETTING.get(settings);
+        this.cachedTimeThread = new CachedTimeThread(EsExecutors.threadName(settings, &quot;[timer]&quot;), estimatedTimeInterval.millis());
+        this.cachedTimeThread.start();
+    }
+</code></pre><p>参考着文档来理解这里的代码：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-threadpool.html" target="_blank" rel="noopener">Elasticsearch Reference [6.4] » Modules » Thread Pool</a> 和 <a href="http://cwiki.apachecn.org/pages/viewpage.action?pageId=9405389" target="_blank" rel="noopener">apachecn 线程池</a></p>
+<h4 id="线程池类型-ThreadPoolType"><a href="#线程池类型-ThreadPoolType" class="headerlink" title="线程池类型 ThreadPoolType"></a>线程池类型 ThreadPoolType</h4><p><strong>fixed</strong>（固定）：fixed线程池拥有固定数量的线程来处理请求，在没有空闲线程时请求将被挂在队列中。queue_size参数可以控制在没有空闲线程时，能排队挂起的请求数</p>
+<p><strong>fixed_auto_queue_size</strong>：此类型为实验性的，将被更改或删除，不关注</p>
+<p><strong>scaling</strong>（弹性）：scaling线程池拥有的线程数量是动态的，这个数字介于core和max参数的配置之间变化。keep_alive参数用来控制线程在线程池中空闲的最长时间</p>
+<p><strong>direct</strong>：此类线程是一种不支持关闭的线程,就意味着一旦使用,则会一直存活下去.</p>
+<h4 id="一些重要的线程池"><a href="#一些重要的线程池" class="headerlink" title="一些重要的线程池"></a>一些重要的线程池</h4><p><strong>generic</strong>：用于通用的请求（例如：后台节点发现），线程池类型为 scaling。</p>
+<p><strong>index</strong>：用于index/delete请求，线程池类型为 fixed， 大小的为处理器数量，队列大小为200，最大线程数为 1 + 处理器数量。</p>
+<p><strong>search</strong>：用于count/search/suggest请求。线程池类型为 fixed， 大小的为 int((处理器数量 3) / 2) +1，队列大小为1000。*</p>
+<p><strong>get</strong>：用于get请求。线程池类型为 fixed，大小的为处理器数量，队列大小为1000。</p>
+<p><strong>analyze</strong>：用于analyze请求。线程池类型为 fixed，大小的1，队列大小为16</p>
+<p><strong>write</strong>：用于单个文档的 index/delete/update 请求以及 <strong>bulk 请求</strong>，线程池类型为 fixed，大小的为处理器数量，队列大小为200，最大线程数为 1 + 处理器数量。</p>
+<p><strong>snapshot</strong>：用于snaphost/restore请求。线程池类型为 scaling，线程保持存活时间为5分钟，最大线程数为min(5, (处理器数量)/2)。</p>
+<p><strong>warmer</strong>：用于segment warm-up请求。线程池类型为 scaling，线程保持存活时间为5分钟，最大线程数为min(5, (处理器数量)/2)。</p>
+<p><strong>refresh</strong>：用于refresh请求。线程池类型为 scaling，线程空闲保持存活时间为5分钟，最大线程数为min(10, (处理器数量)/2)。</p>
+<p><strong>listener</strong>：主要用于Java客户端线程监听器被设置为true时执行动作。线程池类型为 scaling，最大线程数为min(10, (处理器数量)/2)。</p>
+<p>ThreadPool 类中除了以上线程队列，还可以看到有 CachedTimeThread（缓存系统时间）、ExecutorService（在当前线程上执行提交的任务）、ThreadContext（线程上下文）、ScheduledThreadPoolExecutor（Java任务调度）等</p>
+<blockquote>
+<p>参考文章：<a href="https://my.oschina.net/u/3145136/blog/848079" target="_blank" rel="noopener">Java并发编程14-ScheduledThreadPoolExecutor详解</a><br><a href="https://www.jianshu.com/p/4b8a257f1b90" target="_blank" rel="noopener">Java线程池原理分析ScheduledThreadPoolExecutor篇</a><br>关于 ScheduledThreadPoolExecutor 更多的细节应该看书或者官方文档</p>
+</blockquote>
+<h4 id="关于线程"><a href="#关于线程" class="headerlink" title="关于线程"></a>关于线程</h4><p>了解了线程池，继续深究ES线程是什么样子的</p>
+<p>在 <code>ScalingExecutorBuilder.build</code> 中可以发现 <code>ExecutorService</code> 对象是由 <code>EsExecutors.newScaling</code> 创建的</p>
+<pre><code>public static EsThreadPoolExecutor newScaling(String name, int min, int max, long keepAliveTime, TimeUnit unit, ThreadFactory threadFactory, ThreadContext contextHolder) {
+    ExecutorScalingQueue&lt;Runnable&gt; queue = new ExecutorScalingQueue&lt;&gt;();
+    EsThreadPoolExecutor executor = new EsThreadPoolExecutor(name, min, max, keepAliveTime, unit, queue, threadFactory, new ForceQueuePolicy(), contextHolder);
+    queue.executor = executor;
+    return executor;
+}
+</code></pre><p>再看看 <code>EsThreadPoolExecutor</code> 这个类的继承关系，其是扩展自Java的线程池 <code>ThreadPoolExecutor</code></p>
+<p><img src="http://image.laijianfeng.org/20180901_192545.png" alt="EsThreadPoolExecutor的继承链"></p>
+<pre><code>    EsThreadPoolExecutor(String name, int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
+            BlockingQueue&lt;Runnable&gt; workQueue, ThreadFactory threadFactory, XRejectedExecutionHandler handler,
+            ThreadContext contextHolder) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
+        this.name = name;
+        this.contextHolder = contextHolder;
+    }
+</code></pre><h3 id="回到-Node-节点的创建"><a href="#回到-Node-节点的创建" class="headerlink" title="回到 Node 节点的创建"></a>回到 Node 节点的创建</h3><p>4.2, 创建各种服务类对象 ResourceWatcherService、NetworkService、ClusterService、IngestService、ClusterInfoService、UsageService、MonitorService、CircuitBreakerService、MetaStateService、IndicesService、MetaDataIndexUpgradeService、TemplateUpgradeService、TransportService、ResponseCollectorService、SearchTransportService、NodeService、SearchService、PersistentTasksClusterService</p>
+<p>这些服务类是的功能可以根据名称做一个大概的判断，具体还需要看文档和源码，限于篇幅，在此不做探究</p>
+<p>4.3, ModulesBuilder类加入各种模块 ScriptModule、AnalysisModule、SettingsModule、pluginModule、ClusterModule、IndicesModule、SearchModule、GatewayModule、RepositoriesModule、ActionModule、NetworkModule、DiscoveryModule</p>
+<p>4.4, guice 绑定依赖以及依赖注入</p>
+<blockquote>
+<p>关于 guice 可以参考之前的文章:<br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483683&amp;idx=1&amp;sn=0d77085a0234b2c5b7c679e62200e6f5&amp;chksm=e9c2ed2edeb56438010b5f5d487bcb7f0529c85d50ac7c858e1a8e3a9279c15007341170c5ac&amp;mpshare=1&amp;scene=1&amp;srcid=0901SWQiIdjHZ3endUHZqjkP#rd" target="_blank" rel="noopener">Google Guice 快速入门</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483691&amp;idx=1&amp;sn=3c7175d318bce6728c2105d27ae6bafe&amp;chksm=e9c2ed26deb56430289edabd15cef1a0cf777c5dfe4f4ad5013655e9d3607958e0fe16ac5436&amp;mpshare=1&amp;scene=1&amp;srcid=0901u1aslOFhg6UmeBkLw8BY#rd" target="_blank" rel="noopener">Elasticsearch 中的 Guice</a></p>
+</blockquote>
+<p>elasticsearch里面的组件基本都进行进行了模块化管理，elasticsearch对guice进行了封装，通过ModulesBuilder类构建es的模块（一般包括的模块在 4.3 中列举了）</p>
+<pre><code>// 依赖绑定
+modules.add(b -&gt; {
+        b.bind(Node.class).toInstance(this);
+        b.bind(NodeService.class).toInstance(nodeService);
+        b.bind(NamedXContentRegistry.class).toInstance(xContentRegistry);
+        b.bind(PluginsService.class).toInstance(pluginsService);
+        b.bind(Client.class).toInstance(client);
+        b.bind(NodeClient.class).toInstance(client);
+        b.bind(Environment.class).toInstance(this.environment);
+        b.bind(ThreadPool.class).toInstance(threadPool);
+        b.bind(NodeEnvironment.class).toInstance(nodeEnvironment);
+        b.bind(ResourceWatcherService.class).toInstance(resourceWatcherService);
+        b.bind(CircuitBreakerService.class).toInstance(circuitBreakerService);
+        b.bind(BigArrays.class).toInstance(bigArrays);
+        b.bind(ScriptService.class).toInstance(scriptModule.getScriptService());
+        b.bind(AnalysisRegistry.class).toInstance(analysisModule.getAnalysisRegistry());
+        b.bind(IngestService.class).toInstance(ingestService);
+        b.bind(UsageService.class).toInstance(usageService);
+        b.bind(NamedWriteableRegistry.class).toInstance(namedWriteableRegistry);
+        b.bind(MetaDataUpgrader.class).toInstance(metaDataUpgrader);
+        b.bind(MetaStateService.class).toInstance(metaStateService);
+        b.bind(IndicesService.class).toInstance(indicesService);
+        b.bind(SearchService.class).toInstance(searchService);
+        b.bind(SearchTransportService.class).toInstance(searchTransportService);
+        b.bind(SearchPhaseController.class).toInstance(new SearchPhaseController(settings,
+            searchService::createReduceContext));
+        b.bind(Transport.class).toInstance(transport);
+        b.bind(TransportService.class).toInstance(transportService);
+        b.bind(NetworkService.class).toInstance(networkService);
+        b.bind(UpdateHelper.class).toInstance(new UpdateHelper(settings, scriptModule.getScriptService()));
+        b.bind(MetaDataIndexUpgradeService.class).toInstance(metaDataIndexUpgradeService);
+        b.bind(ClusterInfoService.class).toInstance(clusterInfoService);
+        b.bind(GatewayMetaState.class).toInstance(gatewayMetaState);
+        b.bind(Discovery.class).toInstance(discoveryModule.getDiscovery());
+        {
+            RecoverySettings recoverySettings = new RecoverySettings(settings, settingsModule.getClusterSettings());
+            processRecoverySettings(settingsModule.getClusterSettings(), recoverySettings);
+            b.bind(PeerRecoverySourceService.class).toInstance(new PeerRecoverySourceService(settings, transportService,
+                    indicesService, recoverySettings));
+            b.bind(PeerRecoveryTargetService.class).toInstance(new PeerRecoveryTargetService(settings, threadPool,
+                    transportService, recoverySettings, clusterService));
+        }
+        httpBind.accept(b);
+        pluginComponents.stream().forEach(p -&gt; b.bind((Class) p.getClass()).toInstance(p));
+        b.bind(PersistentTasksService.class).toInstance(persistentTasksService);
+        b.bind(PersistentTasksClusterService.class).toInstance(persistentTasksClusterService);
+        b.bind(PersistentTasksExecutorRegistry.class).toInstance(registry);
+    }
+);
+injector = modules.createInjector();
+</code></pre><h3 id="Bootstrap-启动"><a href="#Bootstrap-启动" class="headerlink" title="Bootstrap 启动"></a>Bootstrap 启动</h3><p>5.1， 通过 <code>injector</code> 获取各个类的对象，调用 <code>start()</code> 方法启动（实际进入各个类的中 <code>doStart</code> 方法）: LifecycleComponent、IndicesService、IndicesClusterStateService、SnapshotsService、SnapshotShardsService、RoutingService、SearchService、MonitorService、NodeConnectionsService、ResourceWatcherService、GatewayService、Discovery、TransportService</p>
+<p>这里简要介绍一下各个服务类的职能：</p>
+<p>IndicesService：索引管理<br>IndicesClusterStateService：跨集群同步<br>SnapshotsService：负责创建快照<br>SnapshotShardsService：此服务在数据和主节点上运行，并控制这些节点上当前快照的分片。 它负责启动和停止分片级别快照<br>RoutingService：侦听集群状态，当它收到ClusterChangedEvent（集群改变事件）将验证集群状态，路由表可能会更新<br>SearchService：搜索服务<br>MonitorService：监控<br>NodeConnectionsService：此组件负责在节点添加到群集状态后连接到节点，并在删除它们时断开连接。 此外，它会定期检查所有连接是否仍处于打开状态，并在需要时还原它们。 请注意，如果节点断开/不响应ping，则此组件不负责从群集中删除节点。 这是由NodesFaultDetection完成的。 主故障检测由链接MasterFaultDetection完成。<br>ResourceWatcherService：通用资源观察器服务<br>GatewayService：网关</p>
+<p>如果该节点是主节点或数据节点，还需要进行相关的职能操作</p>
+<p>5.2, 集群发现与监控等，启动 HttpServerTransport， 绑定服务端口</p>
+<pre><code>validateNodeBeforeAcceptingRequests(new BootstrapContext(settings, onDiskMetadata), transportService.boundAddress(), pluginsService
+    .filterPlugins(Plugin
+    .class)
+    .stream()
+    .flatMap(p -&gt; p.getBootstrapChecks().stream()).collect(Collectors.toList()));
+
+clusterService.addStateApplier(transportService.getTaskManager());
+// start after transport service so the local disco is known
+discovery.start(); // start before cluster service so that it can set initial state on ClusterApplierService
+clusterService.start();
+assert clusterService.localNode().equals(localNodeFactory.getNode())
+    : &quot;clusterService has a different local node than the factory provided&quot;;
+transportService.acceptIncomingRequests();
+discovery.startInitialJoin();
+// tribe nodes don&#39;t have a master so we shouldn&#39;t register an observer         s
+final TimeValue initialStateTimeout = DiscoverySettings.INITIAL_STATE_TIMEOUT_SETTING.get(settings);
+if (initialStateTimeout.millis() &gt; 0) {
+    final ThreadPool thread = injector.getInstance(ThreadPool.class);
+    ClusterState clusterState = clusterService.state();
+    ClusterStateObserver observer = new ClusterStateObserver(clusterState, clusterService, null, logger, thread.getThreadContext());
+    if (clusterState.nodes().getMasterNodeId() == null) {
+        logger.debug(&quot;waiting to join the cluster. timeout [{}]&quot;, initialStateTimeout);
+        final CountDownLatch latch = new CountDownLatch(1);
+        observer.waitForNextChange(new ClusterStateObserver.Listener() {
+            @Override
+            public void onNewClusterState(ClusterState state) { latch.countDown(); }
+
+            @Override
+            public void onClusterServiceClose() {
+                latch.countDown();
+            }
+
+            @Override
+            public void onTimeout(TimeValue timeout) {
+                logger.warn(&quot;timed out while waiting for initial discovery state - timeout: {}&quot;,
+                    initialStateTimeout);
+                latch.countDown();
+            }
+        }, state -&gt; state.nodes().getMasterNodeId() != null, initialStateTimeout);
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            throw new ElasticsearchTimeoutException(&quot;Interrupted while waiting for initial discovery state&quot;);
+        }
+    }
+}
+
+
+if (NetworkModule.HTTP_ENABLED.get(settings)) {
+    injector.getInstance(HttpServerTransport.class).start();
+}
+
+if (WRITE_PORTS_FILE_SETTING.get(settings)) {
+    if (NetworkModule.HTTP_ENABLED.get(settings)) {
+        HttpServerTransport http = injector.getInstance(HttpServerTransport.class);
+        writePortsFile(&quot;http&quot;, http.boundAddress());
+    }
+    TransportService transport = injector.getInstance(TransportService.class);
+    writePortsFile(&quot;transport&quot;, transport.boundAddress());
+}
+
+</code></pre><p>5.3, 启动保活线程 keepAliveThread.start 进行心跳检测</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>过程很漫长，后面很多类的功能未了解，之后补上</p>
+<p>有理解错误的地方请大家多多指教</p>
+<hr>
+<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
+<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>Elasticsearch 6.3.2 启动过程</p>
+    <p><span>文章字数:</span><span class="post-count">5,372</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
+    <p><span>发布时间:</span>2018-09-01, 20:25:45</p>
+    <p><span>最后更新:</span>2018-09-01, 20:29:11</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/09/Elasticsearch-6-3-2-启动过程/" title="Elasticsearch 6.3.2 启动过程">http://laijianfeng.org/2018/09/Elasticsearch-6-3-2-启动过程/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Elasticsearch 6.3.2 启动过程', // 可选。默认为 location.href
+        owner: 'whirlys',
+        repo: 'whirlys.github.io',
+        oauth: {
+            client_id: 'f1bd5294d498cdda9693',
+            client_secret: '959bbaf23dae12023b1b9ee3e63e882a099ca65a',
+        },
+        perPage : 3
+    })
+    gitment.render('comments')
+</script>
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2018 小旋锋</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/weixin.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+</body>
+<script src="//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+
+<script src="/js/script.js"></script>
+<script>
+    var img_resize = 'photoSwipe';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#elasticsearch','#博客','#lucene','#java',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+
+        // PhotoSwipe
+        $('article').each(function(i){
+            $(this).find('img').each(function(){
+                if ($(this).closest('figure').hasClass('article-gallery-img')) {
+                    return;
+                }
+                var alt = this.alt;
+                $(this)
+                    .wrap('<figure class="article-gallery-img" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"></figure>')
+                    .wrap('<a href="' + this.src + '" title="' + alt + '"></a>');
+                $(this).after('<div class="img_alt"><span>' + (alt || '') + '</span></div>');
+            });
+        });
+
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+        if (pswpElement) {
+            var gallerySelector = '.article-gallery, article';
+
+            var initPhotoSwipeFromDOM = function(gallerySelector) {
+
+                // parse slide data (url, title, size ...) from DOM elements
+                // (children of gallerySelector)
+                var parseThumbnailElements = function(el) {
+                    var thumbElements = $(el).find('figure.article-gallery-img').toArray(),
+                        numNodes = thumbElements.length,
+                        items = [],
+                        figureEl,
+                        linkEl,
+                        size,
+                        imgEl,
+                        item;
+
+                    for (var i = 0; i < numNodes; i++) {
+
+                        figureEl = thumbElements[i]; // <figure> element
+
+                        // include only element nodes
+                        if (figureEl.nodeType !== 1) {
+                            continue;
+                        }
+
+                        linkEl = figureEl.children[0]; // <a> element
+                        imgEl = linkEl.children[0]; // <img>
+
+                        size = linkEl.getAttribute('data-size');
+                        size = size && size.split('x');
+
+                        // create slide object
+                        item = {
+                            src: linkEl.getAttribute('href'),
+                            w: size && parseInt(size[0], 10) || imgEl.width,
+                            h: size && parseInt(size[1], 10) || imgEl.height
+                        };
+
+                        if (figureEl.children.length > 1) {
+                            // <figcaption> content
+                            item.title = figureEl.children[1].innerHTML;
+                        }
+
+                        if (linkEl.children.length > 0) {
+                            // <img> thumbnail element, retrieving thumbnail url
+                            item.msrc = linkEl.children[0].getAttribute('src');
+                        }
+
+                        item.el = figureEl; // save link to element for getThumbBoundsFn
+                        items.push(item);
+                    }
+
+                    return items;
+                };
+
+                // find nearest parent element
+                var closest = function closest(el, fn) {
+                    return el && (fn(el) ? el : closest(el.parentNode, fn));
+                };
+
+                // triggers when user clicks on thumbnail
+                var onThumbnailsClick = function(e) {
+                    e = e || window.event;
+
+                    var eTarget = e.target || e.srcElement;
+
+                    // find root element of slide
+                    var clickedListItem = closest(eTarget, function(el) {
+                        return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+                    });
+
+                    if (!clickedListItem) {
+                        return;
+                    }
+
+                    if (e.preventDefault) {
+                        e.preventDefault();
+                    } else {
+                        e.returnValue = false;
+                    }
+
+                    // find index of clicked item by looping through all child nodes
+                    // alternatively, you may define index via data- attribute
+                    var clickedGallery = $(clickedListItem).closest(gallerySelector)[0],
+                        childNodes = $(clickedGallery).find('figure.article-gallery-img').toArray(),
+                        numChildNodes = childNodes.length,
+                        nodeIndex = 0,
+                        index;
+
+                    for (var i = 0; i < numChildNodes; i++) {
+                        if (childNodes[i].nodeType !== 1) {
+                            continue;
+                        }
+
+                        if (childNodes[i] === clickedListItem) {
+                            index = nodeIndex;
+                            break;
+                        }
+                        nodeIndex++;
+                    }
+
+
+
+                    if (index >= 0) {
+                        // open PhotoSwipe if valid index found
+                        openPhotoSwipe(index, clickedGallery);
+                    }
+                    return false;
+                };
+
+                // parse picture index and gallery index from URL (#&pid=1&gid=2)
+                var photoswipeParseHash = function() {
+                    var hash = window.location.hash.substring(1),
+                        params = {};
+
+                    if (hash.length < 5) {
+                        return params;
+                    }
+
+                    var vars = hash.split('&');
+                    for (var i = 0; i < vars.length; i++) {
+                        if (!vars[i]) {
+                            continue;
+                        }
+                        var pair = vars[i].split('=');
+                        if (pair.length < 2) {
+                            continue;
+                        }
+                        params[pair[0]] = pair[1];
+                    }
+
+                    if (params.gid) {
+                        params.gid = parseInt(params.gid, 10);
+                    }
+
+                    return params;
+                };
+
+                var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+                    var pswpElement = document.querySelectorAll('.pswp')[0],
+                        gallery,
+                        options,
+                        items;
+
+                    items = parseThumbnailElements(galleryElement);
+
+                    // define options (if needed)
+                    options = {
+
+                        // define gallery index (for URL)
+                        galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+
+                        getThumbBoundsFn: function(index) {
+                            // See Options -> getThumbBoundsFn section of documentation for more info
+                            var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                                pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                                rect = thumbnail.getBoundingClientRect();
+
+                            return {
+                                x: rect.left,
+                                y: rect.top + pageYScroll,
+                                w: rect.width
+                            };
+                        }
+                    };
+
+                    // PhotoSwipe opened from URL
+                    if (fromURL) {
+                        if (options.galleryPIDs) {
+                            // parse real index when custom PIDs are used
+                            // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                            for (var j = 0; j < items.length; j++) {
+                                if (items[j].pid == index) {
+                                    options.index = j;
+                                    break;
+                                }
+                            }
+                        } else {
+                            // in URL indexes start from 1
+                            options.index = parseInt(index, 10) - 1;
+                        }
+                    } else {
+                        options.index = parseInt(index, 10);
+                    }
+
+                    // exit if index not found
+                    if (isNaN(options.index)) {
+                        return;
+                    }
+
+                    if (disableAnimation) {
+                        options.showAnimationDuration = 0;
+                    }
+
+                    // Pass data to PhotoSwipe and initialize it
+                    gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+
+                    gallery.listen('imageLoadComplete', function(index, item) {
+                        var linkEl = item.el.children[0];
+                        var img = item.container.children[0];
+                        if (!linkEl.getAttribute('data-size')) {
+                            linkEl.setAttribute('data-size', img.naturalWidth + 'x' + img.naturalHeight);
+                            item.w = img.naturalWidth;
+                            item.h = img.naturalHeight;
+                            gallery.invalidateCurrItems();
+                            gallery.updateSize(true);
+                        }
+                    });
+
+                    gallery.init();
+                };
+
+                // loop through all gallery elements and bind events
+                var galleryElements = document.querySelectorAll(gallerySelector);
+
+                for (var i = 0, l = galleryElements.length; i < l; i++) {
+                    galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+                    galleryElements[i].onclick = onThumbnailsClick;
+                }
+
+                // Parse URL and open gallery if it contains #&pid=3&gid=1
+                var hashData = photoswipeParseHash();
+                if (hashData.pid && hashData.gid) {
+                    openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
+                }
+            };
+
+            // execute above function
+            initPhotoSwipeFromDOM(gallerySelector);
+        }
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /*引用块样式*/
+    
+    .post .pjax article blockquote {
+        padding: 10px 20px;
+        background-color: white;
+        border: none;
+        border-left: 4px solid #42b983;
+        border-right: 4px solid #42b983;
+        border-radius: 10px;
+    }
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        background: url("http://image.laijianfeng.org/v2-cdcf5d00f2e9106f1fd0a70a18cbdf15_r1.jpg");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+</style>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+</html>
