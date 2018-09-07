@@ -6,28 +6,26 @@
   <meta name="keywords" content=" lucene ">
   <meta name="description" content="Lucene初体验 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本文探究Elasticsearch 6.3.2的启动流程 环境准备使用工具：IDEA，XMind 关于ES调试环境的搭建，可以参考前面的文章 《教你编译调试Elasticsearch 6.3.2源码》 然后通过设置断点，从 org.elasticsearch.bootstrap.ElasticSearch 的入口函数开始，一步一步调试  上图为使用 IDEA 2018.2 进行调试的一个截图，">
-<meta name="keywords" content="elasticsearch,elasticsearch启动流程">
+<meta name="description" content="前言设计模式(Design Pattern)是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结，使用设计模式是为了可重用代码、让代码更容易被他人理解并且保证代码可靠性。 本文主要介绍简单工厂模式及典型应用，内容如下：  简单工厂模式的介绍 简单工厂模式的典型应用及源码分析 Calendar 类获取日历类对象 JDBC 获取数据库连接 LoggerFactory 获取 Logger">
+<meta name="keywords" content="设计模式,简单工厂模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Elasticsearch 6.3.2 启动过程">
-<meta property="og:url" content="http://laijianfeng.org/2018/09/Elasticsearch-6-3-2-启动过程/index.html">
+<meta property="og:title" content="设计模式 | 简单工厂模式及典型应用">
+<meta property="og:url" content="http://laijianfeng.org/2018/09/设计模式-简单工厂模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="前言本文探究Elasticsearch 6.3.2的启动流程 环境准备使用工具：IDEA，XMind 关于ES调试环境的搭建，可以参考前面的文章 《教你编译调试Elasticsearch 6.3.2源码》 然后通过设置断点，从 org.elasticsearch.bootstrap.ElasticSearch 的入口函数开始，一步一步调试  上图为使用 IDEA 2018.2 进行调试的一个截图，">
+<meta property="og:description" content="前言设计模式(Design Pattern)是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结，使用设计模式是为了可重用代码、让代码更容易被他人理解并且保证代码可靠性。 本文主要介绍简单工厂模式及典型应用，内容如下：  简单工厂模式的介绍 简单工厂模式的典型应用及源码分析 Calendar 类获取日历类对象 JDBC 获取数据库连接 LoggerFactory 获取 Logger">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20180901_131938.png">
-<meta property="og:image" content="http://image.laijianfeng.org/ES_startup_process.jpg">
-<meta property="og:image" content="http://image.laijianfeng.org/20180901_143515.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180901_144410.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180901_160825.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180901_175542.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180901_181500.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180901_192545.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180907_211234.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180907_213426.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180907_225826.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180907_223038.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180907_222610.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180907_230131.png">
 <meta property="og:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
-<meta property="og:updated_time" content="2018-09-01T12:29:11.559Z">
+<meta property="og:updated_time" content="2018-09-07T15:14:50.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Elasticsearch 6.3.2 启动过程">
-<meta name="twitter:description" content="前言本文探究Elasticsearch 6.3.2的启动流程 环境准备使用工具：IDEA，XMind 关于ES调试环境的搭建，可以参考前面的文章 《教你编译调试Elasticsearch 6.3.2源码》 然后通过设置断点，从 org.elasticsearch.bootstrap.ElasticSearch 的入口函数开始，一步一步调试  上图为使用 IDEA 2018.2 进行调试的一个截图，">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20180901_131938.png">
+<meta name="twitter:title" content="设计模式 | 简单工厂模式及典型应用">
+<meta name="twitter:description" content="前言设计模式(Design Pattern)是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结，使用设计模式是为了可重用代码、让代码更容易被他人理解并且保证代码可靠性。 本文主要介绍简单工厂模式及典型应用，内容如下：  简单工厂模式的介绍 简单工厂模式的典型应用及源码分析 Calendar 类获取日历类对象 JDBC 获取数据库连接 LoggerFactory 获取 Logger">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180907_211234.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -91,13 +89,13 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="生活杂记"> 生活杂记 </li>
-    
     <li data-rel="大数据"> 大数据 </li>
     
-    <li data-rel="后端"> 后端 </li>
+    <li data-rel="生活杂记"> 生活杂记 </li>
     
     <li data-rel="读书"> 读书 </li>
+    
+    <li data-rel="后端"> 后端 </li>
     
 </ul>
 <div class="left-bottom">
@@ -106,8 +104,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="13">
-<input type="hidden" id="yelog_site_word_count" value="32.4k">
+<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_word_count" value="34.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -143,11 +141,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lucene</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
+        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -163,6 +165,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/09/设计模式-简单工厂模式及典型应用/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式 | 简单工厂模式及典型应用">设计模式 | 简单工厂模式及典型应用</span>
+            <span class="post-date" title="2018-09-07 23:13:45">2018/09/07</span>
+        </a>
         
         <a  class="大数据 "
            href="/2018/09/Elasticsearch-6-3-2-启动过程/"
@@ -893,7 +903,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#博客','#lucene','#java',],
+            'data': ['#elasticsearch','#lucene','#博客','#设计模式','#java',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
