@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>设计模式 | 工厂方法模式及典型应用 | 小旋锋</title>
+  <title>设计模式之抽象工厂模式及典型应用 | 小旋锋</title>
   <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="设计模式 | 工厂方法模式及典型应用 | 小旋锋">
+  <meta name="description" content="设计模式之抽象工厂模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="抽象工厂模式抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，它是一种对象创建型模式。 在抽象工厂模式中，每一个具体工厂都提供了多个工厂方法用于产生多种不同类型的产品。 角色在抽象工厂模式包含如下几个角色：  AbstractFactory（抽象工厂）：它声明了一组用于创建一族产品的方">
 <meta name="keywords" content="设计模式">
@@ -304,9 +304,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-设计模式之工厂方法模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-设计模式之抽象工厂模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">设计模式 | 工厂方法模式及典型应用</h1>
+        <h1 class="article-title">设计模式之抽象工厂模式及典型应用</h1>
     
     <div class="article-meta">
         
@@ -328,12 +328,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-09-09 17:24:06'>2018-09-09 17:20</time>
+        创建时间:<time class="date" title='更新时间: 2018-09-10 23:52:03'>2018-09-10 23:51</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3,140</span>
+        <span>字数:1,767</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -363,7 +363,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法模式"><span class="toc-text">工厂方法模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法模式总结"><span class="toc-text">工厂方法模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂方法模式的主要优点"><span class="toc-text">工厂方法模式的主要优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂方法模式的主要缺点"><span class="toc-text">工厂方法模式的主要缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景"><span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法模式的典型应用及源码分析"><span class="toc-text">工厂方法模式的典型应用及源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java集合接口-Collection-中的工厂方法模式"><span class="toc-text">Java集合接口 Collection 中的工厂方法模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java-net-网络包中的工厂方法模式"><span class="toc-text">java.net 网络包中的工厂方法模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Logback-中的工厂方法模式"><span class="toc-text">Logback 中的工厂方法模式</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象工厂模式"><span class="toc-text">抽象工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象工厂模式总结"><span class="toc-text">抽象工厂模式总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象工厂模式的典型应用及源码分析"><span class="toc-text">抽象工厂模式的典型应用及源码分析</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -378,21 +378,58 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p>工厂方法模式(Factory Method Pattern)：定义一个用于创建对象的接口，让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到其子类。</p>
-<p>工厂方法模式又简称为工厂模式(Factory Pattern)，又可称作虚拟构造器模式(Virtual Constructor Pattern)或多态工厂模式(Polymorphic Factory Pattern)。</p>
-<p>工厂方法模式是一种类创建型模式。</p>
-<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p>在工厂方法模式结构图中包含如下几个角色：</p>
-<p><strong>Product（抽象产品）</strong>：它是定义产品的接口，是工厂方法模式所创建对象的超类型，也就是产品对象的公共父类</p>
-<p><strong>ConcreteProduct（具体产品）</strong>：它实现了抽象产品接口，某种类型的具体产品由专门的具体工厂创建，具体工厂和具体产品之间一一对应。</p>
-<p><strong>Factory（抽象工厂）</strong>：在抽象工厂类中，声明了工厂方法(Factory Method)，用于返回一个产品。抽象工厂是工厂方法模式的核心，所有创建对象的工厂类都必须实现该接口。</p>
-<p><strong>ConcreteFactory（具体工厂）</strong>：它是抽象工厂类的子类，实现了抽象工厂中定义的工厂方法，并可由客户端调用，返回一个具体产品类的实例。</p>
-<p>与简单工厂模式相比，工厂方法模式最重要的区别是引入了抽象工厂角色，抽象工厂可以是接口，也可以是抽象类或者具体类</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>抽象产品类 Video</p>
-<pre><code>public abstract class Video {
+        <h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p>抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，它是一种对象创建型模式。</p>
+<p>在抽象工厂模式中，每一个具体工厂都提供了多个工厂方法用于产生多种不同类型的产品。</p>
+<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p>在抽象工厂模式包含如下几个角色：</p>
+<ul>
+<li><strong>AbstractFactory（抽象工厂）</strong>：它声明了一组用于创建一族产品的方法，每一个方法对应一种产品。</li>
+<li><strong>ConcreteFactory（具体工厂）</strong>：它实现了在抽象工厂中声明的创建产品的方法，生成一组具体产品，这些产品构成了一个产品族，每一个产品都位于某个产品等级结构中。</li>
+<li><strong>AbstractProduct（抽象产品）</strong>：它为每种产品声明接口，在抽象产品中声明了产品所具有的业务方法</li>
+<li><strong>ConcreteProduct（具体产品）</strong>：它定义具体工厂生产的具体产品对象，实现抽象产品接口中声明的业务方法。</li>
+</ul>
+<p>在抽象工厂中声明了多个工厂方法，用于创建不同类型的产品，抽象工厂可以是接口，也可以是抽象类或者具体类</p>
+<p>具体工厂实现了抽象工厂，每一个具体的工厂方法可以返回一个特定的产品对象，而同一个具体工厂所创建的产品对象构成了一个产品族</p>
+<h4 id="抽象工厂模式总结"><a href="#抽象工厂模式总结" class="headerlink" title="抽象工厂模式总结"></a>抽象工厂模式总结</h4><p>抽象工厂模式的<strong>主要优点</strong>如下：</p>
+<ul>
+<li>抽象工厂模式隔离了具体类的生成，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就变得相对容易，所有的具体工厂都实现了抽象工厂中定义的那些公共接口，因此只需改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为。</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象。</li>
+<li>增加新的产品族很方便，无须修改已有系统，符合”开闭原则”。</li>
+</ul>
+<p>抽象工厂模式的<strong>主要缺点</strong>如下：</p>
+<ul>
+<li>增加新的产品等级结构麻烦，需要对原有系统进行较大的修改，甚至需要修改抽象层代码，这显然会带来较大的不便，违背了\”开闭原则”。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>一个系统不应当依赖于产品类实例如何被创建、组合和表达的细节，这对于所有类型的工厂模式都是很重要的，用户无须关心对象的创建过程，将对象的创建和使用解耦。</li>
+<li>系统中有多于一个的产品族，而每次只使用其中某一产品族。可以通过配置文件等方式来使得用户可以动态改变产品族，也可以很方便地增加新的产品族。</li>
+<li>属于同一个产品族的产品将在一起使用，这一约束必须在系统的设计中体现出来。同一个产品族中的产品可以是没有任何关系的对象，但是它们都具有一些共同的约束，如同一操作系统下的按钮和文本框，按钮与文本框之间没有直接关系，但它们都是属于某一操作系统的，此时具有一个共同的约束条件：操作系统的类型。</li>
+<li>产品等级结构稳定，设计完成之后，不会向系统中增加新的产品等级结构或者删除已有的产品等级结构。</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>首先定义我们的抽象产品 <code>Article</code> 和 <code>Video</code>，他们是产品族的抽象类，有一个 <code>Article</code> 就有一个 <code>Video</code></p>
+<pre><code>public abstract class Article {
     public abstract void produce();
 }
-</code></pre><p>具体产品类 JavaVideo 和 PythonVideo，需要继承抽象产品类 Video</p>
-<pre><code>public class JavaVideo extends Video {
+
+public abstract class Video {
+    public abstract void produce();
+}
+</code></pre><p>具体产品 <code>JavaArticle</code>、<code>PythonArticle</code>、<code>PythonVideo</code>、<code>JavaVideo</code></p>
+<pre><code>public class JavaArticle extends Article {
+    @Override
+    public void produce() {
+        System.out.println(&quot;编写Java课程笔记记&quot;);
+    }
+}
+
+public class PythonArticle extends Article {
+    @Override
+    public void produce() {
+        System.out.println(&quot;编写Python课程笔记&quot;);
+    }
+}
+
+public class JavaVideo extends Video {
     @Override
     public void produce() {
         System.out.println(&quot;录制Java课程视频&quot;);
@@ -405,240 +442,99 @@ public class PythonVideo extends Video {
         System.out.println(&quot;录制Python课程视频&quot;);
     }
 }
-</code></pre><p>抽象工厂类 VideoFactory</p>
-<pre><code>public abstract class VideoFactory {
-    public abstract Video getVideo();
+</code></pre><p>定义我们的抽象工厂 <code>CourseFactory</code>，与工厂方法模式不同，工厂方法模式中一个工厂只生产一个产品，而抽象工厂模式中一个工厂生产一族产品，有多个工厂方法</p>
+<pre><code>public interface CourseFactory {
+    Video getVideo();
+    Article getArticle();
 }
-</code></pre><p>具体工厂类 JavaVideoFactory 和 PythonVideoFactory，需要继承抽象工厂类 VideoFactory</p>
-<pre><code>public class JavaVideoFactory extends VideoFactory {
+</code></pre><p>具体工厂 <code>JavaCourseFactory</code> 和 <code>PythonCourseFactory</code>，它们都继承抽象工厂接口 <code>CourseFactory</code></p>
+<pre><code>public class JavaCourseFactory implements CourseFactory {
     @Override
     public Video getVideo() {
         return new JavaVideo();
     }
+
+    @Override
+    public Article getArticle() {
+        return new JavaArticle();
+    }
 }
 
-public class PythonVideoFactory extends VideoFactory {
+public class PythonCourseFactory implements CourseFactory {
     @Override
     public Video getVideo() {
         return new PythonVideo();
     }
+
+    @Override
+    public Article getArticle() {
+        return new PythonArticle();
+    }
 }
-</code></pre><p>客户端类，需要什么产品则通过该产品对应的工厂类来获取，不需要知道具体的创建过程</p>
+</code></pre><p>客户端只需要指定具体工厂，就可以获取该工厂生产的一族产品</p>
 <pre><code>public class Test {
     public static void main(String[] args) {
-        VideoFactory pythonVideoFactory = new PythonVideoFactory();
-        VideoFactory javaVideoFactory = new JavaVideoFactory();
-        Video pythonVideo = pythonVideoFactory.getVideo();
-        pythonVideo.produce();
-        Video javaVideo = javaVideoFactory.getVideo();
-        javaVideo.produce();
+        CourseFactory courseFactory = new JavaCourseFactory();
+        Video video = courseFactory.getVideo();
+        Article article = courseFactory.getArticle();
+        video.produce();
+        article.produce();
     }
 }
 </code></pre><p>输出</p>
-<pre><code>录制Python课程视频
-录制Java课程视频
-</code></pre><p>当需要增加一个产品 FEVideo 时，只需要增加 FEVideo 具体产品类和 FEVideoFactory 具体工厂类即可，不需要修改原有的产品类和工厂类</p>
-<pre><code>public class FEVideo extends Video{
-    @Override
-    public void produce() {
-        System.out.println(&quot;录制FE课程视频&quot;);
-    }
-}
-
-public class FEVideoFactory extends VideoFactory{
-    @Override
-    public Video getVideo() {
-        return new FEVideo();
-    }
-}
-</code></pre><p>修改客户端代码</p>
-<pre><code>public class Test {
-    public static void main(String[] args) {
-        VideoFactory feVideoFactory = new FEVideoFactory();
-        Video feVideo = feVideoFactory.getVideo();
-        feVideo.produce();
-    }
-}
-</code></pre><p>还可以通过反射机制和配置文件配合，连客户端代码都不需要修改</p>
+<pre><code>录制Java课程视频
+编写Java课程笔记
+</code></pre><p>也可以利用反射机制和配置文件，当需要修改具体工厂的时候就不需要修改客户端代码，只改配置文件即可</p>
 <pre><code>public class Test {
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        // 从文件或数据库等外部渠道获取 工厂类名
-        String factoryName = &quot;com.designpattern.factorymethod.JavaVideoFactory&quot;;
+        // 从配置文件或数据库等外部渠道获取具体工厂类名
+        String factoryName = &quot;com.designpattern.JavaCourseFactory&quot;;
         // 通过反射机制获取工厂类
         Class c = Class.forName(factoryName);
-        VideoFactory factory = (VideoFactory)c.newInstance();
-        // 生产产品
-        Video video = factory.getVideo();
+        CourseFactory courseFactory = (CourseFactory) c.newInstance();
+        Video video = courseFactory.getVideo();
+        Article article = courseFactory.getArticle();
         video.produce();
+        article.produce();
     }
 }
 </code></pre><p>最终的类图如下所示</p>
-<p><img src="http://image.laijianfeng.org/20180908_223324.png" alt="示例.工厂方法结构图"></p>
-<h3 id="工厂方法模式总结"><a href="#工厂方法模式总结" class="headerlink" title="工厂方法模式总结"></a>工厂方法模式总结</h3><p>工厂方法模式是简单工厂模式的延伸，它继承了简单工厂模式的优点，同时还弥补了简单工厂模式的不足。工厂方法模式是使用频率最高的设计模式之一，是很多开源框架和API类库的核心模式。</p>
-<h4 id="工厂方法模式的主要优点"><a href="#工厂方法模式的主要优点" class="headerlink" title="工厂方法模式的主要优点"></a>工厂方法模式的主要优点</h4><ul>
-<li>在工厂方法模式中，工厂方法用来创建客户所需要的产品，同时还向客户隐藏了哪种具体产品类将被实例化这一细节，用户只需要关心所需产品对应的工厂，无须关心创建细节，甚至无须知道具体产品类的类名。</li>
-<li>基于工厂角色和产品角色的多态性设计是工厂方法模式的关键。它能够让工厂可以自主确定创建何种产品对象，而如何创建这个对象的细节则完全封装在具体工厂内部。工厂方法模式之所以又被称为多态工厂模式，就正是因为所有的具体工厂类都具有同一抽象父类。</li>
-<li>使用工厂方法模式的另一个优点是在系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改客户端，也无须修改其他的具体工厂和具体产品，而只要添加一个具体工厂和具体产品就可以了，这样，系统的可扩展性也就变得非常好，完全符合”开闭原则”。</li>
-</ul>
-<h4 id="工厂方法模式的主要缺点"><a href="#工厂方法模式的主要缺点" class="headerlink" title="工厂方法模式的主要缺点"></a>工厂方法模式的主要缺点</h4><ul>
-<li>在添加新产品时，需要编写新的具体产品类，而且还要提供与之对应的具体工厂类，系统中类的个数将成对增加，在一定程度上增加了系统的复杂度，有更多的类需要编译和运行，会给系统带来一些额外的开销。</li>
-<li>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度，且在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</li>
-</ul>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
-<li>客户端不知道它所需要的对象的类。在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可，具体的产品对象由具体工厂类创建，可将具体工厂类的类名存储在配置文件或数据库中。</li>
-<li>抽象工厂类通过其子类来指定创建哪个对象。在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏代换原则，在程序运行时，子类对象将覆盖父类对象，从而使得系统更容易扩展。</li>
-</ul>
-<h3 id="工厂方法模式的典型应用及源码分析"><a href="#工厂方法模式的典型应用及源码分析" class="headerlink" title="工厂方法模式的典型应用及源码分析"></a>工厂方法模式的典型应用及源码分析</h3><h4 id="Java集合接口-Collection-中的工厂方法模式"><a href="#Java集合接口-Collection-中的工厂方法模式" class="headerlink" title="Java集合接口 Collection 中的工厂方法模式"></a>Java集合接口 Collection 中的工厂方法模式</h4><p>Collection 中的 iterator 方法如下：</p>
-<pre><code>public interface Collection&lt;E&gt; extends Iterable&lt;E&gt; {
-    Iterator&lt;E&gt; iterator();
-    // ...省略
+<p><img src="http://image.laijianfeng.org/20180910_231358.png" alt="示例.抽象工厂类图"></p>
+<h3 id="抽象工厂模式的典型应用及源码分析"><a href="#抽象工厂模式的典型应用及源码分析" class="headerlink" title="抽象工厂模式的典型应用及源码分析"></a>抽象工厂模式的典型应用及源码分析</h3><p>我们来看 <code>java.sql</code> 包下的 <code>Connection</code> 接口，该接口定义了与特定数据库的连接 <code>Connection</code>，执行 <code>SQL statements</code> 并返回 <code>results</code></p>
+<pre><code>public interface Connection  extends Wrapper, AutoCloseable {
+    Statement createStatement() throws SQLException;
+    PreparedStatement prepareStatement(String sql) throws SQLException;
+    CallableStatement prepareCall(String sql) throws SQLException;
+    DatabaseMetaData getMetaData() throws SQLException;
+    Savepoint setSavepoint() throws SQLException;
+    Clob createClob() throws SQLException;
+    Blob createBlob() throws SQLException;
+    SQLXML createSQLXML() throws SQLException;
+    // ...省略...
 }
-</code></pre><blockquote>
-<p>关于 iterator 方法的介绍：<br>Java的迭代器只在Collection中有，而Map没有迭代器，它有不同的迭代方法；<br> <strong>迭代器的终极目标</strong>：就是用统一的方法来迭代不同类型的集合！可能由于不同集合的内部数据结构不尽相同，如果要自己纯手工迭代的话相互之间会有很大的差别，而迭代器的作用就是统一的方法对不同的集合进行迭代，而在迭代器底层隐藏不同集合之间的差异，从而为迭代提供最大的方便<br><strong>使用用迭代器迭代的步骤</strong>： i. 第一步肯定是先获取集合的迭代器：调用集合的iterator方法就能获得，Iterator<e> Collection.iterator(); ii. 使用迭代器的hasNext、next往下迭代<br><strong>Iterator的常用方法</strong>：boolean hasNext()：是否还有下一个元素； Object next()：取出下一个元素并返回； void remove(); ：从容器中删除当前元素，直接会改变容器中的数据</e></p>
-</blockquote>
-<p>查看该接口的实现类，可以看到是非常的多</p>
-<p><img src="http://image.laijianfeng.org/20180908_230822.png" alt="Collection接口的实现类(部分)"></p>
-<p>我们仅看其中一个实现类 <code>java.util.ArrayList</code>，看其对 <code>iterator</code> 方法的实现</p>
-<pre><code>public Iterator&lt;E&gt; iterator() {
-    return new Itr();
+</code></pre><p>其中 <code>Statement</code>、<code>PreparedStatement</code>、<code>CallableStatement</code>、<code>DatabaseMetaData</code>、<code>Savepoint</code>、<code>Clob</code>、<code>Blob</code>、<code>SQLXML</code> 等均为接口</p>
+<p>我们来看 <code>Statement</code> 接口</p>
+<pre><code>public interface Statement extends Wrapper, AutoCloseable {
+    ResultSet executeQuery(String sql) throws SQLException;
+    int executeUpdate(String sql) throws SQLException;
+    void close() throws SQLException;
+    int getMaxFieldSize() throws SQLException;
+    boolean execute(String sql) throws SQLException;
+    // ...省略...
 }
-
-/**
- * An optimized version of AbstractList.Itr
- */
-private class Itr implements Iterator&lt;E&gt; {
-    int cursor;       // index of next element to return
-    int lastRet = -1; // index of last element returned; -1 if no such
-    int expectedModCount = modCount;
-
-    Itr() {}
-
-    public boolean hasNext() {
-        return cursor != size;
-    }
-
-    @SuppressWarnings(&quot;unchecked&quot;)
-    public E next() {
-        // ...省略...
-    }
-
-    public void remove() {
-        // ...省略...
-    }
-
-    @Override
-    @SuppressWarnings(&quot;unchecked&quot;)
-    public void forEachRemaining(Consumer&lt;? super E&gt; consumer) {
-        // ...省略...
-    }
-
-    final void checkForComodification() {
-        // ...省略...
-    }
+</code></pre><p>其中的 <code>ResultSet</code> 又是一个接口</p>
+<pre><code>public interface ResultSet extends Wrapper, AutoCloseable {
+    boolean next() throws SQLException;
+    void close() throws SQLException;
+    boolean wasNull() throws SQLException;
+    String getString(int columnIndex) throws SQLException;
+    //...省略...
 }
-</code></pre><p><code>Itr</code> 类实现了 <code>iterator</code> 接口，<code>iterator</code> 接口正是 <code>Collection</code> 接口中 <code>iterator</code> 方法的返回类型，其代码如下：</p>
-<pre><code>public interface Iterator&lt;E&gt; {
-    boolean hasNext();
-
-    E next();
-
-    default void remove() {
-        throw new UnsupportedOperationException(&quot;remove&quot;);
-    }
-
-    default void forEachRemaining(Consumer&lt;? super E&gt; action) {
-        Objects.requireNonNull(action);
-        while (hasNext())
-            action.accept(next());
-    }
-}
-</code></pre><p><strong>由此可见</strong>，<code>Collection</code> 接口扮演了抽象工厂角色，工厂方法为 <code>iterator()</code>，<code>Collection</code> 的实现类譬如 <code>ArrayList</code> 扮演了具体工厂角色，而抽象产品为 <code>Iterator</code> 接口，具体产品为 <code>Itr</code> 类</p>
-<h4 id="java-net-网络包中的工厂方法模式"><a href="#java-net-网络包中的工厂方法模式" class="headerlink" title="java.net 网络包中的工厂方法模式"></a>java.net 网络包中的工厂方法模式</h4><p>URLStreamHandlerFactory 接口为 URL 流协议处理程序定义一个工厂。URL 类使用它可为特定的协议创建 URLStreamHandler</p>
-<pre><code>public interface URLStreamHandlerFactory {
-    /**
-     * Creates a new {@code URLStreamHandler} instance with the specified protocol.
-     *
-     * @param   protocol   the protocol (&quot;{@code ftp}&quot;, &quot;{@code http}&quot;, &quot;{@code nntp}&quot;, etc.).
-     * @return  a {@code URLStreamHandler} for the specific protocol.
-     * @see     java.net.URLStreamHandler
-     */
-    URLStreamHandler createURLStreamHandler(String protocol);
-}
-</code></pre><p>该接口的实现类为 <code>sun.misc.Launcher</code> 中的内部类 <code>Factory</code></p>
-<pre><code>private static class Factory implements URLStreamHandlerFactory {
-    private static String PREFIX = &quot;sun.net.www.protocol&quot;;
-
-    private Factory() {
-    }
-
-    public URLStreamHandler createURLStreamHandler(String var1) {
-        String var2 = PREFIX + &quot;.&quot; + var1 + &quot;.Handler&quot;;
-
-        try {
-            Class var3 = Class.forName(var2);
-            return (URLStreamHandler)var3.newInstance();
-        } catch (ReflectiveOperationException var4) {
-            throw new InternalError(&quot;could not load &quot; + var1 + &quot;system protocol handler&quot;, var4);
-        }
-    }
-}
-</code></pre><p>可以看到 <code>createURLStreamHandler</code> 方法的实现为：传入参数，拼接前缀和后缀，之后通过反射机制获取创建一个 <code>URLStreamHandler</code> 对象</p>
-<p><code>URLStreamHandler</code> 是一个抽象类，其中的方法如下图，只有 <code>openConnection</code> 为抽象方法，其他方法均有具体实现</p>
-<p><img src="http://image.laijianfeng.org/20180908_235350.png" alt="URLStreamHandler抽象类中的方法"></p>
-<blockquote>
-<p>关于URLStreamHandler:<br>抽象类URLStreamHandler是所有流协议处理程序的通用超类。 流协议处理程序知道如何为特定协议类型建立连接，例如http或https</p>
-</blockquote>
-<p>其子类有如下(19个)：</p>
-<p><img src="http://image.laijianfeng.org/20180908_234100.png" alt="URLStreamHandler的子类"></p>
-<p>查看其中一个子类譬如 <code>sun.net.www.protocol.http.Handler</code></p>
-<pre><code>public class Handler extends URLStreamHandler {
-    protected String proxy;
-    protected int proxyPort;
-
-    protected int getDefaultPort() {
-        return 80;
-    }
-
-    public Handler() {
-        this.proxy = null;
-        this.proxyPort = -1;
-    }
-
-    public Handler(String var1, int var2) {
-        this.proxy = var1;
-        this.proxyPort = var2;
-    }
-
-    protected URLConnection openConnection(URL var1) throws IOException {
-        return this.openConnection(var1, (Proxy)null);
-    }
-
-    protected URLConnection openConnection(URL var1, Proxy var2) throws IOException {
-        return new HttpURLConnection(var1, var2, this);
-    }
-}
-</code></pre><p>该类实现的 <code>openConnection</code> 方法的返回值类型为 <code>URLConnection</code>，最终返回了一个 <code>HttpURLConnection</code> 对象</p>
-<p>我们又继续看 <code>java.net.URLConnection</code>，这也是一个抽象类</p>
-<p><img src="http://image.laijianfeng.org/20180909_001513.png" alt="image"></p>
-<blockquote>
-<p><strong>URLConnection介绍</strong>：   </p>
-<ul>
-<li>URLConnection是一个功能强大的抽象类，它表示指向URL指定资源的活动连接。<br>与URL类相比，它与服务器的交互提供了更多的控制机制。尤其服务器是HTTP服务器，可以使用URLConnection对HTTP首部的访问，可以配置发送给服务器的请求参数。当然也可以通过它读取服务器的数据以及向服务器写入数据.   </li>
-<li>URLConnection是Java的协议处理器机制的一部分。协议处理器机制是将处理协议的细节与特定数据类型分开。如果要实现一个特定的协议，则实现URLConnection的子类即可。程序运行时可以将该子类作为一个具体的协议处理器来使用。   </li>
-<li><strong>使用URLConnection类的步骤</strong>：1.  构造一个URL对象；2. 调用该URL的openConnection()获取一个URLConnection；3. 配置这个URLConnection；4. 读取首部字段；5. 获得输入流并读取数据；6. 获得输出流并写入数据；7. 关闭连接</li>
-</ul>
-</blockquote>
-<p>其子类有23个</p>
-<p><img src="http://image.laijianfeng.org/20180909_001308.png" alt="image"></p>
-<p>我们可以画出他们的关系图如下所示</p>
-<p><img src="http://image.laijianfeng.org/20180909_164345.png" alt="URLConnection关系图"></p>
-<p><strong>由此可知</strong>：抽象工厂角色为 <code>URLStreamHandlerFactory</code>，工厂方法为 <code>createURLStreamHandler</code>，抽象产品角色为 <code>URLStreamHandler</code>，具体产品角色为 <code>URLStreamHandler</code> 的子类譬如 <code>sun.net.www.protocol.http.Handler</code>、<code>sun.net.www.protocol.ftp.Handler</code> 等</p>
-<p><strong>同时</strong>，<code>URLStreamHandler</code> 也扮演了抽象工厂角色，工厂方法为 <code>openConnection</code>，<code>URLStreamHandler</code> 的子类譬如 <code>sun.net.www.protocol.http.Handler</code> 也扮演了具体工厂角色，抽象产品为 <code>URLConnection</code>，具体产品角色为  <code>URLConnection</code> 的子类如 <code>sun.net.www.protocol.http.HttpURLConnection</code> 等</p>
-<h4 id="Logback-中的工厂方法模式"><a href="#Logback-中的工厂方法模式" class="headerlink" title="Logback 中的工厂方法模式"></a>Logback 中的工厂方法模式</h4><p>在上一篇文章《<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a>》 介绍的 Logback 里有简单工厂模式，其实也有工厂方法模式，画图如下</p>
-<p><img src="http://image.laijianfeng.org/20180909_170301.png" alt="iLoggerFactory类关系"></p>
-<p><strong>可以看出</strong>，抽象工厂角色为 <code>ILoggerFactory</code> 接口，工厂方法为 <code>getLogger</code>，具体工厂角色为 <code>LoggerContext</code>、<code>NOPLoggerFactory</code>、<code>SubstituteLoggerFactory</code> 等，抽象产品角色为 <code>Logger</code>，具体产品角色为 <code>Logger</code> 的实现类如下</p>
-<p><img src="http://image.laijianfeng.org/20180909_171112.png" alt="Logger 的实现类"></p>
-<p>而简单工厂模式应用在 <code>LoggerContext</code> 的  <code>getLogger</code> 方法中，根据参数返回相应的 <code>Logger</code> 对象</p>
+</code></pre><p>我们可以看一下他们的实现类</p>
+<p><img src="http://image.laijianfeng.org/20180910_234012.png" alt="Connection的实现类"></p>
+<p><img src="http://image.laijianfeng.org/20180910_234051.png" alt="Statement的实现类"></p>
+<p><img src="http://image.laijianfeng.org/20180910_234121.png" alt="ResultSet的实现类"></p>
+<p>可以看出这里边的抽象工厂模式，<code>Connection</code> 为抽象工厂，工厂方法很多，其中一个抽象产品为 <code>Statement</code>，同时 <code>Statement</code> 也是一个抽象工厂，工厂方法也很多，其中一个抽象产品为 <code>ResultSet</code>，具体工厂和具体产品则为他们的实现类</p>
 <blockquote>
 <p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析</p>
 </blockquote>
@@ -658,12 +554,12 @@ private class Itr implements Iterator&lt;E&gt; {
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>设计模式 | 工厂方法模式及典型应用</p>
-    <p><span>文章字数:</span><span class="post-count">3,140</span></p>
+    <p><span>文章标题:</span>设计模式之抽象工厂模式及典型应用</p>
+    <p><span>文章字数:</span><span class="post-count">1,767</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-09-09, 17:20:14</p>
-    <p><span>最后更新:</span>2018-09-09, 17:24:06</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式之工厂方法模式及典型应用/" title="设计模式 | 工厂方法模式及典型应用">http://laijianfeng.org/2018/09/设计模式之工厂方法模式及典型应用/</a>
+    <p><span>发布时间:</span>2018-09-10, 23:51:05</p>
+    <p><span>最后更新:</span>2018-09-10, 23:52:03</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式之抽象工厂模式及典型应用/" title="设计模式之抽象工厂模式及典型应用">http://laijianfeng.org/2018/09/设计模式之抽象工厂模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -675,7 +571,7 @@ private class Itr implements Iterator&lt;E&gt; {
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '设计模式 | 工厂方法模式及典型应用', // 可选。默认为 location.href
+        id: '设计模式之抽象工厂模式及典型应用', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
