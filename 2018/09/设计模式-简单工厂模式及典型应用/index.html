@@ -9,7 +9,7 @@
 <meta name="description" content="抽象工厂模式抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，它是一种对象创建型模式。 在抽象工厂模式中，每一个具体工厂都提供了多个工厂方法用于产生多种不同类型的产品。 角色在抽象工厂模式包含如下几个角色：  AbstractFactory（抽象工厂）：它声明了一组用于创建一族产品的方">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式之抽象工厂模式及典型应用">
+<meta property="og:title" content="设计模式 | 抽象工厂模式及典型应用">
 <meta property="og:url" content="http://laijianfeng.org/2018/09/设计模式之抽象工厂模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
 <meta property="og:description" content="抽象工厂模式抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，它是一种对象创建型模式。 在抽象工厂模式中，每一个具体工厂都提供了多个工厂方法用于产生多种不同类型的产品。 角色在抽象工厂模式包含如下几个角色：  AbstractFactory（抽象工厂）：它声明了一组用于创建一族产品的方">
@@ -19,9 +19,9 @@
 <meta property="og:image" content="http://image.laijianfeng.org/20180910_234051.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180910_234121.png">
 <meta property="og:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
-<meta property="og:updated_time" content="2018-09-10T15:52:03.510Z">
+<meta property="og:updated_time" content="2018-09-10T15:54:03.914Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式之抽象工厂模式及典型应用">
+<meta name="twitter:title" content="设计模式 | 抽象工厂模式及典型应用">
 <meta name="twitter:description" content="抽象工厂模式抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，它是一种对象创建型模式。 在抽象工厂模式中，每一个具体工厂都提供了多个工厂方法用于产生多种不同类型的产品。 角色在抽象工厂模式包含如下几个角色：  AbstractFactory（抽象工厂）：它声明了一组用于创建一族产品的方">
 <meta name="twitter:image" content="http://image.laijianfeng.org/20180910_231358.png">
 
@@ -87,9 +87,9 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="大数据"> 大数据 </li>
-    
     <li data-rel="生活杂记"> 生活杂记 </li>
+    
+    <li data-rel="大数据"> 大数据 </li>
     
     <li data-rel="后端"> 后端 </li>
     
@@ -143,15 +143,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">设计模式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <div class="clearfix"></div>
@@ -168,7 +168,7 @@
            href="/2018/09/设计模式之抽象工厂模式及典型应用/"
            data-tag="设计模式"
            data-author="" >
-            <span class="post-title" title="设计模式之抽象工厂模式及典型应用">设计模式之抽象工厂模式及典型应用</span>
+            <span class="post-title" title="设计模式 | 抽象工厂模式及典型应用">设计模式 | 抽象工厂模式及典型应用</span>
             <span class="post-date" title="2018-09-10 23:51:05">2018/09/10</span>
         </a>
         
@@ -708,7 +708,7 @@ public static Logger getLogger(Class clazz) {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#java','#lucene','#博客','#设计模式',],
+            'data': ['#elasticsearch','#java','#博客','#设计模式','#lucene',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
