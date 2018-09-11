@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Lucene初体验 | 小旋锋</title>
-  <meta name="keywords" content=" lucene ">
-  <meta name="description" content="Lucene初体验 | 小旋锋">
+  <title>设计模式 | 建造者模式及典型应用 | 小旋锋</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="设计模式 | 建造者模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="建造者模式建造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一种对象创建型模式。 建造者模式一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。 角色Builder（抽象建造者）：它为创建一个产品Product对象的各个部件指定抽象接口，在该接口中一般">
 <meta name="keywords" content="设计模式,建造者模式">
@@ -313,9 +313,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Lucene初体验" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-设计模式-建造者模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Lucene初体验</h1>
+        <h1 class="article-title">设计模式 | 建造者模式及典型应用</h1>
     
     <div class="article-meta">
         
@@ -323,26 +323,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="大数据">大数据</a>
+            <a href="javascript:" data-rel="后端">后端</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">lucene</a>
+            <a href="javascript:" class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-08-18 16:27:00'>2018-08-18 16:23</time>
+        创建时间:<time class="date" title='更新时间: 2018-09-12 00:40:51'>2018-09-12 00:39</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3,279</span>
+        <span>字数:3,072</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -372,7 +372,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lucene简介"><span class="toc-text">Lucene简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#体验Lucene-Demo"><span class="toc-text">体验Lucene Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引入-Maven-依赖"><span class="toc-text">引入 Maven 依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#索引类-IndexFiles-java"><span class="toc-text">索引类 IndexFiles.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询类-SearchFiles-java"><span class="toc-text">查询类 SearchFiles.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lucene-核心类介绍"><span class="toc-text">Lucene 核心类介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#核心索引类"><span class="toc-text">核心索引类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#核心搜索类"><span class="toc-text">核心搜索类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lucene-6-0-索引文件格式"><span class="toc-text">Lucene 6.0 索引文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#倒排索引"><span class="toc-text">倒排索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#段（Segments）"><span class="toc-text">段（Segments）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文档编号"><span class="toc-text">文档编号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#索引结构概述"><span class="toc-text">索引结构概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件命名"><span class="toc-text">文件命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件扩展名摘要"><span class="toc-text">文件扩展名摘要</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#锁文件"><span class="toc-text">锁文件</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#建造者模式"><span class="toc-text">建造者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建造者模式总结"><span class="toc-text">建造者模式总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建造者模式的典型应用和源码分析"><span class="toc-text">建造者模式的典型应用和源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#java-lang-StringBuilder-中的建造者模式"><span class="toc-text">java.lang.StringBuilder 中的建造者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java-lang-StringBuffer-中的建造者方法"><span class="toc-text">java.lang.StringBuffer 中的建造者方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Google-Guava-中的建造者模式"><span class="toc-text">Google Guava 中的建造者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mybatis-中的建造者模式"><span class="toc-text">mybatis 中的建造者模式</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -387,453 +387,360 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的简要内容：</p>
-<ol>
-<li>Lucene简介</li>
-<li>体验Lucene Demo</li>
-<li>Lucene 核心类介绍</li>
-<li>Lucene 索引文件格式</li>
-</ol>
-<h3 id="Lucene简介"><a href="#Lucene简介" class="headerlink" title="Lucene简介"></a>Lucene简介</h3><p>Lucene是目前最流行的Java开源搜索引擎类库,最新版本为7.4.0。Lucene通常用于全文检索,Lucene具有简单高效跨平台等特点,因此有不少搜索引擎都是基于Lucene构建的,例如:Elasticsearch,Solr等等。</p>
-<p>现代搜索引擎的两大核心就是索引和搜索，建立索引的过程就是对源数据进行处理，例如过滤掉一些特殊字符或词语，单词大小写转换，分词，建立倒排索引等支持后续高效准确的搜索。而搜索则是直接提供给用户的功能，尽管面向的用户不同，诸如百度，谷歌等互联网公司以及各种企业都提供了各自的搜索引擎。搜索过程需要对搜索关键词进行分词等处理，然后再引擎内部构建查询，还要根据相关度对搜索结果进行排序，最终把命中结果展示给用户。</p>
-<p>Lucene只是一个提供索引和查询的<strong>类库</strong>，并不是一个应用，程序员需要根据自己的应用场景进行如数据获取、数据预处理、用户界面提供等工作。</p>
-<p>搜索程序的典型组件如下所示：</p>
-<p><img src="http://image.laijianfeng.org/20180818_132723.jpg" alt="搜索程序的典型组件"></p>
-<p>下图为Lucene与应用程序的关系:</p>
-<p><img src="http://image.laijianfeng.org/fig001.jpg" alt="Lucene与应用程序的关系"></p>
-<h3 id="体验Lucene-Demo"><a href="#体验Lucene-Demo" class="headerlink" title="体验Lucene Demo"></a>体验Lucene Demo</h3><p>接下来先来看一个简单的demo</p>
-<blockquote>
-<p>note:<br>代码在 <a href="https://github.com/whirlys/elastic-example/tree/master/startlucene/src/main/java/startlucene" target="_blank" rel="noopener">start Lucene</a></p>
-</blockquote>
-<h4 id="引入-Maven-依赖"><a href="#引入-Maven-依赖" class="headerlink" title="引入 Maven 依赖"></a>引入 Maven 依赖</h4><pre><code>    &lt;properties&gt;
-        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
-        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
-        &lt;lucene.version&gt;7.4.0&lt;/lucene.version&gt;
-    &lt;/properties&gt;
+        <h3 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h3><p>建造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一种对象创建型模式。</p>
+<p>建造者模式一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。</p>
+<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p><strong>Builder（抽象建造者）</strong>：它为创建一个产品Product对象的各个部件指定抽象接口，在该接口中一般声明两类方法，一类方法是buildPartX()，它们用于创建复杂对象的各个部件；另一类方法是getResult()，它们用于返回复杂对象。Builder既可以是抽象类，也可以是接口。</p>
+<p><strong>ConcreteBuilder（具体建造者）</strong>：它实现了Builder接口，实现各个部件的具体构造和装配方法，定义并明确它所创建的复杂对象，也可以提供一个方法返回创建好的复杂产品对象。</p>
+<p><strong>Product（产品角色）</strong>：它是被构建的复杂对象，包含多个组成部件，具体建造者创建该产品的内部表示并定义它的装配过程。</p>
+<p><strong>Director（指挥者）</strong>：指挥者又称为导演类，它负责安排复杂对象的建造次序，指挥者与抽象建造者之间存在关联关系，可以在其construct()建造方法中调用建造者对象的部件构造与装配方法，完成复杂对象的建造。客户端一般只需要与指挥者进行交互，在客户端确定具体建造者的类型，并实例化具体建造者对象（也可以通过配置文件和反射机制），然后通过指挥者类的构造函数或者Setter方法将该对象传入指挥者类中。</p>
+<p>在建造者模式的定义中提到了复杂对象，那么什么是复杂对象？简单来说，<strong>复杂对象</strong>是指那些包含多个成员属性的对象，这些成员属性也称为部件或零件，如汽车包括方向盘、发动机、轮胎等部件，电子邮件包括发件人、收件人、主题、内容、附件等部件</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>产品角色 <code>Computer</code></p>
+<pre><code>public class Computer {
+    private String brand;
+    private String cpu;
+    private String mainBoard;
+    private String hardDisk;
+    private String displayCard;
+    private String power;
+    private String memory;
+    // 省略 getter, setter, toString
+}
+</code></pre><p>抽象建造者 <code>builder</code></p>
+<pre><code>public abstract class Builder {
+    protected Computer computer = new Computer();
 
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;junit&lt;/groupId&gt;
-            &lt;artifactId&gt;junit&lt;/artifactId&gt;
-            &lt;version&gt;4.11&lt;/version&gt;
-            &lt;scope&gt;test&lt;/scope&gt;
-        &lt;/dependency&gt;
+    public abstract void buildBrand();
+    public abstract void buildCPU();
+    public abstract void buildMainBoard();
+    public abstract void buildHardDisk();
+    public abstract void buildDisplayCard();
+    public abstract void buildPower();
+    public abstract void buildMemory();
+    public Computer createComputer() {
+        return computer;
+    }
+}
+</code></pre><p>具体建造者 <code>DellComputerBuilder</code>，<code>ASUSComputerBuilder</code>，分别建造戴尔电脑和华硕电脑</p>
+<pre><code>public class DellComputerBuilder extends Builder {
+    @Override
+    public void buildBrand() {
+        computer.setBrand(&quot;戴尔电脑&quot;);
+    }
+    @Override
+    public void buildCPU() {
+        computer.setCpu(&quot;i5-8300H 四核&quot;);
+    }
+    @Override
+    public void buildMainBoard() {
+        computer.setMainBoard(&quot;戴尔主板&quot;);
+    }
+    @Override
+    public void buildHardDisk() {
+        computer.setHardDisk(&quot;1T + 128GB SSD&quot;);
+    }
+    @Override
+    public void buildDisplayCard() {
+        computer.setDisplayCard(&quot;GTX1060 独立6GB&quot;);
+    }
+    @Override
+    public void buildPower() {
+        computer.setPower(&quot;4芯 锂离子电池 180W AC适配器&quot;);
+    }
+    @Override
+    public void buildMemory() {
+        computer.setMemory(&quot;4G + 4G&quot;);
+    }
+}
 
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
-            &lt;artifactId&gt;lucene-core&lt;/artifactId&gt;
-            &lt;version&gt;${lucene.version}&lt;/version&gt;
-        &lt;/dependency&gt;
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.apache.lucene&lt;/groupId&gt;
-            &lt;artifactId&gt;lucene-queryparser&lt;/artifactId&gt;
-            &lt;version&gt;${lucene.version}&lt;/version&gt;
-        &lt;/dependency&gt;
-
-    &lt;/dependencies&gt;
-</code></pre><h4 id="索引类-IndexFiles-java"><a href="#索引类-IndexFiles-java" class="headerlink" title="索引类 IndexFiles.java"></a>索引类 IndexFiles.java</h4><pre><code>import org.apache.lucene.analysis.*;
-import org.apache.lucene.analysis.standard.*;
-import org.apache.lucene.document.*;
-import org.apache.lucene.index.*;
-import org.apache.lucene.store.*;
-
-import java.io.*;
-import java.nio.charset.*;
-import java.nio.file.*;
-import java.nio.file.attribute.*;
-
-public class IndexFiles {
+public class ASUSComputerBuilder extends Builder{
+    @Override
+    public void buildBrand() {
+        computer.setBrand(&quot;华硕电脑&quot;);
+    }
+    @Override
+    public void buildCPU() {
+        computer.setCpu(&quot;Intel 第8代 酷睿&quot;);
+    }
+    @Override
+    public void buildMainBoard() {
+        computer.setMainBoard(&quot;华硕主板&quot;);
+    }
+    @Override
+    public void buildHardDisk() {
+        computer.setHardDisk(&quot;256GB SSD&quot;);
+    }
+    @Override
+    public void buildDisplayCard() {
+        computer.setDisplayCard(&quot;MX150 独立2GB&quot;);
+    }
+    @Override
+    public void buildPower() {
+        computer.setPower(&quot;3芯 锂离子电池 65W AC适配器&quot;);
+    }
+    @Override
+    public void buildMemory() {
+        computer.setMemory(&quot;1 x SO-DIMM  8GB&quot;);
+    }
+}
+</code></pre><p>指挥者 <code>ComputerDirector</code>，指挥构建过程</p>
+<pre><code>public class ComputerDirector {
+    public Computer construct(Builder builder) {
+        // 逐步构建复杂产品对象
+        Computer computer;
+        builder.buildBrand();
+        builder.buildCPU();
+        builder.buildDisplayCard();
+        builder.buildHardDisk();
+        builder.buildMainBoard();
+        builder.buildMemory();
+        builder.buildPower();
+        computer = builder.createComputer();
+        return computer;
+    }
+}
+</code></pre><p>客户端测试</p>
+<pre><code>public class Test {
     public static void main(String[] args) {
-        String indexPath = &quot;D:/lucene_test/index&quot;; // 建立索引文件的目录
-        String docsPath = &quot;D:/lucene_test/docs&quot;; // 读取文本文件的目录
+        ComputerDirector director = new ComputerDirector();
 
-        Path docDir = Paths.get(docsPath);
+        Builder asusBuilder = new ASUSComputerBuilder();
+        Computer asusComputer = director.construct(asusBuilder);
+        System.out.println(asusComputer.toString());
 
-        IndexWriter writer = null;
-        try {
-            // 存储索引数据的目录
-            Directory dir = FSDirectory.open(Paths.get(indexPath));
-            // 创建分析器
-            Analyzer analyzer = new StandardAnalyzer();
-            IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
-            iwc.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
-
-            writer = new IndexWriter(dir, iwc);
-            indexDocs(writer, docDir);
-
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void indexDocs(final IndexWriter writer, Path path) throws IOException {
-        if (Files.isDirectory(path)) {
-            Files.walkFileTree(path, new SimpleFileVisitor&lt;Path&gt;() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                    try {
-                        indexDoc(writer, file);
-                    } catch (IOException ignore) {
-                        // 不索引那些不能读取的文件,忽略该异常
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        } else {
-            indexDoc(writer, path);
-        }
-    }
-
-    private static void indexDoc(IndexWriter writer, Path file) throws IOException {
-        try (InputStream stream = Files.newInputStream(file)) {
-            // 创建一个新的空文档
-            Document doc = new Document();
-            // 添加字段
-            Field pathField = new StringField(&quot;path&quot;, file.toString(), Field.Store.YES);
-            doc.add(pathField);
-            Field contentsField = new TextField(&quot;contents&quot;,
-                    new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8)));
-            doc.add(contentsField);
-            System.out.println(&quot;adding &quot; + file);
-            // 写文档
-            writer.addDocument(doc);
-        }
+        Builder dellBuilder = new DellComputerBuilder();
+        Computer dellComputer = director.construct(dellBuilder);
+        System.out.println(dellComputer.toString());
     }
 }
-</code></pre><h4 id="查询类-SearchFiles-java"><a href="#查询类-SearchFiles-java" class="headerlink" title="查询类 SearchFiles.java"></a>查询类 SearchFiles.java</h4><pre><code>import org.apache.lucene.analysis.*;
-import org.apache.lucene.analysis.standard.*;
-import org.apache.lucene.document.*;
-import org.apache.lucene.index.*;
-import org.apache.lucene.queryparser.classic.*;
-import org.apache.lucene.search.*;
-import org.apache.lucene.store.*;
+</code></pre><p>输出</p>
+<pre><code>Computer{brand=&#39;华硕电脑&#39;, cpu=&#39;Intel 第8代 酷睿&#39;, mainBoard=&#39;华硕主板&#39;, hardDisk=&#39;256GB SSD&#39;, displayCard=&#39;MX150 独立2GB&#39;, power=&#39;3芯 锂离子电池 65W AC适配器&#39;, memory=&#39;1 x SO-DIMM  8GB&#39;}
+Computer{brand=&#39;戴尔电脑&#39;, cpu=&#39;i5-8300H 四核&#39;, mainBoard=&#39;戴尔主板&#39;, hardDisk=&#39;1T + 128GB SSD&#39;, displayCard=&#39;GTX1060 独立6GB&#39;, power=&#39;4芯 锂离子电池 180W AC适配器&#39;, memory=&#39;4G + 4G&#39;}
+</code></pre><p>可以通过反射机制和配置文件配合，创建具体建造者对象</p>
+<pre><code>public class Test {
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        ComputerDirector director = new ComputerDirector();
 
-import java.io.*;
-import java.nio.charset.*;
-import java.nio.file.*;
-
-public class SearchFiles {
-    public static void main(String[] args) throws Exception {
-        String indexPath = &quot;D:/lucene_test/index&quot;; // 建立索引文件的目录
-        String field = &quot;contents&quot;;
-        IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(indexPath)));
-        IndexSearcher searcher = new IndexSearcher(reader);
-        Analyzer analyzer = new StandardAnalyzer();
-
-        BufferedReader in = null;
-        in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
-        QueryParser parser = new QueryParser(field, analyzer);
-        System.out.println(&quot;Enter query:&quot;);
-        // 从Console读取要查询的语句
-        String line = in.readLine();
-        if (line == null || line.length() == -1) {
-            return;
-        }
-        line = line.trim();
-        if (line.length() == 0) {
-            return;
-        }
-
-        Query query = parser.parse(line);
-        System.out.println(&quot;Searching for:&quot; + query.toString(field));
-        doPagingSearch(searcher, query);
-        in.close();
-        reader.close();
-    }
-
-    private static void doPagingSearch(IndexSearcher searcher, Query query) throws IOException {
-        // TopDocs保存搜索结果
-        TopDocs results = searcher.search(query, 10);
-        ScoreDoc[] hits = results.scoreDocs;
-        int numTotalHits = Math.toIntExact(results.totalHits);
-        System.out.println(numTotalHits + &quot; total matching documents&quot;);
-        for (ScoreDoc hit : hits) {
-            Document document = searcher.doc(hit.doc);
-            System.out.println(&quot;文档:&quot; + document.get(&quot;path&quot;));
-            System.out.println(&quot;相关度:&quot; + hit.score);
-            System.out.println(&quot;================================&quot;);
-        }
-
+        // 从数据库或者配置文件中读取具体建造者类名
+        Class c = Class.forName(&quot;com.designpattern.ASUSComputerBuilder&quot;);
+        Builder asusBuilder = (Builder) c.newInstance();
+        Computer asusComputer = director.construct(asusBuilder);
+        System.out.println(asusComputer.toString());
     }
 }
-
-</code></pre><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>首先创建文件夹 <code>D:\lucene_test</code>，在 <code>lucene_test</code> 下再创建 <code>docs</code> 文件夹，用来存储要索引的测试文件</p>
-<p>在 <code>docs</code> 下创建3个文件 test1.txt, test2.txt, test3.txt，分别写入 hello world、 hello lucene、 hello elasticsearch</p>
-<p>运行索引类 IndexFiles.java，可看到Console输出</p>
-<pre><code>adding D:\lucene_test\docs\test1.txt
-adding D:\lucene_test\docs\test2.txt
-adding D:\lucene_test\docs\test3.txt
-</code></pre><p><img src="http://image.laijianfeng.org/20180818_135449.png" alt="Lucene的索引文件"></p>
-<p>运行查询类 SearchFiles.java，搜索 hello ，三个文件相关度一样</p>
-<pre><code>Enter query:
-hello
-Searching for:hello
-3 total matching documents
-文档:D:\lucene_test\docs\test1.txt
-相关度:0.13353139
-================================
-文档:D:\lucene_test\docs\test2.txt
-相关度:0.13353139
-================================
-文档:D:\lucene_test\docs\test3.txt
-相关度:0.13353139
-================================
-</code></pre><p>搜索 hello lucene，test2.txt的相关度比其他两个高</p>
-<pre><code>Enter query:
-hello lucene
-Searching for:hello lucene
-3 total matching documents
-文档:D:\lucene_test\docs\test2.txt
-相关度:1.1143606
-================================
-文档:D:\lucene_test\docs\test1.txt
-相关度:0.13353139
-================================
-文档:D:\lucene_test\docs\test3.txt
-相关度:0.13353139
-================================
-</code></pre><h3 id="Lucene-核心类介绍"><a href="#Lucene-核心类介绍" class="headerlink" title="Lucene 核心类介绍"></a>Lucene 核心类介绍</h3><h4 id="核心索引类"><a href="#核心索引类" class="headerlink" title="核心索引类"></a>核心索引类</h4><p>IndexWriter</p>
-<pre><code>进行索引写操作的一个中心组件
-不能进行读取和搜索
-</code></pre><p>Directory</p>
-<pre><code>Directory代表Lucene索引的存放位置
-常用的实现：
-    FSDerectory:表示一个存储在文件系统中的索引的位置
-    RAMDirectory:表示一个存储在内存当中的索引的位置
-作用：
-    IndexWriter通过获取Directory的一个具体实现，在Directory指向的位置中操作索引
-</code></pre><p>Analyzer</p>
-<pre><code>Analyzer，分析器，相当于筛子，对内容进行过滤，分词，转换等
-作用：把过滤之后的数据交给indexWriter进行索引
-</code></pre><p>Document</p>
-<pre><code>用来存放文档（数据），该文档为非结构化数据中抓取的相关数据
-通过Field(域)组成Document，类似于mysql中的一个个字段组成的一条记录
-</code></pre><p>Field</p>
-<pre><code>Document中的一个字段
-</code></pre><h4 id="核心搜索类"><a href="#核心搜索类" class="headerlink" title="核心搜索类"></a>核心搜索类</h4><p>IndexSearcher</p>
-<pre><code>IndexSearcher在建立好的索引上进行搜索
-它只能以 只读 的方式打开一个索引，所以可以有多个IndexSearcher的实例在一个索引上进行操作
-</code></pre><p>Term</p>
-<pre><code>Term是搜索的基本单元，一个Term由 key:value 组成（类似于mysql中的  字段名称=查询的内容）
-例子： Query query = new TermQuery(new Term(&quot;filename&quot;, &quot;lucene&quot;));
-</code></pre><p>Query</p>
-<pre><code>Query是一个抽象类，用来将用户输入的查询字符串封装成Lucene能够识别的Query
-</code></pre><p>TermQuery</p>
-<pre><code>Query子类，Lucene支持的最基本的一个查询类
-例子：TermQuery termQuery = new TermQuery(new Term(&quot;filename&quot;, &quot;lucene&quot;));
-</code></pre><p>BooleanQuery</p>
-<pre><code>BooleanQUery，布尔查询,是一个组合Query（多个查询条件的组合）
-BooleanQuery是可以嵌套的
-
-栗子：
-BooleanQuery query = new BooleanQuery();
-BooleanQuery query2 = new BooleanQuery();
-TermQuery termQuery1 = new TermQuery(new Term(&quot;fileName&quot;, &quot;lucene&quot;));
-TermQuery termQuery2 = new TermQuery(new Term(&quot;fileName&quot;, &quot;name&quot;));
-query2.add(termQuery1, Occur.SHOULD);
-query.add(termQuery2, Occur.SHOULD);
-query.add(query2, Occur.SHOULD);;        //BooleanQuery是可以嵌套的
-
-Occur枚举：
-    MUST
-    SHOULD
-    FILTER
-    MUST_NOT
-</code></pre><p>NumericRangeQuery</p>
-<pre><code>数字区间查询
-栗子：
-Query newLongRange = NumericRangeQuery.newLongRange(&quot;fileSize&quot;,0l, 100l, true, true);
-</code></pre><p>PrefixQuery</p>
-<pre><code>前缀查询，查询分词中含有指定字符开头的内容
-栗子：
-PrefixQuery query = new PrefixQuery(new Term(&quot;fileName&quot;,&quot;hell&quot;));
-</code></pre><p>PhraseQuery</p>
-<pre><code>短语查询
-栗子1：
-    PhraseQuery query = new PhraseQuery();
-    query.add(new Term(&quot;fileName&quot;,&quot;lucene&quot;));
-</code></pre><p>FuzzyQuery</p>
-<pre><code>模糊查询
-栗子：
-FuzzyQuery query = new FuzzyQuery(new Term(&quot;fileName&quot;,&quot;lucene&quot;));
-</code></pre><p>WildcardQuery</p>
-<pre><code>通配符查询：
-* ：任意字符（0或多个）
-? : 一个字符
-
-栗子：
-WildcardQuery query = new WildcardQuery(new Term(&quot;fileName&quot;,&quot;*&quot;));
-</code></pre><p>RegexQuery</p>
-<pre><code>正则表达式查询
-栗子：搜索含有最少1个字符，最多6个字符的
-RegexQuery query = new RegexQuery(new Term(&quot;fileName&quot;,&quot;[a-z]{1,6}&quot;));
-</code></pre><p>MultiFieldQueryParser</p>
-<pre><code>查询多个field
-栗子：
-String[] fields = {&quot;fileName&quot;,&quot;fileContent&quot;};
-MultiFieldQueryParser queryParser = new MultiFieldQueryParser(fields, new StandardAnalyzer());
-Query query = queryParser.parse(&quot;fileName:lucene AND filePath:a&quot;);
-</code></pre><p>TopDocs</p>
-<pre><code>TopDocs类是一个简单的指针容器,指针一般指向前N个排名的搜索结果,搜索结果即匹配条件的文档
-TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(反映相关度)
-
-栗子：
-    TermQuery searchingBooks = new TermQuery(new Term(&quot;subject&quot;,&quot;search&quot;)); 
-    Directory dir = TestUtil.getBookIndexDirectory();
-    IndexSearcher searcher = new IndexSearcher(dir);
-    TopDocs matches = searcher.search(searchingBooks, 10);
-</code></pre><h3 id="Lucene-6-0-索引文件格式"><a href="#Lucene-6-0-索引文件格式" class="headerlink" title="Lucene 6.0 索引文件格式"></a>Lucene 6.0 索引文件格式</h3><h4 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h4><p>谈到倒排索引，那么首先看看正排是什么样子的呢？假设文档1包含【中文、英文、日文】，文档2包含【英文、日文、韩文】，文档3包含【韩文，中文】，那么根据文档去查找内容的话</p>
-<pre><code>文档1-&gt;【中文、英文、日文】
-文档2-&gt;【英文、日文、韩文】
-文档3-&gt;【韩文，中文】
-</code></pre><p>反过来，根据内容去查找文档</p>
-<pre><code>中文-&gt;【文档1、文档3】
-英文-&gt;【文档1、文档2】
-日文-&gt;【文档1、文档2】
-韩文-&gt;【文档2、文档3】
-</code></pre><p>这就是倒排索引，而Lucene擅长的也正在于此</p>
-<h4 id="段（Segments）"><a href="#段（Segments）" class="headerlink" title="段（Segments）"></a>段（Segments）</h4><p>Lucene的索引可能是由多个子索引或Segments组成。每个Segment是一个完全独立的索引，可以单独用于搜索，索引涉及</p>
-<ol>
-<li>为新添加的documents创建新的segments</li>
-<li>合并已经存在的segments</li>
-</ol>
-<p>搜索可能涉及多个segments或多个索引，每个索引可能由一组segments组成</p>
-<h4 id="文档编号"><a href="#文档编号" class="headerlink" title="文档编号"></a>文档编号</h4><p>Lucene通过一个整型的文档编号指向每个文档，第一个被加入索引的文档编号为0，后续加入的文档编号依次递增。<br>注意文档编号是可能发生变化的，所以在Lucene外部存储这些值时需要格外小心。</p>
-<h4 id="索引结构概述"><a href="#索引结构概述" class="headerlink" title="索引结构概述"></a>索引结构概述</h4><p>每个segment索引包括信息</p>
+</code></pre><p><img src="http://image.laijianfeng.org/20180911_164411.png" alt="image"></p>
+<h3 id="建造者模式总结"><a href="#建造者模式总结" class="headerlink" title="建造者模式总结"></a>建造者模式总结</h3><p>建造者模式的<strong>主要优点</strong>如下：</p>
 <ul>
-<li>Segment info：包含有关segment的元数据，例如文档编号，使用的文件</li>
-<li>Field names：包含索引中使用的字段名称集合</li>
-<li>Stored Field values：对于每个document，它包含属性-值对的列表，其中属性是字段名称。这些用于存储有关文档的辅助信息，例如其标题、url或访问数据库的标识符</li>
-<li>Term dictionary：包含所有文档的所有索引字段中使用的所有terms的字典。字典还包括包含term的文档编号，以及指向term的频率和接近度的指针</li>
-<li>Term Frequency data：对于字典中的每个term，包含该term的所有文档的数量以及该term在该文档中的频率，除非省略频率（IndexOptions.DOCS）</li>
-<li>Term Proximity data：对于字典中的每个term，term在每个文档中出现的位置。注意，如果所有文档中的所有字段都省略位置数据，则不会存在</li>
-<li>Normalization factors：对于每个文档中的每个字段，存储一个值，该值将乘以该字段上的匹配的分数</li>
-<li>Term Vectors：对于每个文档中的每个字段，可以存储term vector，term vector由term文本和term频率组成</li>
-<li>Per-document values：与存储的值类似，这些也以文档编号作为key，但通常旨在被加载到主存储器中以用于快速访问。存储的值通常用于汇总来自搜索的结果，而每个文档值对于诸如评分因子是有用的</li>
-<li>Live documents：一个可选文件，指示哪些文档是活动的</li>
-<li>Point values：可选的文件对，记录索引字段尺寸，以实现快速数字范围过滤和大数值（例如BigInteger、BigDecimal（1D）、地理形状交集（2D，3D））</li>
+<li>在建造者模式中，客户端不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品对象。</li>
+<li>每一个具体建造者都相对独立，而与其他的具体建造者无关，因此可以很方便地替换具体建造者或增加新的具体建造者，用户使用不同的具体建造者即可得到不同的产品对象。由于指挥者类针对抽象建造者编程，增加新的具体建造者无须修改原有类库的代码，系统扩展方便，符合 “开闭原则”。</li>
+<li>可以更加精细地控制产品的创建过程。将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</li>
 </ul>
-<h4 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h4><p>属于一个段的所有文件具有相同的名称和不同的扩展名。当使用复合索引文件，这些文件（除了段信息文件、锁文件和已删除的文档文件）将压缩成单个.cfs文件。当任何索引文件被保存到目录时，它被赋予一个从未被使用过的文件名字</p>
-<p><img src="http://image.laijianfeng.org/20180818_161352.png" alt="复合索引文件"></p>
-<h4 id="文件扩展名摘要"><a href="#文件扩展名摘要" class="headerlink" title="文件扩展名摘要"></a>文件扩展名摘要</h4><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>文件扩展名</th>
-<th>简短描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Segments File</td>
-<td>segments_N</td>
-<td>保存了一个提交点（a commit point）的信息</td>
-</tr>
-<tr>
-<td>Lock File</td>
-<td>write.lock</td>
-<td>防止多个IndexWriter同时写到一份索引文件中</td>
-</tr>
-<tr>
-<td>Segment Info</td>
-<td>.si</td>
-<td>保存了索引段的元数据信息</td>
-</tr>
-<tr>
-<td>Compound File</td>
-<td>.cfs，.cfe</td>
-<td>一个可选的虚拟文件，把所有索引信息都存储到复合索引文件中</td>
-</tr>
-<tr>
-<td>Fields</td>
-<td>.fnm</td>
-<td>保存fields的相关信息</td>
-</tr>
-<tr>
-<td>Field Index</td>
-<td>.fdx</td>
-<td>保存指向field data的指针</td>
-</tr>
-<tr>
-<td>Field Data</td>
-<td>.fdt</td>
-<td>文档存储的字段的值</td>
-</tr>
-<tr>
-<td>Term Dictionary</td>
-<td>.tim</td>
-<td>term词典，存储term信息</td>
-</tr>
-<tr>
-<td>Term Index</td>
-<td>.tip</td>
-<td>到Term Dictionary的索引</td>
-</tr>
-<tr>
-<td>Frequencies</td>
-<td>.doc</td>
-<td>由包含每个term以及频率的docs列表组成</td>
-</tr>
-<tr>
-<td>Positions</td>
-<td>.pos</td>
-<td>存储出现在索引中的term的位置信息</td>
-</tr>
-<tr>
-<td>Payloads</td>
-<td>.pay</td>
-<td>存储额外的per-position元数据信息，例如字符偏移和用户payloads</td>
-</tr>
-<tr>
-<td>Norms</td>
-<td>.nvd，.nvm</td>
-<td>.nvm文件保存索引字段加权因子的元数据，.nvd文件保存索引字段加权数据</td>
-</tr>
-<tr>
-<td>Per-Document Values</td>
-<td>.dvd，.dvm</td>
-<td>.dvm文件保存索引文档评分因子的元数据，.dvd文件保存索引文档评分数据</td>
-</tr>
-<tr>
-<td>Term Vector Index</td>
-<td>.tvx</td>
-<td>将偏移存储到文档数据文件中</td>
-</tr>
-<tr>
-<td>Term Vector Documents</td>
-<td>.tvd</td>
-<td>包含有term vectors的每个文档信息</td>
-</tr>
-<tr>
-<td>Term Vector Fields</td>
-<td>.tvf</td>
-<td>字段级别有关term vectors的信息</td>
-</tr>
-<tr>
-<td>Live Documents</td>
-<td>.liv</td>
-<td>哪些是有效文件的信息</td>
-</tr>
-<tr>
-<td>Point values</td>
-<td>.dii，.dim</td>
-<td>保留索引点，如果有的话</td>
-</tr>
-</tbody>
-</table>
-<h4 id="锁文件"><a href="#锁文件" class="headerlink" title="锁文件"></a>锁文件</h4><p>默认情况下，存储在索引目录中的锁文件名为 <code>write.lock</code>。如果锁目录与索引目录不同，则锁文件将命名为“XXXX-write.lock”，其中XXXX是从索引目录的完整路径导出的唯一前缀。此锁文件确保每次只有一个写入程序在修改索引。</p>
-<blockquote>
-<p>参考：</p>
-<ol>
-<li><a href="http://sndragon.com/2018/05/03/Lucene%E5%88%9D%E8%AF%86%E5%8F%8A%E6%A0%B8%E5%BF%83%E7%B1%BB%E4%BB%8B%E7%BB%8D/" target="_blank" rel="noopener">Lucene初识及核心类介绍</a></li>
-<li><a href="http://qguofeng.oschina.io/2018/03/17/Lucene/2018-03-17-Lucene%E6%A0%B8%E5%BF%83%E7%B1%BB/" target="_blank" rel="noopener">Lucene核心类</a></li>
-<li><a href="http://codepub.cn/2016/12/05/Lucene-6-0-index-file-format/" target="_blank" rel="noopener">Lucene 6.0 索引文件格式</a></li>
-<li>Lucene实战.pdf</li>
-</ol>
-</blockquote>
+<p>建造者模式的<strong>主要缺点</strong>如下：</p>
+<ul>
+<li>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，如果产品之间的差异性很大，例如很多组成部分都不相同，不适合使用建造者模式，因此其使用范围受到一定的限制。</li>
+<li>如果产品的内部变化复杂，可能会导致需要定义很多具体建造者类来实现这种变化，导致系统变得很庞大，增加系统的理解难度和运行成本。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>需要生成的产品对象有复杂的内部结构，这些产品对象通常包含多个成员属性。</li>
+<li>需要生成的产品对象的属性相互依赖，需要指定其生成顺序。</li>
+<li>对象的创建过程独立于创建该对象的类。在建造者模式中通过引入了指挥者类，将创建过程封装在指挥者类中，而不在建造者类和客户类中。</li>
+<li>隔离复杂对象的创建和使用，并使得相同的创建过程可以创建不同的产品。</li>
+</ul>
+<h3 id="建造者模式的典型应用和源码分析"><a href="#建造者模式的典型应用和源码分析" class="headerlink" title="建造者模式的典型应用和源码分析"></a>建造者模式的典型应用和源码分析</h3><h4 id="java-lang-StringBuilder-中的建造者模式"><a href="#java-lang-StringBuilder-中的建造者模式" class="headerlink" title="java.lang.StringBuilder 中的建造者模式"></a>java.lang.StringBuilder 中的建造者模式</h4><p><code>StringBuilder</code> 的继承实现关系如下所示</p>
+<p><img src="http://image.laijianfeng.org/20180911_172041.png" alt="StringBuilder的类图"></p>
+<p><code>Appendable</code> 接口如下</p>
+<pre><code>public interface Appendable {
+    Appendable append(CharSequence csq) throws IOException;
+    Appendable append(CharSequence csq, int start, int end) throws IOException;
+    Appendable append(char c) throws IOException;
+}
+</code></pre><p><code>StringBuilder</code> 中的 <code>append</code> 方法使用了建造者模式，不过装配方法只有一个，并不算复杂，<code>append</code> 方法返回的是 <code>StringBuilder</code> 自身</p>
+<pre><code>public final class StringBuilder extends AbstractStringBuilder implements java.io.Serializable, CharSequence {
+    @Override
+    public StringBuilder append(String str) {
+        super.append(str);
+        return this;
+    }
+    // ...省略...
+}
+</code></pre><p><code>StringBuilder</code> 的父类 <code>AbstractStringBuilder</code> 实现了 <code>Appendable</code> 接口</p>
+<pre><code>abstract class AbstractStringBuilder implements Appendable, CharSequence {
+    char[] value;
+    int count;
+
+    public AbstractStringBuilder append(String str) {
+        if (str == null)
+            return appendNull();
+        int len = str.length();
+        ensureCapacityInternal(count + len);
+        str.getChars(0, len, value, count);
+        count += len;
+        return this;
+    }
+
+    private void ensureCapacityInternal(int minimumCapacity) {
+        // overflow-conscious code
+        if (minimumCapacity - value.length &gt; 0) {
+            value = Arrays.copyOf(value,
+                    newCapacity(minimumCapacity));
+        }
+    }
+    // ...省略...
+}
+</code></pre><p>我们可以看出，<code>Appendable</code> 为抽象建造者，定义了建造方法，<code>StringBuilder</code> 既充当指挥者角色，又充当产品角色，又充当具体建造者，建造方法的实现由 <code>AbstractStringBuilder</code> 完成，而 <code>StringBuilder</code> 继承了 <code>AbstractStringBuilder</code> </p>
+<h4 id="java-lang-StringBuffer-中的建造者方法"><a href="#java-lang-StringBuffer-中的建造者方法" class="headerlink" title="java.lang.StringBuffer 中的建造者方法"></a>java.lang.StringBuffer 中的建造者方法</h4><p>StringBuffer 继承与实现关系如下</p>
+<p><img src="http://image.laijianfeng.org/20180911_173716.png" alt="StringBuffer的类图"></p>
+<p>这分明就与 <code>StringBuilder</code> 一样嘛！</p>
+<p>那它们有什么不同呢？</p>
+<pre><code>public final class StringBuffer extends AbstractStringBuilder implements java.io.Serializable, CharSequence {
+    @Override
+    public synchronized StringBuffer append(String str) {
+        toStringCache = null;
+        super.append(str);
+        return this;
+    }
+    //...省略...
+}
+</code></pre><p>看 <code>StringBuffer</code> 的源码如上，它们的区别就是： <code>StringBuffer</code> 中的 <code>append</code> 加了 <code>synchronized</code> 关键字，所以<code>StringBuffer</code> 是线程安全的，而 <code>StringBuilder</code> 是非线程安全的</p>
+<p><code>StringBuffer</code> 中的建造者模式与 <code>StringBuilder</code> 是一致的</p>
+<h4 id="Google-Guava-中的建造者模式"><a href="#Google-Guava-中的建造者模式" class="headerlink" title="Google Guava 中的建造者模式"></a>Google Guava 中的建造者模式</h4><p><code>ImmutableSet</code> 不可变Set的主要方法如下</p>
+<p><img src="http://image.laijianfeng.org/20180911_234124.png" alt="ImmutableSet方法列表"></p>
+<p><code>ImmutableSet</code> 类中 <code>of</code>, <code>copyOf</code> 等方法返回的是一个 <code>ImmutableSet</code> 对象，这里是一个建造者模式，所构建的复杂产品对象为 <code>ImmutableSet</code></p>
+<p><code>ImmutableSet</code> 的内部类 <code>ImmutableSet.Builder</code> 如下所示</p>
+<pre><code>public static class Builder&lt;E&gt; extends ArrayBasedBuilder&lt;E&gt; {
+    @CanIgnoreReturnValue
+    public ImmutableSet.Builder&lt;E&gt; add(E... elements) {
+        super.add(elements);
+        return this;
+    }
+
+    @CanIgnoreReturnValue
+    public ImmutableSet.Builder&lt;E&gt; addAll(Iterator&lt;? extends E&gt; elements) {
+        super.addAll(elements);
+        return this;
+    }
+
+    public ImmutableSet&lt;E&gt; build() {
+        ImmutableSet&lt;E&gt; result = ImmutableSet.construct(this.size, this.contents);
+        this.size = result.size();
+        return result;
+    }
+    //...省略...
+}
+</code></pre><p>其中的 <code>add</code>、<code>addAll</code>等方法返回的是 <code>ImmutableSet.Builder</code> 对象本身，而 <code>build</code> 则返回 <code>ImmutableSet</code> 对象，所以 <code>ImmutableSet.Builder</code> 是具体建造者，<code>add</code>、<code>addAll</code>等方法则相当于<code>buildPartX()</code>，是装配过程中的一部分，<code>build</code> 方法则是 <code>getResult()</code>，返回最终创建好的复杂产品对象</p>
+<p>ImmutableSet 使用示例如下:</p>
+<pre><code>public class Test2 {
+    public static void main(String[] args) {
+        Set&lt;String&gt; set = ImmutableSet.&lt;String&gt;builder().add(&quot;a&quot;).add(&quot;a&quot;).add(&quot;b&quot;).build();
+        System.out.println(set);
+        // [a, b]
+    }
+}
+</code></pre><p>再来看一个，一般创建一个 <code>guava缓存</code> 的写法如下所示</p>
+<pre><code>final static Cache&lt;Integer, String&gt; cache = CacheBuilder.newBuilder()
+        //设置cache的初始大小为10，要合理设置该值  
+        .initialCapacity(10)
+        //设置并发数为5，即同一时间最多只能有5个线程往cache执行写入操作  
+        .concurrencyLevel(5)
+        //设置cache中的数据在写入之后的存活时间为10秒  
+        .expireAfterWrite(10, TimeUnit.SECONDS)
+        //构建cache实例  
+        .build();
+</code></pre><p>这里很明显，我们不用看源码就可以知道这里是一个典型的建造者模式，<code>CacheBuilder.newBuilder()</code> 创建了一个具体建造者，<code>.initialCapacity(10)</code>、<code>.concurrencyLevel(5)</code>、<code>.expireAfterWrite(10, TimeUnit.SECONDS)</code> 则是构建过程，最终的 <code>.build()</code> 返回创建完成的复杂产品对象</p>
+<p>看看源码是不是符合我们的猜测</p>
+<pre><code>public final class CacheBuilder&lt;K, V&gt; {
+    // 创建一个具体建造者
+    public static CacheBuilder&lt;Object, Object&gt; newBuilder() {
+        return new CacheBuilder();
+    }
+    // 建造过程之一
+    public CacheBuilder&lt;K, V&gt; initialCapacity(int initialCapacity) {
+        Preconditions.checkState(this.initialCapacity == -1, &quot;initial capacity was already set to %s&quot;, this.initialCapacity);
+        Preconditions.checkArgument(initialCapacity &gt;= 0);
+        this.initialCapacity = initialCapacity;
+        return this;
+    }
+    // 建造过程之一
+    public CacheBuilder&lt;K, V&gt; concurrencyLevel(int concurrencyLevel) {
+        Preconditions.checkState(this.concurrencyLevel == -1, &quot;concurrency level was already set to %s&quot;, this.concurrencyLevel);
+        Preconditions.checkArgument(concurrencyLevel &gt; 0);
+        this.concurrencyLevel = concurrencyLevel;
+        return this;
+    }
+    // 建造过程之一
+    public CacheBuilder&lt;K, V&gt; expireAfterWrite(long duration, TimeUnit unit) {
+        Preconditions.checkState(this.expireAfterWriteNanos == -1L, &quot;expireAfterWrite was already set to %s ns&quot;, this.expireAfterWriteNanos);
+        Preconditions.checkArgument(duration &gt;= 0L, &quot;duration cannot be negative: %s %s&quot;, duration, unit);
+        this.expireAfterWriteNanos = unit.toNanos(duration);
+        return this;
+    }
+    // 建造完成，返回创建完的复杂产品对象
+    public &lt;K1 extends K, V1 extends V&gt; Cache&lt;K1, V1&gt; build() {
+        this.checkWeightWithWeigher();
+        this.checkNonLoadingCache();
+        return new LocalManualCache(this);
+    }
+    // ...省略...
+}
+</code></pre><p>很明显符合我们的猜测，<code>initialCapacity()</code>、<code>concurrencyLevel()</code>、<code>expireAfterWrite()</code> 等方法对传进来的参数进行处理和设置，返回 <code>CacheBuilder</code> 对象本身，<code>build</code> 则把 <code>CacheBuilder</code> 对象 作为参数，new 了一个 <code>LocalManualCache</code> 对象返回</p>
+<h4 id="mybatis-中的建造者模式"><a href="#mybatis-中的建造者模式" class="headerlink" title="mybatis 中的建造者模式"></a>mybatis 中的建造者模式</h4><p>我们来看 <code>org.apache.ibatis.session</code> 包下的 <code>SqlSessionFactoryBuilder</code> 类</p>
+<p><img src="http://image.laijianfeng.org/20180912_002707.png" alt="SqlSessionFactoryBuilder的方法"></p>
+<p>里边很多重载的 <code>build</code> 方法，返回值都是 <code>SqlSessionFactory</code>，除了最后两个所有的 <code>build</code> 最后都调用下面这个 <code>build</code> 方法</p>
+<pre><code>    public SqlSessionFactory build(Reader reader, String environment, Properties properties) {
+        SqlSessionFactory var5;
+        try {
+            XMLConfigBuilder parser = new XMLConfigBuilder(reader, environment, properties);
+            var5 = this.build(parser.parse());
+        } catch (Exception var14) {
+            throw ExceptionFactory.wrapException(&quot;Error building SqlSession.&quot;, var14);
+        } finally {
+            ErrorContext.instance().reset();
+            try {
+                reader.close();
+            } catch (IOException var13) {
+                ;
+            }
+        }
+        return var5;
+    }
+</code></pre><p>其中最重要的是 <code>XMLConfigBuilder</code> 的 <code>parse</code> 方法，代码如下</p>
+<pre><code>public class XMLConfigBuilder extends BaseBuilder {
+    public Configuration parse() {
+        if (this.parsed) {
+            throw new BuilderException(&quot;Each XMLConfigBuilder can only be used once.&quot;);
+        } else {
+            this.parsed = true;
+            this.parseConfiguration(this.parser.evalNode(&quot;/configuration&quot;));
+            return this.configuration;
+        }
+    }
+
+    private void parseConfiguration(XNode root) {
+        try {
+            Properties settings = this.settingsAsPropertiess(root.evalNode(&quot;settings&quot;));
+            this.propertiesElement(root.evalNode(&quot;properties&quot;));
+            this.loadCustomVfs(settings);
+            this.typeAliasesElement(root.evalNode(&quot;typeAliases&quot;));
+            this.pluginElement(root.evalNode(&quot;plugins&quot;));
+            this.objectFactoryElement(root.evalNode(&quot;objectFactory&quot;));
+            this.objectWrapperFactoryElement(root.evalNode(&quot;objectWrapperFactory&quot;));
+            this.reflectorFactoryElement(root.evalNode(&quot;reflectorFactory&quot;));
+            this.settingsElement(settings);
+            this.environmentsElement(root.evalNode(&quot;environments&quot;));
+            this.databaseIdProviderElement(root.evalNode(&quot;databaseIdProvider&quot;));
+            this.typeHandlerElement(root.evalNode(&quot;typeHandlers&quot;));
+            this.mapperElement(root.evalNode(&quot;mappers&quot;));
+        } catch (Exception var3) {
+            throw new BuilderException(&quot;Error parsing SQL Mapper Configuration. Cause: &quot; + var3, var3);
+        }
+    }
+    // ...省略...
+}
+</code></pre><p><code>parse</code> 方法最终要返回一个 <code>Configuration</code> 对象，构建 <code>Configuration</code> 对象的建造过程都在 <code>parseConfiguration</code> 方法中，这也就是 <code>Mybatis</code> 解析 <code>XML配置文件</code> 来构建 <code>Configuration</code> 对象的主要过程</p>
+<p>所以 <code>XMLConfigBuilder</code> 是建造者 <code>SqlSessionFactoryBuilder</code> 中的建造者，复杂产品对象分别是 <code>SqlSessionFactory</code> 和 <code>Configuration</code></p>
+<hr>
+<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
+<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -847,12 +754,12 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>Lucene初体验</p>
-    <p><span>文章字数:</span><span class="post-count">3,279</span></p>
+    <p><span>文章标题:</span>设计模式 | 建造者模式及典型应用</p>
+    <p><span>文章字数:</span><span class="post-count">3,072</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-08-18, 16:23:02</p>
-    <p><span>最后更新:</span>2018-08-18, 16:27:00</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/08/Lucene初体验/" title="Lucene初体验">http://laijianfeng.org/2018/08/Lucene初体验/</a>
+    <p><span>发布时间:</span>2018-09-12, 00:39:42</p>
+    <p><span>最后更新:</span>2018-09-12, 00:40:51</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式-建造者模式及典型应用/" title="设计模式 | 建造者模式及典型应用">http://laijianfeng.org/2018/09/设计模式-建造者模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -864,7 +771,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'Lucene初体验', // 可选。默认为 location.href
+        id: '设计模式 | 建造者模式及典型应用', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
