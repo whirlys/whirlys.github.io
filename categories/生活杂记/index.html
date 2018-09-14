@@ -6,25 +6,23 @@
   <meta name="keywords" content="">
   <meta name="description" content="小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="建造者模式建造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一种对象创建型模式。 建造者模式一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。 角色Builder（抽象建造者）：它为创建一个产品Product对象的各个部件指定抽象接口，在该接口中一般">
-<meta name="keywords" content="设计模式,建造者模式">
+<meta name="description" content="前言本文的主要内容如下：  介绍原型模式 示例 Java语言的clone 浅克隆与深克隆 实现深克隆   原型模式的典型应用  原型模式原型模式(Prototype Pattern)：使用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。原型模式是一种对象创建型模式。 原型模式的工作原理很简单：将一个原型对象传给那个要发动创建的对象，这个要发动创建的对象通过请求原型对象拷贝自己来实现创">
+<meta name="keywords" content="设计模式,原型模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 | 建造者模式及典型应用">
-<meta property="og:url" content="http://laijianfeng.org/2018/09/设计模式-建造者模式及典型应用/index.html">
+<meta property="og:title" content="设计模式 | 原型模式及典型应用">
+<meta property="og:url" content="http://laijianfeng.org/2018/09/设计模式-原型模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="建造者模式建造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一种对象创建型模式。 建造者模式一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。 角色Builder（抽象建造者）：它为创建一个产品Product对象的各个部件指定抽象接口，在该接口中一般">
+<meta property="og:description" content="前言本文的主要内容如下：  介绍原型模式 示例 Java语言的clone 浅克隆与深克隆 实现深克隆   原型模式的典型应用  原型模式原型模式(Prototype Pattern)：使用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。原型模式是一种对象创建型模式。 原型模式的工作原理很简单：将一个原型对象传给那个要发动创建的对象，这个要发动创建的对象通过请求原型对象拷贝自己来实现创">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20180911_164411.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180911_172041.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180911_173716.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180911_234124.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180912_002707.png">
-<meta property="og:image" content="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
-<meta property="og:updated_time" content="2018-09-11T16:40:51.023Z">
+<meta property="og:image" content="http://image.laijianfeng.org/20180914_224723.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180914_230920.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180914_233315.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
+<meta property="og:updated_time" content="2018-09-14T16:09:23.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 | 建造者模式及典型应用">
-<meta name="twitter:description" content="建造者模式建造者模式(Builder Pattern)：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一种对象创建型模式。 建造者模式一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。 角色Builder（抽象建造者）：它为创建一个产品Product对象的各个部件指定抽象接口，在该接口中一般">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20180911_164411.png">
+<meta name="twitter:title" content="设计模式 | 原型模式及典型应用">
+<meta name="twitter:description" content="前言本文的主要内容如下：  介绍原型模式 示例 Java语言的clone 浅克隆与深克隆 实现深克隆   原型模式的典型应用  原型模式原型模式(Prototype Pattern)：使用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。原型模式是一种对象创建型模式。 原型模式的工作原理很简单：将一个原型对象传给那个要发动创建的对象，这个要发动创建的对象通过请求原型对象拷贝自己来实现创">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180914_224723.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -103,8 +101,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="17">
-<input type="hidden" id="yelog_site_word_count" value="42.7k">
+<input type="hidden" id="yelog_site_posts_number" value="18">
+<input type="hidden" id="yelog_site_word_count" value="46.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -140,19 +138,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">设计模式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <div class="clearfix"></div>
@@ -164,6 +162,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/09/设计模式-原型模式及典型应用/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式 | 原型模式及典型应用">设计模式 | 原型模式及典型应用</span>
+            <span class="post-date" title="2018-09-15 00:08:13">2018/09/15</span>
+        </a>
         
         <a  class="后端 "
            href="/2018/09/设计模式-建造者模式及典型应用/"
@@ -436,7 +442,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#lucene','#java','#博客','#设计模式',],
+            'data': ['#elasticsearch','#java','#lucene','#设计模式','#博客',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
