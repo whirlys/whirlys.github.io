@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>教你编译调试Elasticsearch 6.3.2源码 | 小旋锋</title>
-  <meta name="keywords" content=" elasticsearch ">
-  <meta name="description" content="教你编译调试Elasticsearch 6.3.2源码 | 小旋锋">
+  <title>设计模式 | 外观模式及典型应用 | 小旋锋</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="设计模式 | 外观模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言本文的主要内容：  介绍外观模式 示例 自己泡茶 到茶馆喝茶   外观模式总结 外观模式的典型应用 spring JDBC 中的外观模式 Mybatis中的外观模式 Tomcat 中的外观模式 SLF4J 中的外观模式    外观模式外观模式是一种使用频率非常高的结构型设计模式，它通过引入一个外观角色来简化客户端与子系统之间的交互，为复杂的子系统调用提供一个统一的入口，降低子系统与客户端的耦合">
 <meta name="keywords" content="设计模式">
@@ -328,9 +328,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-教你编译调试Elasticsearch-6-3-2源码" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-设计模式-外观模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">教你编译调试Elasticsearch 6.3.2源码</h1>
+        <h1 class="article-title">设计模式 | 外观模式及典型应用</h1>
     
     <div class="article-meta">
         
@@ -338,26 +338,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="大数据">大数据</a>
+            <a href="javascript:" data-rel="后端">后端</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">elasticsearch</a>
+            <a href="javascript:" class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-08-30 21:10:53'>2018-08-23 11:39</time>
+        创建时间:<time class="date" title='更新时间: 2018-09-16 20:34:52'>2018-09-16 20:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2,503</span>
+        <span>字数:2,810</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -387,7 +387,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#软件环境"><span class="toc-text">软件环境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备及工程导入"><span class="toc-text">环境准备及工程导入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装JDK"><span class="toc-text">1.安装JDK</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-下载Elasticsearch源码，并且切换到6-3-2分支"><span class="toc-text">2.下载Elasticsearch源码，并且切换到6.3.2分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-下载gradle的安装包"><span class="toc-text">3.下载gradle的安装包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-拷贝文件"><span class="toc-text">4.拷贝文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-修改源码Maven仓库地址"><span class="toc-text">5.修改源码Maven仓库地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-修改全局Maven仓库地址"><span class="toc-text">6.修改全局Maven仓库地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-gradle编译源码"><span class="toc-text">7.gradle编译源码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-idea-导入elasticsearch工程"><span class="toc-text">8. idea 导入elasticsearch工程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行，开始-solve-error-模式"><span class="toc-text">运行，开始 solve error 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#另一种源码调试方式：远程调试"><span class="toc-text">另一种源码调试方式：远程调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他可能遇到的问题"><span class="toc-text">其他可能遇到的问题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外观模式"><span class="toc-text">外观模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自己泡茶喝"><span class="toc-text">自己泡茶喝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#到茶馆喝茶"><span class="toc-text">到茶馆喝茶</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外观模式总结"><span class="toc-text">外观模式总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析外观模式的典型应用"><span class="toc-text">源码分析外观模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#spring-jdbc中的外观模式"><span class="toc-text">spring jdbc中的外观模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mybatis中的外观模式"><span class="toc-text">Mybatis中的外观模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tomcat-中的外观模式"><span class="toc-text">Tomcat 中的外观模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SLF4J-中的外观模式"><span class="toc-text">SLF4J 中的外观模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -402,214 +402,354 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>想深入理解 Elasticsearch，阅读它的源码是很有必要的，一来可以了解它内部的具体实现，有助于调优，二来可以了解优秀开源项目的代码架构，提高我们的代码架构能力等</p>
-<p>阅读Elasticsearch源码的第一步是搭建调试环境，然后作者在这个过程中遇到很多麻烦，在网上找不到想要的答案，历经千辛最后一一解决，所以记录下，帮助有需要的童鞋</p>
-<h4 id="软件环境"><a href="#软件环境" class="headerlink" title="软件环境"></a>软件环境</h4><ul>
-<li>操作系统：win7</li>
-<li>Elasticsearch 源码版本: 6.3.2</li>
-<li>JDK版本： 10.0.2</li>
-<li>Gradle版本： 4.7</li>
-<li>Intellij Idea版本： 2018.2</li>
-</ul>
-<h3 id="环境准备及工程导入"><a href="#环境准备及工程导入" class="headerlink" title="环境准备及工程导入"></a>环境准备及工程导入</h3><h4 id="1-安装JDK"><a href="#1-安装JDK" class="headerlink" title="1.安装JDK"></a>1.安装JDK</h4><p>Elasticsearch 6.3.3需要JDK1.9编译，否则后面步骤会报错。</p>
-<p>Java SE Downloads 地址：<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
-<p>作者装的是 JDK 10.0.2</p>
-<h4 id="2-下载Elasticsearch源码，并且切换到6-3-2分支"><a href="#2-下载Elasticsearch源码，并且切换到6-3-2分支" class="headerlink" title="2.下载Elasticsearch源码，并且切换到6.3.2分支"></a>2.下载Elasticsearch源码，并且切换到6.3.2分支</h4><p>Elasticsearch github源码托管地址：<br><a href="https://github.com/elastic/elasticsearch.git" target="_blank" rel="noopener">https://github.com/elastic/elasticsearch.git</a></p>
-<pre><code>git checkout v6.3.2
-</code></pre><p>也可直接下载源码包，地址在 <a href="https://github.com/elastic/elasticsearch/releases" target="_blank" rel="noopener">https://github.com/elastic/elasticsearch/releases</a></p>
-<h4 id="3-下载gradle的安装包"><a href="#3-下载gradle的安装包" class="headerlink" title="3.下载gradle的安装包"></a>3.下载gradle的安装包</h4><p>查看 <code>elasticsearch\gradle\wrapper\gradle-wrapper.properties</code> 发现如下配置：</p>
-<pre><code>distributionUrl=https://services.gradle.org/distributions/gradle-4.5-all.zip
-</code></pre><p>Elasticsearch 6.3.2需要安装gradle-4.5，官方下载地址：<br><a href="https://services.gradle.org/distributions/gradle-4.5-all.zip" target="_blank" rel="noopener">https://services.gradle.org/distributions/gradle-4.5-all.zip</a></p>
-<blockquote>
-<p>注意：由于国内网速问题，为了加快速度，进行第4步操作</p>
-</blockquote>
-<h4 id="4-拷贝文件"><a href="#4-拷贝文件" class="headerlink" title="4.拷贝文件"></a>4.拷贝文件</h4><p>将下载的gradle-4.5-all.zip包放到 <code>elasticsearch\gradle\wrapper</code> 目录下，<br>确保和 <code>elasticsearch\gradle\wrapper\gradle-wrapper.properties</code> 在同级目录，<br>然后修改 <code>elasticsearch\gradle\wrapper\gradle-wrapper.properties</code> 配置如下：</p>
-<pre><code>distributionUrl=gradle-4.5-all.zip
-</code></pre><h4 id="5-修改源码Maven仓库地址"><a href="#5-修改源码Maven仓库地址" class="headerlink" title="5.修改源码Maven仓库地址"></a>5.修改源码Maven仓库地址</h4><p>国内下载国外仓库的jar包速度慢，需要替换Maven地址，设置为本地或者国内可用的Maven仓库。</p>
-<p>需要修改下列文件的 maven URL 配置：</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的主要内容：</p>
 <ul>
-<li>elasticsearch\benchmarks\build.gradle</li>
-<li>elasticsearch\client\benchmark\build.gradle</li>
+<li>介绍外观模式</li>
+<li>示例<ul>
+<li>自己泡茶</li>
+<li>到茶馆喝茶</li>
 </ul>
-<p>修改源码中上面build.gradle文件里面的<code>repositories-maven-url</code>的值，<br>配置为可用的仓库地址，譬如修改为阿里云maven地址 <code>http://maven.aliyun.com/nexus/content/groups/public/</code>，修改示例如下：</p>
-<pre><code>buildscript {
-    repositories {
-        maven {
-            url &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;
-        }
+</li>
+<li>外观模式总结</li>
+<li>外观模式的典型应用<ul>
+<li>spring JDBC 中的外观模式</li>
+<li>Mybatis中的外观模式</li>
+<li>Tomcat 中的外观模式</li>
+<li>SLF4J 中的外观模式</li>
+</ul>
+</li>
+</ul>
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><p>外观模式是一种使用频率非常高的结构型设计模式，它通过引入一个外观角色来简化客户端与子系统之间的交互，为复杂的子系统调用提供一个统一的入口，降低子系统与客户端的耦合度，且客户端调用非常方便。</p>
+<p>外观模式又称为门面模式，它是一种对象结构型模式。外观模式是迪米特法则的一种具体实现，通过引入一个新的外观角色可以降低原有系统的复杂度，同时降低客户类与子系统的耦合度。</p>
+<p>外观模式包含如下两个角色：</p>
+<p><strong>Facade（外观角色）</strong>：在客户端可以调用它的方法，在外观角色中可以知道相关的（一个或者多个）子系统的功能和责任；在正常情况下，它将所有从客户端发来的请求委派到相应的子系统去，传递给相应的子系统对象处理。</p>
+<p><strong>SubSystem（子系统角色）</strong>：在软件系统中可以有一个或者多个子系统角色，每一个子系统可以不是一个单独的类，而是一个类的集合，它实现子系统的功能；每一个子系统都可以被客户端直接调用，或者被外观角色调用，它处理由外观类传过来的请求；子系统并不知道外观的存在，对于子系统而言，外观角色仅仅是另外一个客户端而已。</p>
+<p>外观模式的目的不是给予子系统添加新的功能接口，而是为了让外部减少与子系统内多个模块的交互，松散耦合，从而让外部能够更简单地使用子系统。</p>
+<p>外观模式的本质是：<strong>封装交互，简化调用</strong>。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>泡茶需要水 <code>Water</code></p>
+<pre><code>public class Water {
+    private int temperature;    // 温度
+    private int capacity;       // 容量
+    public Water() {
+        this.temperature = 0;
+        this.capacity = 10;
     }
-    dependencies {
-        classpath &#39;com.github.jengelman.gradle.plugins:shadow:2.0.2&#39;
+    // 省略...
+}    
+</code></pre><p>泡茶需要茶叶 <code>TeaLeaf</code></p>
+<pre><code>public class TeaLeaf {
+    private String teaName;
+    // 省略...
+}    
+</code></pre><p>烧水需要用水壶烧，将水加热</p>
+<pre><code>public class KettleService {
+    public void waterBurning(String who, Water water, int burnTime) {
+        // 烧水，计算最终温度
+        int finalTermperature = Math.min(100, water.getTemperature() + burnTime * 20);
+        water.setTemperature(finalTermperature);
+        System.out.println(who + &quot; 使用水壶烧水，最终水温为 &quot; + finalTermperature);
     }
 }
-</code></pre><h4 id="6-修改全局Maven仓库地址"><a href="#6-修改全局Maven仓库地址" class="headerlink" title="6.修改全局Maven仓库地址"></a>6.修改全局Maven仓库地址</h4><p>在<code>USER_HOME/.gradle/</code>下面创建新文件 <code>init.gradle</code>，输入下面的内容并保存。</p>
-<pre><code>allprojects{
-    repositories {
-        def REPOSITORY_URL = &#39;http://maven.aliyun.com/nexus/content/groups/public/&#39;
-        all {
-            ArtifactRepository repo -&gt;
-    if (repo instanceof MavenArtifactRepository) {
-                def url = repo.url.toString()
-                if (url.startsWith(&#39;https://repo.maven.org/maven2&#39;) || url.startsWith(&#39;https://jcenter.bintray.com/&#39;)) {
-                    project.logger.lifecycle &quot;Repository ${repo.url} replaced by $REPOSITORY_URL.&quot;
-                    remove repo
-                }
+</code></pre><p>泡茶，将烧好的水与茶叶进行冲泡，最终得到一杯茶水</p>
+<pre><code>public class TeasetService {
+    public Teawater makeTeaWater(String who, Water water, TeaLeaf teaLeaf) {
+        String teawater = &quot;一杯容量为 &quot; + water.getCapacity() + &quot;, 温度为 &quot; + water.getTemperature() + &quot; 的&quot; + teaLeaf.getTeaName() + &quot;茶水&quot;;
+        System.out.println(who + &quot; 泡了&quot; + teawater);
+        return new Teawater(teawater);
+    }
+}
+</code></pre><p>人喝茶水</p>
+<pre><code>public class Man {
+    private String name;
+    public Man(String name) {
+        this.name = name;
+    }
+    public void drink(Teawater teawater) {
+        System.out.println(name + &quot; 喝了&quot; + teawater.getTeaWater());
+    }
+}
+</code></pre><h4 id="自己泡茶喝"><a href="#自己泡茶喝" class="headerlink" title="自己泡茶喝"></a>自己泡茶喝</h4><p>张三、李四各自泡茶喝，各自都需要准备茶具、茶叶、水，各自还要完成烧水、泡茶等操作</p>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        Man zhangsan = new Man(&quot;张三&quot;);
+        KettleService kettleService1 = new KettleService();
+        TeasetService teasetService1 = new TeasetService();
+        Water water1 = new Water();
+        TeaLeaf teaLeaf1 = new TeaLeaf(&quot;西湖龙井&quot;);
+        kettleService1.waterBurning(zhangsan.getName(), water1, 4);
+        Teawater teawater1 = teasetService1.makeTeaWater(zhangsan.getName(), water1, teaLeaf1);
+        zhangsan.drink(teawater1);
+        System.out.println();
+
+        Man lisi = new Man(&quot;李四&quot;);
+        KettleService kettleService2 = new KettleService();
+        TeasetService teasetService2 = new TeasetService();
+        Water water2 = new Water(10, 15);
+        TeaLeaf teaLeaf2 = new TeaLeaf(&quot;碧螺春&quot;);
+        kettleService2.waterBurning(lisi.getName(), water2, 4);
+        Teawater teawater2 = teasetService2.makeTeaWater(lisi.getName(), water2, teaLeaf2);
+        lisi.drink(teawater2);
+    }
+}
+</code></pre><p>输出为</p>
+<pre><code>张三 使用水壶烧水，最终水温为 80
+张三 泡了一杯容量为 10, 温度为 80 的西湖龙井茶水
+张三 喝了一杯容量为 10, 温度为 80 的西湖龙井茶水
+
+李四 使用水壶烧水，最终水温为 90
+李四 泡了一杯容量为 15, 温度为 90 的碧螺春茶水
+李四 喝了一杯容量为 15, 温度为 90 的碧螺春茶水
+</code></pre><p>自己泡茶喝模式图</p>
+<p><img src="http://image.laijianfeng.org/2018-09-16_174501.jpg" alt="自己泡茶喝模式图"></p>
+<h4 id="到茶馆喝茶"><a href="#到茶馆喝茶" class="headerlink" title="到茶馆喝茶"></a>到茶馆喝茶</h4><p>茶馆，茶馆有不同的套餐</p>
+<pre><code>public class TeaHouseFacade {
+    private String name;
+    private TeasetService teasetService;
+    private KettleService kettleService;
+
+    public TeaHouseFacade(String name) {
+        this.name = name;
+        this.teasetService = new TeasetService();
+        this.kettleService = new KettleService();
+    }
+
+    public Teawater makeTea(int teaNumber) {
+        switch (teaNumber) {
+            case 1:
+                Water water1 = new Water();
+                TeaLeaf teaLeaf1 = new TeaLeaf(&quot;西湖龙井&quot;);
+                kettleService.waterBurning(this.name, water1, 4);
+                Teawater teawater1 = teasetService.makeTeaWater(this.name, water1, teaLeaf1);
+                return teawater1;
+            case 2:
+                Water water2 = new Water(10, 15);
+                TeaLeaf teaLeaf2 = new TeaLeaf(&quot;碧螺春&quot;);
+                kettleService.waterBurning(this.name, water2, 4);
+                Teawater teawater2 = teasetService.makeTeaWater(this.name, water2, teaLeaf2);
+                return teawater2;
+            default:
+                Water water3 = new Water();
+                TeaLeaf teaLeaf3 = new TeaLeaf(&quot;招牌乌龙&quot;);
+                kettleService.waterBurning(this.name, water3, 5);
+                Teawater teawater3 = teasetService.makeTeaWater(this.name, water3, teaLeaf3);
+                return teawater3;
+        }
+    }
+}
+</code></pre><p>张三和李四点茶，只需要告诉茶馆套餐编号即可，水、茶叶由茶馆准备，烧水泡茶的操作由茶馆统一完成</p>
+<pre><code>public class Test {
+    public static void main(String[] args) {
+        TeaHouseFacade teaHouseFacade = new TeaHouseFacade(&quot;老舍茶馆&quot;);
+
+        Man zhangsan = new Man(&quot;张三&quot;);
+        Teawater teawater = teaHouseFacade.makeTea(1);
+        zhangsan.drink(teawater);
+        System.out.println();
+
+        Man lisi = new Man(&quot;李四&quot;);
+        Teawater teawater1 = teaHouseFacade.makeTea(2);
+        lisi.drink(teawater1);
+    }
+}
+</code></pre><p>输出为</p>
+<pre><code>老舍茶馆 使用水壶烧水，最终水温为 80
+老舍茶馆 泡了一杯容量为 10, 温度为 80 的西湖龙井茶水
+张三 喝了一杯容量为 10, 温度为 80 的西湖龙井茶水
+
+老舍茶馆 使用水壶烧水，最终水温为 90
+老舍茶馆 泡了一杯容量为 15, 温度为 90 的碧螺春茶水
+李四 喝了一杯容量为 15, 温度为 90 的碧螺春茶水
+</code></pre><p>到茶馆喝茶模式图</p>
+<p><img src="http://image.laijianfeng.org/2018-09-16_174502.jpg" alt="到茶馆喝茶模式图"></p>
+<h3 id="外观模式总结"><a href="#外观模式总结" class="headerlink" title="外观模式总结"></a>外观模式总结</h3><p>外观模式的<strong>主要优点</strong>如下：</p>
+<ul>
+<li>它对客户端屏蔽了子系统组件，减少了客户端所需处理的对象数目，并使得子系统使用起来更加容易。通过引入外观模式，客户端代码将变得很简单，与之关联的对象也很少。</li>
+<li>它实现了子系统与客户端之间的松耦合关系，这使得子系统的变化不会影响到调用它的客户端，只需要调整外观类即可。</li>
+<li>一个子系统的修改对其他子系统没有任何影响，而且子系统内部变化也不会影响到外观对象。</li>
+</ul>
+<p>外观模式的<strong>主要缺点</strong>如下：</p>
+<ul>
+<li>不能很好地限制客户端直接使用子系统类，如果对客户端访问子系统类做太多的限制则减少了可变性和灵活性。</li>
+<li>如果设计不当，增加新的子系统可能需要修改外观类的源代码，违背了开闭原则。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>当要为访问一系列复杂的子系统提供一个简单入口时可以使用外观模式。</li>
+<li>客户端程序与多个子系统之间存在很大的依赖性。引入外观类可以将子系统与客户端解耦，从而提高子系统的独立性和可移植性。</li>
+<li>在层次化结构中，可以使用外观模式定义系统中每一层的入口，层与层之间不直接产生联系，而通过外观类建立联系，降低层之间的耦合度。</li>
+</ul>
+<h3 id="源码分析外观模式的典型应用"><a href="#源码分析外观模式的典型应用" class="headerlink" title="源码分析外观模式的典型应用"></a>源码分析外观模式的典型应用</h3><h4 id="spring-jdbc中的外观模式"><a href="#spring-jdbc中的外观模式" class="headerlink" title="spring jdbc中的外观模式"></a>spring jdbc中的外观模式</h4><p>查看 <code>org.springframework.jdbc.support.JdbcUtils</code></p>
+<pre><code>public abstract class JdbcUtils {
+    public static void closeConnection(Connection con) {
+        if (con != null) {
+            try {
+                con.close();
+            }
+            catch (SQLException ex) {
+                logger.debug(&quot;Could not close JDBC Connection&quot;, ex);
+            }
+            catch (Throwable ex) {
+                // We don&#39;t trust the JDBC driver: It might throw RuntimeException or Error.
+                logger.debug(&quot;Unexpected exception on closing JDBC Connection&quot;, ex);
             }
         }
-        maven {
-            url REPOSITORY_URL
-        }
     }
+
+    public static Object getResultSetValue(ResultSet rs, int index, Class&lt;?&gt; requiredType) throws SQLException {
+        if (requiredType == null) {
+            return getResultSetValue(rs, index);
+        }
+
+        Object value = null;
+        boolean wasNullCheck = false;
+
+        // Explicitly extract typed value, as far as possible.
+        if (String.class.equals(requiredType)) {
+            value = rs.getString(index);
+        }
+        else if (boolean.class.equals(requiredType) || Boolean.class.equals(requiredType)) {
+            value = rs.getBoolean(index);
+            wasNullCheck = true;
+        }
+        else if (byte.class.equals(requiredType) || Byte.class.equals(requiredType)) {
+            value = rs.getByte(index);
+            wasNullCheck = true;
+        }
+        else if (short.class.equals(requiredType) || Short.class.equals(requiredType)) {
+            value = rs.getShort(index);
+            wasNullCheck = true;
+        }
+        else if (int.class.equals(requiredType) || Integer.class.equals(requiredType)) {
+            value = rs.getInt(index);
+            wasNullCheck = true;
+        }
+        else if (long.class.equals(requiredType) || Long.class.equals(requiredType)) {
+            value = rs.getLong(index);
+            wasNullCheck = true;
+        }
+        else if (float.class.equals(requiredType) || Float.class.equals(requiredType)) {
+            value = rs.getFloat(index);
+            wasNullCheck = true;
+        }
+        else if (double.class.equals(requiredType) || Double.class.equals(requiredType) ||
+                Number.class.equals(requiredType)) {
+            value = rs.getDouble(index);
+            wasNullCheck = true;
+        }
+        else if (byte[].class.equals(requiredType)) {
+            value = rs.getBytes(index);
+        }
+        else if (java.sql.Date.class.equals(requiredType)) {
+            value = rs.getDate(index);
+        }
+        else if (java.sql.Time.class.equals(requiredType)) {
+            value = rs.getTime(index);
+        }
+        else if (java.sql.Timestamp.class.equals(requiredType) || java.util.Date.class.equals(requiredType)) {
+            value = rs.getTimestamp(index);
+        }
+        else if (BigDecimal.class.equals(requiredType)) {
+            value = rs.getBigDecimal(index);
+        }
+        else if (Blob.class.equals(requiredType)) {
+            value = rs.getBlob(index);
+        }
+        else if (Clob.class.equals(requiredType)) {
+            value = rs.getClob(index);
+        }
+        else {
+            // Some unknown type desired -&gt; rely on getObject.
+            value = getResultSetValue(rs, index);
+        }
+
+        if (wasNullCheck &amp;&amp; value != null &amp;&amp; rs.wasNull()) {
+            value = null;
+        }
+        return value;
+    }
+    // ...省略...
+}    
+</code></pre><p>该工具类主要是对原生的 jdbc 进行了封装</p>
+<h4 id="Mybatis中的外观模式"><a href="#Mybatis中的外观模式" class="headerlink" title="Mybatis中的外观模式"></a>Mybatis中的外观模式</h4><p>查看 <code>org.apache.ibatis.session.Configuration</code> 类中以 <code>new</code> 开头的方法</p>
+<pre><code>public class Configuration {
+    public Executor newExecutor(Transaction transaction, ExecutorType executorType) {
+        executorType = executorType == null ? defaultExecutorType : executorType;
+        executorType = executorType == null ? ExecutorType.SIMPLE : executorType;
+        Executor executor;
+        if (ExecutorType.BATCH == executorType) {
+          executor = new BatchExecutor(this, transaction);
+        } else if (ExecutorType.REUSE == executorType) {
+          executor = new ReuseExecutor(this, transaction);
+        } else {
+          executor = new SimpleExecutor(this, transaction);
+        }
+        if (cacheEnabled) {
+          executor = new CachingExecutor(executor);
+        }
+        executor = (Executor) interceptorChain.pluginAll(executor);
+        return executor;
+    }
+
+    public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler,
+          ResultHandler resultHandler, BoundSql boundSql) {
+        ResultSetHandler resultSetHandler = new DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);
+        resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);
+        return resultSetHandler;
+    }
+    // ...省略...
 }
-</code></pre><p>其中<code>USER_HOME/.gradle/</code>是自己的gradle安装目录，示例值：<code>C:\Users\Administrator\.gradle</code>，<br>如果没有<code>.gradle</code>目录，可用自己创建，或者先执行第7步，等gradle安装后再回来修改。<br>上面脚本把url匹配到的仓库都替换成了阿里云的仓库，<br>如果有未匹配到的导致编译失败，可用自己仿照着添加匹配条件。</p>
-<h4 id="7-gradle编译源码"><a href="#7-gradle编译源码" class="headerlink" title="7.gradle编译源码"></a>7.gradle编译源码</h4><p>windows运行cmd，进入DOS命令行，然后切换到elasticsearch源码的根目录，执行如下命令，把elasticsearch编译为 idea 工程：</p>
-<pre><code>gradlew idea
-</code></pre><p>编译失败则按照错误信息解决问题，可用使用如下命令帮助定位问题：</p>
-<pre><code>gradlew idea -info
-gradlew idea -debug
-</code></pre><p>一般是Maven仓库地址不可用导致jar包无法下载，从而编译失败，此时请参考步骤5和6修改相关的仓库地址。</p>
-<p>编译成功后打印日志：</p>
-<pre><code>BUILD SUCCESSFUL in 1m 23s
-</code></pre><h4 id="8-idea-导入elasticsearch工程"><a href="#8-idea-导入elasticsearch工程" class="headerlink" title="8. idea 导入elasticsearch工程"></a>8. idea 导入elasticsearch工程</h4><p>idea 中 <code>File -&gt; New Project From Existing Sources</code> 选择你下载的 Elasticsearch 根目录，然后点 <code>open</code> ，之后 <code>Import project from external model -&gt; Gradle</code> , 选中 <code>Use auto-import</code>, 然后就可以了</p>
-<p>导入进去后，gradle 又会编译一遍，需要等一会，好了之后如下：</p>
-<p><img src="http://image.laijianfeng.org/20180822_142155.png" alt="IDEA导入Elasticsearch6.3.2之后"></p>
-<h3 id="运行，开始-solve-error-模式"><a href="#运行，开始-solve-error-模式" class="headerlink" title="运行，开始 solve error 模式"></a>运行，开始 solve error 模式</h3><blockquote>
-<p>前面的步骤都挺顺利，接下来遇到的 ERROR &amp; EXCEPTION 让作者耗费了好几天，心力交瘁，好在最终运行成功   </p>
+</code></pre><p>该类主要对一些创建对象的操作进行封装</p>
+<h4 id="Tomcat-中的外观模式"><a href="#Tomcat-中的外观模式" class="headerlink" title="Tomcat 中的外观模式"></a>Tomcat 中的外观模式</h4><p>Tomcat 源码中大量使用了很多外观模式</p>
+<p><img src="http://image.laijianfeng.org/20180916_193616.png" alt="Tomcat中的外观模式"></p>
+<p><code>org.apache.catalina.connector.Request</code> 和 <code>org.apache.catalina.connector.RequestFacade</code> 这两个类都实现了 <code>HttpServletRequest</code> 接口</p>
+<p>在 <code>Request</code> 中调用 <code>getRequest()</code> 实际获取的是 <code>RequestFacade</code> 的对象 </p>
+<pre><code>protected RequestFacade facade = null;
+
+public HttpServletRequest getRequest() {
+    if (facade == null) {
+        facade = new RequestFacade(this);
+    }
+    return facade;
+}
+</code></pre><p>在 <code>RequestFacade</code> 中再对认为是子系统的操作进行封装</p>
+<pre><code>public class RequestFacade implements HttpServletRequest {
+    /**
+     * The wrapped request.
+     */
+    protected Request request = null;
+
+    @Override
+    public Object getAttribute(String name) {
+        if (request == null) {
+            throw new IllegalStateException(sm.getString(&quot;requestFacade.nullRequest&quot;));
+        }
+        return request.getAttribute(name);
+    }
+    // ...省略...
+}    
+</code></pre><h4 id="SLF4J-中的外观模式"><a href="#SLF4J-中的外观模式" class="headerlink" title="SLF4J 中的外观模式"></a>SLF4J 中的外观模式</h4><p><code>SLF4J</code> 是简单的日志外观模式框架，抽象了各种日志框架例如 <code>Logback</code>、<code>Log4j</code>、<code>Commons-logging</code> 和 <code>JDK</code> 自带的 <code>logging</code> 实现接口。它使得用户可以在部署时使用自己想要的日志框架。</p>
+<p><code>SLF4J</code> <strong>没有替代任何日志框架，它仅仅是标准日志框架的外观模式</strong>。如果在类路径下除了 <code>SLF4J</code> 再没有任何日志框架，那么默认状态是在控制台输出日志。</p>
+<blockquote>
+<p>日志处理框架 Logback 是 Log4j 的改进版本，原生支持SLF4J（因为是同一作者开发的），因此 Logback＋SLF4J 的组合是日志框架的最佳选择，比 SLF4J+其它日志框架 的组合要快一些。而且Logback的配置可以是XML或Groovy代码。</p>
 </blockquote>
-<p>在 <code>elasticsearch/server/src/main/org/elasticsearch/bootstrap</code> 下找到Elasticsearch的启动类 <code>Elasticsearch.java</code>，打开文件，右键 <code>Run Elasticsearch.main()</code>，运行main方法</p>
-<p><strong>1、 报错如下：</strong></p>
-<pre><code>ERROR: the system property [es.path.conf] must be set
-</code></pre><p>这是需要配置 es.path.conf 参数，我们先在 elasticsearch 源码目录下新建一个 home 目录，然后在 <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener"><code>https://www.elastic.co/downloads/elasticsearch</code></a> 下载一个同版本号的 Elasticsearch6.3.2 发行版，解压，将 config 目录拷贝到 home 目录中</p>
-<p>然后打开 <code>Edit Configurations</code>，在 <code>VM options</code> 加入如下配置：</p>
-<p><img src="http://image.laijianfeng.org/20180822_144736.png" alt="Edit Configurations"></p>
-<pre><code>-Des.path.conf=D:\elasticsearch-6.3.2\home\config
-</code></pre><p>再次运行 <code>Run Elasticsearch.main()</code></p>
-<p><strong>2、报错如下：</strong></p>
-<pre><code>Exception in thread &quot;main&quot; java.lang.IllegalStateException: path.home is not configured
-    at org.elasticsearch.env.Environment.&lt;init&gt;(Environment.java:103)
-...
-</code></pre><p>需要配置 <code>path.home</code> 这个参数，在 VM options 中添加如下配置：</p>
-<pre><code>-Des.path.home=D:\elasticsearch-6.3.2
-</code></pre><p>再次RUN</p>
-<p><strong>3、报错如下：</strong></p>
-<pre><code>2018-08-22 15:07:17,094 main ERROR Could not register mbeans java.security.AccessControlException: access denied (&quot;javax.management.MBeanTrustPermission&quot; &quot;register&quot;)
-...
+<p>SLF4J 的 helloworld 如下：</p>
+<pre><code>import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-Caused by: java.nio.file.NoSuchFileException: D:\elasticsearch-6.3.2\modules\aggs-matrix-stats\plugin-descriptor.properties
-...
-</code></pre><p>在 VM options 中把 path.home 的值修改为如下：</p>
-<pre><code>-Des.path.home=D:\elasticsearch-6.3.2\home
-</code></pre><p>然后把 ES6.3.2 发行版中的 <code>modules</code> 文件夹复制到 <code>home</code> 目录下，然后再次RUN</p>
-<p><strong>4、报错如下：</strong></p>
-<pre><code>2018-08-22 15:12:29,876 main ERROR Could not register mbeans java.security.AccessControlException: access denied (&quot;javax.management.MBeanTrustPermission&quot; &quot;register&quot;)
-...
-</code></pre><p>在 <code>VM options</code> 中加入</p>
-<pre><code>-Dlog4j2.disable.jmx=true
-</code></pre><p>1、2、3、4 的配置最终如下：</p>
-<p><img src="http://image.laijianfeng.org/20180823_013945.png" alt="image"></p>
-<p>再次RUN</p>
-<p><strong>5、报错如下：</strong></p>
-<pre><code>[2018-08-23T00:53:17,003][ERROR][o.e.b.ElasticsearchUncaughtExceptionHandler] [] fatal error in thread [main], exiting
-java.lang.NoClassDefFoundError: org/elasticsearch/plugins/ExtendedPluginsClassLoader
-    at org.elasticsearch.plugins.PluginsService.loadBundle(PluginsService.java:632) ~[main/:?]
-    at org.elasticsearch.plugins.PluginsService.loadBundles(PluginsService.java:557) ~[main/:?]
-    at org.elasticsearch.plugins.PluginsService.&lt;init&gt;(PluginsService.java:162) ~[main/:?]
-    at org.elasticsearch.node.Node.&lt;init&gt;(Node.java:311) ~[main/:?]
-    at org.elasticsearch.node.Node.&lt;init&gt;(Node.java:252) ~[main/:?]
-    at org.elasticsearch.bootstrap.Bootstrap$5.&lt;init&gt;(Bootstrap.java:213) ~[main/:?]
-    at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:213) ~[main/:?]
-    at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:326) ~[main/:?]
-    at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:136) ~[main/:?]
-    at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:127) ~[main/:?]
-    at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:86) ~[main/:?]
-    at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:124) ~[main/:?]
-    at org.elasticsearch.cli.Command.main(Command.java:90) ~[main/:?]
-    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:93) ~[main/:?]
-    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:86) ~[main/:?]
-Caused by: java.lang.ClassNotFoundException: org.elasticsearch.plugins.ExtendedPluginsClassLoader
-    at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:582) ~[?:?]
-    at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:190) ~[?:?]
-    at java.lang.ClassLoader.loadClass(ClassLoader.java:499) ~[?:?]
-    ... 15 more
-</code></pre><p>这个问题其实不算真正的问题，但是说起来挺好笑，为了解决这个问题耗费了作者好几天，心力交瘁，当最后发现问题所在的时候，哭笑不得 ~_~  正是所谓的 <code>踏破铁鞋无觅处，得来全不费工夫</code> </p>
-<p><strong>解决方法：</strong> 打开 IDEA <code>Edit Configurations</code> ，给 <code>Include dependencies with Provided scope</code> 打上勾即可解决，很简单吧！！</p>
-<p><img src="http://image.laijianfeng.org/20180823_011036.png" alt="image"></p>
-<p>继续RUN，又来一个 Exception</p>
-<p><strong>6、报错如下：</strong></p>
-<pre><code>[2018-08-23T01:13:38,551][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]
-org.elasticsearch.bootstrap.StartupException: java.security.AccessControlException: access denied (&quot;java.lang.RuntimePermission&quot; &quot;createClassLoader&quot;)
-    at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:140) ~[main/:?]
-    at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:127) ~[main/:?]
-    at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:86) ~[main/:?]
-    at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:124) ~[main/:?]
-    at org.elasticsearch.cli.Command.main(Command.java:90) ~[main/:?]
-    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:93) ~[main/:?]
-    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:86) ~[main/:?]
-Caused by: java.security.AccessControlException: access denied (&quot;java.lang.RuntimePermission&quot; &quot;createClassLoader&quot;)
-    at java.security.AccessControlContext.checkPermission(AccessControlContext.java:472) ~[?:?]
-    at java.security.AccessController.checkPermission(AccessController.java:895) ~[?:?]
-    at java.lang.SecurityManager.checkPermission(SecurityManager.java:335) ~[?:?]
-    at java.lang.SecurityManager.checkCreateClassLoader(SecurityManager.java:397) ~[?:?]
-...
-
-Exception: java.security.AccessControlException thrown from the UncaughtExceptionHandler in thread &quot;Thread-2&quot;
-
-</code></pre><p>这个问题也找了挺久，最终才发现解决方法（两种）：</p>
-<p><strong>第一种：</strong> 在 <code>home/config</code> 目录下新建 <code>java.policy</code> 文件，填入下面内容</p>
-<pre><code>grant {
-    permission java.lang.RuntimePermission &quot;createClassLoader&quot;;
-};
-</code></pre><p>然后在 <code>VM options</code> 加入 <code>java.security.policy</code> 的设置，指向该文件即可</p>
-<pre><code>-Djava.security.policy=D:\elasticsearch-6.3.2\home\config\java.policy
-</code></pre><p><strong>第二种：</strong> 就是在 <code>%JAVA_HOME%/conf/security</code> 目录下（JDK10是这个路径，之前的版本不确定），我的目录是 <code>C:\Program Files\Java\jdk-10.0.2\conf\security</code>，打开 <code>java.policy</code> 文件，在 <code>grant</code> 中加入下面这句，赋予权限</p>
-<pre><code>permission java.lang.RuntimePermission &quot;createClassLoader&quot;;
-</code></pre><p>效果如下：</p>
-<p><img src="http://image.laijianfeng.org/20180823_013422.png" alt="java.policy"><br><img src="http://image.laijianfeng.org/20180823_012205.png" alt="createClassLoader"></p>
-<p>再RUN，这次可终于运行起来了！！！</p>
-<p>来看一下效果，浏览器访问 <code>http://localhost:9200/</code></p>
-<p><img src="http://image.laijianfeng.org/20180823_012641.png" alt="image1"></p>
-<p>浏览器访问 <code>http://localhost:9200/_cat/health?v</code></p>
-<p><img src="http://image.laijianfeng.org/20180823_012827.png" alt="image"></p>
-<p>一切正常，终于可以愉快的 DEBUG 源码啦！！！</p>
-<h3 id="另一种源码调试方式：远程调试"><a href="#另一种源码调试方式：远程调试" class="headerlink" title="另一种源码调试方式：远程调试"></a>另一种源码调试方式：远程调试</h3><p>如果上面第五个报错之后解决不了无法继续进行，可以选择这种方式:</p>
-<p>在 Elasticsearch 源码目录下打开 CMD，输入下面的命令启动一个 debug 实例</p>
-<pre><code>gradlew run --debug-jvm
-</code></pre><p>如果启动失败可能需要先执行 <code>gradlew clean</code> 再 <code>gradlew run --debug-jvm</code> 或者 先退出 IDEA</p>
-<p><img src="http://image.laijianfeng.org/20180823_111933.png" alt="image"></p>
-<p>在 IDEA 中打开 <code>Edit Configurations</code>，添加 remote</p>
-<p><img src="http://image.laijianfeng.org/20180823_104521.png" alt="image"></p>
-<p>配置 host 和 port</p>
-<p><img src="http://image.laijianfeng.org/20180823_110657.png" alt="image"></p>
-<p>点击 debug，浏览器访问 <code>http://localhost:9200/</code>，即可看到ES返回的信息</p>
-<p>随机调试一下， 打开 <code>elasticsearch/server/src/main/org/elasticsearch/rest/action/cat</code> 下的 <code>RestHealthAction</code> 类，在第 54 行出设置一个断点，然后浏览器访问 <code>http://localhost:9200/_cat/health</code>，可以看到断点已经捕获到该请求了</p>
-<p><img src="http://image.laijianfeng.org/20180823_113341.png" alt="image"></p>
-<p>运行成功，可以开始设置断点进行其他调试</p>
-<h3 id="其他可能遇到的问题"><a href="#其他可能遇到的问题" class="headerlink" title="其他可能遇到的问题"></a>其他可能遇到的问题</h3><p><strong>1. 错误信息如下</strong></p>
-<pre><code>JAVA8_HOME required to run tasks gradle
-</code></pre><p>配置环境变量 <code>JAVA8_HOME</code>，值为 JDK8 的安装目录</p>
-<p><strong>2. 错误信息如下</strong></p>
-<pre><code>[2018-08-22T13:07:23,197][INFO ][o.e.t.TransportService   ] [EFQliuV] publish_address {10.100.99.118:9300}, bound_addresses {[::]:9300}
-[2018-08-22T13:07:23,211][INFO ][o.e.b.BootstrapChecks    ] [EFQliuV] bound or publishing to a non-loopback address, enforcing bootstrap checks
-ERROR: [1] bootstrap checks failed
-[1]: initial heap size [268435456] not equal to maximum heap size [4273995776]; this can cause resize pauses and prevents mlockall from locking the entire heap
-[2018-08-22T13:07:23,219][INFO ][o.e.n.Node               ] [EFQliuV] stopping ...
-2018-08-22 13:07:23,269 Thread-2 ERROR No log4j2 configuration file found. Using default configuration: logging only errors to the console. Set system property &#39;log4j2.debug&#39; to show Log4j2 internal initialization logging.
-Disconnected from the target VM, address: &#39;127.0.0.1:5272&#39;, transport: &#39;socket&#39;
-</code></pre><p>在 <code>Edit Configurations</code> 的 <code>VM options</code> 加入下面配置</p>
-<pre><code>-Xms2g 
--Xmx2g 
-</code></pre><blockquote>
-<p>参考文档：</p>
-<ol>
-<li><a href="https://www.jianshu.com/p/61dfe6fb6625" target="_blank" rel="noopener">Eclipse导入Elasticsearch源码</a></li>
-<li><a href="https://www.felayman.com/articles/2017/11/10/1510291087246.html" target="_blank" rel="noopener">Elasticsearch源码分析—环境准备(一)</a></li>
-<li><a href="http://www.54tianzhisheng.cn/2018/08/05/es-code01/" target="_blank" rel="noopener">渣渣菜鸡的 ElasticSearch 源码解析 —— 环境搭建</a></li>
-<li><a href="http://www.54tianzhisheng.cn/2018/08/14/idea-remote-debug-elasticsearch" target="_blank" rel="noopener">教你如何在 IDEA 远程 Debug ElasticSearch</a></li>
-</ol>
+public class HelloWorld {
+  public static void main(String[] args) {
+    Logger logger = LoggerFactory.getLogger(HelloWorld.class);
+    logger.info(&quot;Hello World&quot;);
+  }
+}
+</code></pre><p>下图为 SLF4J 与日志处理框架的绑定调用关系</p>
+<p><img src="https://www.slf4j.org/images/concrete-bindings.png" alt="SLF4J与日志处理框架的绑定调用关系"></p>
+<p>应用层调用 <code>slf4j-api.jar</code>，<code>slf4j-api.jar</code> 再根据所绑定的日志处理框架调用不同的 jar 包进行处理</p>
+<blockquote>
+<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://www.cnblogs.com/xrq730/p/8619156.html" target="_blank" rel="noopener">Java日志框架：slf4j作用及其实现原理</a></p>
 </blockquote>
-<hr>
-<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
-<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+<h4 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h4><p><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483704&amp;idx=1&amp;sn=fa3ae947cebf22da35e6ac0a37f566f8&amp;chksm=e9c2ed35deb564230a69e43d93a3b74618287c6ddd402a6f1dc6a5b14a896e99584985e7cf92&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 工厂方法模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483708&amp;idx=1&amp;sn=9b8c155b86511ea6ec323dc6a72c52df&amp;chksm=e9c2ed31deb56427b2a6bbcbad5bdd3a4ef68b52eb88cc47b5bcfc76773d3d983d8aaf57761c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 抽象工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483712&amp;idx=1&amp;sn=1ffd9837eb9413dde74ff509bf69ecc5&amp;chksm=e9c2ed4ddeb5645b8cbf64c83d103a859ae49921c60e17fe8bebe63c26b04966be101d598848&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 建造者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483716&amp;idx=1&amp;sn=df00c297c8f32e10e277db8941839c14&amp;chksm=e9c2ed49deb5645fa2586da358a8f0a00dd926f883637adebc59435f846c67c040ef759ba034&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 原型模式及典型应用</a></p>
+<p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -623,12 +763,12 @@ Disconnected from the target VM, address: &#39;127.0.0.1:5272&#39;, transport: &
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>教你编译调试Elasticsearch 6.3.2源码</p>
-    <p><span>文章字数:</span><span class="post-count">2,503</span></p>
+    <p><span>文章标题:</span>设计模式 | 外观模式及典型应用</p>
+    <p><span>文章字数:</span><span class="post-count">2,810</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-08-23, 11:39:34</p>
-    <p><span>最后更新:</span>2018-08-30, 21:10:53</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/08/教你编译调试Elasticsearch-6-3-2源码/" title="教你编译调试Elasticsearch 6.3.2源码">http://laijianfeng.org/2018/08/教你编译调试Elasticsearch-6-3-2源码/</a>
+    <p><span>发布时间:</span>2018-09-16, 20:29:56</p>
+    <p><span>最后更新:</span>2018-09-16, 20:34:52</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式-外观模式及典型应用/" title="设计模式 | 外观模式及典型应用">http://laijianfeng.org/2018/09/设计模式-外观模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -640,7 +780,7 @@ Disconnected from the target VM, address: &#39;127.0.0.1:5272&#39;, transport: &
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '教你编译调试Elasticsearch 6.3.2源码', // 可选。默认为 location.href
+        id: '设计模式 | 外观模式及典型应用', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
