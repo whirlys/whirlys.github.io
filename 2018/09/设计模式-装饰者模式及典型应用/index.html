@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://image.laijianfeng.org/20180918HttpServletRequestWrapper.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180918_202157.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-09-18T12:47:03.825Z">
+<meta property="og:updated_time" content="2018-09-18T13:31:51.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式 | 装饰者模式及典型应用">
 <meta name="twitter:description" content="前言本文的主要内容：  介绍装饰者模式 示例 源码分析装饰者模式的典型应用 Java I/O 中的装饰者模式 spring session 中的装饰者模式 Mybatis 缓存中的装饰者模式   总结  装饰者模式装饰者模式(Decorator Pattern)：动态地给一个对象增加一些额外的职责，增加对象功能来说，装饰模式比生成子类实现更为灵活。装饰模式是一种对象结构型模式。 在装饰者模式中，为">
@@ -152,11 +152,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">设计模式</a>
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <div class="clearfix"></div>
@@ -365,12 +365,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-09-18 20:47:03'>2018-09-18 20:44</time>
+        创建时间:<time class="date" title='更新时间: 2018-09-18 21:31:51'>2018-09-18 20:44</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:4,190</span>
+        <span>字数:4,175</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -400,7 +400,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰者模式"><span class="toc-text">装饰者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#测试，购买煎饼"><span class="toc-text">测试，购买煎饼</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结一下"><span class="toc-text">小结一下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#透明装饰模式与半透明装饰模式"><span class="toc-text">透明装饰模式与半透明装饰模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰模式注意事项"><span class="toc-text">装饰模式注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析装饰者模式的典型应用"><span class="toc-text">源码分析装饰者模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java-I-O中的装饰者模式"><span class="toc-text">Java I/O中的装饰者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring-cache-中的装饰者模式"><span class="toc-text">spring cache 中的装饰者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring-session-中的装饰者模式"><span class="toc-text">spring session 中的装饰者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mybatis-缓存中的装饰者模式"><span class="toc-text">Mybatis 缓存中的装饰者模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰者模式总结"><span class="toc-text">装饰者模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰者模式"><span class="toc-text">装饰者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试，购买煎饼"><span class="toc-text">测试，购买煎饼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结一下"><span class="toc-text">小结一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#透明装饰模式与半透明装饰模式"><span class="toc-text">透明装饰模式与半透明装饰模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰模式注意事项"><span class="toc-text">装饰模式注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码分析装饰者模式的典型应用"><span class="toc-text">源码分析装饰者模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-I-O中的装饰者模式"><span class="toc-text">Java I/O中的装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-cache-中的装饰者模式"><span class="toc-text">spring cache 中的装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-session-中的装饰者模式"><span class="toc-text">spring session 中的装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mybatis-缓存中的装饰者模式"><span class="toc-text">Mybatis 缓存中的装饰者模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰者模式总结"><span class="toc-text">装饰者模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -415,7 +415,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的主要内容：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文的主要内容：</p>
 <ul>
 <li>介绍装饰者模式</li>
 <li>示例</li>
@@ -427,15 +427,15 @@
 </li>
 <li>总结</li>
 </ul>
-<h3 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h3><p><strong>装饰者模式(Decorator Pattern)</strong>：动态地给一个对象增加一些额外的职责，增加对象功能来说，装饰模式比生成子类实现更为灵活。装饰模式是一种对象结构型模式。</p>
+<h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><p><strong>装饰者模式(Decorator Pattern)</strong>：动态地给一个对象增加一些额外的职责，增加对象功能来说，装饰模式比生成子类实现更为灵活。装饰模式是一种对象结构型模式。</p>
 <p>在装饰者模式中，为了让系统具有更好的灵活性和可扩展性，我们通常会定义一个抽象装饰类，而将具体的装饰类作为它的子类</p>
-<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p><strong>Component（抽象构件）</strong>：它是具体构件和抽象装饰类的共同父类，声明了在具体构件中实现的业务方法，它的引入可以使客户端以一致的方式处理未被装饰的对象以及装饰之后的对象，实现客户端的透明操作。</p>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p><strong>Component（抽象构件）</strong>：它是具体构件和抽象装饰类的共同父类，声明了在具体构件中实现的业务方法，它的引入可以使客户端以一致的方式处理未被装饰的对象以及装饰之后的对象，实现客户端的透明操作。</p>
 <p><strong>ConcreteComponent（具体构件）</strong>：它是抽象构件类的子类，用于定义具体的构件对象，实现了在抽象构件中声明的方法，装饰器可以给它增加额外的职责（方法）。</p>
 <p><strong>Decorator（抽象装饰类）</strong>：它也是抽象构件类的子类，用于给具体构件增加职责，但是具体职责在其子类中实现。它维护一个指向抽象构件对象的引用，通过该引用可以调用装饰之前构件对象的方法，并通过其子类扩展该方法，以达到装饰的目的。</p>
 <p><strong>ConcreteDecorator（具体装饰类）</strong>：它是抽象装饰类的子类，负责向构件添加新的职责。每一个具体装饰类都定义了一些新的行为，它可以调用在抽象装饰类中定义的方法，并可以增加新的方法用以扩充对象的行为。</p>
 <p>由于具体构件类和装饰类都实现了相同的抽象构件接口，因此装饰模式以对客户透明的方式动态地给一个对象附加上更多的责任，换言之，客户端并不会觉得对象在装饰前和装饰后有什么不同。装饰模式可以在不需要创造更多子类的情况下，将对象的功能加以扩展。</p>
 <p>装饰模式的<strong>核心在于抽象装饰类的设计</strong>。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>煎饼抽象类</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>煎饼抽象类</p>
 <pre><code>public abstract class ABattercake {
     protected abstract String getDesc();
     protected abstract int cost();
@@ -514,7 +514,7 @@
         return super.cost() + 2;
     }
 }
-</code></pre><h4 id="测试，购买煎饼"><a href="#测试，购买煎饼" class="headerlink" title="测试，购买煎饼"></a>测试，购买煎饼</h4><p><strong>1、购买一个煎饼</strong></p>
+</code></pre><h3 id="测试，购买煎饼"><a href="#测试，购买煎饼" class="headerlink" title="测试，购买煎饼"></a>测试，购买煎饼</h3><p><strong>1、购买一个煎饼</strong></p>
 <pre><code>public class Test {
     public static void main(String[] args) {
         ABattercake aBattercake = new Battercake();
@@ -558,10 +558,10 @@
 <pre><code>煎饼 加一个鸡蛋 加一个鸡蛋 加一根香肠, 销售价格: 12
 </code></pre><p>画出UML类图如下所示</p>
 <p><img src="http://image.laijianfeng.org/20180917_225232.png" alt="装饰者模式类图"></p>
-<h4 id="小结一下"><a href="#小结一下" class="headerlink" title="小结一下"></a>小结一下</h4><p>由于具体构件类和装饰类都实现了相同的抽象构件接口，因此装饰模式以对客户透明的方式动态地给一个对象附加上更多的责任，换言之，客户端并不会觉得对象在装饰前和装饰后有什么不同。</p>
+<h3 id="小结一下"><a href="#小结一下" class="headerlink" title="小结一下"></a>小结一下</h3><p>由于具体构件类和装饰类都实现了相同的抽象构件接口，因此装饰模式以对客户透明的方式动态地给一个对象附加上更多的责任，换言之，客户端并不会觉得对象在装饰前和装饰后有什么不同。</p>
 <p>譬如我们给煎饼加上一个鸡蛋可以这么写 <code>aBattercake = new EggDecorator(aBattercake);</code>，客户端仍然可以把 <code>aBattercake</code> 当成原来的 <code>aBattercake</code>一样，不过现在的 <code>aBattercake</code>已经被装饰加上了鸡蛋</p>
 <p>装饰模式可以在不需要创造更多子类的情况下，将对象的功能加以扩展。</p>
-<h4 id="透明装饰模式与半透明装饰模式"><a href="#透明装饰模式与半透明装饰模式" class="headerlink" title="透明装饰模式与半透明装饰模式"></a>透明装饰模式与半透明装饰模式</h4><p>在上面的示例中，装饰后的对象是通过抽象构建类类型 <code>ABattercake</code> 的变量来引用的，在鸡蛋装饰器这个类中我们新增了 <code>egg()</code> 方法，如果此时我们想要<strong>单独调用该方法</strong>是调用不到的</p>
+<h3 id="透明装饰模式与半透明装饰模式"><a href="#透明装饰模式与半透明装饰模式" class="headerlink" title="透明装饰模式与半透明装饰模式"></a>透明装饰模式与半透明装饰模式</h3><p>在上面的示例中，装饰后的对象是通过抽象构建类类型 <code>ABattercake</code> 的变量来引用的，在鸡蛋装饰器这个类中我们新增了 <code>egg()</code> 方法，如果此时我们想要<strong>单独调用该方法</strong>是调用不到的</p>
 <p>除非引用变量的类型改为 <code>EggDecorator</code>，这样就可以调用了</p>
 <pre><code>EggDecorator eggBattercake = new EggDecorator(aBattercake); 
 eggBattercake.egg();
@@ -571,10 +571,10 @@ eggBattercake.egg();
 <p><strong>(2) 半透明装饰模式</strong></p>
 <p>透明装饰模式的设计难度较大，而且有时我们需要单独调用新增的业务方法。为了能够调用到新增方法，我们不得不用具体装饰类型来定义装饰之后的对象，而具体构件类型还是可以使用抽象构件类型来定义，这种装饰模式即为半透明装饰模式。</p>
 <p>半透明装饰模式可以给系统带来更多的灵活性，设计相对简单，使用起来也非常方便；但是其最大的缺点在于<strong>不能实现对同一个对象的多次装饰</strong>，而且客户端需要有区别地对待装饰之前的对象和装饰之后的对象。</p>
-<h4 id="装饰模式注意事项"><a href="#装饰模式注意事项" class="headerlink" title="装饰模式注意事项"></a>装饰模式注意事项</h4><p>(1) 尽量保持装饰类的接口与被装饰类的接口相同，这样，对于客户端而言，无论是装饰之前的对象还是装饰之后的对象都可以一致对待。这也就是说，在可能的情况下，我们应该尽量使用透明装饰模式。</p>
+<h3 id="装饰模式注意事项"><a href="#装饰模式注意事项" class="headerlink" title="装饰模式注意事项"></a>装饰模式注意事项</h3><p>(1) 尽量保持装饰类的接口与被装饰类的接口相同，这样，对于客户端而言，无论是装饰之前的对象还是装饰之后的对象都可以一致对待。这也就是说，在可能的情况下，我们应该尽量使用透明装饰模式。</p>
 <p>(2) 尽量保持具体构件类是一个“轻”类，也就是说不要把太多的行为放在具体构件类中，我们可以通过装饰类对其进行扩展。</p>
 <p>(3) 如果只有一个具体构件类，那么抽象装饰类可以作为该具体构件类的直接子类。</p>
-<h3 id="源码分析装饰者模式的典型应用"><a href="#源码分析装饰者模式的典型应用" class="headerlink" title="源码分析装饰者模式的典型应用"></a>源码分析装饰者模式的典型应用</h3><h4 id="Java-I-O中的装饰者模式"><a href="#Java-I-O中的装饰者模式" class="headerlink" title="Java I/O中的装饰者模式"></a>Java I/O中的装饰者模式</h4><p>使用 Java I/O 的时候总是有各种输入流、输出流、字符流、字节流、过滤流、缓冲流等等各种各样的流，不熟悉里边的设计模式的话总会看得云里雾里的，现在通过设计模式的角度来看 Java I/O，会好理解很多。</p>
+<h2 id="源码分析装饰者模式的典型应用"><a href="#源码分析装饰者模式的典型应用" class="headerlink" title="源码分析装饰者模式的典型应用"></a>源码分析装饰者模式的典型应用</h2><h3 id="Java-I-O中的装饰者模式"><a href="#Java-I-O中的装饰者模式" class="headerlink" title="Java I/O中的装饰者模式"></a>Java I/O中的装饰者模式</h3><p>使用 Java I/O 的时候总是有各种输入流、输出流、字符流、字节流、过滤流、缓冲流等等各种各样的流，不熟悉里边的设计模式的话总会看得云里雾里的，现在通过设计模式的角度来看 Java I/O，会好理解很多。</p>
 <p>先用一幅图来看看Java I/O到底是什么，下面的这幅图生动的刻画了Java I/O的作用。</p>
 <p><img src="http://image.laijianfeng.org/java-io-flow.png" alt="Java I/O的作用图"></p>
 <p>由上图可知在Java中应用程序通过输入流（InputStream）的Read方法从源地址处读取字节，然后通过输出流（OutputStream）的Write方法将流写入到目的地址。</p>
@@ -693,7 +693,7 @@ HELLO JAVA I/O!
 <p><img src="http://image.laijianfeng.org/20180918OutputStream.png" alt="OutputStream类图"></p>
 <p><img src="http://image.laijianfeng.org/20180918Reader.png" alt="Reader类图"></p>
 <p><img src="http://image.laijianfeng.org/20180918Writer.png" alt="Writer类图"></p>
-<h4 id="spring-cache-中的装饰者模式"><a href="#spring-cache-中的装饰者模式" class="headerlink" title="spring cache 中的装饰者模式"></a>spring cache 中的装饰者模式</h4><p>看 <code>org.springframework.cache.transaction</code> 包下的 <code>TransactionAwareCacheDecorator</code> 这个类</p>
+<h3 id="spring-cache-中的装饰者模式"><a href="#spring-cache-中的装饰者模式" class="headerlink" title="spring cache 中的装饰者模式"></a>spring cache 中的装饰者模式</h3><p>看 <code>org.springframework.cache.transaction</code> 包下的 <code>TransactionAwareCacheDecorator</code> 这个类</p>
 <pre><code>public class TransactionAwareCacheDecorator implements Cache {
     private final Cache targetCache;
 
@@ -724,7 +724,7 @@ HELLO JAVA I/O!
 </code></pre><p>该类实现了 <code>Cache</code> 接口，同时将 <code>Cache</code> 组合到类中成为了成员属性 <code>targetCache</code>，所以可以大胆猜测 <code>TransactionAwareCacheDecorator</code> 是一个装饰类，不过这里并没有抽象装饰类，且 <code>TransactionAwareCacheDecorator</code> 没有子类，这里的装饰类关系并没有Java I/O 中的装饰关系那么复杂</p>
 <p><img src="http://image.laijianfeng.org/20180918Cache.png" alt="spring cache中类图关系"></p>
 <p>该类的主要功能：通过 Spring 的 <code>TransactionSynchronizationManager</code> 将其 <code>put/evict/clear</code> 操作与 Spring 管理的事务同步，仅在成功的事务的 <code>after-commit</code> 阶段执行实际的缓存 <code>put/evict/clear</code> 操作。如果没有事务是 <code>active</code> 的，将立即执行 <code>put/evict/clear</code> 操作</p>
-<h4 id="spring-session-中的装饰者模式"><a href="#spring-session-中的装饰者模式" class="headerlink" title="spring session 中的装饰者模式"></a>spring session 中的装饰者模式</h4><blockquote>
+<h3 id="spring-session-中的装饰者模式"><a href="#spring-session-中的装饰者模式" class="headerlink" title="spring session 中的装饰者模式"></a>spring session 中的装饰者模式</h3><blockquote>
 <p>注意：适配器模式的结尾也可能是 Wrapper</p>
 </blockquote>
 <p>类 <code>ServletRequestWrapper</code> 的代码如下：</p>
@@ -747,11 +747,11 @@ HELLO JAVA I/O!
 </code></pre><p>可以看到该类对 <code>ServletRequest</code> 进行了包装，这里是一个装饰者模式，再看下图，spring session 中 <code>SessionRepositoryFilter</code> 的一个内部类 <code>SessionRepositoryRequestWrapper</code> 与 <code>ServletRequestWrapper</code> 的关系</p>
 <p><img src="http://image.laijianfeng.org/20180918HttpServletRequestWrapper.png" alt="ServletRequest类图"></p>
 <p>可见 <code>ServletRequestWrapper</code> 是第一层包装，<code>HttpServletRequestWrapper</code> 通过继承进行包装，增加了 HTTP 相关的功能，<code>SessionRepositoryRequestWrapper</code> 又通过继承进行包装，增加了 Session 相关的功能</p>
-<h4 id="Mybatis-缓存中的装饰者模式"><a href="#Mybatis-缓存中的装饰者模式" class="headerlink" title="Mybatis 缓存中的装饰者模式"></a>Mybatis 缓存中的装饰者模式</h4><p><code>org.apache.ibatis.cache</code> 包的文件结构如下所示</p>
+<h3 id="Mybatis-缓存中的装饰者模式"><a href="#Mybatis-缓存中的装饰者模式" class="headerlink" title="Mybatis 缓存中的装饰者模式"></a>Mybatis 缓存中的装饰者模式</h3><p><code>org.apache.ibatis.cache</code> 包的文件结构如下所示</p>
 <p><img src="http://image.laijianfeng.org/20180918_202157.png" alt="Mybatis cache 中的装饰者模式"></p>
 <p>我们通过类所在的包名即可判断出该类的角色，<code>Cache</code> 为抽象构件类，<code>PerpetualCache</code> 为具体构件类，<code>decorators</code> 包下的类为装饰类，没有抽象装饰类</p>
 <p>通过名称也可以判断出装饰类所要装饰的功能</p>
-<h3 id="装饰者模式总结"><a href="#装饰者模式总结" class="headerlink" title="装饰者模式总结"></a>装饰者模式总结</h3><p>装饰模式的<strong>主要优点</strong>如下：</p>
+<h2 id="装饰者模式总结"><a href="#装饰者模式总结" class="headerlink" title="装饰者模式总结"></a>装饰者模式总结</h2><p>装饰模式的<strong>主要优点</strong>如下：</p>
 <ol>
 <li>对于扩展一个对象的功能，装饰模式比继承更加灵活性，不会导致类的个数急剧增加。</li>
 <li>可以通过一种动态的方式来扩展一个对象的功能，通过配置文件可以在运行时选择不同的具体装饰类，从而实现不同的行为。</li>
@@ -769,9 +769,9 @@ HELLO JAVA I/O!
 <li>当不能采用继承的方式对系统进行扩展或者采用继承不利于系统扩展和维护时可以使用装饰模式。不能采用继承的情况主要有两类：第一类是系统中存在大量独立的扩展，为支持每一种扩展或者扩展之间的组合将产生大量的子类，使得子类数目呈爆炸性增长；第二类是因为类已定义为不能被继承（如Java语言中的final类）。</li>
 </ol>
 <blockquote>
-<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://www.cnblogs.com/xrq730/p/8619156.html" target="_blank" rel="noopener">Java日志框架：slf4j作用及其实现原理</a><br><a href="https://blog.csdn.net/u013309870/article/details/75735676" target="_blank" rel="noopener">HankingHu：由装饰者模式来深入理解Java I/O整体框架</a><br><a href="https://blog.csdn.net/qq_33394088/article/details/78512407" target="_blank" rel="noopener">HryReal：Java的io类的使用场景</a></p>
+<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://blog.csdn.net/u013309870/article/details/75735676" target="_blank" rel="noopener">HankingHu：由装饰者模式来深入理解Java I/O整体框架</a><br><a href="https://blog.csdn.net/qq_33394088/article/details/78512407" target="_blank" rel="noopener">HryReal：Java的io类的使用场景</a></p>
 </blockquote>
-<h4 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h4><p><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483704&amp;idx=1&amp;sn=fa3ae947cebf22da35e6ac0a37f566f8&amp;chksm=e9c2ed35deb564230a69e43d93a3b74618287c6ddd402a6f1dc6a5b14a896e99584985e7cf92&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 工厂方法模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483708&amp;idx=1&amp;sn=9b8c155b86511ea6ec323dc6a72c52df&amp;chksm=e9c2ed31deb56427b2a6bbcbad5bdd3a4ef68b52eb88cc47b5bcfc76773d3d983d8aaf57761c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 抽象工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483712&amp;idx=1&amp;sn=1ffd9837eb9413dde74ff509bf69ecc5&amp;chksm=e9c2ed4ddeb5645b8cbf64c83d103a859ae49921c60e17fe8bebe63c26b04966be101d598848&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 建造者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483716&amp;idx=1&amp;sn=df00c297c8f32e10e277db8941839c14&amp;chksm=e9c2ed49deb5645fa2586da358a8f0a00dd926f883637adebc59435f846c67c040ef759ba034&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 原型模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483721&amp;idx=1&amp;sn=721d0bce3bd516c10d4b6addbf3eced6&amp;chksm=e9c2ed44deb56452395c94a0b150994b94aa26cae71149e6c030d0ac32f9c3c37e2bfe9685b6&amp;scene=0#rd" target="_blank" rel="noopener">设计模式之外观模式及典型应用</a></p>
+<h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><p><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483704&amp;idx=1&amp;sn=fa3ae947cebf22da35e6ac0a37f566f8&amp;chksm=e9c2ed35deb564230a69e43d93a3b74618287c6ddd402a6f1dc6a5b14a896e99584985e7cf92&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 工厂方法模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483708&amp;idx=1&amp;sn=9b8c155b86511ea6ec323dc6a72c52df&amp;chksm=e9c2ed31deb56427b2a6bbcbad5bdd3a4ef68b52eb88cc47b5bcfc76773d3d983d8aaf57761c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 抽象工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483712&amp;idx=1&amp;sn=1ffd9837eb9413dde74ff509bf69ecc5&amp;chksm=e9c2ed4ddeb5645b8cbf64c83d103a859ae49921c60e17fe8bebe63c26b04966be101d598848&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 建造者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483716&amp;idx=1&amp;sn=df00c297c8f32e10e277db8941839c14&amp;chksm=e9c2ed49deb5645fa2586da358a8f0a00dd926f883637adebc59435f846c67c040ef759ba034&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 原型模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483721&amp;idx=1&amp;sn=721d0bce3bd516c10d4b6addbf3eced6&amp;chksm=e9c2ed44deb56452395c94a0b150994b94aa26cae71149e6c030d0ac32f9c3c37e2bfe9685b6&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 外观模式及典型应用</a></p>
 <p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
 
       
@@ -787,10 +787,10 @@ HELLO JAVA I/O!
 
 <div class="article_copyright">
     <p><span>文章标题:</span>设计模式 | 装饰者模式及典型应用</p>
-    <p><span>文章字数:</span><span class="post-count">4,190</span></p>
+    <p><span>文章字数:</span><span class="post-count">4,175</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
     <p><span>发布时间:</span>2018-09-18, 20:44:31</p>
-    <p><span>最后更新:</span>2018-09-18, 20:47:03</p>
+    <p><span>最后更新:</span>2018-09-18, 21:31:51</p>
     <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式-装饰者模式及典型应用/" title="设计模式 | 装饰者模式及典型应用">http://laijianfeng.org/2018/09/设计模式-装饰者模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -865,7 +865,7 @@ HELLO JAVA I/O!
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#java','#lucene','#设计模式','#博客',],
+            'data': ['#elasticsearch','#java','#lucene','#博客','#设计模式',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
