@@ -6,21 +6,26 @@
   <meta name="keywords" content=" elasticsearch ">
   <meta name="description" content="倒排索引与分词 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
-<meta name="keywords" content="Java设计模式">
+<meta name="description" content="本文的主要内容：  介绍组合模式 示例 组合模式总结 源码分析组合模式的典型应用 java.awt中的组合模式 Java集合中的组合模式 Mybatis SqlNode中的组合模式    组合模式树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。 由于容器对象和叶子对象在功能上的区别，">
+<meta name="keywords" content="Java设计模式,设计模式,组合模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 | 享元模式及典型应用">
-<meta property="og:url" content="http://laijianfeng.org/2018/09/设计模式-享元模式及典型应用/index.html">
+<meta property="og:title" content="设计模式 | 组合模式及典型应用">
+<meta property="og:url" content="http://laijianfeng.org/2018/10/设计模式-组合模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
+<meta property="og:description" content="本文的主要内容：  介绍组合模式 示例 组合模式总结 源码分析组合模式的典型应用 java.awt中的组合模式 Java集合中的组合模式 Mybatis SqlNode中的组合模式    组合模式树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。 由于容器对象和叶子对象在功能上的区别，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20180925_002554.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181005_123836.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20181004_164219.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181005_123837.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20181005_123833.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181004_164221.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181005_123835.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-09-24T17:24:17.933Z">
+<meta property="og:updated_time" content="2018-10-05T09:20:40.553Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 | 享元模式及典型应用">
-<meta name="twitter:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20180925_002554.png">
+<meta name="twitter:title" content="设计模式 | 组合模式及典型应用">
+<meta name="twitter:description" content="本文的主要内容：  介绍组合模式 示例 组合模式总结 源码分析组合模式的典型应用 java.awt中的组合模式 Java集合中的组合模式 Mybatis SqlNode中的组合模式    组合模式树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。 由于容器对象和叶子对象在功能上的区别，">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20181005_123836.jpg">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -99,8 +104,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="22">
-<input type="hidden" id="yelog_site_word_count" value="61.6k">
+<input type="hidden" id="yelog_site_posts_number" value="23">
+<input type="hidden" id="yelog_site_word_count" value="66.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -160,6 +165,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/10/设计模式-组合模式及典型应用/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式 | 组合模式及典型应用">设计模式 | 组合模式及典型应用</span>
+            <span class="post-date" title="2018-10-05 17:18:04">2018/10/05</span>
+        </a>
         
         <a  class="后端 "
            href="/2018/09/设计模式-享元模式及典型应用/"
