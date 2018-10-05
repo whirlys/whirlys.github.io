@@ -6,20 +6,20 @@
   <meta name="keywords" content="">
   <meta name="description" content="小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Tool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
+<meta name="description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
 <meta name="keywords" content="Java设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式 | 享元模式及典型应用">
 <meta property="og:url" content="http://laijianfeng.org/2018/09/设计模式-享元模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Tool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
+<meta property="og:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://image.laijianfeng.org/20180925_002554.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-09-24T17:17:23.613Z">
+<meta property="og:updated_time" content="2018-09-24T17:24:17.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式 | 享元模式及典型应用">
-<meta name="twitter:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Tool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
+<meta name="twitter:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
 <meta name="twitter:image" content="http://image.laijianfeng.org/20180925_002554.png">
 
 
@@ -100,7 +100,7 @@
     <div><a  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="22">
-<input type="hidden" id="yelog_site_word_count" value="61.7k">
+<input type="hidden" id="yelog_site_word_count" value="61.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -382,7 +382,7 @@
 <h2 id="内容规划"><a href="#内容规划" class="headerlink" title="内容规划"></a>内容规划</h2><blockquote>
 <ul>
 <li>后端：包括计算机基础、Java编程、JVM、软件工程、设计模式、Linux、数据库、算法与数据结构、分布式系统、算法实践等</li>
-<li>大数据：Hadoop、spark、hive、hdfs、kafka等hadoop生态圈组件</li>
+<li>大数据：Elasticsearch、Hadoop、spark、hive、hdfs、kafka等大数据组件</li>
 <li>专题：对以上两个大分类中的博文进行索引，形成专题</li>
 <li>读书：非技术书籍的阅读笔记或读后感</li>
 <li>生活杂记：记录生活故事与感悟</li>
@@ -398,7 +398,7 @@
 </ul>
 </blockquote>
 <h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题为 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> </p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字</p>
 <p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
 
         </article>

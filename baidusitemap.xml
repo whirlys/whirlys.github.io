@@ -4,8 +4,26 @@
 
     
   <url>
+    <loc>http://laijianfeng.org/2018/08/%E9%BC%93%E8%88%9E%E4%BA%BA%E5%BF%83/</loc>
+    <lastmod>2018-10-05T03:50:06.905Z</lastmod>
+    <data>
+        <display>
+        <title>鼓舞人心</title>
+        <pubTime>2018-08-27T11:51:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="读书" url="http://laijianfeng.org/categories/%E8%AF%BB%E4%B9%A6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://laijianfeng.org/2018/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F%E5%8F%8A%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8/</loc>
-    <lastmod>2018-09-24T17:17:23.613Z</lastmod>
+    <lastmod>2018-09-24T17:24:17.933Z</lastmod>
     <data>
         <display>
         <title>设计模式 | 享元模式及典型应用</title>
@@ -257,24 +275,6 @@
            
              
               <breadCrumb title="大数据" url="http://laijianfeng.org/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://laijianfeng.org/2018/08/%E9%BC%93%E8%88%9E%E4%BA%BA%E5%BF%83/</loc>
-    <lastmod>2018-08-27T11:52:52.757Z</lastmod>
-    <data>
-        <display>
-        <title>鼓舞人心</title>
-        <pubTime>2018-08-27T11:51:31.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="读书" url="http://laijianfeng.org/categories/%E8%AF%BB%E4%B9%A6/"/>
           
         </display>
     </data>

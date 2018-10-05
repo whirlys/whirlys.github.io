@@ -6,20 +6,20 @@
   <meta name="keywords" content=" 设计模式 ">
   <meta name="description" content="设计模式 | 抽象工厂模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Tool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
+<meta name="description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
 <meta name="keywords" content="Java设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式 | 享元模式及典型应用">
 <meta property="og:url" content="http://laijianfeng.org/2018/09/设计模式-享元模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Tool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
+<meta property="og:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://image.laijianfeng.org/20180925_002554.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-09-24T17:17:23.613Z">
+<meta property="og:updated_time" content="2018-09-24T17:24:17.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式 | 享元模式及典型应用">
-<meta name="twitter:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Tool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
+<meta name="twitter:description" content="前言本文的主要内容：  介绍享元模式 示例-云盘 总结 源码分析享元模式的典型应用 String中的享元模式 Integer中的享元模式 Long中的享元模式 Apache Common Pool2中的享元模式    享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由">
 <meta name="twitter:image" content="http://image.laijianfeng.org/20180925_002554.png">
 
 
@@ -100,7 +100,7 @@
     <div><a  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="22">
-<input type="hidden" id="yelog_site_word_count" value="61.7k">
+<input type="hidden" id="yelog_site_word_count" value="61.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
