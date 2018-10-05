@@ -12,8 +12,5 @@ keywords: Java
 
 
 
------
+![关注_小旋锋_微信公众号](http://image.laijianfeng.org/20180913_001328.png)
 
-打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送
-
-![小旋锋的微信公众号](http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg)

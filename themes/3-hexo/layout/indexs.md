@@ -16,7 +16,7 @@ title: 小旋锋的博客
 
 ## 内容规划
 > * 后端：包括计算机基础、Java编程、JVM、软件工程、设计模式、Linux、数据库、算法与数据结构、分布式系统、算法实践等
-> * 大数据：Hadoop、spark、hive、hdfs、kafka等hadoop生态圈组件
+> * 大数据：Elasticsearch、Hadoop、spark、hive、hdfs、kafka等大数据组件
 > * 专题：对以上两个大分类中的博文进行索引，形成专题
 > * 读书：非技术书籍的阅读笔记或读后感
 > * 生活杂记：记录生活故事与感悟
@@ -26,14 +26,15 @@ title: 小旋锋的博客
 
 > * 姓名：赖键锋
 > * 邮箱： whirlys@163.com
-> * 微信号：whirlys 
-> * QQ:1550700956
+> * github：https://github.com/whirlys 
+> * csdn：[小旋锋的博客](https://blog.csdn.net/wwwdc1012)  
+> * 微信公众号：[小旋锋](http://image.laijianfeng.org/1536383438.png)
 
 
 
 ## 博客平台
 这个博客通过 [Hexo](https://hexo.io/) 生成，部署在 [GitHub Pages](https://pages.github.com/)，主题为 [3-hexo](https://github.com/yelog/hexo-theme-3-hexo) 
 
-到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。
+到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字
 
 本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次
