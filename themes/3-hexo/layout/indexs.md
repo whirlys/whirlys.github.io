@@ -16,7 +16,7 @@ title: 小旋锋的博客
 
 ## 内容规划
 > * 后端：包括计算机基础、Java编程、JVM、软件工程、设计模式、Linux、数据库、算法与数据结构、分布式系统、算法实践等
-> * 大数据：Elasticsearch、Hadoop、spark、hive、hdfs、kafka等大数据组件
+> * 大数据：Elasticsearch、Hbase、Hadoop、spark、hive、kafka等大数据组件
 > * 专题：对以上两个大分类中的博文进行索引，形成专题
 > * 读书：非技术书籍的阅读笔记或读后感
 > * 生活杂记：记录生活故事与感悟
