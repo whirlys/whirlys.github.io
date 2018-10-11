@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Google guava工具类的介绍和使用 | 小旋锋</title>
-  <meta name="keywords" content=" java ">
-  <meta name="description" content="Google guava工具类的介绍和使用 | 小旋锋">
+  <title>设计模式 | 迭代器模式及典型应用 | 小旋锋</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="设计模式 | 迭代器模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="本文的主要内容：  介绍模板方法模式 源码分析模板方法模式的典型应用 Servlet 中的模板方法模式 Mybatis BaseExecutor接口中的模板方法模式    模板方法模式在程序开发中，经常会遇到这种情况：某个方法要实现的算法需要多个步骤，但其中有一些步骤是固定不变的，而另一些步骤则是不固定的。为了提高代码的可扩展性和可维护性，模板方法模式在这种场景下就派上了用场。 譬如制作一节网课的">
 <meta name="keywords" content="Java设计模式,设计模式,模板方法模式">
@@ -378,9 +378,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Google-guava工具类的介绍和使用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-设计模式-迭代器模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Google guava工具类的介绍和使用</h1>
+        <h1 class="article-title">设计模式 | 迭代器模式及典型应用</h1>
     
     <div class="article-meta">
         
@@ -395,19 +395,19 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">java</a>
+            <a href="javascript:" class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-08-31 00:59:59'>2018-08-31 00:58</time>
+        创建时间:<time class="date" title='更新时间: 2018-10-11 23:06:25'>2018-10-11 23:04</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2,683</span>
+        <span>字数:2,881</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -437,7 +437,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-集合的创建"><span class="toc-text">1.集合的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-将集合转换为特定规则的字符串"><span class="toc-text">2.将集合转换为特定规则的字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-将String转换为特定的集合"><span class="toc-text">3.将String转换为特定的集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-guava还支持多个字符切割，或者特定的正则分隔"><span class="toc-text">4.guava还支持多个字符切割，或者特定的正则分隔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-集合的过滤"><span class="toc-text">5. 集合的过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-检查参数"><span class="toc-text">6.检查参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-MoreObjects"><span class="toc-text">7. MoreObjects</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-强大的Ordering排序器"><span class="toc-text">8.强大的Ordering排序器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-计算中间代码的运行时间"><span class="toc-text">9.计算中间代码的运行时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-文件操作"><span class="toc-text">10.文件操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-guava缓存"><span class="toc-text">11.guava缓存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器模式"><span class="toc-text">迭代器模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器模式总结"><span class="toc-text">迭代器模式总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码分析迭代器模式的典型应用"><span class="toc-text">源码分析迭代器模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java集合中的迭代器模式"><span class="toc-text">Java集合中的迭代器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mybatis中的迭代器模式"><span class="toc-text">Mybatis中的迭代器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -452,340 +452,437 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>工具类 就是封装平常用的方法，不需要你重复造轮子，节省开发人员时间，提高工作效率。谷歌作为大公司，当然会从日常的工作中提取中很多高效率的方法出来。所以就诞生了guava。</p>
-<p>guava的优点：</p>
+        <p>本文的主要内容：</p>
 <ul>
-<li>高效设计良好的API，被Google的开发者设计，实现和使用</li>
-<li>遵循高效的java语法实践</li>
-<li>使代码更刻度，简洁，简单</li>
-<li>节约时间，资源，提高生产力</li>
+<li>介绍迭代器模式</li>
+<li>源码分析迭代器模式的典型应用<ul>
+<li>Java集合中的迭代器模式</li>
+<li>Mybatis中的迭代器模式</li>
 </ul>
-<p>Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库，例如：</p>
-<ul>
-<li>集合 [collections]</li>
-<li>缓存 [caching]</li>
-<li>原生类型支持 [primitives support]</li>
-<li>并发库 [concurrency libraries]</li>
-<li>通用注解 [common annotations]</li>
-<li>字符串处理 [string processing]</li>
-<li>I/O 等等。</li>
+</li>
 </ul>
-<p>这里借用龙果学院深入浅出Guava课程的一张图</p>
-<p><img src="http://image.laijianfeng.org/20180830_234930.png" alt="龙果学院深入浅出Guava"></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>引入gradle依赖（引入Jar包）</p>
-<pre><code>compile &#39;com.google.guava:guava:26.0-jre&#39;
-</code></pre><h4 id="1-集合的创建"><a href="#1-集合的创建" class="headerlink" title="1.集合的创建"></a>1.集合的创建</h4><pre><code>// 普通Collection的创建
-List&lt;String&gt; list = Lists.newArrayList();
-Set&lt;String&gt; set = Sets.newHashSet();
-Map&lt;String, String&gt; map = Maps.newHashMap();
+<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><p><strong>迭代器模式(Iterator Pattern)</strong>：提供一种方法来访问聚合对象，而不用暴露这个对象的内部表示，其别名为游标(Cursor)。迭代器模式是一种对象行为型模式。</p>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p><strong>Iterator（抽象迭代器）</strong>：它定义了访问和遍历元素的接口，声明了用于遍历数据元素的方法，例如：用于获取第一个元素的first()方法，用于访问下一个元素的next()方法，用于判断是否还有下一个元素的hasNext()方法，用于获取当前元素的currentItem()方法等，在具体迭代器中将实现这些方法。</p>
+<p><strong>ConcreteIterator（具体迭代器）</strong>：它实现了抽象迭代器接口，完成对聚合对象的遍历，同时在具体迭代器中通过游标来记录在聚合对象中所处的当前位置，在具体实现时，游标通常是一个表示位置的非负整数。</p>
+<p><strong>Aggregate（抽象聚合类）</strong>：它用于存储和管理元素对象，声明一个createIterator()方法用于创建一个迭代器对象，充当抽象迭代器工厂角色。</p>
+<p><strong>ConcreteAggregate（具体聚合类）</strong>：它实现了在抽象聚合类中声明的createIterator()方法，该方法返回一个与该具体聚合类对应的具体迭代器ConcreteIterator实例。</p>
+<p>在迭代器模式中，提供了一个外部的迭代器来对聚合对象进行访问和遍历，迭代器定义了一个访问该聚合元素的接口，并且可以跟踪当前遍历的元素，了解哪些元素已经遍历过而哪些没有。迭代器的引入，将使得对一个复杂聚合对象的操作变得简单。</p>
+<p>在迭代器模式中应用了工厂方法模式，抽象迭代器对应于抽象产品角色，具体迭代器对应于具体产品角色，抽象聚合类对应于抽象工厂角色，具体聚合类对应于具体工厂角色。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>我们来实现一个学生报数的示例</p>
+<p>定义一个学生类，有一个报数方法 <code>count()</code></p>
+<pre><code class="java">@Getter
+@Setter
+@ToString
+public class Student {
+    private String name;
+    private Integer number;
 
-// 不变Collection的创建
-ImmutableList&lt;String&gt; iList = ImmutableList.of(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
-ImmutableSet&lt;String&gt; iSet = ImmutableSet.of(&quot;e1&quot;, &quot;e2&quot;);
-ImmutableMap&lt;String, String&gt; iMap = ImmutableMap.of(&quot;k1&quot;, &quot;v1&quot;, &quot;k2&quot;, &quot;v2&quot;);
-</code></pre><p>创建不可变集合 先理解什么是immutable(不可变)对象</p>
-<ul>
-<li>在多线程操作下，是线程安全的</li>
-<li>所有不可变集合会比可变集合更有效的利用资源</li>
-<li>中途不可改变</li>
-</ul>
-<pre><code>ImmutableList&lt;String&gt; immutableList = ImmutableList.of(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;);
-</code></pre><p>这声明了一个<strong>不可变</strong>的List集合，List中有数据1，2，3，4。类中的 操作集合的方法（譬如add, set, sort, replace等）都被声明过期，并且抛出异常。 而没用guava之前是需要声明并且加各种包裹集合才能实现这个功能</p>
-<pre><code>  // add 方法
-  @Deprecated @Override
-  public final void add(int index, E element) {
-    throw new UnsupportedOperationException();
-  }
-</code></pre><p><strong>当我们需要一个map中包含key为String类型，value为List类型的时候</strong>，以前我们是这样写的</p>
-<pre><code>Map&lt;String,List&lt;Integer&gt;&gt; map = new HashMap&lt;String,List&lt;Integer&gt;&gt;();
-List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
-list.add(1);
-list.add(2);
-map.put(&quot;aa&quot;, list);
-System.out.println(map.get(&quot;aa&quot;));//[1, 2]
-</code></pre><p>而现在</p>
-<pre><code>Multimap&lt;String,Integer&gt; map = ArrayListMultimap.create();        
-map.put(&quot;aa&quot;, 1);
-map.put(&quot;aa&quot;, 2);
-System.out.println(map.get(&quot;aa&quot;));  //[1, 2]
-</code></pre><p><strong>其他的黑科技集合</strong></p>
-<pre><code>MultiSet: 无序+可重复   count()方法获取单词的次数  增强了可读性+操作简单
-创建方式:  Multiset&lt;String&gt; set = HashMultiset.create();
+    public Student(String name, Integer number) {
+        this.name = name;
+        this.number = number;
+    }
 
-Multimap: key-value  key可以重复  
-创建方式: Multimap&lt;String, String&gt; teachers = ArrayListMultimap.create();
-
-BiMap: 双向Map(Bidirectional Map) 键与值都不能重复
-创建方式:  BiMap&lt;String, String&gt; biMap = HashBiMap.create();
-
-Table: 双键的Map Map--&gt; Table--&gt;rowKey+columnKey+value  //和sql中的联合主键有点像
-创建方式: Table&lt;String, String, Integer&gt; tables = HashBasedTable.create();
-
-...等等(guava中还有很多java里面没有给出的集合类型)
-</code></pre><h4 id="2-将集合转换为特定规则的字符串"><a href="#2-将集合转换为特定规则的字符串" class="headerlink" title="2.将集合转换为特定规则的字符串"></a>2.将集合转换为特定规则的字符串</h4><p>以前我们将list转换为特定规则的字符串是这样写的:</p>
-<pre><code>//use java
-List&lt;String&gt; list = new ArrayList&lt;String&gt;();
-list.add(&quot;aa&quot;);
-list.add(&quot;bb&quot;);
-list.add(&quot;cc&quot;);
-String str = &quot;&quot;;
-for(int i=0; i&lt;list.size(); i++){
-    str = str + &quot;-&quot; +list.get(i);
-}
-//str 为-aa-bb-cc
-
-//use guava
-List&lt;String&gt; list = new ArrayList&lt;String&gt;();
-list.add(&quot;aa&quot;);
-list.add(&quot;bb&quot;);
-list.add(&quot;cc&quot;);
-String result = Joiner.on(&quot;-&quot;).join(list);
-//result为  aa-bb-cc
-</code></pre><p>把map集合转换为特定规则的字符串</p>
-<pre><code>Map&lt;String, Integer&gt; map = Maps.newHashMap();
-map.put(&quot;xiaoming&quot;, 12);
-map.put(&quot;xiaohong&quot;,13);
-String result = Joiner.on(&quot;,&quot;).withKeyValueSeparator(&quot;=&quot;).join(map);
-// result为 xiaoming=12,xiaohong=13
-</code></pre><h4 id="3-将String转换为特定的集合"><a href="#3-将String转换为特定的集合" class="headerlink" title="3.将String转换为特定的集合"></a>3.将String转换为特定的集合</h4><pre><code>//use java
-List&lt;String&gt; list = new ArrayList&lt;String&gt;();
-String a = &quot;1-2-3-4-5-6&quot;;
-String[] strs = a.split(&quot;-&quot;);
-for(int i=0; i&lt;strs.length; i++){
-    list.add(strs[i]);
+    public void count() {
+        System.out.println(String.format(&quot;我是 %d 号 %s&quot;, this.number, this.name));
+    }
 }
 
-//use guava
-String str = &quot;1-2-3-4-5-6&quot;;
-List&lt;String&gt; list = Splitter.on(&quot;-&quot;).splitToList(str);
-//list为  [1, 2, 3, 4, 5, 6]
-</code></pre><p>如果</p>
-<pre><code>str=&quot;1-2-3-4- 5-  6  &quot;;
-</code></pre><p>guava还可以使用 <code>omitEmptyStrings().trimResults()</code> 去除空串与空格</p>
-<pre><code>String str = &quot;1-2-3-4-  5-  6   &quot;;  
-List&lt;String&gt; list = Splitter.on(&quot;-&quot;).omitEmptyStrings().trimResults().splitToList(str);
-System.out.println(list);
-</code></pre><p><strong>将String转换为map</strong></p>
-<pre><code>String str = &quot;xiaoming=11,xiaohong=23&quot;;
-Map&lt;String,String&gt; map = Splitter.on(&quot;,&quot;).withKeyValueSeparator(&quot;=&quot;).split(str);
-</code></pre><h4 id="4-guava还支持多个字符切割，或者特定的正则分隔"><a href="#4-guava还支持多个字符切割，或者特定的正则分隔" class="headerlink" title="4.guava还支持多个字符切割，或者特定的正则分隔"></a>4.guava还支持多个字符切割，或者特定的正则分隔</h4><pre><code>String input = &quot;aa.dd,,ff,,.&quot;;
-List&lt;String&gt; result = Splitter.onPattern(&quot;[.|,]&quot;).omitEmptyStrings().splitToList(input);
-</code></pre><p>关于字符串的操作 都是在Splitter这个类上进行的</p>
-<pre><code>// 判断匹配结果
-boolean result = CharMatcher.inRange(&#39;a&#39;, &#39;z&#39;).or(CharMatcher.inRange(&#39;A&#39;, &#39;Z&#39;)).matches(&#39;K&#39;); //true
+</code></pre>
+<p>定义班级接口和班级类</p>
+<pre><code class="java">public interface StudentAggregate {
+    void addStudent(Student student);
 
-// 保留数字文本  CharMatcher.digit() 已过时   retain 保留
-//String s1 = CharMatcher.digit().retainFrom(&quot;abc 123 efg&quot;); //123
-String s1 = CharMatcher.inRange(&#39;0&#39;, &#39;9&#39;).retainFrom(&quot;abc 123 efg&quot;); // 123
+    void removeStudent(Student student);
 
-// 删除数字文本  remove 删除
-// String s2 = CharMatcher.digit().removeFrom(&quot;abc 123 efg&quot;);    //abc  efg
-String s2 = CharMatcher.inRange(&#39;0&#39;, &#39;9&#39;).removeFrom(&quot;abc 123 efg&quot;); // abc  efg
-</code></pre><h4 id="5-集合的过滤"><a href="#5-集合的过滤" class="headerlink" title="5. 集合的过滤"></a>5. 集合的过滤</h4><p>我们对于集合的过滤，思路就是迭代，然后再具体对每一个数判断，这样的代码放在程序中，难免会显得很臃肿，虽然功能都有，但是很不好看。</p>
-<p>guava写法</p>
-<pre><code>//按照条件过滤
-ImmutableList&lt;String&gt; names = ImmutableList.of(&quot;begin&quot;, &quot;code&quot;, &quot;Guava&quot;, &quot;Java&quot;);
-Iterable&lt;String&gt; fitered = Iterables.filter(names, Predicates.or(Predicates.equalTo(&quot;Guava&quot;), Predicates.equalTo(&quot;Java&quot;)));
-System.out.println(fitered); // [Guava, Java]
+    StudentIterator getStudentIterator();
+}
 
-//自定义过滤条件   使用自定义回调方法对Map的每个Value进行操作
-ImmutableMap&lt;String, Integer&gt; m = ImmutableMap.of(&quot;begin&quot;, 12, &quot;code&quot;, 15);
-        // Function&lt;F, T&gt; F表示apply()方法input的类型，T表示apply()方法返回类型
-        Map&lt;String, Integer&gt; m2 = Maps.transformValues(m, new Function&lt;Integer, Integer&gt;() {
-            public Integer apply(Integer input) {
-                if(input&gt;12){
-                    return input;
-                }else{
-                    return input+1;
-                }
+public class StudentAggregateImpl implements StudentAggregate {
+    private List&lt;Student&gt; list;  // 学生列表
+
+    public StudentAggregateImpl() {
+        this.list = new ArrayList&lt;Student&gt;();
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        this.list.add(student);
+    }
+
+    @Override
+    public void removeStudent(Student student) {
+        this.list.remove(student);
+    }
+
+    @Override
+    public StudentIterator getStudentIterator() {
+        return new StudentIteratorImpl(list);
+    }
+}
+</code></pre>
+<p>定义迭代器接口并实现迭代器</p>
+<pre><code class="java">public interface StudentIterator {
+    boolean hashNext();
+    Student next();
+}
+
+public class StudentIteratorImpl implements StudentIterator{
+    private List&lt;Student&gt; list;
+    private int position = 0;
+    private Student currentStudent;
+
+    public StudentIteratorImpl(List&lt;Student&gt; list) {
+        this.list = list;
+    }
+
+    @Override
+    public boolean hashNext() {
+        return position &lt; list.size();
+    }
+
+    @Override
+    public Student next() {
+        currentStudent = list.get(position);
+        position ++;
+        return currentStudent;
+    }
+}
+</code></pre>
+<p>测试，进行报数</p>
+<pre><code class="java">public class Test {
+    public static void main(String[] args) {
+        StudentAggregate classOne = new StudentAggregateImpl();
+        classOne.addStudent(new Student(&quot;张三&quot;, 1));
+        classOne.addStudent(new Student(&quot;李四&quot;, 2));
+        classOne.addStudent(new Student(&quot;王五&quot;, 3));
+        classOne.addStudent(new Student(&quot;赵六&quot;, 4));
+
+        // 遍历，报数
+        StudentIterator iterator = classOne.getStudentIterator();
+        while (iterator.hashNext()){
+            Student student = iterator.next();
+            student.count();
+        }
+    }
+}
+</code></pre>
+<p>输出</p>
+<pre><code>我是 1 号 张三
+我是 2 号 李四
+我是 3 号 王五
+我是 4 号 赵六
+</code></pre><p>迭代器模式类图如下</p>
+<p><img src="http://image.laijianfeng.org/20181011_214704.jpg" alt="示例.迭代器类图"></p>
+<h2 id="迭代器模式总结"><a href="#迭代器模式总结" class="headerlink" title="迭代器模式总结"></a>迭代器模式总结</h2><p>迭代器模式的<strong>主要优点</strong>如下：</p>
+<ul>
+<li>它支持以不同的方式遍历一个聚合对象，在同一个聚合对象上可以定义多种遍历方式。在迭代器模式中只需要用一个不同的迭代器来替换原有迭代器即可改变遍历算法，我们也可以自己定义迭代器的子类以支持新的遍历方式。</li>
+<li>迭代器简化了聚合类。由于引入了迭代器，在原有的聚合对象中不需要再自行提供数据遍历等方法，这样可以简化聚合类的设计。</li>
+<li>在迭代器模式中，由于引入了抽象层，增加新的聚合类和迭代器类都很方便，无须修改原有代码，满足 “开闭原则” 的要求。</li>
+</ul>
+<p>迭代器模式的<strong>主要缺点</strong>如下：</p>
+<ul>
+<li>由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</li>
+<li>抽象迭代器的设计难度较大，需要充分考虑到系统将来的扩展，例如JDK内置迭代器Iterator就无法实现逆向遍历，如果需要实现逆向遍历，只能通过其子类ListIterator等来实现，而ListIterator迭代器无法用于操作Set类型的聚合对象。在自定义迭代器时，创建一个考虑全面的抽象迭代器并不是件很容易的事情。</li>
+</ul>
+<p><strong>适用场景</strong>:</p>
+<ul>
+<li>访问一个聚合对象的内容而无须暴露它的内部表示。将聚合对象的访问与内部数据的存储分离，使得访问聚合对象时无须了解其内部实现细节。</li>
+<li>需要为一个聚合对象提供多种遍历方式。</li>
+<li>为遍历不同的聚合结构提供一个统一的接口，在该接口的实现类中为不同的聚合结构提供不同的遍历方式，而客户端可以一致性地操作该接口。</li>
+</ul>
+<h2 id="源码分析迭代器模式的典型应用"><a href="#源码分析迭代器模式的典型应用" class="headerlink" title="源码分析迭代器模式的典型应用"></a>源码分析迭代器模式的典型应用</h2><h3 id="Java集合中的迭代器模式"><a href="#Java集合中的迭代器模式" class="headerlink" title="Java集合中的迭代器模式"></a>Java集合中的迭代器模式</h3><p>看 <code>java.util.ArrayList</code> 类</p>
+<pre><code class="java">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt; implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable {
+    transient Object[] elementData; // non-private to simplify nested class access
+    private int size;
+
+    public E get(int index) {
+        rangeCheck(index);
+
+        return elementData(index);
+    }
+
+    public boolean add(E e) {
+        ensureCapacityInternal(size + 1);  // Increments modCount!!
+        elementData[size++] = e;
+        return true;
+    }
+
+    public ListIterator&lt;E&gt; listIterator() {
+        return new ListItr(0);
+    }
+
+    public ListIterator&lt;E&gt; listIterator(int index) {
+        if (index &lt; 0 || index &gt; size)
+            throw new IndexOutOfBoundsException(&quot;Index: &quot;+index);
+        return new ListItr(index);
+    }
+
+    public Iterator&lt;E&gt; iterator() {
+        return new Itr();
+    }
+
+    private class Itr implements Iterator&lt;E&gt; {
+        int cursor;       // index of next element to return
+        int lastRet = -1; // index of last element returned; -1 if no such
+        int expectedModCount = modCount;
+
+        public boolean hasNext() {
+            return cursor != size;
+        }
+
+        public E next() {
+            //...
+        }
+
+        public E next() {
+            //...
+        }
+
+        public void remove() {
+            //...
+        }
+        //...
+    }  
+
+    private class ListItr extends Itr implements ListIterator&lt;E&gt; {
+        public boolean hasPrevious() {
+            return cursor != 0;
+        }
+
+        public int nextIndex() {
+            return cursor;
+        }
+
+        public int previousIndex() {
+            return cursor - 1;
+        }
+
+        public E previous() {
+            //...
+        }
+
+        public void set(E e) {
+            //...
+        }
+
+        public void add(E e) {
+            //...
+        }
+    //...
+}
+</code></pre>
+<p>从 <code>ArrayList</code> 源码中看到了有两个迭代器 <code>Itr</code> 和 <code>ListItr</code>，分别实现 <code>Iterator</code> 和 <code>ListIterator</code> 接口；</p>
+<p>第一个当然很容易看明白，它跟我们示例的迭代器的区别是这里是一个内部类，可以直接使用 <code>ArrayList</code> 的数据列表；第二个迭代器是第一次见到， <code>ListIterator</code> 跟 <code>Iterator</code> 有什么区别呢？</p>
+<p>先看 <code>ListIterator</code> 源码</p>
+<pre><code class="java">public interface ListIterator&lt;E&gt; extends Iterator&lt;E&gt; {
+    boolean hasNext();
+    E next();
+    boolean hasPrevious();  // 返回该迭代器关联的集合是否还有上一个元素
+    E previous();           // 返回该迭代器的上一个元素
+    int nextIndex();        // 返回列表中ListIterator所需位置后面元素的索引
+    int previousIndex();    // 返回列表中ListIterator所需位置前面元素的索引
+    void remove();
+    void set(E var1);       // 从列表中将next()或previous()返回的最后一个元素更改为指定元素e
+    void add(E var1);   
+}
+</code></pre>
+<p>接着是 <code>Iterator</code> 的源码</p>
+<pre><code class="java">public interface Iterator&lt;E&gt; {
+    boolean hasNext();
+    E next();
+
+    default void remove() {
+        throw new UnsupportedOperationException(&quot;remove&quot;);
+    }
+
+    // 备注：JAVA8允许接口方法定义默认实现
+    default void forEachRemaining(Consumer&lt;? super E&gt; action) {
+        Objects.requireNonNull(action);
+        while (hasNext())
+            action.accept(next());
+    }
+}
+</code></pre>
+<p>通过源码我们看出：<code>ListIterator</code> 是一个功能更加强大的迭代器，它继承于 <code>Iterator</code> 接口，只能用于各种List类型的访问。可以通过调用 <code>listIterator()</code> 方法产生一个指向List开始处的 <code>ListIterator</code>, 还可以调用 <code>listIterator(n)</code> 方法创建一个一开始就指向列表索引为n的元素处的 <code>ListIterator</code>。</p>
+<p><code>Iterator</code> 和 <code>ListIterator</code> 主要区别概括如下:</p>
+<ul>
+<li><code>ListIterator</code> 有 <code>add()</code> 方法，可以向List中添加对象，而 <code>Iterator</code> 不能</li>
+<li><code>ListIterator</code> 和 <code>Iterator</code> 都有 <code>hasNext()</code> 和 <code>next()</code> 方法，可以实现顺序向后遍历，但是 <code>ListIterator</code> 有 <code>hasPrevious()</code> 和 <code>previous()</code> 方法，可以实现逆向（顺序向前）遍历。<code>Iterator</code> 就不可以。</li>
+<li><code>ListIterator</code> 可以定位当前的索引位置，<code>nextIndex()</code> 和 <code>previousIndex()</code> 可以实现。<code>Iterator</code> 没有此功能。</li>
+<li>都可实现删除对象，但是 <code>ListIterator</code> 可以实现对象的修改，<code>set()</code> 方法可以实现。<code>Iierator</code> 仅能遍历，不能修改。</li>
+</ul>
+<p>敲一个 Iterator 的 Demo 探究一下</p>
+<pre><code class="java">public class Test3 {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        list.add(&quot;张三&quot;);
+        list.add(&quot;李四&quot;);
+        list.add(&quot;王五&quot;);
+        list.add(&quot;赵六&quot;);
+
+        Iterator&lt;String&gt; iterator = list.iterator();
+
+        String first = iterator.next();
+        System.out.println(&quot;first: &quot; + first);
+
+        System.out.println(&quot;-----------next-------------&quot;);
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+
+        iterator.remove();
+
+        System.out.println(&quot;-----------list-------------&quot;);
+
+        for (String name: list){
+            System.out.println(name);
+        }
+    }
+}
+</code></pre>
+<p>输出结果</p>
+<pre><code>first: 张三
+-----------next-------------
+李四
+王五
+赵六
+-----------list-------------
+张三
+李四
+王五
+</code></pre><p>可以看到 <code>Iterator.remove()</code> 会删除原来的 List 对象的数据</p>
+<p>再敲一个 ListIterator 的 Demo 探究一下</p>
+<pre><code class="java">public class Test2 {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        list.add(&quot;张三&quot;);
+        list.add(&quot;李四&quot;);
+        list.add(&quot;王五&quot;);
+        list.add(&quot;赵六&quot;);
+
+        ListIterator&lt;String&gt; listIterator = list.listIterator();
+
+        String first = listIterator.next();
+        listIterator.set(&quot;小明&quot;);
+        System.out.println(&quot;first: &quot; + first);
+
+        System.out.println(&quot;-----------next-------------&quot;);
+        listIterator.add(&quot;大明&quot;);
+
+        while (listIterator.hasNext()){
+            System.out.println(listIterator.nextIndex() + &quot;: &quot; + listIterator.next());
+        }
+
+        listIterator.remove();
+
+        System.out.println(&quot;------------previous------------&quot;);
+        while (listIterator.hasPrevious()){
+            System.out.println(listIterator.previousIndex() + &quot;: &quot; + listIterator.previous());
+        }
+
+        System.out.println(&quot;-----------list-------------&quot;);
+
+        for (String name: list){
+            System.out.println(name);
+        }
+    }
+}
+</code></pre>
+<p>结果如下</p>
+<pre><code class="java">first: 张三
+-----------next-------------
+2: 李四
+3: 王五
+4: 赵六
+------------previous------------
+3: 王五
+2: 李四
+1: 大明
+0: 小明
+-----------list-------------
+小明
+大明
+李四
+王五
+</code></pre>
+<p>可以看出 <code>ListIterator</code> 的 <code>add</code>、<code>set</code>、<code>remove</code> 方法会直接改变原来的 List 对象，而且可以通过 <code>previous</code> 反向遍历</p>
+<h3 id="Mybatis中的迭代器模式"><a href="#Mybatis中的迭代器模式" class="headerlink" title="Mybatis中的迭代器模式"></a>Mybatis中的迭代器模式</h3><p>当查询数据库返回大量的数据项时可以使用游标 <code>Cursor</code>，利用其中的迭代器可以懒加载数据，避免因为一次性加载所有数据导致内存奔溃，Mybatis 为 <code>Cursor</code> 接口提供了一个默认实现类 <code>DefaultCursor</code>，代码如下</p>
+<pre><code class="java">public interface Cursor&lt;T&gt; extends Closeable, Iterable&lt;T&gt; {
+    boolean isOpen();
+    boolean isConsumed();
+    int getCurrentIndex();
+}
+
+public class DefaultCursor&lt;T&gt; implements Cursor&lt;T&gt; {
+    private final DefaultResultSetHandler resultSetHandler;
+    private final ResultMap resultMap;
+    private final ResultSetWrapper rsw;
+    private final RowBounds rowBounds;
+    private final ObjectWrapperResultHandler&lt;T&gt; objectWrapperResultHandler = new ObjectWrapperResultHandler&lt;T&gt;();
+
+    // 游标迭代器
+    private final CursorIterator cursorIterator = new CursorIterator(); 
+
+    protected T fetchNextUsingRowBound() {
+        T result = fetchNextObjectFromDatabase();
+        while (result != null &amp;&amp; indexWithRowBound &lt; rowBounds.getOffset()) {
+            result = fetchNextObjectFromDatabase();
+        }
+        return result;
+    }
+
+    @Override
+    public Iterator&lt;T&gt; iterator() {
+        if (iteratorRetrieved) {
+            throw new IllegalStateException(&quot;Cannot open more than one iterator on a Cursor&quot;);
+        }
+        iteratorRetrieved = true;
+        return cursorIterator;
+    }
+
+    private class CursorIterator implements Iterator&lt;T&gt; {
+
+        T object;
+        int iteratorIndex = -1;
+
+        @Override
+        public boolean hasNext() {
+            if (object == null) {
+                object = fetchNextUsingRowBound();
             }
-        });
-System.out.println(m2);   //{begin=13, code=15}
+            return object != null;
+        }
 
-</code></pre><p>set的交集, 并集, 差集</p>
-<pre><code>HashSet setA = newHashSet(1, 2, 3, 4, 5);  
-HashSet setB = newHashSet(4, 5, 6, 7, 8);  
+        @Override
+        public T next() {
+            T next = object;
 
-SetView union = Sets.union(setA, setB);    
-System.out.println(&quot;union:&quot;);  
-for (Integer integer : union)  
-    System.out.println(integer);           //union 并集:12345867
+            if (next == null) {
+                next = fetchNextUsingRowBound();
+            }
 
-SetView difference = Sets.difference(setA, setB);  
-System.out.println(&quot;difference:&quot;);  
-for (Integer integer : difference)  
-    System.out.println(integer);        //difference 差集:123
+            if (next != null) {
+                object = null;
+                iteratorIndex++;
+                return next;
+            }
+            throw new NoSuchElementException();
+        }
 
-SetView intersection = Sets.intersection(setA, setB);  
-System.out.println(&quot;intersection:&quot;);  
-for (Integer integer : intersection)  
-    System.out.println(integer);  //intersection 交集:45
-</code></pre><p>map的交集，并集，差集</p>
-<pre><code>HashMap&lt;String, Integer&gt; mapA = Maps.newHashMap();
-mapA.put(&quot;a&quot;, 1);mapA.put(&quot;b&quot;, 2);mapA.put(&quot;c&quot;, 3);
-
-HashMap&lt;String, Integer&gt; mapB = Maps.newHashMap();
-mapB.put(&quot;b&quot;, 20);mapB.put(&quot;c&quot;, 3);mapB.put(&quot;d&quot;, 4);
-
-MapDifference differenceMap = Maps.difference(mapA, mapB);
-differenceMap.areEqual();
-Map entriesDiffering = differenceMap.entriesDiffering();
-Map entriesOnlyLeft = differenceMap.entriesOnlyOnLeft();
-Map entriesOnlyRight = differenceMap.entriesOnlyOnRight();
-Map entriesInCommon = differenceMap.entriesInCommon();
-
-System.out.println(entriesDiffering);   // {b=(2, 20)}
-System.out.println(entriesOnlyLeft);    // {a=1}
-System.out.println(entriesOnlyRight);   // {d=4}
-System.out.println(entriesInCommon);    // {c=3}
-</code></pre><h4 id="6-检查参数"><a href="#6-检查参数" class="headerlink" title="6.检查参数"></a>6.检查参数</h4><pre><code>//use java
-if(list!=null &amp;&amp; list.size()&gt;0)
-&#39;&#39;&#39;
-if(str!=null &amp;&amp; str.length()&gt;0)
-&#39;&#39;&#39;
-if(str !=null &amp;&amp; !str.isEmpty())
-
-//use guava
-if(!Strings.isNullOrEmpty(str))
-
-//use java
-if (count &lt;= 0) {
-    throw new IllegalArgumentException(&quot;must be positive: &quot; + count);         
-}    
-
-//use guava
-Preconditions.checkArgument(count &gt; 0, &quot;must be positive: %s&quot;, count);  
-</code></pre><p>免去了很多麻烦！并且会使你的代码看上去更好看。而不是代码里面充斥着 <code>!=null</code>， <code>!=&quot;&quot;</code></p>
-<p><strong>检查是否为空,不仅仅是字符串类型，其他类型的判断，全部都封装在 Preconditions类里，里面的方法全为静态</strong></p>
-<p>其中的一个方法的源码</p>
-<pre><code>@CanIgnoreReturnValue
-public static &lt;T&gt; T checkNotNull(T reference) {
-    if (reference == null) {
-      throw new NullPointerException();
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException(&quot;Cannot remove element from Cursor&quot;);
+        }
     }
-    return reference;
+    // ...
 }
-</code></pre><table>
-<thead>
-<tr>
-<th>方法声明（不包括额外参数）</th>
-<th>描述</th>
-<th>检查失败时抛出的异常</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>checkArgument(boolean)</td>
-<td>检查boolean是否为true，用来检查传递给方法的参数。</td>
-<td>IllegalArgumentException</td>
-</tr>
-<tr>
-<td>checkNotNull(T)</td>
-<td>检查value是否为null，该方法直接返回value，因此可以内嵌使用checkNotNull。</td>
-<td>NullPointerException</td>
-</tr>
-<tr>
-<td>checkState(boolean)</td>
-<td>用来检查对象的某些状态。</td>
-<td>IllegalStateException</td>
-</tr>
-<tr>
-<td>checkElementIndex(int index, int size)</td>
-<td>检查index作为索引值对某个列表、字符串或数组是否有效。   index &gt; 0 &amp;&amp; index &lt; size</td>
-<td>IndexOutOfBoundsException</td>
-</tr>
-<tr>
-<td>checkPositionIndexes(int start, int end, int size)</td>
-<td>检查[start,end]表示的位置范围对某个列表、字符串或数组是否有效</td>
-<td>IndexOutOfBoundsException</td>
-</tr>
-</tbody>
-</table>
-<h4 id="7-MoreObjects"><a href="#7-MoreObjects" class="headerlink" title="7. MoreObjects"></a>7. MoreObjects</h4><p>这个方法是在Objects过期后官方推荐使用的替代品，该类最大的好处就是不用大量的重写 <code>toString</code>，用一种很优雅的方式实现重写，或者在某个场景定制使用。</p>
-<pre><code>Person person = new Person(&quot;aa&quot;,11);
-String str = MoreObjects.toStringHelper(&quot;Person&quot;).add(&quot;age&quot;, person.getAge()).toString();
-System.out.println(str);  
-//输出Person{age=11}
-</code></pre><h4 id="8-强大的Ordering排序器"><a href="#8-强大的Ordering排序器" class="headerlink" title="8.强大的Ordering排序器"></a>8.强大的Ordering排序器</h4><p>排序器[Ordering]是Guava流畅风格比较器[Comparator]的实现，它可以用来为构建复杂的比较器，以完成集合排序的功能。</p>
-<pre><code>natural()    对可排序类型做自然排序，如数字按大小，日期按先后排序
-usingToString()    按对象的字符串形式做字典排序[lexicographical ordering]
-from(Comparator)    把给定的Comparator转化为排序器
-reverse()    获取语义相反的排序器
-nullsFirst()    使用当前排序器，但额外把null值排到最前面。
-nullsLast()    使用当前排序器，但额外把null值排到最后面。
-compound(Comparator)    合成另一个比较器，以处理当前排序器中的相等情况。
-lexicographical()    基于处理类型T的排序器，返回该类型的可迭代对象Iterable&lt;T&gt;的排序器。
-onResultOf(Function)    对集合中元素调用Function，再按返回值用当前排序器排序。
-</code></pre><p>示例</p>
-<pre><code>Person person = new Person(&quot;aa&quot;,14);  //String name  ,Integer age
-Person ps = new Person(&quot;bb&quot;,13);
-Ordering&lt;Person&gt; byOrdering = Ordering.natural().nullsFirst().onResultOf(new Function&lt;Person,String&gt;(){
-    public String apply(Person person){
-        return person.age.toString();
-    }
-});
-byOrdering.compare(person, ps);
-System.out.println(byOrdering.compare(person, ps)); //1      person的年龄比ps大 所以输出1
-</code></pre><h4 id="9-计算中间代码的运行时间"><a href="#9-计算中间代码的运行时间" class="headerlink" title="9.计算中间代码的运行时间"></a>9.计算中间代码的运行时间</h4><pre><code>Stopwatch stopwatch = Stopwatch.createStarted();
-for(int i=0; i&lt;100000; i++){
-    // do some thing
-}
-long nanos = stopwatch.elapsed(TimeUnit.MILLISECONDS);
-System.out.println(nanos);
-</code></pre><p>TimeUnit 可以指定时间输出精确到多少时间</p>
-<h4 id="10-文件操作"><a href="#10-文件操作" class="headerlink" title="10.文件操作"></a>10.文件操作</h4><p>以前我们写文件读取的时候要定义缓冲区，各种条件判断，各种 <code>$%#$@#</code></p>
-<p>而现在我们只需要使用好guava的api 就能使代码变得简洁，并且不用担心因为写错逻辑而背锅了</p>
-<pre><code>File file = new File(&quot;test.txt&quot;);
-List&lt;String&gt; list = null;
-try {
-    list = Files.readLines(file, Charsets.UTF_8);
-} catch (Exception e) {
-}
-
-Files.copy(from,to);  //复制文件
-Files.deleteDirectoryContents(File directory); //删除文件夹下的内容(包括文件与子文件夹)  
-Files.deleteRecursively(File file); //删除文件或者文件夹  
-Files.move(File from, File to); //移动文件
-URL url = Resources.getResource(&quot;abc.xml&quot;); //获取classpath根下的abc.xml文件url
-</code></pre><p>Files类中还有许多方法可以用，可以多多翻阅</p>
-<h4 id="11-guava缓存"><a href="#11-guava缓存" class="headerlink" title="11.guava缓存"></a>11.guava缓存</h4><p>guava的缓存设计的比较巧妙，可以很精巧的使用。guava缓存创建分为两种，一种是CacheLoader,另一种则是callback方式</p>
-<p>CacheLoader:</p>
-<pre><code>LoadingCache&lt;String,String&gt; cahceBuilder=CacheBuilder
-                .newBuilder()
-                .build(new CacheLoader&lt;String, String&gt;(){
-                    @Override
-                    public String load(String key) throws Exception {        
-                        String strProValue=&quot;hello &quot;+key+&quot;!&quot;;                
-                        return strProValue;
-                    }
-                });        
-System.out.println(cahceBuilder.apply(&quot;begincode&quot;));  //hello begincode!
-System.out.println(cahceBuilder.get(&quot;begincode&quot;)); //hello begincode!
-System.out.println(cahceBuilder.get(&quot;wen&quot;)); //hello wen!
-System.out.println(cahceBuilder.apply(&quot;wen&quot;)); //hello wen!
-System.out.println(cahceBuilder.apply(&quot;da&quot;));//hello da!
-cahceBuilder.put(&quot;begin&quot;, &quot;code&quot;);
-System.out.println(cahceBuilder.get(&quot;begin&quot;)); //code
-</code></pre><p>api中已经把apply声明为过期，声明中推荐使用get方法获取值</p>
-<p>callback方式:</p>
-<pre><code> Cache&lt;String, String&gt; cache = CacheBuilder.newBuilder().maximumSize(1000).build();  
-            String resultVal = cache.get(&quot;code&quot;, new Callable&lt;String&gt;() {  
-                public String call() {  
-                    String strProValue=&quot;begin &quot;+&quot;code&quot;+&quot;!&quot;;                
-                    return strProValue;
-                }  
-            });  
- System.out.println(&quot;value : &quot; + resultVal); //value : begin code!
-</code></pre><p>以上只是guava使用的一小部分，guava是个大的工具类，第一版guava是2010年发布的，每一版的更新和迭代都是一种创新。</p>
-<p>jdk的升级很多都是借鉴guava里面的思想来进行的。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>代码可以在 <a href="https://github.com/whirlys/elastic-example/tree/master/guava" target="_blank" rel="noopener">https://github.com/whirlys/elastic-example/tree/master/guava</a> 下载</p>
-<p>细节请翻看 guava 文档 <a href="https://github.com/google/guava/wiki" target="_blank" rel="noopener">https://github.com/google/guava/wiki</a></p>
+</code></pre>
+<p>游标迭代器 <code>CursorIterator</code> 实现了 <code>java.util.Iterator</code> 迭代器接口，这里的迭代器模式跟 <code>ArrayList</code> 中的迭代器几乎一样</p>
 <blockquote>
-<p>参考：<br><a href="https://my.oschina.net/u/2551035/blog/802634" target="_blank" rel="noopener">Google guava工具类的介绍和使用</a><br><a href="https://blog.csdn.net/ac_dao_di/article/details/53750028" target="_blank" rel="noopener">Guava工具类学习</a></p>
+<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://blog.csdn.net/weixin_39241397/article/details/79687789" target="_blank" rel="noopener">Java 集合中关于Iterator 和ListIterator的详解</a>   </p>
 </blockquote>
-<hr>
-<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
-<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+<h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><p><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483704&amp;idx=1&amp;sn=fa3ae947cebf22da35e6ac0a37f566f8&amp;chksm=e9c2ed35deb564230a69e43d93a3b74618287c6ddd402a6f1dc6a5b14a896e99584985e7cf92&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 工厂方法模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483708&amp;idx=1&amp;sn=9b8c155b86511ea6ec323dc6a72c52df&amp;chksm=e9c2ed31deb56427b2a6bbcbad5bdd3a4ef68b52eb88cc47b5bcfc76773d3d983d8aaf57761c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 抽象工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483712&amp;idx=1&amp;sn=1ffd9837eb9413dde74ff509bf69ecc5&amp;chksm=e9c2ed4ddeb5645b8cbf64c83d103a859ae49921c60e17fe8bebe63c26b04966be101d598848&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 建造者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483716&amp;idx=1&amp;sn=df00c297c8f32e10e277db8941839c14&amp;chksm=e9c2ed49deb5645fa2586da358a8f0a00dd926f883637adebc59435f846c67c040ef759ba034&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 原型模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483721&amp;idx=1&amp;sn=721d0bce3bd516c10d4b6addbf3eced6&amp;chksm=e9c2ed44deb56452395c94a0b150994b94aa26cae71149e6c030d0ac32f9c3c37e2bfe9685b6&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 外观模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483726&amp;idx=1&amp;sn=df583e5b297ddaff5e1ab822df762274&amp;chksm=e9c2ed43deb56455d2a099f3c3e8622031027d6da00202e6a7d731eac691e4d87d673ca103b5&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 装饰者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483730&amp;idx=1&amp;sn=859feab7f4632b7ba3d1b5a614d57bbe&amp;chksm=e9c2ed5fdeb56449575995778573fa05a3730ac72792d70fc91e38e2d2f5238899f620481d16&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 适配器模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483737&amp;idx=1&amp;sn=ed27a42a80b87ff74f1e1266d918ad5b&amp;chksm=e9c2ed54deb56442aba5c95fbddd4c774eb39ebe7ab8c03471a62e3cf3979e303cef43417bac&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 享元模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483742&amp;idx=1&amp;sn=436670dc4793c6c9e7207ca6222e062c&amp;chksm=e9c2ed53deb56445c7fb1aef89ab80b23bab96e6f9993618c98e1746209eec05f36b231cfaa8&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 组合模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483747&amp;idx=1&amp;sn=aa494215a2933e2424a6daa03587e478&amp;chksm=e9c2ed6edeb564783b9acd9f5372a08d53d04b001ca362c9213c4379bc7e1bff363e4ad01e3c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 模板方法模式及典型应用</a>   </p>
+<p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -799,12 +896,12 @@ System.out.println(cahceBuilder.get(&quot;begin&quot;)); //code
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>Google guava工具类的介绍和使用</p>
-    <p><span>文章字数:</span><span class="post-count">2,683</span></p>
+    <p><span>文章标题:</span>设计模式 | 迭代器模式及典型应用</p>
+    <p><span>文章字数:</span><span class="post-count">2,881</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-08-31, 00:58:57</p>
-    <p><span>最后更新:</span>2018-08-31, 00:59:59</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/08/Google-guava工具类的介绍和使用/" title="Google guava工具类的介绍和使用">http://laijianfeng.org/2018/08/Google-guava工具类的介绍和使用/</a>
+    <p><span>发布时间:</span>2018-10-11, 23:04:40</p>
+    <p><span>最后更新:</span>2018-10-11, 23:06:25</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/10/设计模式-迭代器模式及典型应用/" title="设计模式 | 迭代器模式及典型应用">http://laijianfeng.org/2018/10/设计模式-迭代器模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -816,7 +913,7 @@ System.out.println(cahceBuilder.get(&quot;begin&quot;)); //code
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'Google guava工具类的介绍和使用', // 可选。默认为 location.href
+        id: '设计模式 | 迭代器模式及典型应用', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {

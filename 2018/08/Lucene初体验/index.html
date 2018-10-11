@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://image.laijianfeng.org/20181010_214703.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20181010_214704.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-10-10T16:25:53.348Z">
+<meta property="og:updated_time" content="2018-10-10T16:28:29.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式 | 模板方法模式及典型应用">
 <meta name="twitter:description" content="本文的主要内容：  介绍模板方法模式 源码分析模板方法模式的典型应用 Servlet 中的模板方法模式 Mybatis BaseExecutor接口中的模板方法模式    模板方法模式在程序开发中，经常会遇到这种情况：某个方法要实现的算法需要多个步骤，但其中有一些步骤是固定不变的，而另一些步骤则是不固定的。为了提高代码的可扩展性和可维护性，模板方法模式在这种场景下就派上了用场。 譬如制作一节网课的">
@@ -87,9 +87,9 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="生活杂记"> 生活杂记 </li>
-    
     <li data-rel="大数据"> 大数据 </li>
+    
+    <li data-rel="生活杂记"> 生活杂记 </li>
     
     <li data-rel="后端"> 后端 </li>
     
@@ -102,8 +102,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="24">
-<input type="hidden" id="yelog_site_word_count" value="69.9k">
+<input type="hidden" id="yelog_site_posts_number" value="25">
+<input type="hidden" id="yelog_site_word_count" value="72.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -141,11 +141,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
+        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -165,6 +165,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/10/设计模式-迭代器模式及典型应用/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式 | 迭代器模式及典型应用">设计模式 | 迭代器模式及典型应用</span>
+            <span class="post-date" title="2018-10-11 23:04:40">2018/10/11</span>
+        </a>
         
         <a  class="后端 "
            href="/2018/10/设计模式-模板方法模式及典型应用/"
@@ -983,7 +991,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#java','#lucene','#设计模式','#博客',],
+            'data': ['#elasticsearch','#lucene','#java','#设计模式','#博客',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
