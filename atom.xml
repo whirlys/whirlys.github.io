@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://laijianfeng.org/"/>
-  <updated>2018-10-11T15:06:25.849Z</updated>
+  <updated>2018-10-13T14:18:47.380Z</updated>
   <id>http://laijianfeng.org/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>20181013-燃烧吧，破铜烂铁！</title>
+    <link href="http://laijianfeng.org/2018/10/20181013-%E7%87%83%E7%83%A7%E5%90%A7%EF%BC%8C%E7%A0%B4%E9%93%9C%E7%83%82%E9%93%81%EF%BC%81/"/>
+    <id>http://laijianfeng.org/2018/10/20181013-燃烧吧，破铜烂铁！/</id>
+    <published>2018-10-13T14:01:20.000Z</published>
+    <updated>2018-10-13T14:18:47.380Z</updated>
+    
+    <content type="html"><![CDATA[<p>燃烧吧，破铜烂铁！</p><p><img src="http://image.laijianfeng.org/20181013220016.jpg" alt="英国Junnk乐队极限音乐会"></p><p>燃烧吧，青春！</p><video src="http://image.laijianfeng.org/WeChat_20181013215718.mp4" controls="controls"><br>英国Junnk乐队极限音乐会<br></video>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;燃烧吧，破铜烂铁！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://image.laijianfeng.org/20181013220016.jpg&quot; alt=&quot;英国Junnk乐队极限音乐会&quot;&gt;&lt;/p&gt;
+&lt;p&gt;燃烧吧，青春！&lt;/p&gt;
+&lt;video src=&quot;http://i
+      
+    
+    </summary>
+    
+      <category term="生活杂记" scheme="http://laijianfeng.org/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>设计模式 | 迭代器模式及典型应用</title>
@@ -539,29 +565,6 @@
     
     
       <category term="elasticsearch" scheme="http://laijianfeng.org/tags/elasticsearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>20180818音乐会</title>
-    <link href="http://laijianfeng.org/2018/08/20180818%E9%9F%B3%E4%B9%90%E4%BC%9A/"/>
-    <id>http://laijianfeng.org/2018/08/20180818音乐会/</id>
-    <published>2018-08-18T14:44:24.000Z</published>
-    <updated>2018-08-18T15:02:13.767Z</updated>
-    
-    <content type="html"><![CDATA[<div style="text-align: center"><br><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=116837&auto=1&height=66"></iframe><br><br></div><p>感受幸福，感受快乐，感受…悲伤….</p><p><img src="http://image.laijianfeng.org/20180818224224.jpg" alt="丹麦钢琴家克里斯蒂娜·比约克独奏音乐会"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;div style=&quot;text-align: center&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//
-      
-    
-    </summary>
-    
-      <category term="生活杂记" scheme="http://laijianfeng.org/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%AE%B0/"/>
-    
     
   </entry>
   
