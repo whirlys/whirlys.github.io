@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>设计模式 | 装饰者模式及典型应用 | 小旋锋</title>
+  <title>设计模式 | 策略模式及典型应用 | 小旋锋</title>
   <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="设计模式 | 装饰者模式及典型应用 | 小旋锋">
+  <meta name="description" content="设计模式 | 策略模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="燃烧吧，破铜烂铁！  燃烧吧，青春！ 英国Junnk乐队极限音乐会">
 <meta name="keywords" content="小旋锋,小旋锋的博客,大数据,技术博客,高质量博客,个人博客,独立博客,Java,hadoop,spark">
@@ -390,9 +390,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-设计模式-装饰者模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-设计模式-策略模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">设计模式 | 装饰者模式及典型应用</h1>
+        <h1 class="article-title">设计模式 | 策略模式及典型应用</h1>
     
     <div class="article-meta">
         
@@ -414,12 +414,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-09-18 21:31:51'>2018-09-18 20:44</time>
+        创建时间:<time class="date" title='更新时间: 2018-10-18 20:35:23'>2018-10-18 20:33</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:4,175</span>
+        <span>字数:4,513</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -449,7 +449,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰者模式"><span class="toc-text">装饰者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试，购买煎饼"><span class="toc-text">测试，购买煎饼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结一下"><span class="toc-text">小结一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#透明装饰模式与半透明装饰模式"><span class="toc-text">透明装饰模式与半透明装饰模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰模式注意事项"><span class="toc-text">装饰模式注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码分析装饰者模式的典型应用"><span class="toc-text">源码分析装饰者模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-I-O中的装饰者模式"><span class="toc-text">Java I/O中的装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-cache-中的装饰者模式"><span class="toc-text">spring cache 中的装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-session-中的装饰者模式"><span class="toc-text">spring session 中的装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mybatis-缓存中的装饰者模式"><span class="toc-text">Mybatis 缓存中的装饰者模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰者模式总结"><span class="toc-text">装饰者模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式"><span class="toc-text">策略模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式总结"><span class="toc-text">策略模式总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码分析策略模式的典型应用"><span class="toc-text">源码分析策略模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Comparator-中的策略模式"><span class="toc-text">Java Comparator 中的策略模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Resource-中的策略模式"><span class="toc-text">Spring Resource 中的策略模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Bean-实例化中的策略模式"><span class="toc-text">Spring Bean 实例化中的策略模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐阅读"><span class="toc-text">推荐阅读</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -464,363 +464,432 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文的主要内容：</p>
+        <p>本文的主要内容：</p>
 <ul>
-<li>介绍装饰者模式</li>
-<li>示例</li>
-<li>源码分析装饰者模式的典型应用<ul>
-<li>Java I/O 中的装饰者模式</li>
-<li>spring session 中的装饰者模式</li>
-<li>Mybatis 缓存中的装饰者模式</li>
+<li>介绍策略模式</li>
+<li>示例<ul>
+<li>商场购物打折策略的实现</li>
 </ul>
 </li>
-<li>总结</li>
+<li>策略模式总结</li>
+<li>源码分析策略模式的典型应用<ul>
+<li>Java Comparator 中的策略模式</li>
+<li>Spring Resource 中的策略模式</li>
+<li>Spring Bean 实例化中的策略模式</li>
 </ul>
-<h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><p><strong>装饰者模式(Decorator Pattern)</strong>：动态地给一个对象增加一些额外的职责，增加对象功能来说，装饰模式比生成子类实现更为灵活。装饰模式是一种对象结构型模式。</p>
-<p>在装饰者模式中，为了让系统具有更好的灵活性和可扩展性，我们通常会定义一个抽象装饰类，而将具体的装饰类作为它的子类</p>
-<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p><strong>Component（抽象构件）</strong>：它是具体构件和抽象装饰类的共同父类，声明了在具体构件中实现的业务方法，它的引入可以使客户端以一致的方式处理未被装饰的对象以及装饰之后的对象，实现客户端的透明操作。</p>
-<p><strong>ConcreteComponent（具体构件）</strong>：它是抽象构件类的子类，用于定义具体的构件对象，实现了在抽象构件中声明的方法，装饰器可以给它增加额外的职责（方法）。</p>
-<p><strong>Decorator（抽象装饰类）</strong>：它也是抽象构件类的子类，用于给具体构件增加职责，但是具体职责在其子类中实现。它维护一个指向抽象构件对象的引用，通过该引用可以调用装饰之前构件对象的方法，并通过其子类扩展该方法，以达到装饰的目的。</p>
-<p><strong>ConcreteDecorator（具体装饰类）</strong>：它是抽象装饰类的子类，负责向构件添加新的职责。每一个具体装饰类都定义了一些新的行为，它可以调用在抽象装饰类中定义的方法，并可以增加新的方法用以扩充对象的行为。</p>
-<p>由于具体构件类和装饰类都实现了相同的抽象构件接口，因此装饰模式以对客户透明的方式动态地给一个对象附加上更多的责任，换言之，客户端并不会觉得对象在装饰前和装饰后有什么不同。装饰模式可以在不需要创造更多子类的情况下，将对象的功能加以扩展。</p>
-<p>装饰模式的<strong>核心在于抽象装饰类的设计</strong>。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>煎饼抽象类</p>
-<pre><code>public abstract class ABattercake {
-    protected abstract String getDesc();
-    protected abstract int cost();
-}
-</code></pre><p>煎饼类，继承了煎饼抽象类，一个煎饼 8 块钱</p>
-<pre><code>public class Battercake extends ABattercake {
-    @Override
-    protected String getDesc() {
-        return &quot;煎饼&quot;;
-    }
-    @Override
-    protected int cost() {
-        return 8;
-    }
-}
-</code></pre><p>抽象装饰类，需要注意的是，<strong>抽象装饰类通过成员属性的方式将 煎饼抽象类组合进来，同时也继承了煎饼抽象类</strong>，且这里定义了新的业务方法 <code>doSomething()</code></p>
-<pre><code>public abstract class AbstractDecorator extends ABattercake {
-    private ABattercake aBattercake;
+</li>
+</ul>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>在软件开发中，我们也常常会遇到类似的情况，实现某一个功能有多条途径，每一条途径对应一种算法，此时我们可以使用一种设计模式来实现灵活地选择解决途径，也能够方便地增加新的解决途径。</p>
+<p>譬如商场购物场景中，有些商品按原价卖，商场可能为了促销而推出优惠活动，有些商品打九折，有些打八折，有些则是返现10元等。</p>
+<p>而优惠活动并不影响结算之外的其他过程，只是在结算的时候需要根据优惠方案结算</p>
+<p><img src="http://image.laijianfeng.org/20181018_171948.jpg" alt="商场促销场景"></p>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p><strong>Context（环境类）</strong>：环境类是使用算法的角色，它在解决某个问题（即实现某个方法）时可以采用多种策略。在环境类中维持一个对抽象策略类的引用实例，用于定义所采用的策略。</p>
+<p><strong>Strategy（抽象策略类）</strong>：它为所支持的算法声明了抽象方法，是所有策略类的父类，它可以是抽象类或具体类，也可以是接口。环境类通过抽象策略类中声明的方法在运行时调用具体策略类中实现的算法。</p>
+<p><strong>ConcreteStrategy（具体策略类）</strong>：它实现了在抽象策略类中声明的算法，在运行时，具体策略类将覆盖在环境类中定义的抽象策略类对象，使用一种具体的算法实现某个业务处理。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>如果要写出一个商场优惠场景的Demo可以很快的写出来，譬如</p>
+<pre><code class="java">import java.text.MessageFormat;
 
-    public AbstractDecorator(ABattercake aBattercake) {
-        this.aBattercake = aBattercake;
+public class Shopping {
+    private String goods;
+    private double price;
+    private double finalPrice;
+    private String desc;
+
+    public Shopping(String goods, double price) {
+        this.goods = goods;
+        this.price = price;
     }
 
-    protected abstract void doSomething();
-
-    @Override
-    protected String getDesc() {
-        return this.aBattercake.getDesc();
-    }
-    @Override
-    protected int cost() {
-        return this.aBattercake.cost();
-    }
-}
-</code></pre><p>鸡蛋装饰器，继承了抽象装饰类，鸡蛋装饰器在父类的基础上增加了一个鸡蛋，同时价格加上 1 块钱</p>
-<pre><code>public class EggDecorator extends AbstractDecorator {
-    public EggDecorator(ABattercake aBattercake) {
-        super(aBattercake);
-    }
-
-    @Override
-    protected void doSomething() {
-
-    }
-
-    @Override
-    protected String getDesc() {
-        return super.getDesc() + &quot; 加一个鸡蛋&quot;;
-    }
-
-    @Override
-    protected int cost() {
-        return super.cost() + 1;
-    }
-
-    public void egg() {
-        System.out.println(&quot;增加了一个鸡蛋&quot;);
-    }
-}
-</code></pre><p>香肠装饰器，与鸡蛋装饰器类似，继承了抽象装饰类，给在父类的基础上加上一根香肠，同时价格增加 2 块钱</p>
-<pre><code>public class SausageDecorator extends AbstractDecorator{
-    public SausageDecorator(ABattercake aBattercake) {
-        super(aBattercake);
-    }
-    @Override
-    protected void doSomething() {
-
-    }
-
-    @Override
-    protected String getDesc() {
-        return super.getDesc() + &quot; 加一根香肠&quot;;
-    }
-    @Override
-    protected int cost() {
-        return super.cost() + 2;
-    }
-}
-</code></pre><h3 id="测试，购买煎饼"><a href="#测试，购买煎饼" class="headerlink" title="测试，购买煎饼"></a>测试，购买煎饼</h3><p><strong>1、购买一个煎饼</strong></p>
-<pre><code>public class Test {
-    public static void main(String[] args) {
-        ABattercake aBattercake = new Battercake();
-        System.out.println(aBattercake.getDesc() + &quot;, 销售价格: &quot; + aBattercake.cost());
-    }
-}
-</code></pre><p>输出</p>
-<pre><code>煎饼, 销售价格: 8
-</code></pre><p><strong>2、购买一个加鸡蛋的煎饼</strong></p>
-<pre><code>public class Test {
-    public static void main(String[] args) {
-        ABattercake aBattercake = new Battercake();
-        aBattercake = new EggDecorator(aBattercake);
-        System.out.println(aBattercake.getDesc() + &quot;, 销售价格: &quot; + aBattercake.cost());
-    }
-}
-</code></pre><p>输出</p>
-<pre><code>煎饼 加一个鸡蛋, 销售价格: 9
-</code></pre><p><strong>3、购买一个加两个鸡蛋的煎饼</strong></p>
-<pre><code>public class Test {
-    public static void main(String[] args) {
-        ABattercake aBattercake = new Battercake();
-        aBattercake = new EggDecorator(aBattercake);
-        aBattercake = new EggDecorator(aBattercake);
-        System.out.println(aBattercake.getDesc() + &quot;, 销售价格: &quot; + aBattercake.cost());
-    }
-}
-</code></pre><p>输出</p>
-<pre><code>煎饼 加一个鸡蛋 加一个鸡蛋, 销售价格: 10
-</code></pre><p><strong>4、购买一个加两个鸡蛋和一根香肠的煎饼</strong></p>
-<pre><code>public class Test {
-    public static void main(String[] args) {
-        ABattercake aBattercake = new Battercake();
-        aBattercake = new EggDecorator(aBattercake);
-        aBattercake = new EggDecorator(aBattercake);
-        aBattercake = new SausageDecorator(aBattercake);
-        System.out.println(aBattercake.getDesc() + &quot;, 销售价格: &quot; + aBattercake.cost());
-    }
-}
-</code></pre><p>输出</p>
-<pre><code>煎饼 加一个鸡蛋 加一个鸡蛋 加一根香肠, 销售价格: 12
-</code></pre><p>画出UML类图如下所示</p>
-<p><img src="http://image.laijianfeng.org/20180917_225232.png" alt="装饰者模式类图"></p>
-<h3 id="小结一下"><a href="#小结一下" class="headerlink" title="小结一下"></a>小结一下</h3><p>由于具体构件类和装饰类都实现了相同的抽象构件接口，因此装饰模式以对客户透明的方式动态地给一个对象附加上更多的责任，换言之，客户端并不会觉得对象在装饰前和装饰后有什么不同。</p>
-<p>譬如我们给煎饼加上一个鸡蛋可以这么写 <code>aBattercake = new EggDecorator(aBattercake);</code>，客户端仍然可以把 <code>aBattercake</code> 当成原来的 <code>aBattercake</code>一样，不过现在的 <code>aBattercake</code>已经被装饰加上了鸡蛋</p>
-<p>装饰模式可以在不需要创造更多子类的情况下，将对象的功能加以扩展。</p>
-<h3 id="透明装饰模式与半透明装饰模式"><a href="#透明装饰模式与半透明装饰模式" class="headerlink" title="透明装饰模式与半透明装饰模式"></a>透明装饰模式与半透明装饰模式</h3><p>在上面的示例中，装饰后的对象是通过抽象构建类类型 <code>ABattercake</code> 的变量来引用的，在鸡蛋装饰器这个类中我们新增了 <code>egg()</code> 方法，如果此时我们想要<strong>单独调用该方法</strong>是调用不到的</p>
-<p>除非引用变量的类型改为 <code>EggDecorator</code>，这样就可以调用了</p>
-<pre><code>EggDecorator eggBattercake = new EggDecorator(aBattercake); 
-eggBattercake.egg();
-</code></pre><p>在实际使用过程中，由于新增行为可能需要单独调用，因此这种形式的装饰模式也经常出现，这种装饰模式被称为<strong>半透明(Semi-transparent)装饰模式</strong>，而标准的装饰模式是<strong>透明(Transparent)装饰模式</strong>。</p>
-<p><strong>(1) 透明装饰模式</strong></p>
-<p>在透明装饰模式中，要求客户端完全针对抽象编程，装饰模式的透明性要求客户端程序不应该将对象声明为具体构件类型或具体装饰类型，而应该全部声明为抽象构件类型。</p>
-<p><strong>(2) 半透明装饰模式</strong></p>
-<p>透明装饰模式的设计难度较大，而且有时我们需要单独调用新增的业务方法。为了能够调用到新增方法，我们不得不用具体装饰类型来定义装饰之后的对象，而具体构件类型还是可以使用抽象构件类型来定义，这种装饰模式即为半透明装饰模式。</p>
-<p>半透明装饰模式可以给系统带来更多的灵活性，设计相对简单，使用起来也非常方便；但是其最大的缺点在于<strong>不能实现对同一个对象的多次装饰</strong>，而且客户端需要有区别地对待装饰之前的对象和装饰之后的对象。</p>
-<h3 id="装饰模式注意事项"><a href="#装饰模式注意事项" class="headerlink" title="装饰模式注意事项"></a>装饰模式注意事项</h3><p>(1) 尽量保持装饰类的接口与被装饰类的接口相同，这样，对于客户端而言，无论是装饰之前的对象还是装饰之后的对象都可以一致对待。这也就是说，在可能的情况下，我们应该尽量使用透明装饰模式。</p>
-<p>(2) 尽量保持具体构件类是一个“轻”类，也就是说不要把太多的行为放在具体构件类中，我们可以通过装饰类对其进行扩展。</p>
-<p>(3) 如果只有一个具体构件类，那么抽象装饰类可以作为该具体构件类的直接子类。</p>
-<h2 id="源码分析装饰者模式的典型应用"><a href="#源码分析装饰者模式的典型应用" class="headerlink" title="源码分析装饰者模式的典型应用"></a>源码分析装饰者模式的典型应用</h2><h3 id="Java-I-O中的装饰者模式"><a href="#Java-I-O中的装饰者模式" class="headerlink" title="Java I/O中的装饰者模式"></a>Java I/O中的装饰者模式</h3><p>使用 Java I/O 的时候总是有各种输入流、输出流、字符流、字节流、过滤流、缓冲流等等各种各样的流，不熟悉里边的设计模式的话总会看得云里雾里的，现在通过设计模式的角度来看 Java I/O，会好理解很多。</p>
-<p>先用一幅图来看看Java I/O到底是什么，下面的这幅图生动的刻画了Java I/O的作用。</p>
-<p><img src="http://image.laijianfeng.org/java-io-flow.png" alt="Java I/O的作用图"></p>
-<p>由上图可知在Java中应用程序通过输入流（InputStream）的Read方法从源地址处读取字节，然后通过输出流（OutputStream）的Write方法将流写入到目的地址。</p>
-<p>流的来源主要有三种：本地的文件（File）、控制台、通过socket实现的网络通信 </p>
-<p>下面的图可以看出Java中的装饰者类和被装饰者类以及它们之间的关系，这里只列出了InputStream中的关系：</p>
-<p><img src="http://image.laijianfeng.org/20180918InputStream.png" alt="InputStream部分类关系"></p>
-<p>由上图可以看出只要继承了FilterInputStream的类就是装饰者类，可以用于包装其他的流，装饰者类还可以对装饰者和类进行再包装。</p>
-<p><strong>这里总结几种常用流的应用场景</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>流名称</th>
-<th>应用场景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ByteArrayInputStream</td>
-<td>访问数组，把内存中的一个缓冲区作为 InputStream 使用，CPU从缓存区读取数据比从存储介质的速率快10倍以上</td>
-</tr>
-<tr>
-<td>StringBufferInputStream</td>
-<td>把一个 String 对象作为。InputStream。不建议使用，在转换字符的问题上有缺陷</td>
-</tr>
-<tr>
-<td>FileInputStream</td>
-<td>访问文件，把一个文件作为 InputStream ，实现对文件的读取操作</td>
-</tr>
-<tr>
-<td>PipedInputStream</td>
-<td>访问管道，主要在线程中使用，一个线程通过管道输出流发送数据，而另一个线程通过管道输入流读取数据，这样可实现两个线程间的通讯</td>
-</tr>
-<tr>
-<td>SequenceInputStream</td>
-<td>把多个 InputStream 合并为一个 InputStream . “序列输入流”类允许应用程序把几个输入流连续地合并起来</td>
-</tr>
-<tr>
-<td>DataInputStream</td>
-<td>特殊流，读各种基本类型数据,如byte、int、String的功能</td>
-</tr>
-<tr>
-<td>ObjectInputStream</td>
-<td>对象流，读对象的功能</td>
-</tr>
-<tr>
-<td>PushBackInputStream</td>
-<td>推回输入流，可以把读取进来的某些数据重新回退到输入流的缓冲区之中</td>
-</tr>
-<tr>
-<td>BufferedInputStream</td>
-<td>缓冲流，增加了缓冲功能</td>
-</tr>
-</tbody>
-</table>
-<p><strong>下面看一下Java中包装流的实例</strong>：</p>
-<pre><code>import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-public class StreamDemo {
-    public static void main(String[] args) throws IOException{
-        DataInputStream in=new DataInputStream(new BufferedInputStream(new  FileInputStream(&quot;D:\\hello.txt&quot;)));
-        while(in.available()!=0) {
-            System.out.print((char)in.readByte());
-        }
-        in.close();
-    }
-}
-</code></pre><p>输出结果</p>
-<pre><code>hello world!
-hello Java I/O!
-</code></pre><p>上面程序中对流进行了两次包装，先用 BufferedInputStream将FileInputStream包装成缓冲流也就是给FileInputStream增加缓冲功能，再DataInputStream进一步包装方便数据处理。</p>
-<p>如果要<strong>实现一个自己的包装流</strong>，根据上面的类图，需要继承抽象装饰类 FilterInputStream</p>
-<p>譬如来实现这样一个操作的装饰者类：将输入流中的所有小写字母变成大写字母</p>
-<pre><code>import java.io.FileInputStream;
-import java.io.FilterInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-public class UpperCaseInputStream extends FilterInputStream {
-    protected UpperCaseInputStream(InputStream in) {
-        super(in);
-    }
-
-    @Override
-    public int read() throws IOException {
-        int c = super.read();
-        return (c == -1 ? c : Character.toUpperCase(c));
-    }
-
-    @Override
-    public int read(byte[] b, int off, int len) throws IOException {
-        int result = super.read(b, off, len);
-        for (int i = off; i &lt; off + result; i++) {
-            b[i] = (byte) Character.toUpperCase((char) b[i]);
-        }
-        return result;
-    }
-
-    public static void main(String[] args) throws IOException {
-        int c;
-        InputStream in = new UpperCaseInputStream(new FileInputStream(&quot;D:\\hello.txt&quot;));
-        try {
-            while ((c = in.read()) &gt;= 0) {
-                System.out.print((char) c);
-            }
-        } finally {
-            in.close();
-        }
-    }
-}
-</code></pre><p>输出</p>
-<pre><code>HELLO WORLD!
-HELLO JAVA I/O!
-</code></pre><p>整个Java IO体系都是基于字符流(InputStream/OutputStream) 和 字节流(Reader/Writer)作为基类，下面画出OutputStream、Reader、Writer的部分类图，更多细节请查看其它资料</p>
-<p><img src="http://image.laijianfeng.org/20180918OutputStream.png" alt="OutputStream类图"></p>
-<p><img src="http://image.laijianfeng.org/20180918Reader.png" alt="Reader类图"></p>
-<p><img src="http://image.laijianfeng.org/20180918Writer.png" alt="Writer类图"></p>
-<h3 id="spring-cache-中的装饰者模式"><a href="#spring-cache-中的装饰者模式" class="headerlink" title="spring cache 中的装饰者模式"></a>spring cache 中的装饰者模式</h3><p>看 <code>org.springframework.cache.transaction</code> 包下的 <code>TransactionAwareCacheDecorator</code> 这个类</p>
-<pre><code>public class TransactionAwareCacheDecorator implements Cache {
-    private final Cache targetCache;
-
-    public TransactionAwareCacheDecorator(Cache targetCache) {
-        Assert.notNull(targetCache, &quot;Target Cache must not be null&quot;);
-        this.targetCache = targetCache;
-    }
-
-    public &lt;T&gt; T get(Object key, Class&lt;T&gt; type) {
-        return this.targetCache.get(key, type);
-    }
-
-    public void put(final Object key, final Object value) {
-        // 判断是否开启了事务
-        if (TransactionSynchronizationManager.isSynchronizationActive()) {
-            // 将操作注册到 afterCommit 阶段
-            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
-                public void afterCommit() {
-                    TransactionAwareCacheDecorator.this.targetCache.put(key, value);
-                }
-            });
+    public double calculate(String discountType) {
+        if (&quot;dis9&quot;.equals(discountType)) {
+            finalPrice = price * 0.9;
+            desc = &quot;打九折&quot;;
+        } else if (&quot;dis8&quot;.equals(discountType)) {
+            finalPrice = price * 0.8;
+            desc = &quot;打八折&quot;;
+        } else if (&quot;cash10&quot;.equals(discountType)) {
+            finalPrice = price &gt;= 10 ? price - 10 : 0;
+            desc = &quot;返现10元&quot;;
         } else {
-            this.targetCache.put(key, value);
+            finalPrice = price;
+            desc = &quot;不参与优惠活动&quot;;
         }
+        System.out.println(MessageFormat.format(&quot;购买的物品：{0}，原始价格：{1}，{2}，最终价格为：{3}&quot;, goods, price, desc, finalPrice));
+        return finalPrice;
     }
-    // ...省略...
 }
-</code></pre><p>该类实现了 <code>Cache</code> 接口，同时将 <code>Cache</code> 组合到类中成为了成员属性 <code>targetCache</code>，所以可以大胆猜测 <code>TransactionAwareCacheDecorator</code> 是一个装饰类，不过这里并没有抽象装饰类，且 <code>TransactionAwareCacheDecorator</code> 没有子类，这里的装饰类关系并没有Java I/O 中的装饰关系那么复杂</p>
-<p><img src="http://image.laijianfeng.org/20180918Cache.png" alt="spring cache中类图关系"></p>
-<p>该类的主要功能：通过 Spring 的 <code>TransactionSynchronizationManager</code> 将其 <code>put/evict/clear</code> 操作与 Spring 管理的事务同步，仅在成功的事务的 <code>after-commit</code> 阶段执行实际的缓存 <code>put/evict/clear</code> 操作。如果没有事务是 <code>active</code> 的，将立即执行 <code>put/evict/clear</code> 操作</p>
-<h3 id="spring-session-中的装饰者模式"><a href="#spring-session-中的装饰者模式" class="headerlink" title="spring session 中的装饰者模式"></a>spring session 中的装饰者模式</h3><blockquote>
-<p>注意：适配器模式的结尾也可能是 Wrapper</p>
-</blockquote>
-<p>类 <code>ServletRequestWrapper</code> 的代码如下：</p>
-<pre><code>public class ServletRequestWrapper implements ServletRequest {
-    private ServletRequest request;
+</code></pre>
+<p>测试</p>
+<pre><code class="java">public class Test {
+    public static void main(String[] args) {
+        Shopping shopping1 = new Shopping(&quot;书籍-深入理解Java虚拟机&quot;, 54.00);
+        shopping1.calculate(&quot;dis9&quot;); // 九折
 
-    public ServletRequestWrapper(ServletRequest request) {
-        if (request == null) {
-            throw new IllegalArgumentException(&quot;Request cannot be null&quot;);
-        }
-        this.request = request;
+        Shopping shopping2 = new Shopping(&quot;Apple 妙控鼠标&quot;, 588.00 );
+        shopping2.calculate(&quot;dis8&quot;);
+
+        Shopping shopping3 = new Shopping(&quot;戴尔U2417H显示器&quot;, 1479.00);
+        shopping3.calculate(&quot;cash10&quot;);
+
+        Shopping shopping4 = new Shopping(&quot;索尼ILCE-6000L相机&quot;, 3599.00);
+        shopping4.calculate(null);
+    }
+}
+</code></pre>
+<p>以上代码当然完成了我们的需求，但是存在以下问题：</p>
+<ul>
+<li><p>Shopping 类的 calculate() 方法非常庞大，它包含各种优惠算法的实现代码，在代码中出现了较长的 <code>if…else…</code> 语句，不利于测试和维护。</p>
+</li>
+<li><p>增加新的优惠算法或者对原有打折算法进行修改时必须修改 Shopping 类的源代码，违反了 “开闭原则”，系统的灵活性和可扩展性较差。</p>
+</li>
+<li><p>算法的复用性差，如果在另一个系统中需要重用某些优惠算法，只能通过对源代码进行复制粘贴来重用，无法单独重用其中的某个或某些算法。</p>
+</li>
+</ul>
+<p>所以我们需要使用策略模式对 Shopping 类进行重构，将原本庞大的 Shopping 类的职责进行分解，将算法的定义和使用分离。</p>
+<p>抽象策略类  <code>Discount</code>，它是所有具体优惠算法的父类，定义了一个 <code>discount</code> 抽象方法</p>
+<pre><code class="java">import lombok.Data;
+
+@Data
+public abstract class Discount {
+    protected double finalPrice;
+    protected String desc;
+
+    public Discount(String desc) {
+        this.desc = desc;
+    }
+
+    abstract double discount(double price);
+}
+</code></pre>
+<p>四种具体策略类，继承自抽象策略类 <code>Discount</code>，并在 <code>discount</code> 方法中实现具体的优惠算法</p>
+<pre><code class="java">public class Dis9Discount extends Discount {
+    public Dis9Discount() {
+        super(&quot;打九折&quot;);
     }
 
     @Override
-    public Object getAttribute(String name) {
-        return this.request.getAttribute(name);
+    double discount(double price) {
+        finalPrice = price * 0.9;
+        return finalPrice;
     }
-    //...省略...
-}    
-</code></pre><p>可以看到该类对 <code>ServletRequest</code> 进行了包装，这里是一个装饰者模式，再看下图，spring session 中 <code>SessionRepositoryFilter</code> 的一个内部类 <code>SessionRepositoryRequestWrapper</code> 与 <code>ServletRequestWrapper</code> 的关系</p>
-<p><img src="http://image.laijianfeng.org/20180918HttpServletRequestWrapper.png" alt="ServletRequest类图"></p>
-<p>可见 <code>ServletRequestWrapper</code> 是第一层包装，<code>HttpServletRequestWrapper</code> 通过继承进行包装，增加了 HTTP 相关的功能，<code>SessionRepositoryRequestWrapper</code> 又通过继承进行包装，增加了 Session 相关的功能</p>
-<h3 id="Mybatis-缓存中的装饰者模式"><a href="#Mybatis-缓存中的装饰者模式" class="headerlink" title="Mybatis 缓存中的装饰者模式"></a>Mybatis 缓存中的装饰者模式</h3><p><code>org.apache.ibatis.cache</code> 包的文件结构如下所示</p>
-<p><img src="http://image.laijianfeng.org/20180918_202157.png" alt="Mybatis cache 中的装饰者模式"></p>
-<p>我们通过类所在的包名即可判断出该类的角色，<code>Cache</code> 为抽象构件类，<code>PerpetualCache</code> 为具体构件类，<code>decorators</code> 包下的类为装饰类，没有抽象装饰类</p>
-<p>通过名称也可以判断出装饰类所要装饰的功能</p>
-<h2 id="装饰者模式总结"><a href="#装饰者模式总结" class="headerlink" title="装饰者模式总结"></a>装饰者模式总结</h2><p>装饰模式的<strong>主要优点</strong>如下：</p>
-<ol>
-<li>对于扩展一个对象的功能，装饰模式比继承更加灵活性，不会导致类的个数急剧增加。</li>
-<li>可以通过一种动态的方式来扩展一个对象的功能，通过配置文件可以在运行时选择不同的具体装饰类，从而实现不同的行为。</li>
-<li>可以对一个对象进行多次装饰，通过使用不同的具体装饰类以及这些装饰类的排列组合，可以创造出很多不同行为的组合，得到功能更为强大的对象。</li>
-<li>具体构件类与具体装饰类可以独立变化，用户可以根据需要增加新的具体构件类和具体装饰类，原有类库代码无须改变，符合 “开闭原则”。</li>
-</ol>
-<p>装饰模式的<strong>主要缺点</strong>如下：</p>
-<ol>
-<li>使用装饰模式进行系统设计时将产生很多小对象，这些对象的区别在于它们之间相互连接的方式有所不同，而不是它们的类或者属性值有所不同，大量小对象的产生势必会占用更多的系统资源，在一定程序上影响程序的性能。</li>
-<li>装饰模式提供了一种比继承更加灵活机动的解决方案，但同时也意味着比继承更加易于出错，排错也很困难，对于多次装饰的对象，调试时寻找错误可能需要逐级排查，较为繁琐。</li>
-</ol>
-<p><strong>适用场景</strong>：</p>
-<ol>
-<li>在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责。</li>
-<li>当不能采用继承的方式对系统进行扩展或者采用继承不利于系统扩展和维护时可以使用装饰模式。不能采用继承的情况主要有两类：第一类是系统中存在大量独立的扩展，为支持每一种扩展或者扩展之间的组合将产生大量的子类，使得子类数目呈爆炸性增长；第二类是因为类已定义为不能被继承（如Java语言中的final类）。</li>
-</ol>
+}
+
+public class Dis8Discount extends Discount{
+    public Dis8Discount() {
+        super(&quot;打八折&quot;);
+    }
+
+    @Override
+    double discount(double price) {
+        finalPrice = price * 0.8;
+        return finalPrice;
+    }
+}
+
+public class Cash10Discount extends Discount {
+    public Cash10Discount() {
+        super(&quot;返现10元&quot;);
+    }
+
+    @Override
+    public double discount(double price) {
+        this.finalPrice = price &gt;= 10 ? price - 10 : 0;
+        return finalPrice;
+    }
+}
+
+public class NoneDiscount extends Discount {
+    public NoneDiscount() {
+        super(&quot;不参与优惠活动&quot;);
+    }
+
+    @Override
+    double discount(double price) {
+        finalPrice = price;
+        return finalPrice;
+    }
+}
+</code></pre>
+<p>环境类 <code>Shopping</code>，维护了一个 <code>Discount</code> 引用</p>
+<pre><code class="java">public class Shopping {
+    private String goods;
+    private double price;
+    private Discount discount;
+
+    public Shopping(String goods, double price, Discount discount) {
+        this.goods = goods;
+        this.price = price;
+        this.discount = discount;
+    }
+
+    public double calculate() {
+        double finalPrice = discount.discount(this.price);
+        String desc = discount.getDesc();
+        System.out.println(MessageFormat.format(&quot;购买的物品：{0}，原始价格：{1}，{2}，最终价格为：{3}&quot;, goods, price, desc, finalPrice));
+        return finalPrice;
+    }
+}
+</code></pre>
+<p>测试</p>
+<pre><code class="java">public class Test {
+    public static void main(String[] args) {
+        Shopping shopping1 = new Shopping(&quot;书籍-深入理解Java虚拟机&quot;, 54.00, new Dis9Discount());
+        shopping1.calculate();
+
+        Shopping shopping2 = new Shopping(&quot;Apple 妙控鼠标&quot;, 588.00, new Dis8Discount());
+        shopping2.calculate();
+
+        Shopping shopping3 = new Shopping(&quot;戴尔U2417H显示器&quot;, 1479.00, new Cash10Discount());
+        shopping3.calculate();
+
+        Shopping shopping4 = new Shopping(&quot;索尼ILCE-6000L相机&quot;, 3599.00, new NoneDiscount());
+        shopping4.calculate();
+    }
+}
+</code></pre>
+<p>结果</p>
+<pre><code class="java">购买的物品：书籍-深入理解Java虚拟机，原始价格：54，打九折，最终价格为：48.6
+购买的物品：Apple 妙控鼠标，原始价格：588，打八折，最终价格为：470.4
+购买的物品：戴尔U2417H显示器，原始价格：1,479，返现10元，最终价格为：1,469
+购买的物品：索尼ILCE-6000L相机，原始价格：3,599，不参与优惠活动，最终价格为：3,599
+</code></pre>
+<p>可以看到，使用策略模式重构后，<code>Shopping</code> 类的 <code>calculate</code> 方法简洁了很多，当需要更改优惠算法的时候不需要再修改 <code>Shopping</code> 类的源代码；要扩展出新的优惠算法很方便，只需要继承抽象策略类 <code>Discount</code> 并实现 <code>calculate</code> 方法即可；优惠算法很容易重用。</p>
+<p>画出类图如下</p>
+<p><img src="http://image.laijianfeng.org/20181017_114704.png" alt="示例.策略模式类图"></p>
+<h2 id="策略模式总结"><a href="#策略模式总结" class="headerlink" title="策略模式总结"></a>策略模式总结</h2><p>策略模式的<strong>主要优点</strong>如下： </p>
+<ul>
+<li><p>策略模式提供了对 “开闭原则” 的完美支持，用户可以在不修改原有系统的基础上选择算法或行为，也可以灵活地增加新的算法或行为。</p>
+</li>
+<li><p>策略模式提供了管理相关的算法族的办法。策略类的等级结构定义了一个算法或行为族，恰当使用继承可以把公共的代码移到抽象策略类中，从而避免重复的代码。</p>
+</li>
+<li><p>策略模式提供了一种可以替换继承关系的办法。如果不使用策略模式而是通过继承，这样算法的使用就<br>和算法本身混在一起，不符合 “单一职责原则”，而且使用继承无法实现算法或行为在程序运行时的动态切<br>换。</p>
+</li>
+<li><p>使用策略模式可以避免多重条件选择语句。多重条件选择语句是硬编码，不易维护。</p>
+</li>
+<li><p>策略模式提供了一种算法的复用机制，由于将算法单独提取出来封装在策略类中，因此不同的环境类可以方便地复用这些策略类。</p>
+</li>
+</ul>
+<p>策略模式的<strong>主要缺点</strong>如下：</p>
+<ul>
+<li><p>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法。换言之，策略模式只适用于客户端知道所有的算法或行为的情况。</p>
+</li>
+<li><p>策略模式将造成系统产生很多具体策略类，任何细小的变化都将导致系统要增加一个新的具体策略类。</p>
+</li>
+<li><p>无法同时在客户端使用多个策略类，也就是说，在使用策略模式时，客户端每次只能使用一个策略类，不支持使用一个策略类完成部分功能后再使用另一个策略类来完成剩余功能的情况。</p>
+</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<ul>
+<li><p>一个系统需要动态地在几种算法中选择一种，那么可以将这些算法封装到一个个的具体算法类中，而这些具体算法类都是一个抽象算法类的子类。换言之，这些具体算法类均有统一的接口，根据 “里氏代换原则” 和面向对象的多态性，客户端可以选择使用任何一个具体算法类，并只需要维持一个数据类型是抽象算法类的对象。</p>
+</li>
+<li><p>一个对象有很多的行为，如果不用恰当的模式，这些行为就只好使用多重条件选择语句来实现。此时，使用策略模式，把这些行为转移到相应的具体策略类里面，就可以避免使用难以维护的多重条件选择语句。</p>
+</li>
+<li><p>不希望客户端知道复杂的、与算法相关的数据结构，在具体策略类中封装算法与相关的数据结构，可以提高算法的保密性与安全性。</p>
+</li>
+</ul>
+<h2 id="源码分析策略模式的典型应用"><a href="#源码分析策略模式的典型应用" class="headerlink" title="源码分析策略模式的典型应用"></a>源码分析策略模式的典型应用</h2><h3 id="Java-Comparator-中的策略模式"><a href="#Java-Comparator-中的策略模式" class="headerlink" title="Java Comparator 中的策略模式"></a>Java Comparator 中的策略模式</h3><p><code>java.util.Comparator</code> 接口是比较器接口，可以通过 <code>Collections.sort(List,Comparator)</code> 和 <code>Arrays.sort(Object[],Comparator)</code> 对集合和数据进行排序，下面为示例程序</p>
+<p>一个学生类，有两个属性 <code>id</code> 和 <code>name</code></p>
+<pre><code class="java">@Data
+@AllArgsConstructor
+public class Student {
+    private Integer id;
+    private String name;
+
+    @Override
+    public String toString() {
+        return &quot;{id=&quot; + id + &quot;, name=&#39;&quot; + name + &quot;&#39;}&quot;;
+    }
+}
+</code></pre>
+<p>实现两个比较器，比较器实现了 <code>Comparator</code> 接口，一个升序，一个降序</p>
+<pre><code class="java">// 降序
+public class DescSortor implements Comparator&lt;Student&gt; {
+    @Override
+    public int compare(Student o1, Student o2) {
+        return o2.getId() - o1.getId();
+    }
+}
+
+// 升序
+public class AscSortor implements Comparator&lt;Student&gt; {
+    @Override
+    public int compare(Student o1, Student o2) {
+        return o1.getId() - o2.getId();
+    }
+}
+</code></pre>
+<p>通过 <code>Arrays.sort()</code> 对数组进行排序</p>
+<pre><code class="java">public class Test1 {
+    public static void main(String[] args) {
+        Student[] students = {
+                new Student(3, &quot;张三&quot;),
+                new Student(1, &quot;李四&quot;),
+                new Student(4, &quot;王五&quot;),
+                new Student(2, &quot;赵六&quot;)
+        };
+        toString(students, &quot;排序前&quot;);
+
+        Arrays.sort(students, new AscSortor());
+        toString(students, &quot;升序后&quot;);
+
+        Arrays.sort(students, new DescSortor());
+        toString(students, &quot;降序后&quot;);
+    }
+
+    public static void toString(Student[] students, String desc){
+        for (int i = 0; i &lt; students.length; i++) {
+            System.out.print(desc + &quot;: &quot; +students[i].toString() + &quot;, &quot;);
+        }
+        System.out.println();
+    }
+}
+</code></pre>
+<p>输出</p>
+<pre><code>排序前: {id=3, name=&#39;张三&#39;}, 排序前: {id=1, name=&#39;李四&#39;}, 排序前: {id=4, name=&#39;王五&#39;}, 排序前: {id=2, name=&#39;赵六&#39;}, 
+升序后: {id=1, name=&#39;李四&#39;}, 升序后: {id=2, name=&#39;赵六&#39;}, 升序后: {id=3, name=&#39;张三&#39;}, 升序后: {id=4, name=&#39;王五&#39;}, 
+降序后: {id=4, name=&#39;王五&#39;}, 降序后: {id=3, name=&#39;张三&#39;}, 降序后: {id=2, name=&#39;赵六&#39;}, 降序后: {id=1, name=&#39;李四&#39;}, 
+</code></pre><p>通过 <code>Collections.sort()</code> 对集合List进行排序</p>
+<pre><code class="java">public class Test2 {
+    public static void main(String[] args) {
+        List&lt;Student&gt; students = Arrays.asList(
+                new Student(3, &quot;张三&quot;),
+                new Student(1, &quot;李四&quot;),
+                new Student(4, &quot;王五&quot;),
+                new Student(2, &quot;赵六&quot;)
+        );
+        toString(students, &quot;排序前&quot;);
+
+        Collections.sort(students, new AscSortor());
+        toString(students, &quot;升序后&quot;);
+
+        Collections.sort(students, new DescSortor());
+        toString(students, &quot;降序后&quot;);
+    }
+
+    public static void toString(List&lt;Student&gt; students, String desc) {
+        for (Student student : students) {
+            System.out.print(desc + &quot;: &quot; + student.toString() + &quot;, &quot;);
+        }
+        System.out.println();
+    }
+}
+</code></pre>
+<p>输出</p>
+<pre><code>排序前: {id=3, name=&#39;张三&#39;}, 排序前: {id=1, name=&#39;李四&#39;}, 排序前: {id=4, name=&#39;王五&#39;}, 排序前: {id=2, name=&#39;赵六&#39;}, 
+升序后: {id=1, name=&#39;李四&#39;}, 升序后: {id=2, name=&#39;赵六&#39;}, 升序后: {id=3, name=&#39;张三&#39;}, 升序后: {id=4, name=&#39;王五&#39;}, 
+降序后: {id=4, name=&#39;王五&#39;}, 降序后: {id=3, name=&#39;张三&#39;}, 降序后: {id=2, name=&#39;赵六&#39;}, 降序后: {id=1, name=&#39;李四&#39;}, 
+</code></pre><p>我们向 <code>Collections.sort()</code> 和 <code>Arrays.sort()</code> 分别传入不同的比较器即可实现不同的排序效果（升序或降序）</p>
+<p>这里 <code>Comparator</code> 接口充当了抽象策略角色，两个比较器 <code>DescSortor</code> 和 <code>AscSortor</code> 则充当了具体策略角色，<code>Collections</code> 和 <code>Arrays</code> 则是环境角色</p>
+<h3 id="Spring-Resource-中的策略模式"><a href="#Spring-Resource-中的策略模式" class="headerlink" title="Spring Resource 中的策略模式"></a>Spring Resource 中的策略模式</h3><p>Spring 把所有能记录信息的载体，如各种类型的文件、二进制流等都称为资源，譬如最常用的Spring配置文件。</p>
+<p>在 Sun 所提供的标准 API 里，资源访问通常由 <code>java.NET.URL</code> 和文件 IO 来完成，尤其是当我们需要访问来自网络的资源时，通常会选择 URL 类。</p>
+<p>URL 类可以处理一些常规的资源访问问题，但依然不能很好地满足所有底层资源访问的需要，比如，暂时还无法从类加载路径、或相对于 <code>ServletContext</code> 的路径来访问资源，虽然 Java 允许使用特定的 URL 前缀注册新的处理类（例如已有的 http: 前缀的处理类），但是这样做通常比较复杂，而且 URL 接口还缺少一些有用的功能，比如检查所指向的资源是否存在等。</p>
+<p>Spring 改进了 Java 资源访问的策略，Spring 为资源访问提供了一个 Resource 接口，该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。</p>
+<pre><code class="java">public interface Resource extends InputStreamSource {
+    boolean exists();    // 返回 Resource 所指向的资源是否存在
+    boolean isReadable();   // 资源内容是否可读
+    boolean isOpen();   // 返回资源文件是否打开
+    URL getURL() throws IOException;
+    URI getURI() throws IOException;
+    File getFile() throws IOException;  // 返回资源对应的 File 对象
+    long contentLength() throws IOException;
+    long lastModified() throws IOException;
+    Resource createRelative(String var1) throws IOException;
+    String getFilename();
+    String getDescription();    // 返回资源的描述信息
+}
+</code></pre>
+<p><code>Resource</code> 接口是 Spring 资源访问策略的抽象，它本身并不提供任何资源访问实现，具体的资源访问由该接口的实现类完成——<strong>每个实现类代表一种资源访问策略</strong>。</p>
+<p><img src="http://image.laijianfeng.org/20181018_171944.png" alt="Spring资源访问接口Resource的实现类"></p>
+<p>Spring 为 Resource 接口提供的部分实现类如下：</p>
+<ul>
+<li><code>UrlResource</code>：访问网络资源的实现类。</li>
+<li><code>ClassPathResource</code>：访问类加载路径里资源的实现类。</li>
+<li><code>FileSystemResource</code>：访问文件系统里资源的实现类。</li>
+<li><code>ServletContextResource</code>：访问相对于 <code>ServletContext</code> 路径里的资源的实现类：</li>
+<li><code>InputStreamResource</code>：访问输入流资源的实现类。</li>
+<li><code>ByteArrayResource</code>：访问字节数组资源的实现类。</li>
+<li><code>WritableResource</code>：写资源文件</li>
+</ul>
+<p>这些 <code>Resource</code> 实现类，针对不同的的底层资源，提供了相应的资源访问逻辑，并提供便捷的包装，以利于客户端程序的资源访问。</p>
+<p>它们之间的类关系如下所示：</p>
+<p><img src="http://image.laijianfeng.org/20181018_171945.png" alt="Spring Resource 类图"></p>
+<p>可以看到 <code>AbstractResource</code> 资源抽象类实现了 <code>Resource</code> 接口，为子类通用的操作提供了具体实现，非通用的操作留给子类实现，所以这里也应用了模板方法模式。（只不过缺少了模板方法）</p>
+<p><code>Resource</code> 不仅可在 Spring 的项目中使用，也可直接作为资源访问的工具类使用。意思是说：即使不使用 Spring 框架，也可以使用 <code>Resource</code> 作为工具类，用来代替 <code>URL</code>。</p>
+<p>譬如我们可以使用 <code>UrlResource</code> 访问网络资源。</p>
 <blockquote>
-<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://blog.csdn.net/u013309870/article/details/75735676" target="_blank" rel="noopener">HankingHu：由装饰者模式来深入理解Java I/O整体框架</a><br><a href="https://blog.csdn.net/qq_33394088/article/details/78512407" target="_blank" rel="noopener">HryReal：Java的io类的使用场景</a></p>
+<p>也可以通过其它协议访问资源，file: 用于访问文件系统；http: 用于通过 HTTP 协议访问资源；ftp: 用于通过 FTP 协议访问资源等</p>
 </blockquote>
-<h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><p><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483704&amp;idx=1&amp;sn=fa3ae947cebf22da35e6ac0a37f566f8&amp;chksm=e9c2ed35deb564230a69e43d93a3b74618287c6ddd402a6f1dc6a5b14a896e99584985e7cf92&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 工厂方法模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483708&amp;idx=1&amp;sn=9b8c155b86511ea6ec323dc6a72c52df&amp;chksm=e9c2ed31deb56427b2a6bbcbad5bdd3a4ef68b52eb88cc47b5bcfc76773d3d983d8aaf57761c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 抽象工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483712&amp;idx=1&amp;sn=1ffd9837eb9413dde74ff509bf69ecc5&amp;chksm=e9c2ed4ddeb5645b8cbf64c83d103a859ae49921c60e17fe8bebe63c26b04966be101d598848&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 建造者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483716&amp;idx=1&amp;sn=df00c297c8f32e10e277db8941839c14&amp;chksm=e9c2ed49deb5645fa2586da358a8f0a00dd926f883637adebc59435f846c67c040ef759ba034&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 原型模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483721&amp;idx=1&amp;sn=721d0bce3bd516c10d4b6addbf3eced6&amp;chksm=e9c2ed44deb56452395c94a0b150994b94aa26cae71149e6c030d0ac32f9c3c37e2bfe9685b6&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 外观模式及典型应用</a></p>
+<pre><code class="java">public class Test {
+    public static void main(String[] args) throws IOException {
+        UrlResource ur = new UrlResource(&quot;http://image.laijianfeng.org/hello.txt&quot;);
+
+        System.out.println(&quot;文件名：&quot; + ur.getFilename());
+        System.out.println(&quot;网络文件URL：&quot; + ur.getURL());
+        System.out.println(&quot;是否存在：&quot; + ur.exists());
+        System.out.println(&quot;是否可读：&quot; + ur.isReadable());
+        System.out.println(&quot;文件长度：&quot; + ur.contentLength());
+
+        System.out.println(&quot;\n--------文件内容----------\n&quot;);
+        byte[] bytes = new byte[47];
+        ur.getInputStream().read(bytes);
+        System.out.println(new String(bytes));
+    }
+}
+</code></pre>
+<p>输出的内容如下，符合预期</p>
+<pre><code>文件名：hello.txt
+网络文件URL：http://image.laijianfeng.org/hello.txt
+是否存在：true
+是否可读：true
+文件长度：47
+
+--------文件内容----------
+
+hello world!
+welcome to http://laijianfeng.org
+</code></pre><blockquote>
+<p>更多的示例可以参考：<a href="https://www.ibm.com/developerworks/cn/java/j-lo-spring-resource/index.html" target="_blank" rel="noopener">Spring 资源访问剖析和策略模式应用</a></p>
+</blockquote>
+<h3 id="Spring-Bean-实例化中的策略模式"><a href="#Spring-Bean-实例化中的策略模式" class="headerlink" title="Spring Bean 实例化中的策略模式"></a>Spring Bean 实例化中的策略模式</h3><p>Spring实例化Bean有三种方式：构造器实例化、静态工厂实例化、实例工厂实例化</p>
+<p>譬如通过构造器实例化bean的XML示例如下：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+
+    &lt;bean id=&quot;person&quot; class=&quot;com.demo.Person&quot;&gt;&lt;/bean&gt;
+
+    &lt;bean id=&quot;personWithParam&quot; class=&quot;com.demo.Person&quot;&gt;
+        &lt;constructor-arg name=&quot;name&quot; value=&quot;小旋锋&quot;/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id=&quot;personWirhParams&quot; class=&quot;com.demo.Person&quot;&gt;
+            &lt;constructor-arg name=&quot;name&quot; value=&quot;小旋锋&quot;/&gt;
+            &lt;constructor-arg name=&quot;age&quot; value=&quot;22&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+<p>具体实例化Bean的过程中，Spring中角色分工很明确，创建对象的时候先通过 <code>ConstructorResolver</code> 找到对应的实例化方法和参数，再通过实例化策略 <code>InstantiationStrategy</code> 进行实例化，根据创建对象的三个分支( 工厂方法、有参构造方法、无参构造方法 ), <code>InstantiationStrategy</code> 提供了三个接口方法：</p>
+<pre><code class="java">public interface InstantiationStrategy {
+    // 默认构造方法
+    Object instantiate(RootBeanDefinition beanDefinition, String beanName, BeanFactory owner) throws BeansException;
+
+    // 指定构造方法
+    Object instantiate(RootBeanDefinition beanDefinition, String beanName, BeanFactory owner, Constructor&lt;?&gt; ctor,
+            Object[] args) throws BeansException;
+
+    // 指定工厂方法
+    Object instantiate(RootBeanDefinition beanDefinition, String beanName, BeanFactory owner, Object factoryBean,
+            Method factoryMethod, Object[] args) throws BeansException;
+}
+</code></pre>
+<p><code>InstantiationStrategy</code> 为实例化策略接口，扮演抽象策略角色，有两种具体策略类，分别为 <code>SimpleInstantiationStrategy</code> 和 <code>CglibSubclassingInstantiationStrategy</code> </p>
+<p><img src="http://image.laijianfeng.org/20181018_171946.png" alt="Spring 实例化策略类图"></p>
+<p>在 <code>SimpleInstantiationStrategy</code> 中对这三个方法做了简单实现，如果工厂方法实例化直接用反射创建对象，如果是构造方法实例化的则判断是否有 <code>MethodOverrides</code>，如果有无 <code>MethodOverrides</code> 也是直接用反射，如果有 <code>MethodOverrides</code> 就需要用 <code>cglib</code> 实例化对象，<code>SimpleInstantiationStrategy</code> 把通过 <code>cglib</code> 实例化的任务交给了它的子类 <code>CglibSubclassingInstantiationStrategy</code>。</p>
+<blockquote>
+<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://www.ibm.com/developerworks/cn/java/j-lo-spring-resource/index.html" target="_blank" rel="noopener">Spring 资源访问剖析和策略模式应用</a><br><a href="https://my.oschina.net/chengxiaoyuan/blog/823655" target="_blank" rel="noopener">Spring源码阅读-实例化策略InstantiationStrategy</a><br><a href="https://blog.csdn.net/u011726984/article/details/45290871" target="_blank" rel="noopener">Spring学习之实例化bean的三种方式</a>   </p>
+</blockquote>
+<h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><p><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483704&amp;idx=1&amp;sn=fa3ae947cebf22da35e6ac0a37f566f8&amp;chksm=e9c2ed35deb564230a69e43d93a3b74618287c6ddd402a6f1dc6a5b14a896e99584985e7cf92&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 工厂方法模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483708&amp;idx=1&amp;sn=9b8c155b86511ea6ec323dc6a72c52df&amp;chksm=e9c2ed31deb56427b2a6bbcbad5bdd3a4ef68b52eb88cc47b5bcfc76773d3d983d8aaf57761c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 抽象工厂模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483712&amp;idx=1&amp;sn=1ffd9837eb9413dde74ff509bf69ecc5&amp;chksm=e9c2ed4ddeb5645b8cbf64c83d103a859ae49921c60e17fe8bebe63c26b04966be101d598848&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 建造者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483716&amp;idx=1&amp;sn=df00c297c8f32e10e277db8941839c14&amp;chksm=e9c2ed49deb5645fa2586da358a8f0a00dd926f883637adebc59435f846c67c040ef759ba034&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 原型模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483721&amp;idx=1&amp;sn=721d0bce3bd516c10d4b6addbf3eced6&amp;chksm=e9c2ed44deb56452395c94a0b150994b94aa26cae71149e6c030d0ac32f9c3c37e2bfe9685b6&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 外观模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483726&amp;idx=1&amp;sn=df583e5b297ddaff5e1ab822df762274&amp;chksm=e9c2ed43deb56455d2a099f3c3e8622031027d6da00202e6a7d731eac691e4d87d673ca103b5&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 装饰者模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483730&amp;idx=1&amp;sn=859feab7f4632b7ba3d1b5a614d57bbe&amp;chksm=e9c2ed5fdeb56449575995778573fa05a3730ac72792d70fc91e38e2d2f5238899f620481d16&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 适配器模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483737&amp;idx=1&amp;sn=ed27a42a80b87ff74f1e1266d918ad5b&amp;chksm=e9c2ed54deb56442aba5c95fbddd4c774eb39ebe7ab8c03471a62e3cf3979e303cef43417bac&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 享元模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483742&amp;idx=1&amp;sn=436670dc4793c6c9e7207ca6222e062c&amp;chksm=e9c2ed53deb56445c7fb1aef89ab80b23bab96e6f9993618c98e1746209eec05f36b231cfaa8&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 组合模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483747&amp;idx=1&amp;sn=aa494215a2933e2424a6daa03587e478&amp;chksm=e9c2ed6edeb564783b9acd9f5372a08d53d04b001ca362c9213c4379bc7e1bff363e4ad01e3c&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 模板方法模式及典型应用</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483752&amp;idx=1&amp;sn=7880679f18b5727ea64cd05c06817c35&amp;chksm=e9c2ed65deb56473da688784c4562995c24daf4b13425d0d4d080208728b86525f6600127925&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 迭代器模式及典型应用</a>   </p>
 <p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
 
       
@@ -835,12 +904,12 @@ HELLO JAVA I/O!
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>设计模式 | 装饰者模式及典型应用</p>
-    <p><span>文章字数:</span><span class="post-count">4,175</span></p>
+    <p><span>文章标题:</span>设计模式 | 策略模式及典型应用</p>
+    <p><span>文章字数:</span><span class="post-count">4,513</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-09-18, 20:44:31</p>
-    <p><span>最后更新:</span>2018-09-18, 21:31:51</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式-装饰者模式及典型应用/" title="设计模式 | 装饰者模式及典型应用">http://laijianfeng.org/2018/09/设计模式-装饰者模式及典型应用/</a>
+    <p><span>发布时间:</span>2018-10-18, 20:33:43</p>
+    <p><span>最后更新:</span>2018-10-18, 20:35:23</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/10/设计模式-策略模式及典型应用/" title="设计模式 | 策略模式及典型应用">http://laijianfeng.org/2018/10/设计模式-策略模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -852,7 +921,7 @@ HELLO JAVA I/O!
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '设计模式 | 装饰者模式及典型应用', // 可选。默认为 location.href
+        id: '设计模式 | 策略模式及典型应用', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
