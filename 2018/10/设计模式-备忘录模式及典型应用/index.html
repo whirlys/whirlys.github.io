@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Elasticsearch 中的 Guice | 小旋锋</title>
-  <meta name="keywords" content=" elasticsearch ">
-  <meta name="description" content="Elasticsearch 中的 Guice | 小旋锋">
+  <title>设计模式 | 备忘录模式及典型应用 | 小旋锋</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="设计模式 | 备忘录模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="本文主要内容：  介绍观察者模式 微信公众号的发布/订阅示例 观察者模式总结 分析观察者模式的典型应用 JDK 提供的观察者接口中的观察者模式 Guava EventBus 中的观察者模式 JDK 委托事件模型DEM中的观察者模式 Spring ApplicationContext 事件机制中的观察者模式    观察者模式观察者模式是设计模式中的 “超级模式”，其应用随处可见，我们以微信公众号为例">
 <meta name="keywords" content="Java设计模式,设计模式,观察者模式">
@@ -410,9 +410,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Elasticsearch-中的-Guice" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-设计模式-备忘录模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Elasticsearch 中的 Guice</h1>
+        <h1 class="article-title">设计模式 | 备忘录模式及典型应用</h1>
     
     <div class="article-meta">
         
@@ -420,26 +420,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="大数据">大数据</a>
+            <a href="javascript:" data-rel="后端">后端</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">elasticsearch</a>
+            <a href="javascript:" class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-08-31 00:40:14'>2018-08-31 00:39</time>
+        创建时间:<time class="date" title='更新时间: 2018-10-25 00:44:16'>2018-10-25 00:42</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1,397</span>
+        <span>字数:1,558</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -469,7 +469,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Demo"><span class="toc-text">1、Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iTool接口与实现类"><span class="toc-text">iTool接口与实现类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IAnimal-接口与实现类"><span class="toc-text">IAnimal 接口与实现类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ToolModule的实现-它绑了三个实例"><span class="toc-text">ToolModule的实现, 它绑了三个实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Person-类"><span class="toc-text">Person 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CustomModuleBuilder-统一管理-Module"><span class="toc-text">CustomModuleBuilder 统一管理 Module</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Main-方法"><span class="toc-text">Main 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、ES-中Guice的使用"><span class="toc-text">2、ES 中Guice的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TransportClient的初始化代码"><span class="toc-text">TransportClient的初始化代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#备忘录模式"><span class="toc-text">备忘录模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备忘录模式总结"><span class="toc-text">备忘录模式总结</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -484,232 +484,162 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Elasticsearch 源代码中使用了Guice框架进行依赖注入. 为了方便阅读源码, 此处我先通过模仿ES guice的使用方式简单写了一个基本Demo 方便理解, 之后再来理一下ES的Guice使用. 编写的测试类原理图如下:</p>
-<p><img src="http://image.laijianfeng.org/2778947-7847f61cf5180bdc.webp" alt="ES Guice Demo"></p>
-<p>总共有两个Module，一个是ToolModule，<strong>用于绑定</strong>IAnimal接口、ITool接口以及Map对象. 另一个是HumanModule 用于绑定Person对象。   </p>
-<p>其中Person的构造函数通过 <code>@Inject</code> 注解注入其他实例</p>
-<p>gradle 需要引入的 Jar 包</p>
-<pre><code>compile group: &#39;com.google.inject.extensions&#39;, name: &#39;guice-multibindings&#39;, version: &#39;4.2.0&#39;
-compile group: &#39;com.google.inject&#39;, name: &#39;guice&#39;, version: &#39;4.2.0&#39;
-</code></pre><h3 id="1、Demo"><a href="#1、Demo" class="headerlink" title="1、Demo"></a>1、Demo</h3><h4 id="iTool接口与实现类"><a href="#iTool接口与实现类" class="headerlink" title="iTool接口与实现类"></a>iTool接口与实现类</h4><pre><code>public interface ITool {
-    public void doWork();
-}
-</code></pre><pre><code>import com.whirly.guice.example.ITool;
+        <p>本文的主要内容：</p>
+<ul>
+<li>介绍备忘录模式</li>
+<li>示例</li>
+<li>备忘录模式总结</li>
+</ul>
+<h2 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h2><p>备忘录模式经常可以遇到，譬如下面这些场景：</p>
+<ul>
+<li><p><strong>浏览器回退</strong>：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面</p>
+</li>
+<li><p><strong>数据库备份与还原</strong>：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中</p>
+</li>
+<li><p><strong>编辑器撤销与重做</strong>：在编辑器上编辑文字，写错时可以按快捷键 <code>Ctrl + z</code> 撤销，撤销后可以按 <code>Ctrl + y</code> 重做</p>
+</li>
+<li><p><strong>虚拟机生成快照与恢复</strong>：虚拟机可以生成一个快照，当虚拟机发生错误时可以恢复到快照的样子</p>
+</li>
+<li><p><strong>Git版本管理</strong>：Git是最常见的版本管理软件，每提交一个新版本，实际上Git就会把它们自动串成一条时间线，每个版本都有一个版本号，使用 <code>git reset --hard 版本号</code> 即可回到指定的版本，让代码时空穿梭回到过去某个历史时刻</p>
+</li>
+<li><p><strong>棋牌游戏悔棋</strong>：在棋牌游戏中，有时下快了可以悔棋，回退到上一步重新下</p>
+</li>
+</ul>
+<p><img src="http://image.laijianfeng.org/20181024_233428.png" alt="浏览器回退"></p>
+<p><img src="http://image.laijianfeng.org/20181024_235908.png" alt="编辑器撤销"></p>
+<p><strong>备忘录模式(Memento Pattern)</strong>：在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。它是一种对象行为型模式，其别名为Token。</p>
+<p><img src="http://image.laijianfeng.org/20181025_001332.png" alt="指针向左为撤销，向右为重做"></p>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p><strong>Originator（原发器）</strong>：它是一个普通类，可以创建一个备忘录，并存储它的当前内部状态，也可以使用备忘录来恢复其内部状态，一般将需要保存内部状态的类设计为原发器。</p>
+<p><strong>Memento（备忘录)</strong>：存储原发器的内部状态，根据原发器来决定保存哪些内部状态。备忘录的设计一般可以参考原发器的设计，根据实际需要确定备忘录类中的属性。需要注意的是，除了原发器本身与负责人类之外，备忘录对象不能直接供其他类使用，原发器的设计在不同的编程语言中实现机制会有所不同。</p>
+<p><strong>Caretaker（负责人）</strong>：负责人又称为管理者，它负责保存备忘录，但是不能对备忘录的内容进行操作或检查。在负责人类中可以存储一个或多个备忘录对象，它只负责存储对象，而不能修改对象，也无须知道对象的实现细节。</p>
+<p>备忘录模式的核心是备忘录类以及用于管理备忘录的负责人类的设计。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>下棋例子，可以下棋，悔棋，撤销悔棋等</p>
+<p>棋子类 <code>Chessman</code>，原发器角色</p>
+<pre><code class="java">@Data
+@AllArgsConstructor
+class Chessman {
+    private String label;
+    private int x;
+    private int y;
 
-public class IToolImpl implements ITool {
-    @Override
-    public void doWork() {
-        System.out.println(&quot;use tool to work&quot;);
+    //保存状态
+    public ChessmanMemento save() {
+        return new ChessmanMemento(this.label, this.x, this.y);
+    }
+
+    //恢复状态
+    public void restore(ChessmanMemento memento) {
+        this.label = memento.getLabel();
+        this.x = memento.getX();
+        this.y = memento.getY();
+    }
+
+    public void show() {
+        System.out.println(String.format(&quot;棋子&lt;%s&gt;：当前位置为：&lt;%d, %d&gt;&quot;, this.getLabel(), this.getX(), this.getY()));
     }
 }
-</code></pre><h4 id="IAnimal-接口与实现类"><a href="#IAnimal-接口与实现类" class="headerlink" title="IAnimal 接口与实现类"></a>IAnimal 接口与实现类</h4><pre><code>public interface IAnimal {
-    void work();
+</code></pre>
+<p>备忘录角色 <code>ChessmanMemento</code></p>
+<pre><code class="java">@Data
+@AllArgsConstructor
+class ChessmanMemento {
+    private String label;
+    private int x;
+    private int y;
 }
-</code></pre><pre><code>public class IAnimalImpl implements IAnimal {
-    @Override
-    public void work() {
-        System.out.println(&quot;animals can also do work&quot;);
-    }
-}
-</code></pre><h4 id="ToolModule的实现-它绑了三个实例"><a href="#ToolModule的实现-它绑了三个实例" class="headerlink" title="ToolModule的实现, 它绑了三个实例"></a>ToolModule的实现, 它绑了三个实例</h4><pre><code>public class ToolModule extends AbstractModule {
+</code></pre>
+<p>负责人角色 <code>MementoCaretaker</code></p>
+<pre><code class="java">class MementoCaretaker {
+    //定义一个集合来存储备忘录
+    private ArrayList mementolist = new ArrayList();
 
-    @Override
-    protected void configure() {
-        //此处注入的实例可以注入到其他类的构造函数中, 只要那个类使用@Inject进行注入即可
-        bind(IAnimal.class).to(IAnimalImpl.class);
-        bind(ITool.class).to(IToolImpl.class);
-
-        // 注入Map实例
-        MapBinder&lt;String, String&gt; mapBinder = MapBinder.newMapBinder(binder(), String.class, String.class);
-        mapBinder.addBinding(&quot;test1&quot;).toInstance(&quot;test1&quot;);
-        mapBinder.addBinding(&quot;test2&quot;).toInstance(&quot;test2&quot;);
-    }
-}
-</code></pre><p><code>bind(IAnimal.class).to(IAnimalImpl.class);bind(ITool.class).to(IToolImpl.class);</code>  是将接口与其具体实现绑定起来</p>
-<p><code>MapBinder&lt;String,String&gt; mapBinder =MapBinder.newMapBinder(binder(), String.class, String.class);mapBinder.addBinding(&quot;test1&quot;).toInstance(&quot;test1&quot;);mapBinder.addBinding(&quot;test2&quot;).toInstance(&quot;test2&quot;);</code> 则是完成Map的绑定. </p>
-<p>后面来看看Person类和HumanModule</p>
-<h4 id="Person-类"><a href="#Person-类" class="headerlink" title="Person 类"></a>Person 类</h4><pre><code>public class Person {
-
-    private IAnimal iAnimal;
-    private ITool iTool;
-    private Map&lt;String, String&gt; map;
-
-    @Inject
-    public Person(IAnimal iAnimal, ITool iTool, Map&lt;String, String&gt; map) {
-        this.iAnimal = iAnimal;
-        this.iTool = iTool;
-        this.map = map;
+    public ChessmanMemento getMemento(int i) {
+        return (ChessmanMemento) mementolist.get(i);
     }
 
-    public void startwork() {
-        iTool.doWork();
-        iAnimal.work();
-        for (Map.Entry entry : map.entrySet()) {
-            System.out.println(&quot;注入的map 是 &quot; + entry.getKey() + &quot; value &quot; + entry.getValue());
-        }
+    public void addMemento(ChessmanMemento memento) {
+        mementolist.add(memento);
     }
 }
-</code></pre><p>Person 类中由 <code>IAnimal</code>、<code>ITool</code> 和 <code>Map&lt;String, String&gt;</code> 这三个接口定义的变量，对象将通过 <code>@Inject</code> 从构造方法中注入进来</p>
-<pre><code>public class HumanModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(Person.class).asEagerSingleton();
+</code></pre>
+<p>棋子客户端，维护了一个 <code>MementoCaretaker</code> 对象</p>
+<pre><code class="java">class Client {
+    private static int index = -1;
+    private static MementoCaretaker mc = new MementoCaretaker();
+
+    public static void main(String args[]) {
+        Chessman chess = new Chessman(&quot;车&quot;, 1, 1);
+        play(chess);
+        chess.setY(4);
+        play(chess);
+        chess.setX(5);
+        play(chess);
+        undo(chess, index);
+        undo(chess, index);
+        redo(chess, index);
+        redo(chess, index);
+    }
+
+    //下棋，同时保存备忘录
+    public static void play(Chessman chess) {
+        mc.addMemento(chess.save());
+        index++;
+        chess.show();
+    }
+
+    //悔棋，撤销到上一个备忘录
+    public static void undo(Chessman chess, int i) {
+        System.out.println(&quot;******悔棋******&quot;);
+        index--;
+        chess.restore(mc.getMemento(i - 1));
+        chess.show();
+    }
+
+    //撤销悔棋，恢复到下一个备忘录
+    public static void redo(Chessman chess, int i) {
+        System.out.println(&quot;******撤销悔棋******&quot;);
+        index++;
+        chess.restore(mc.getMemento(i + 1));
+        chess.show();
     }
 }
-</code></pre><p>Person类的构造函数是通过注入的方式，注入对象实例的</p>
-<p>最后 <code>CustomModuleBuilder</code> 进行<strong>统一管理所有的Module</strong>，实例化所有Module中的对象. 完成依赖注入。</p>
-<p>这里的CustomModuleBuilder是修改自Elasticsearch中的ModulesBuilder，其原理是一样的。</p>
-<p>就是一个迭代器，<strong>内部封装的是Module集合, 统一管理所有的Module</strong></p>
-<h4 id="CustomModuleBuilder-统一管理-Module"><a href="#CustomModuleBuilder-统一管理-Module" class="headerlink" title="CustomModuleBuilder 统一管理 Module"></a>CustomModuleBuilder 统一管理 Module</h4><pre><code>public class CustomModuleBuilder implements Iterable&lt;Module&gt; {
-
-    private final List&lt;Module&gt; modules = new ArrayList&lt;&gt;();
-
-    public CustomModuleBuilder add(Module... newModules) {
-        for (Module module : newModules) {
-            modules.add(module);
-        }
-        return this;
-    }
-
-    @Override
-    public Iterator&lt;Module&gt; iterator() {
-        return modules.iterator();
-    }
-
-    public Injector createInjector() {
-        Injector injector = Guice.createInjector(modules);
-        return injector;
-    }
-}
-</code></pre><p>这样就可以从Main方法是如何进行使用的</p>
-<h4 id="Main-方法"><a href="#Main-方法" class="headerlink" title="Main 方法"></a>Main 方法</h4><pre><code>public class Main {
-    public static void main(String[] args) {
-        CustomModuleBuilder moduleBuilder = new CustomModuleBuilder();
-        moduleBuilder.add(new ToolModule());
-        moduleBuilder.add(new HumanModule());
-        Injector injector = moduleBuilder.createInjector();
-        Person person = injector.getInstance(Person.class);
-        person.startwork();
-    }
-}
-</code></pre><p>运行结果</p>
-<pre><code>use tool to work
-animals can also do work
-注入的map 是 test1 value test1
-注入的map 是 test2 value test2
-</code></pre><p>通过CustomModuleBuilder 的createInjector获取Injector 对象, 根据Injector 对象取相应的具体实例对象.</p>
-<h3 id="2、ES-中Guice的使用"><a href="#2、ES-中Guice的使用" class="headerlink" title="2、ES 中Guice的使用"></a>2、ES 中Guice的使用</h3><p>ES中TransportClient初始化时的Guice的使用是这样的, 如下图所示</p>
-<p><img src="http://image.laijianfeng.org/2778947-ab2035e865492a2b.png" alt="ES中TransportClient初始化时的Guice的使用（ES版本不是6.3.2）"></p>
-<h4 id="TransportClient的初始化代码"><a href="#TransportClient的初始化代码" class="headerlink" title="TransportClient的初始化代码"></a>TransportClient的初始化代码</h4><p>Elasticsearch 6.3.2 </p>
-<pre><code>private static ClientTemplate buildTemplate(Settings providedSettings, Settings defaultSettings,
-                                            Collection&lt;Class&lt;? extends Plugin&gt;&gt; plugins, HostFailureListener failureListner) {
-    // 省略 ...
-    try {
-        // 省略 ...
-
-        // 创建一个迭代器, 然后将各个Module通过add方法加入进去
-        ModulesBuilder modules = new ModulesBuilder();
-        // plugin modules must be added here, before others or we can get crazy injection errors...
-        for (Module pluginModule : pluginsService.createGuiceModules()) {
-            modules.add(pluginModule);
-        }
-        modules.add(b -&gt; b.bind(ThreadPool.class).toInstance(threadPool));
-        ActionModule actionModule = new ActionModule(true, settings, null, settingsModule.getIndexScopedSettings(),
-                settingsModule.getClusterSettings(), settingsModule.getSettingsFilter(), threadPool,
-                pluginsService.filterPlugins(ActionPlugin.class), null, null, null);
-        modules.add(actionModule);
-
-        CircuitBreakerService circuitBreakerService = Node.createCircuitBreakerService(settingsModule.getSettings(),
-            settingsModule.getClusterSettings());
-        resourcesToClose.add(circuitBreakerService);
-        PageCacheRecycler pageCacheRecycler = new PageCacheRecycler(settings);
-        BigArrays bigArrays = new BigArrays(pageCacheRecycler, circuitBreakerService);
-        resourcesToClose.add(bigArrays);
-        modules.add(settingsModule);
-
-        NetworkModule networkModule = new NetworkModule(settings, true, pluginsService.filterPlugins(NetworkPlugin.class), threadPool,
-            bigArrays, pageCacheRecycler, circuitBreakerService, namedWriteableRegistry, xContentRegistry, networkService, null);
-        final Transport transport = networkModule.getTransportSupplier().get();
-        final TransportService transportService = new TransportService(settings, transport, threadPool,
-            networkModule.getTransportInterceptor(),
-            boundTransportAddress -&gt; DiscoveryNode.createLocal(settings, new TransportAddress(TransportAddress.META_ADDRESS, 0),
-                UUIDs.randomBase64UUID()), null, Collections.emptySet());
-        modules.add((b -&gt; {
-            b.bind(BigArrays.class).toInstance(bigArrays);
-            b.bind(PluginsService.class).toInstance(pluginsService);
-            b.bind(CircuitBreakerService.class).toInstance(circuitBreakerService);
-            b.bind(NamedWriteableRegistry.class).toInstance(namedWriteableRegistry);
-            b.bind(Transport.class).toInstance(transport);
-            b.bind(TransportService.class).toInstance(transportService);
-            b.bind(NetworkService.class).toInstance(networkService);
-        }));
-
-        // 注入所有module下的实例
-        Injector injector = modules.createInjector();
-        final TransportClientNodesService nodesService =
-            new TransportClientNodesService(settings, transportService, threadPool, failureListner == null
-                ? (t, e) -&gt; {} : failureListner);
-
-        // construct the list of client actions
-        final List&lt;ActionPlugin&gt; actionPlugins = pluginsService.filterPlugins(ActionPlugin.class);
-        final List&lt;GenericAction&gt; clientActions =
-                actionPlugins.stream().flatMap(p -&gt; p.getClientActions().stream()).collect(Collectors.toList());
-        // add all the base actions
-        final List&lt;? extends GenericAction&lt;?, ?&gt;&gt; baseActions =
-                actionModule.getActions().values().stream().map(ActionPlugin.ActionHandler::getAction).collect(Collectors.toList());
-        clientActions.addAll(baseActions);
-        final TransportProxyClient proxy = new TransportProxyClient(settings, transportService, nodesService, clientActions);
-
-        List&lt;LifecycleComponent&gt; pluginLifecycleComponents = new ArrayList&lt;&gt;(pluginsService.getGuiceServiceClasses().stream()
-            .map(injector::getInstance).collect(Collectors.toList()));
-        resourcesToClose.addAll(pluginLifecycleComponents);
-
-        // 启动服务
-        transportService.start();
-        transportService.acceptIncomingRequests();
-
-        ClientTemplate transportClient = new ClientTemplate(injector, pluginLifecycleComponents, nodesService, proxy, namedWriteableRegistry);
-        resourcesToClose.clear();
-        return transportClient;
-    } finally {
-        IOUtils.closeWhileHandlingException(resourcesToClose);
-    }
-}
-</code></pre><p>可以看到确实是先通 <code>过ModulesBuilder modules = new ModulesBuilder()</code> 创建一个迭代器, 然后将各个Module通过add方法加入进去, 最后通过 <code>Injector injector = modules.createInjector();</code> 创建Injector对象, <strong>之后便可根据Injector对象去获取实例了</strong>. </p>
-<p>各个Module会绑定自己所需要的实例, 这里以 SettingsModule 举例:</p>
-<pre><code>public class SettingsModule extends AbstractModule {
-    private final Settings settings;
-    private final Set&lt;String&gt; settingsFilterPattern = new HashSet&lt;&gt;();
-    private final Map&lt;String, Setting&lt;?&gt;&gt; nodeSettings = new HashMap&lt;&gt;();
-    private final Map&lt;String, Setting&lt;?&gt;&gt; indexSettings = new HashMap&lt;&gt;();
-    private final Logger logger;
-    private final IndexScopedSettings indexScopedSettings;
-    private final ClusterSettings clusterSettings;
-    private final SettingsFilter settingsFilter;
-
-    public SettingsModule(Settings settings, Setting&lt;?&gt;... additionalSettings) {
-        this(settings, Arrays.asList(additionalSettings), Collections.emptyList());
-    }
-
-    @Override
-    public void configure(Binder binder) {
-        binder.bind(Settings.class).toInstance(settings);
-        binder.bind(SettingsFilter.class).toInstance(settingsFilter);
-        binder.bind(ClusterSettings.class).toInstance(clusterSettings);
-        binder.bind(IndexScopedSettings.class).toInstance(indexScopedSettings);
-    }
-
-    //...
-}
-</code></pre><p>可以看到它绑定了四个,分别是 Settings.class，SettingsFilter.class，ClusterSettings.class，IndexScopedSettings.class</p>
-<p>它们的实例对象都可以通过Injector来获取</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>示例代码可在 <a href="https://github.com/whirlys/elastic-example/tree/master/guice" target="_blank" rel="noopener">https://github.com/whirlys/elastic-example/tree/master/guice</a> 处下载</p>
+</code></pre>
+<p>输出如下，悔棋成功，撤销悔棋成功</p>
+<pre><code>棋子&lt;车&gt;：当前位置为：&lt;1, 1&gt;
+棋子&lt;车&gt;：当前位置为：&lt;1, 4&gt;
+棋子&lt;车&gt;：当前位置为：&lt;5, 4&gt;
+******悔棋******
+棋子&lt;车&gt;：当前位置为：&lt;1, 4&gt;
+******悔棋******
+棋子&lt;车&gt;：当前位置为：&lt;1, 1&gt;
+******撤销悔棋******
+棋子&lt;车&gt;：当前位置为：&lt;1, 4&gt;
+******撤销悔棋******
+棋子&lt;车&gt;：当前位置为：&lt;5, 4&gt;
+</code></pre><p>类图如下</p>
+<p><img src="http://image.laijianfeng.org/20181024_113151.png" alt="示例.备忘录模式类图"></p>
+<h2 id="备忘录模式总结"><a href="#备忘录模式总结" class="headerlink" title="备忘录模式总结"></a>备忘录模式总结</h2><p>备忘录模式的<strong>主要优点</strong>如下：</p>
+<ul>
+<li><p>它提供了一种状态恢复的实现机制，使得用户可以方便地回到一个特定的历史步骤，当新的状态无效或者存在问题时，可以使用暂时存储起来的备忘录将状态复原。</p>
+</li>
+<li><p>备忘录实现了对信息的封装，一个备忘录对象是一种原发器对象状态的表示，不会被其他代码所改动。备忘录保存了原发器的状态，采用列表、堆栈等集合来存储备忘录对象可以实现多次撤销操作。</p>
+</li>
+</ul>
+<p>备忘录模式的<strong>主要缺点</strong>如下：</p>
+<ul>
+<li>资源消耗过大，如果需要保存的原发器类的成员变量太多，就不可避免需要占用大量的存储空间，每保存一次对象的状态都需要消耗一定的系统资源。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li><p>保存一个对象在某一个时刻的全部状态或部分状态，这样以后需要时它能够恢复到先前的状态，实现撤销操作。</p>
+</li>
+<li><p>防止外界对象破坏一个对象历史状态的封装性，避免将对象历史状态的实现细节暴露给外界对象。</p>
+</li>
+</ul>
 <blockquote>
-<p>参考：<br>kason_zhang <a href="https://www.jianshu.com/p/0a1e6267b46f" target="_blank" rel="noopener">Elasticsearch Guice 的使用</a></p>
+<p>由于软件中JDK、Spring、Mybatis中很少有备忘录模式，也许 Spring webflow 中的 StateManageableMessageContext 接口算一个，但是真的很少见，所以这里不做典型应用源码分析</p>
 </blockquote>
-<hr>
-<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
-<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+<p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -723,12 +653,12 @@ animals can also do work
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>Elasticsearch 中的 Guice</p>
-    <p><span>文章字数:</span><span class="post-count">1,397</span></p>
+    <p><span>文章标题:</span>设计模式 | 备忘录模式及典型应用</p>
+    <p><span>文章字数:</span><span class="post-count">1,558</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-08-31, 00:39:17</p>
-    <p><span>最后更新:</span>2018-08-31, 00:40:14</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/08/Elasticsearch-中的-Guice/" title="Elasticsearch 中的 Guice">http://laijianfeng.org/2018/08/Elasticsearch-中的-Guice/</a>
+    <p><span>发布时间:</span>2018-10-25, 00:42:24</p>
+    <p><span>最后更新:</span>2018-10-25, 00:44:16</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/10/设计模式-备忘录模式及典型应用/" title="设计模式 | 备忘录模式及典型应用">http://laijianfeng.org/2018/10/设计模式-备忘录模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -740,7 +670,7 @@ animals can also do work
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'Elasticsearch 中的 Guice', // 可选。默认为 location.href
+        id: '设计模式 | 备忘录模式及典型应用', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
