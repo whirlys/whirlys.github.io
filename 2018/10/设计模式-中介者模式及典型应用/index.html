@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>设计模式 | 工厂方法模式及典型应用 | 小旋锋</title>
+  <title>设计模式 | 中介者模式及典型应用 | 小旋锋</title>
   <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="设计模式 | 工厂方法模式及典型应用 | 小旋锋">
+  <meta name="description" content="设计模式 | 中介者模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="本文的主要内容：  介绍备忘录模式 示例 备忘录模式总结  备忘录模式备忘录模式经常可以遇到，譬如下面这些场景：  浏览器回退：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面  数据库备份与还原：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中  编辑">
 <meta name="keywords" content="Java设计模式,设计模式,备忘录模式">
@@ -418,9 +418,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-设计模式之工厂方法模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-设计模式-中介者模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">设计模式 | 工厂方法模式及典型应用</h1>
+        <h1 class="article-title">设计模式 | 中介者模式及典型应用</h1>
     
     <div class="article-meta">
         
@@ -442,12 +442,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-09-09 17:24:06'>2018-09-09 17:20</time>
+        创建时间:<time class="date" title='更新时间: 2018-10-26 00:49:32'>2018-10-26 00:45</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3,140</span>
+        <span>字数:4,092</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -477,7 +477,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法模式"><span class="toc-text">工厂方法模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法模式总结"><span class="toc-text">工厂方法模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂方法模式的主要优点"><span class="toc-text">工厂方法模式的主要优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂方法模式的主要缺点"><span class="toc-text">工厂方法模式的主要缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景"><span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法模式的典型应用及源码分析"><span class="toc-text">工厂方法模式的典型应用及源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java集合接口-Collection-中的工厂方法模式"><span class="toc-text">Java集合接口 Collection 中的工厂方法模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java-net-网络包中的工厂方法模式"><span class="toc-text">java.net 网络包中的工厂方法模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Logback-中的工厂方法模式"><span class="toc-text">Logback 中的工厂方法模式</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#中介者模式"><span class="toc-text">中介者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中介者模式总结"><span class="toc-text">中介者模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#中介者模式的主要优点"><span class="toc-text">中介者模式的主要优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中介者模式的主要缺点"><span class="toc-text">中介者模式的主要缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景"><span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中介者模式的典型应用"><span class="toc-text">中介者模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Timer-中的中介者模式"><span class="toc-text">Java Timer 中的中介者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他的中介者模式应用"><span class="toc-text">其他的中介者模式应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -492,273 +492,489 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p>工厂方法模式(Factory Method Pattern)：定义一个用于创建对象的接口，让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到其子类。</p>
-<p>工厂方法模式又简称为工厂模式(Factory Pattern)，又可称作虚拟构造器模式(Virtual Constructor Pattern)或多态工厂模式(Polymorphic Factory Pattern)。</p>
-<p>工厂方法模式是一种类创建型模式。</p>
-<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p>在工厂方法模式结构图中包含如下几个角色：</p>
-<p><strong>Product（抽象产品）</strong>：它是定义产品的接口，是工厂方法模式所创建对象的超类型，也就是产品对象的公共父类</p>
-<p><strong>ConcreteProduct（具体产品）</strong>：它实现了抽象产品接口，某种类型的具体产品由专门的具体工厂创建，具体工厂和具体产品之间一一对应。</p>
-<p><strong>Factory（抽象工厂）</strong>：在抽象工厂类中，声明了工厂方法(Factory Method)，用于返回一个产品。抽象工厂是工厂方法模式的核心，所有创建对象的工厂类都必须实现该接口。</p>
-<p><strong>ConcreteFactory（具体工厂）</strong>：它是抽象工厂类的子类，实现了抽象工厂中定义的工厂方法，并可由客户端调用，返回一个具体产品类的实例。</p>
-<p>与简单工厂模式相比，工厂方法模式最重要的区别是引入了抽象工厂角色，抽象工厂可以是接口，也可以是抽象类或者具体类</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>抽象产品类 Video</p>
-<pre><code>public abstract class Video {
-    public abstract void produce();
-}
-</code></pre><p>具体产品类 JavaVideo 和 PythonVideo，需要继承抽象产品类 Video</p>
-<pre><code>public class JavaVideo extends Video {
-    @Override
-    public void produce() {
-        System.out.println(&quot;录制Java课程视频&quot;);
-    }
-}
+        <p>本文的主要内容：</p>
+<ul>
+<li>介绍中介者模式</li>
+<li>数据同步示例</li>
+<li>中介者模式总结</li>
+<li>源码分析中介者模式的典型应用<ul>
+<li>Java Timer 中的中介者模式</li>
+</ul>
+</li>
+</ul>
+<h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><p>世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearch或者列式数据库如Hbase中进行大数据查询。</p>
+<p><strong>如何设计数据同步方案</strong>是一个重要的问题。数据源众多，目标端也众多，设计得不好可能 “牵一发而动全身”。</p>
+<p>如果我们这样设计：每个数据源直接同步数据到目标端数据库的，如果数据库有 N 个，那么最多可能的同步作业将达到 <code>N * N</code> 个，当修改了其中一个数据库的某些配置，可能需要修改另外的 <code>N - 1</code> 个数据库的同步作业。</p>
+<p>现在介绍另一种方案，DataX 是阿里巴巴集团内被广泛使用的离线数据同步工具/平台，实现包括 MySQL、Oracle、SqlServer、Postgre、HDFS、Hive、ADS、HBase、TableStore(OTS)、MaxCompute(ODPS)、DRDS 等各种异构数据源之间高效的数据同步功能。</p>
+<p><img src="http://image.laijianfeng.org/datax-sync.png" alt="DataX"></p>
+<p>DataX 其实相当于一个中介，从数据源读取数据，写入到目标端，数据源不再需要维护到目标端的同步作业，只需要与 DataX 通信即可。DataX 体现了中介者模式的思想。</p>
+<p><strong>中介者模式(Mediator Pattern)</strong>：用一个中介对象（中介者）来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。中介者模式又称为调停者模式，它是一种对象行为型模式。</p>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p><strong>Mediator（抽象中介者）</strong>：它定义一个接口，该接口用于与各同事对象之间进行通信。</p>
+<p><strong>ConcreteMediator（具体中介者）</strong>：它是抽象中介者的子类，通过协调各个同事对象来实现协作行为，它维持了对各个同事对象的引用。</p>
+<p><strong>Colleague（抽象同事类）</strong>：它定义各个同事类公有的方法，并声明了一些抽象方法来供子类实现，同时它维持了一个对抽象中介者类的引用，其子类可以通过该引用来与中介者通信。</p>
+<p><strong>ConcreteColleague（具体同事类）</strong>：它是抽象同事类的子类；每一个同事对象在需要和其他同事对象通信时，先与中介者通信，通过中介者来间接完成与其他同事类的通信；在具体同事类中实现了在抽象同事类中声明的抽象方法。</p>
+<p>中介者模式的核心在于中介者类的引入，在中介者模式中，<strong>中介者类承担了两方面的职责</strong>：</p>
+<ul>
+<li><strong>中转作用（结构性）</strong>：通过中介者提供的中转作用，各个同事对象就不再需要显式引用其他同事，当需要和其他同事进行通信时，可通过中介者来实现间接调用。该中转作用属于中介者在结构上的支持。</li>
+<li><strong>协调作用（行为性）</strong>：中介者可以更进一步的对同事之间的关系进行封装，同事可以一致的和中介者进行交互，而不需要指明中介者需要具体怎么做，中介者根据封装在自身内部的协调逻辑，对同事的请求进行进一步处理，将同事成员之间的关系行为进行分离和封装。</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>我们来实现一个简化版的数据同步方案，有三种数据库 Mysql、Redis、Elasticsearch，其中的 Mysql 作为主数据库，当增加一条数据时<strong>需要</strong>同步到另外两个数据库中；Redis 作为缓存数据库，当增加一条数据时<strong>不需要</strong>同步到另外另个数据库；而 Elasticsearch 作为大数据查询数据库，有一个统计功能，当增加一条数据时<strong>只需要</strong>同步到 Mysql，所以它们之间的关系图如下所示。</p>
+<p><img src="http://image.laijianfeng.org/20181025_193152.jpg" alt="简化的数据同步需求"></p>
+<p>首先我们来实现第一种<strong>不使用</strong>中介者模式的数据同步方案，各数据源维护各自的同步作业。</p>
+<p>抽象数据库</p>
+<pre><code class="java">public abstract class AbstractDatabase {
+    public abstract void add(String data);
 
-public class PythonVideo extends Video {
-    @Override
-    public void produce() {
-        System.out.println(&quot;录制Python课程视频&quot;);
-    }
+    public abstract void addData(String data);
 }
-</code></pre><p>抽象工厂类 VideoFactory</p>
-<pre><code>public abstract class VideoFactory {
-    public abstract Video getVideo();
-}
-</code></pre><p>具体工厂类 JavaVideoFactory 和 PythonVideoFactory，需要继承抽象工厂类 VideoFactory</p>
-<pre><code>public class JavaVideoFactory extends VideoFactory {
-    @Override
-    public Video getVideo() {
-        return new JavaVideo();
-    }
-}
+</code></pre>
+<p>具体数据库 Mysql，维护同步到 Redis和Elasticsearch 的同步作业</p>
+<pre><code class="java">public class MysqlDatabase extends AbstractDatabase {
+    private List&lt;String&gt; dataset = new ArrayList&lt;String&gt;();
+    @Setter
+    private RedisDatabase redisDatabase;
+    @Setter
+    private EsDatabase esDatabase;
 
-public class PythonVideoFactory extends VideoFactory {
     @Override
-    public Video getVideo() {
-        return new PythonVideo();
+    public void addData(String data) {
+        System.out.println(&quot;Mysql 添加数据：&quot; + data);
+        this.dataset.add(data);
+    }
+
+    @Override
+    public void add(String data) {
+        addData(data);
+        this.redisDatabase.addData(data);   // 维护同步到Redis的同步作业
+        this.esDatabase.addData(data);  // 维护同步到Elasticsearch的同步作业
+    }
+
+    public void select() {
+        System.out.println(&quot;- Mysql 查询，数据：&quot; + this.dataset.toString());
     }
 }
-</code></pre><p>客户端类，需要什么产品则通过该产品对应的工厂类来获取，不需要知道具体的创建过程</p>
-<pre><code>public class Test {
+</code></pre>
+<p>具体数据库 Redis，不需要同步到其它数据库</p>
+<pre><code class="java">public class RedisDatabase extends AbstractDatabase {
+    private List&lt;String&gt; dataset = new LinkedList&lt;String&gt;();
+
+    @Override
+    public void addData(String data) {
+        System.out.println(&quot;Redis 添加数据：&quot; + data);
+        this.dataset.add(data);
+    }
+
+    @Override
+    public void add(String data) {
+        addData(data); // 不同步到其它数据库
+    }
+
+    public void cache() {
+        System.out.println(&quot;- Redis 缓存的数据：&quot; + this.dataset.toString());
+    }
+}
+</code></pre>
+<p>Elasticsearch ，只需要同步到Mysql</p>
+<pre><code class="java">public class EsDatabase extends AbstractDatabase {
+    private List&lt;String&gt; dataset = new CopyOnWriteArrayList&lt;String&gt;();
+    @Setter
+    private MysqlDatabase mysqlDatabase;
+    @Override
+    public void addData(String data) {
+        System.out.println(&quot;ES 添加数据：&quot; + data);
+        this.dataset.add(data);
+    }
+
+    @Override
+    public void add(String data) {
+        addData(data);
+        this.mysqlDatabase.addData(data);   // 维护同步到MySQL的同步作业
+    }
+
+    public void count() {
+        int count = this.dataset.size();
+        System.out.println(&quot;- Elasticsearch 统计，目前有 &quot; + count + &quot; 条数据，数据：&quot; + this.dataset.toString());
+    }
+}
+</code></pre>
+<p>测试客户端，分别往三个数据库中加入一些数据查看同步效果</p>
+<pre><code class="java">public class Client {
     public static void main(String[] args) {
-        VideoFactory pythonVideoFactory = new PythonVideoFactory();
-        VideoFactory javaVideoFactory = new JavaVideoFactory();
-        Video pythonVideo = pythonVideoFactory.getVideo();
-        pythonVideo.produce();
-        Video javaVideo = javaVideoFactory.getVideo();
-        javaVideo.produce();
-    }
-}
-</code></pre><p>输出</p>
-<pre><code>录制Python课程视频
-录制Java课程视频
-</code></pre><p>当需要增加一个产品 FEVideo 时，只需要增加 FEVideo 具体产品类和 FEVideoFactory 具体工厂类即可，不需要修改原有的产品类和工厂类</p>
-<pre><code>public class FEVideo extends Video{
-    @Override
-    public void produce() {
-        System.out.println(&quot;录制FE课程视频&quot;);
-    }
-}
+        MysqlDatabase mysqlDatabase = new MysqlDatabase();
+        RedisDatabase redisDatabase = new RedisDatabase();
+        EsDatabase esDatabase = new EsDatabase();
 
-public class FEVideoFactory extends VideoFactory{
-    @Override
-    public Video getVideo() {
-        return new FEVideo();
+        mysqlDatabase.setRedisDatabase(redisDatabase);
+        mysqlDatabase.setEsDatabase(esDatabase);
+        esDatabase.setMysqlDatabase(mysqlDatabase);
+
+        System.out.println(&quot;\n---------mysql 添加数据 1，将同步到Redis和ES中-----------&quot;);
+        mysqlDatabase.add(&quot;1&quot;);
+
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
+
+        System.out.println(&quot;\n---------Redis添加数据 2，将不同步到其它数据库-----------&quot;);
+        redisDatabase.add(&quot;2&quot;);
+
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
+
+        System.out.println(&quot;\n---------ES 添加数据 3，只同步到 Mysql-----------&quot;);
+        esDatabase.add(&quot;3&quot;);
+
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
     }
 }
-</code></pre><p>修改客户端代码</p>
-<pre><code>public class Test {
-    public static void main(String[] args) {
-        VideoFactory feVideoFactory = new FEVideoFactory();
-        Video feVideo = feVideoFactory.getVideo();
-        feVideo.produce();
-    }
-}
-</code></pre><p>还可以通过反射机制和配置文件配合，连客户端代码都不需要修改</p>
-<pre><code>public class Test {
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        // 从文件或数据库等外部渠道获取 工厂类名
-        String factoryName = &quot;com.designpattern.factorymethod.JavaVideoFactory&quot;;
-        // 通过反射机制获取工厂类
-        Class c = Class.forName(factoryName);
-        VideoFactory factory = (VideoFactory)c.newInstance();
-        // 生产产品
-        Video video = factory.getVideo();
-        video.produce();
-    }
-}
-</code></pre><p>最终的类图如下所示</p>
-<p><img src="http://image.laijianfeng.org/20180908_223324.png" alt="示例.工厂方法结构图"></p>
-<h3 id="工厂方法模式总结"><a href="#工厂方法模式总结" class="headerlink" title="工厂方法模式总结"></a>工厂方法模式总结</h3><p>工厂方法模式是简单工厂模式的延伸，它继承了简单工厂模式的优点，同时还弥补了简单工厂模式的不足。工厂方法模式是使用频率最高的设计模式之一，是很多开源框架和API类库的核心模式。</p>
-<h4 id="工厂方法模式的主要优点"><a href="#工厂方法模式的主要优点" class="headerlink" title="工厂方法模式的主要优点"></a>工厂方法模式的主要优点</h4><ul>
-<li>在工厂方法模式中，工厂方法用来创建客户所需要的产品，同时还向客户隐藏了哪种具体产品类将被实例化这一细节，用户只需要关心所需产品对应的工厂，无须关心创建细节，甚至无须知道具体产品类的类名。</li>
-<li>基于工厂角色和产品角色的多态性设计是工厂方法模式的关键。它能够让工厂可以自主确定创建何种产品对象，而如何创建这个对象的细节则完全封装在具体工厂内部。工厂方法模式之所以又被称为多态工厂模式，就正是因为所有的具体工厂类都具有同一抽象父类。</li>
-<li>使用工厂方法模式的另一个优点是在系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改客户端，也无须修改其他的具体工厂和具体产品，而只要添加一个具体工厂和具体产品就可以了，这样，系统的可扩展性也就变得非常好，完全符合”开闭原则”。</li>
+</code></pre>
+<p>输出结果</p>
+<pre><code class="java">---------mysql 添加数据 1，将同步到Redis和ES中-----------
+Mysql 添加数据：1
+Redis 添加数据：1
+ES 添加数据：1
+- Mysql 查询，数据：[1]
+- Redis 缓存的数据：[1]
+- Elasticsearch 统计，目前有 1 条数据，数据：[1]
+
+---------Redis添加数据 2，将不同步到其它数据库-----------
+Redis 添加数据：2
+- Mysql 查询，数据：[1]
+- Redis 缓存的数据：[1, 2]
+- Elasticsearch 统计，目前有 1 条数据，数据：[1]
+
+---------ES 添加数据 3，只同步到 Mysql-----------
+ES 添加数据：3
+Mysql 添加数据：3
+- Mysql 查询，数据：[1, 3]
+- Redis 缓存的数据：[1, 2]
+- Elasticsearch 统计，目前有 2 条数据，数据：[1, 3]
+</code></pre>
+<p>其实这样已经实现了我们的需求，但是<strong>存在一些问题</strong>：</p>
+<ul>
+<li><strong>系统结构复杂且耦合度高</strong>。数据源需要维护目标端数据库的引用，以便完成数据同步</li>
+<li><strong>组件的可重用性差</strong>。由于每一个数据源和目标端之间具有很强的关联，若没有目标端的支持，这个组件很难被另一个系统或模块重用</li>
+<li><strong>系统的可扩展性差</strong>：如果需要增加、修改或删除其中一个数据库、将导致多个类的源代码需要修改，这违反了 “开闭原则”，可扩展性和灵活性欠佳。</li>
 </ul>
-<h4 id="工厂方法模式的主要缺点"><a href="#工厂方法模式的主要缺点" class="headerlink" title="工厂方法模式的主要缺点"></a>工厂方法模式的主要缺点</h4><ul>
-<li>在添加新产品时，需要编写新的具体产品类，而且还要提供与之对应的具体工厂类，系统中类的个数将成对增加，在一定程度上增加了系统的复杂度，有更多的类需要编译和运行，会给系统带来一些额外的开销。</li>
-<li>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度，且在实现时可能需要用到DOM、反射等技术，增加了系统的实现难度。</li>
-</ul>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
-<li>客户端不知道它所需要的对象的类。在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可，具体的产品对象由具体工厂类创建，可将具体工厂类的类名存储在配置文件或数据库中。</li>
-<li>抽象工厂类通过其子类来指定创建哪个对象。在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏代换原则，在程序运行时，子类对象将覆盖父类对象，从而使得系统更容易扩展。</li>
-</ul>
-<h3 id="工厂方法模式的典型应用及源码分析"><a href="#工厂方法模式的典型应用及源码分析" class="headerlink" title="工厂方法模式的典型应用及源码分析"></a>工厂方法模式的典型应用及源码分析</h3><h4 id="Java集合接口-Collection-中的工厂方法模式"><a href="#Java集合接口-Collection-中的工厂方法模式" class="headerlink" title="Java集合接口 Collection 中的工厂方法模式"></a>Java集合接口 Collection 中的工厂方法模式</h4><p>Collection 中的 iterator 方法如下：</p>
-<pre><code>public interface Collection&lt;E&gt; extends Iterable&lt;E&gt; {
-    Iterator&lt;E&gt; iterator();
-    // ...省略
-}
-</code></pre><blockquote>
-<p>关于 iterator 方法的介绍：<br>Java的迭代器只在Collection中有，而Map没有迭代器，它有不同的迭代方法；<br> <strong>迭代器的终极目标</strong>：就是用统一的方法来迭代不同类型的集合！可能由于不同集合的内部数据结构不尽相同，如果要自己纯手工迭代的话相互之间会有很大的差别，而迭代器的作用就是统一的方法对不同的集合进行迭代，而在迭代器底层隐藏不同集合之间的差异，从而为迭代提供最大的方便<br><strong>使用用迭代器迭代的步骤</strong>： i. 第一步肯定是先获取集合的迭代器：调用集合的iterator方法就能获得，Iterator<e> Collection.iterator(); ii. 使用迭代器的hasNext、next往下迭代<br><strong>Iterator的常用方法</strong>：boolean hasNext()：是否还有下一个元素； Object next()：取出下一个元素并返回； void remove(); ：从容器中删除当前元素，直接会改变容器中的数据</e></p>
-</blockquote>
-<p>查看该接口的实现类，可以看到是非常的多</p>
-<p><img src="http://image.laijianfeng.org/20180908_230822.png" alt="Collection接口的实现类(部分)"></p>
-<p>我们仅看其中一个实现类 <code>java.util.ArrayList</code>，看其对 <code>iterator</code> 方法的实现</p>
-<pre><code>public Iterator&lt;E&gt; iterator() {
-    return new Itr();
-}
+<p>我们<strong>使用中介者模式来重构</strong>，将数据同步的功能迁移到中介者中，由中介者来管理数据同步作业</p>
+<p>首先还是抽象数据库类（抽象同事类），维护了一个中介者</p>
+<pre><code class="java">public abstract class AbstractDatabase {
+    public static final String MYSQL = &quot;mysql&quot;;
+    public static final String REDIS = &quot;redis&quot;;
+    public static final String ELASTICSEARCH = &quot;elasticsearch&quot;;
 
-/**
- * An optimized version of AbstractList.Itr
- */
-private class Itr implements Iterator&lt;E&gt; {
-    int cursor;       // index of next element to return
-    int lastRet = -1; // index of last element returned; -1 if no such
-    int expectedModCount = modCount;
+    protected AbstractMediator mediator;    // 中介者
 
-    Itr() {}
-
-    public boolean hasNext() {
-        return cursor != size;
+    public AbstractDatabase(AbstractMediator mediator) {
+        this.mediator = mediator;
     }
 
-    @SuppressWarnings(&quot;unchecked&quot;)
-    public E next() {
-        // ...省略...
-    }
+    public abstract void addData(String data);
 
-    public void remove() {
-        // ...省略...
+    public abstract void add(String data);
+}
+</code></pre>
+<p>Mysql 数据库（具体同事类）</p>
+<pre><code class="java">public class MysqlDatabase extends AbstractDatabase {
+    private List&lt;String&gt; dataset = new ArrayList&lt;String&gt;();
+
+    public MysqlDatabase(AbstractMediator mediator) {
+        super(mediator);
     }
 
     @Override
-    @SuppressWarnings(&quot;unchecked&quot;)
-    public void forEachRemaining(Consumer&lt;? super E&gt; consumer) {
-        // ...省略...
+    public void addData(String data) {
+        System.out.println(&quot;Mysql 添加数据：&quot; + data);
+        this.dataset.add(data);
     }
 
-    final void checkForComodification() {
-        // ...省略...
-    }
-}
-</code></pre><p><code>Itr</code> 类实现了 <code>iterator</code> 接口，<code>iterator</code> 接口正是 <code>Collection</code> 接口中 <code>iterator</code> 方法的返回类型，其代码如下：</p>
-<pre><code>public interface Iterator&lt;E&gt; {
-    boolean hasNext();
-
-    E next();
-
-    default void remove() {
-        throw new UnsupportedOperationException(&quot;remove&quot;);
+    @Override
+    public void add(String data) {
+        addData(data);
+        this.mediator.sync(AbstractDatabase.MYSQL, data); // 数据同步作业交给中介者管理
     }
 
-    default void forEachRemaining(Consumer&lt;? super E&gt; action) {
-        Objects.requireNonNull(action);
-        while (hasNext())
-            action.accept(next());
+    public void select() {
+        System.out.println(&quot;Mysql 查询，数据：&quot; + this.dataset.toString());
     }
 }
-</code></pre><p><strong>由此可见</strong>，<code>Collection</code> 接口扮演了抽象工厂角色，工厂方法为 <code>iterator()</code>，<code>Collection</code> 的实现类譬如 <code>ArrayList</code> 扮演了具体工厂角色，而抽象产品为 <code>Iterator</code> 接口，具体产品为 <code>Itr</code> 类</p>
-<h4 id="java-net-网络包中的工厂方法模式"><a href="#java-net-网络包中的工厂方法模式" class="headerlink" title="java.net 网络包中的工厂方法模式"></a>java.net 网络包中的工厂方法模式</h4><p>URLStreamHandlerFactory 接口为 URL 流协议处理程序定义一个工厂。URL 类使用它可为特定的协议创建 URLStreamHandler</p>
-<pre><code>public interface URLStreamHandlerFactory {
-    /**
-     * Creates a new {@code URLStreamHandler} instance with the specified protocol.
-     *
-     * @param   protocol   the protocol (&quot;{@code ftp}&quot;, &quot;{@code http}&quot;, &quot;{@code nntp}&quot;, etc.).
-     * @return  a {@code URLStreamHandler} for the specific protocol.
-     * @see     java.net.URLStreamHandler
-     */
-    URLStreamHandler createURLStreamHandler(String protocol);
-}
-</code></pre><p>该接口的实现类为 <code>sun.misc.Launcher</code> 中的内部类 <code>Factory</code></p>
-<pre><code>private static class Factory implements URLStreamHandlerFactory {
-    private static String PREFIX = &quot;sun.net.www.protocol&quot;;
+</code></pre>
+<p>Redis 数据库（具体同事类）</p>
+<pre><code class="java">public class RedisDatabase extends AbstractDatabase {
+    private List&lt;String&gt; dataset = new LinkedList&lt;String&gt;();
 
-    private Factory() {
+    public RedisDatabase(AbstractMediator mediator) {
+        super(mediator);
     }
 
-    public URLStreamHandler createURLStreamHandler(String var1) {
-        String var2 = PREFIX + &quot;.&quot; + var1 + &quot;.Handler&quot;;
+    @Override
+    public void addData(String data) {
+        System.out.println(&quot;Redis 添加数据：&quot; + data);
+        this.dataset.add(data);
+    }
 
-        try {
-            Class var3 = Class.forName(var2);
-            return (URLStreamHandler)var3.newInstance();
-        } catch (ReflectiveOperationException var4) {
-            throw new InternalError(&quot;could not load &quot; + var1 + &quot;system protocol handler&quot;, var4);
+    @Override
+    public void add(String data) {
+        addData(data);
+        this.mediator.sync(AbstractDatabase.REDIS, data);    // 数据同步作业交给中介者管理
+    }
+
+    public void cache() {
+        System.out.println(&quot;Redis 缓存的数据：&quot; + this.dataset.toString());
+    }
+}
+</code></pre>
+<p>Elasticsearch（具体同事类）</p>
+<pre><code class="java">public class EsDatabase extends AbstractDatabase {
+    private List&lt;String&gt; dataset = new CopyOnWriteArrayList&lt;String&gt;();
+
+    public EsDatabase(AbstractMediator mediator) {
+        super(mediator);
+    }
+
+    @Override
+    public void addData(String data) {
+        System.out.println(&quot;ES 添加数据：&quot; + data);
+        this.dataset.add(data);
+    }
+
+    @Override
+    public void add(String data) {
+        addData(data);
+        this.mediator.sync(AbstractDatabase.ELASTICSEARCH, data);    // 数据同步作业交给中介者管理
+    }
+
+    public void count() {
+        int count = this.dataset.size();
+        System.out.println(&quot;Elasticsearch 统计，目前有 &quot; + count + &quot; 条数据，数据：&quot; + this.dataset.toString());
+    }
+}
+</code></pre>
+<p>抽象中介者</p>
+<pre><code class="java">@Data
+public abstract class AbstractMediator {
+    protected MysqlDatabase mysqlDatabase;
+    protected RedisDatabase redisDatabase;
+    protected EsDatabase esDatabase;
+
+    public abstract void sync(String databaseName, String data);
+}
+</code></pre>
+<p>具体中介者</p>
+<pre><code class="java">public class SyncMediator extends AbstractMediator {
+    @Override
+    public void sync(String databaseName, String data) {
+        if (AbstractDatabase.MYSQL.equals(databaseName)) {
+            // mysql 同步到 redis 和 Elasticsearch
+            this.redisDatabase.addData(data);
+            this.esDatabase.addData(data);
+        } else if (AbstractDatabase.REDIS.equals(databaseName)) {
+            // redis 缓存同步，不需要同步到其他数据库
+        } else if (AbstractDatabase.ELASTICSEARCH.equals(databaseName)) {
+            // Elasticsearch 同步到 Mysql
+            this.mysqlDatabase.addData(data);
         }
     }
 }
-</code></pre><p>可以看到 <code>createURLStreamHandler</code> 方法的实现为：传入参数，拼接前缀和后缀，之后通过反射机制获取创建一个 <code>URLStreamHandler</code> 对象</p>
-<p><code>URLStreamHandler</code> 是一个抽象类，其中的方法如下图，只有 <code>openConnection</code> 为抽象方法，其他方法均有具体实现</p>
-<p><img src="http://image.laijianfeng.org/20180908_235350.png" alt="URLStreamHandler抽象类中的方法"></p>
-<blockquote>
-<p>关于URLStreamHandler:<br>抽象类URLStreamHandler是所有流协议处理程序的通用超类。 流协议处理程序知道如何为特定协议类型建立连接，例如http或https</p>
-</blockquote>
-<p>其子类有如下(19个)：</p>
-<p><img src="http://image.laijianfeng.org/20180908_234100.png" alt="URLStreamHandler的子类"></p>
-<p>查看其中一个子类譬如 <code>sun.net.www.protocol.http.Handler</code></p>
-<pre><code>public class Handler extends URLStreamHandler {
-    protected String proxy;
-    protected int proxyPort;
+</code></pre>
+<p>测试客户端</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        AbstractMediator syncMediator = new SyncMediator();
+        MysqlDatabase mysqlDatabase = new MysqlDatabase(syncMediator);
+        RedisDatabase redisDatabase = new RedisDatabase(syncMediator);
+        EsDatabase esDatabase = new EsDatabase(syncMediator);
 
-    protected int getDefaultPort() {
-        return 80;
-    }
+        syncMediator.setMysqlDatabase(mysqlDatabase);
+        syncMediator.setRedisDatabase(redisDatabase);
+        syncMediator.setEsDatabase(esDatabase);
 
-    public Handler() {
-        this.proxy = null;
-        this.proxyPort = -1;
-    }
+        System.out.println(&quot;\n---------mysql 添加数据 1，将同步到Redis和ES中-----------&quot;);
+        mysqlDatabase.add(&quot;1&quot;);
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
 
-    public Handler(String var1, int var2) {
-        this.proxy = var1;
-        this.proxyPort = var2;
-    }
+        System.out.println(&quot;\n---------Redis添加数据 2，将不同步到其它数据库-----------&quot;);
+        redisDatabase.add(&quot;2&quot;);
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
 
-    protected URLConnection openConnection(URL var1) throws IOException {
-        return this.openConnection(var1, (Proxy)null);
-    }
-
-    protected URLConnection openConnection(URL var1, Proxy var2) throws IOException {
-        return new HttpURLConnection(var1, var2, this);
+        System.out.println(&quot;\n---------ES 添加数据 3，只同步到 Mysql-----------&quot;);
+        esDatabase.add(&quot;3&quot;);
+        mysqlDatabase.select();
+        redisDatabase.cache();
+        esDatabase.count();
     }
 }
-</code></pre><p>该类实现的 <code>openConnection</code> 方法的返回值类型为 <code>URLConnection</code>，最终返回了一个 <code>HttpURLConnection</code> 对象</p>
-<p>我们又继续看 <code>java.net.URLConnection</code>，这也是一个抽象类</p>
-<p><img src="http://image.laijianfeng.org/20180909_001513.png" alt="image"></p>
-<blockquote>
-<p><strong>URLConnection介绍</strong>：   </p>
-<ul>
-<li>URLConnection是一个功能强大的抽象类，它表示指向URL指定资源的活动连接。<br>与URL类相比，它与服务器的交互提供了更多的控制机制。尤其服务器是HTTP服务器，可以使用URLConnection对HTTP首部的访问，可以配置发送给服务器的请求参数。当然也可以通过它读取服务器的数据以及向服务器写入数据.   </li>
-<li>URLConnection是Java的协议处理器机制的一部分。协议处理器机制是将处理协议的细节与特定数据类型分开。如果要实现一个特定的协议，则实现URLConnection的子类即可。程序运行时可以将该子类作为一个具体的协议处理器来使用。   </li>
-<li><strong>使用URLConnection类的步骤</strong>：1.  构造一个URL对象；2. 调用该URL的openConnection()获取一个URLConnection；3. 配置这个URLConnection；4. 读取首部字段；5. 获得输入流并读取数据；6. 获得输出流并写入数据；7. 关闭连接</li>
+</code></pre>
+<p>输出结果，与预期一致</p>
+<pre><code>---------mysql 添加数据 1，将同步到Redis和ES中-----------
+Mysql 添加数据：1
+Redis 添加数据：1
+ES 添加数据：1
+- Mysql 查询，数据：[1]
+- Redis 缓存的数据：[1]
+- Elasticsearch 统计，目前有 1 条数据，数据：[1]
+
+---------Redis添加数据 2，将不同步到其它数据库-----------
+Redis 添加数据：2
+- Mysql 查询，数据：[1]
+- Redis 缓存的数据：[1, 2]
+- Elasticsearch 统计，目前有 1 条数据，数据：[1]
+
+---------ES 添加数据 3，只同步到 Mysql-----------
+ES 添加数据：3
+Mysql 添加数据：3
+- Mysql 查询，数据：[1, 3]
+- Redis 缓存的数据：[1, 2]
+- Elasticsearch 统计，目前有 2 条数据，数据：[1, 3]
+</code></pre><p>画出类图如下</p>
+<p><img src="http://image.laijianfeng.org/20181025_193153.png" alt="示例.中介者模式"></p>
+<h2 id="中介者模式总结"><a href="#中介者模式总结" class="headerlink" title="中介者模式总结"></a>中介者模式总结</h2><h3 id="中介者模式的主要优点"><a href="#中介者模式的主要优点" class="headerlink" title="中介者模式的主要优点"></a>中介者模式的主要优点</h3><ul>
+<li><p>中介者模式<strong>简化了对象之间的交互</strong>，它用中介者和同事的一对多交互代替了原来同事之间的多对多交互，一对多关系更容易理解、维护和扩展，将原本难以理解的网状结构转换成相对简单的星型结构。</p>
+</li>
+<li><p>中介者模式可<strong>将各同事对象解耦</strong>。中介者有利于各同事之间的松耦合，我们可以独立的改变和复用每一个同事和中介者，增加新的中介者和新的同事类都比较方便，更好地符合 “开闭原则”。</p>
+</li>
+<li><p>可以<strong>减少子类生成</strong>，中介者将原本分布于多个对象间的行为集中在一起，改变这些行为只需生成新的中介者子类即可，这使各个同事类可被重用，无须对同事类进行扩展。</p>
+</li>
 </ul>
-</blockquote>
-<p>其子类有23个</p>
-<p><img src="http://image.laijianfeng.org/20180909_001308.png" alt="image"></p>
-<p>我们可以画出他们的关系图如下所示</p>
-<p><img src="http://image.laijianfeng.org/20180909_164345.png" alt="URLConnection关系图"></p>
-<p><strong>由此可知</strong>：抽象工厂角色为 <code>URLStreamHandlerFactory</code>，工厂方法为 <code>createURLStreamHandler</code>，抽象产品角色为 <code>URLStreamHandler</code>，具体产品角色为 <code>URLStreamHandler</code> 的子类譬如 <code>sun.net.www.protocol.http.Handler</code>、<code>sun.net.www.protocol.ftp.Handler</code> 等</p>
-<p><strong>同时</strong>，<code>URLStreamHandler</code> 也扮演了抽象工厂角色，工厂方法为 <code>openConnection</code>，<code>URLStreamHandler</code> 的子类譬如 <code>sun.net.www.protocol.http.Handler</code> 也扮演了具体工厂角色，抽象产品为 <code>URLConnection</code>，具体产品角色为  <code>URLConnection</code> 的子类如 <code>sun.net.www.protocol.http.HttpURLConnection</code> 等</p>
-<h4 id="Logback-中的工厂方法模式"><a href="#Logback-中的工厂方法模式" class="headerlink" title="Logback 中的工厂方法模式"></a>Logback 中的工厂方法模式</h4><p>在上一篇文章《<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483700&amp;idx=1&amp;sn=dd4d23f9400c8be248f5d125465ba941&amp;chksm=e9c2ed39deb5642fb809eca1351f00995f06c9a4875f09986cc5005059eff74d6c20fc1118a3&amp;scene=0#rd" target="_blank" rel="noopener">设计模式 | 简单工厂模式及典型应用</a>》 介绍的 Logback 里有简单工厂模式，其实也有工厂方法模式，画图如下</p>
-<p><img src="http://image.laijianfeng.org/20180909_170301.png" alt="iLoggerFactory类关系"></p>
-<p><strong>可以看出</strong>，抽象工厂角色为 <code>ILoggerFactory</code> 接口，工厂方法为 <code>getLogger</code>，具体工厂角色为 <code>LoggerContext</code>、<code>NOPLoggerFactory</code>、<code>SubstituteLoggerFactory</code> 等，抽象产品角色为 <code>Logger</code>，具体产品角色为 <code>Logger</code> 的实现类如下</p>
-<p><img src="http://image.laijianfeng.org/20180909_171112.png" alt="Logger 的实现类"></p>
-<p>而简单工厂模式应用在 <code>LoggerContext</code> 的  <code>getLogger</code> 方法中，根据参数返回相应的 <code>Logger</code> 对象</p>
+<h3 id="中介者模式的主要缺点"><a href="#中介者模式的主要缺点" class="headerlink" title="中介者模式的主要缺点"></a>中介者模式的主要缺点</h3><ul>
+<li>在<strong>具体中介者类中包含了大量同事之间的交互细节</strong>，可能会导致具体中介者类非常复杂，使得系统难以维护。（也就是把具体同事类之间的交互复杂性集中到了中介者类中，结果中介者成了最复杂的类）</li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li><p>系统中对象之间存在复杂的引用关系，系统结构混乱且难以理解。</p>
+</li>
+<li><p>一个对象由于引用了其他很多对象并且直接和这些对象通信，导致难以复用该对象。</p>
+</li>
+<li><p>想通过一个中间类来封装多个类中的行为，而又不想生成太多的子类。可以通过引入中介者类来实现，在中介者中定义对象交互的公共行为，如果需要改变行为则可以增加新的具体中介者类。</p>
+</li>
+</ul>
+<h2 id="中介者模式的典型应用"><a href="#中介者模式的典型应用" class="headerlink" title="中介者模式的典型应用"></a>中介者模式的典型应用</h2><h3 id="Java-Timer-中的中介者模式"><a href="#Java-Timer-中的中介者模式" class="headerlink" title="Java Timer 中的中介者模式"></a>Java Timer 中的中介者模式</h3><p>敲一个 <code>java.util.Timer</code> 的Demo</p>
+<p>两个任务类</p>
+<pre><code class="java">public class MyOneTask extends TimerTask {
+    private static int num = 0;
+    @Override
+    public void run() {
+        System.out.println(&quot;I&#39;m MyOneTask &quot; + ++num);
+    }
+}
+
+public class MyTwoTask extends TimerTask {
+    private static int num = 1000;
+    @Override
+    public void run() {
+        System.out.println(&quot;I&#39;m MyTwoTask &quot; + num--);
+    }
+}
+</code></pre>
+<p>客户端测试，3秒后开始执行，循环周期为 1秒</p>
+<pre><code class="java">public class TimerTest {
+    public static void main(String[] args) {
+        // 注意：多线程并行处理定时任务时，Timer运行多个TimeTask时，只要其中之一没有捕获抛出的异常，
+        // 其它任务便会自动终止运行，使用ScheduledExecutorService则没有这个问题
+        Timer timer = new Timer();
+        timer.schedule(new MyOneTask(), 3000, 1000); // 3秒后开始运行，循环周期为 1秒
+        timer.schedule(new MyTwoTask(), 3000, 1000);
+    }
+}
+</code></pre>
+<p>输出</p>
+<pre><code>I&#39;m MyOneTask 1
+I&#39;m MyTwoTask 1000
+I&#39;m MyTwoTask 999
+I&#39;m MyOneTask 2
+I&#39;m MyOneTask 3
+I&#39;m MyTwoTask 998
+I&#39;m MyTwoTask 997
+I&#39;m MyOneTask 4
+I&#39;m MyOneTask 5
+I&#39;m MyTwoTask 996
+I&#39;m MyTwoTask 995
+I&#39;m MyOneTask 6
+...
+</code></pre><p><code>Timer</code> 的部分关键源码如下</p>
+<pre><code class="java">public class Timer {
+
+    private final TaskQueue queue = new TaskQueue();
+    private final TimerThread thread = new TimerThread(queue);
+
+    public void schedule(TimerTask task, long delay) {
+        if (delay &lt; 0)
+            throw new IllegalArgumentException(&quot;Negative delay.&quot;);
+        sched(task, System.currentTimeMillis()+delay, 0);
+    }
+
+    public void schedule(TimerTask task, Date time) {
+        sched(task, time.getTime(), 0);
+    }
+
+    private void sched(TimerTask task, long time, long period) {
+        if (time &lt; 0)
+            throw new IllegalArgumentException(&quot;Illegal execution time.&quot;);
+
+        if (Math.abs(period) &gt; (Long.MAX_VALUE &gt;&gt; 1))
+            period &gt;&gt;= 1;
+
+        // 获取任务队列的锁(同一个线程多次获取这个锁并不会被阻塞,不同线程获取时才可能被阻塞)
+        synchronized(queue) {
+            // 如果定时调度线程已经终止了,则抛出异常结束
+            if (!thread.newTasksMayBeScheduled)
+                throw new IllegalStateException(&quot;Timer already cancelled.&quot;);
+
+            // 再获取定时任务对象的锁(为什么还要再加这个锁呢?想不清)
+            synchronized(task.lock) {
+                // 判断线程的状态,防止多线程同时调度到一个任务时多次被加入任务队列
+                if (task.state != TimerTask.VIRGIN)
+                    throw new IllegalStateException(
+                        &quot;Task already scheduled or cancelled&quot;);
+                // 初始化定时任务的下次执行时间
+                task.nextExecutionTime = time;
+                // 重复执行的间隔时间
+                task.period = period;
+                // 将定时任务的状态由TimerTask.VIRGIN(一个定时任务的初始化状态)设置为TimerTask.SCHEDULED
+                task.state = TimerTask.SCHEDULED;
+            }
+
+            // 将任务加入任务队列
+            queue.add(task);
+            // 如果当前加入的任务是需要第一个被执行的(也就是他的下一次执行时间离现在最近)
+            // 则唤醒等待queue的线程(对应到上面提到的queue.wait())
+            if (queue.getMin() == task)
+                queue.notify();
+        }
+    }
+
+    // cancel会等到所有定时任务执行完后立刻终止定时线程
+    public void cancel() {
+        synchronized(queue) {
+            thread.newTasksMayBeScheduled = false;
+            queue.clear();
+            queue.notify();  // In case queue was already empty.
+        }
+    }
+    // ...
+}
+</code></pre>
+<p><code>Timer</code> 中在 <code>schedulexxx</code> 方法中通过 <code>TaskQueue</code> 协调各种 <code>TimerTask</code> 定时任务，<code>Timer</code> 是中介者，<code>TimerTask</code> 是抽象同事类，而我们自己写的任务则是具体同事类</p>
+<p><code>TimerThread</code> 是 <code>Timer</code> 中定时调度线程类的定义，这个类会做为一个线程一直运行来执行 <code>Timer</code> 中任务队列中的任务。</p>
+<p><code>Timer</code> 这个中介者的功能就是<strong>定时调度我们写的各种任务</strong>，将任务添加到 <code>TaskQueue</code> 任务队列中，给 <code>TimerThread</code> 执行，让任务与执行线程解耦</p>
+<h3 id="其他的中介者模式应用"><a href="#其他的中介者模式应用" class="headerlink" title="其他的中介者模式应用"></a>其他的中介者模式应用</h3><ul>
+<li><p><code>java.util.concurrent.Executor#execute</code> 和 <code>java.util.concurrent.ExecutorService#submit</code> 与 <code>Timer#schedule</code> 类似</p>
+</li>
+<li><p>MVC模式中，Controller 是中介者，根据 View 层的请求来操作 Model 层</p>
+</li>
+</ul>
 <blockquote>
-<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析</p>
+<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://www.jianshu.com/p/58a5b0853451" target="_blank" rel="noopener">java.util系列源码解读之Timer定时器</a></p>
 </blockquote>
-<hr>
-<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
-<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>欢迎评论、转发、分享，您的支持是我最大的动力</p>
+<p>关注【小旋锋】微信公众号，及时接收博文推送</p>
+<p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -772,12 +988,12 @@ private class Itr implements Iterator&lt;E&gt; {
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>设计模式 | 工厂方法模式及典型应用</p>
-    <p><span>文章字数:</span><span class="post-count">3,140</span></p>
+    <p><span>文章标题:</span>设计模式 | 中介者模式及典型应用</p>
+    <p><span>文章字数:</span><span class="post-count">4,092</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-09-09, 17:20:14</p>
-    <p><span>最后更新:</span>2018-09-09, 17:24:06</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式之工厂方法模式及典型应用/" title="设计模式 | 工厂方法模式及典型应用">http://laijianfeng.org/2018/09/设计模式之工厂方法模式及典型应用/</a>
+    <p><span>发布时间:</span>2018-10-26, 00:45:30</p>
+    <p><span>最后更新:</span>2018-10-26, 00:49:32</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/10/设计模式-中介者模式及典型应用/" title="设计模式 | 中介者模式及典型应用">http://laijianfeng.org/2018/10/设计模式-中介者模式及典型应用/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -789,7 +1005,7 @@ private class Itr implements Iterator&lt;E&gt; {
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '设计模式 | 工厂方法模式及典型应用', // 可选。默认为 location.href
+        id: '设计模式 | 中介者模式及典型应用', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {

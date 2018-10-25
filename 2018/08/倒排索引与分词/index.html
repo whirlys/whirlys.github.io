@@ -6,24 +6,24 @@
   <meta name="keywords" content=" elasticsearch ">
   <meta name="description" content="倒排索引与分词 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="本文主要内容：  介绍观察者模式 微信公众号的发布/订阅示例 观察者模式总结 分析观察者模式的典型应用 JDK 提供的观察者接口中的观察者模式 Guava EventBus 中的观察者模式 JDK 委托事件模型DEM中的观察者模式 Spring ApplicationContext 事件机制中的观察者模式    观察者模式观察者模式是设计模式中的 “超级模式”，其应用随处可见，我们以微信公众号为例">
-<meta name="keywords" content="Java设计模式,设计模式,观察者模式">
+<meta name="description" content="本文的主要内容：  介绍备忘录模式 示例 备忘录模式总结  备忘录模式备忘录模式经常可以遇到，譬如下面这些场景：  浏览器回退：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面  数据库备份与还原：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中  编辑">
+<meta name="keywords" content="Java设计模式,设计模式,备忘录模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 | 观察者模式及典型应用">
-<meta property="og:url" content="http://laijianfeng.org/2018/10/设计模式-观察者模式及典型应用/index.html">
+<meta property="og:title" content="设计模式 | 备忘录模式及典型应用">
+<meta property="og:url" content="http://laijianfeng.org/2018/10/设计模式-备忘录模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="本文主要内容：  介绍观察者模式 微信公众号的发布/订阅示例 观察者模式总结 分析观察者模式的典型应用 JDK 提供的观察者接口中的观察者模式 Guava EventBus 中的观察者模式 JDK 委托事件模型DEM中的观察者模式 Spring ApplicationContext 事件机制中的观察者模式    观察者模式观察者模式是设计模式中的 “超级模式”，其应用随处可见，我们以微信公众号为例">
+<meta property="og:description" content="本文的主要内容：  介绍备忘录模式 示例 备忘录模式总结  备忘录模式备忘录模式经常可以遇到，譬如下面这些场景：  浏览器回退：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面  数据库备份与还原：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中  编辑">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20181023_193152.jpg">
-<meta property="og:image" content="http://image.laijianfeng.org/20181023_171948.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181024_233428.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181024_235908.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181025_001332.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181024_113151.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20181023_193151.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-10-23T16:33:55.731Z">
+<meta property="og:updated_time" content="2018-10-24T16:44:16.194Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 | 观察者模式及典型应用">
-<meta name="twitter:description" content="本文主要内容：  介绍观察者模式 微信公众号的发布/订阅示例 观察者模式总结 分析观察者模式的典型应用 JDK 提供的观察者接口中的观察者模式 Guava EventBus 中的观察者模式 JDK 委托事件模型DEM中的观察者模式 Spring ApplicationContext 事件机制中的观察者模式    观察者模式观察者模式是设计模式中的 “超级模式”，其应用随处可见，我们以微信公众号为例">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20181023_193152.jpg">
+<meta name="twitter:title" content="设计模式 | 备忘录模式及典型应用">
+<meta name="twitter:description" content="本文的主要内容：  介绍备忘录模式 示例 备忘录模式总结  备忘录模式备忘录模式经常可以遇到，譬如下面这些场景：  浏览器回退：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面  数据库备份与还原：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中  编辑">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20181024_233428.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -102,8 +102,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="29">
-<input type="hidden" id="yelog_site_word_count" value="84.2k">
+<input type="hidden" id="yelog_site_posts_number" value="30">
+<input type="hidden" id="yelog_site_word_count" value="88.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -165,6 +165,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/10/设计模式-中介者模式及典型应用/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式 | 中介者模式及典型应用">设计模式 | 中介者模式及典型应用</span>
+            <span class="post-date" title="2018-10-26 00:45:30">2018/10/26</span>
+        </a>
         
         <a  class="后端 "
            href="/2018/10/设计模式-备忘录模式及典型应用/"
