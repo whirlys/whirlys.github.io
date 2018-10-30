@@ -6,24 +6,23 @@
   <meta name="keywords" content=" lucene ">
   <meta name="description" content="Lucene初体验 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="本文的主要内容：  介绍备忘录模式 示例 备忘录模式总结  备忘录模式备忘录模式经常可以遇到，譬如下面这些场景：  浏览器回退：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面  数据库备份与还原：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中  编辑">
-<meta name="keywords" content="Java设计模式,设计模式,备忘录模式">
+<meta name="description" content="本文的主要内容：  介绍中介者模式 数据同步示例 中介者模式总结 源码分析中介者模式的典型应用 Java Timer 中的中介者模式    中介者模式世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearc">
+<meta name="keywords" content="Java设计模式,设计模式,中介者模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 | 备忘录模式及典型应用">
-<meta property="og:url" content="http://laijianfeng.org/2018/10/设计模式-备忘录模式及典型应用/index.html">
+<meta property="og:title" content="设计模式 | 中介者模式及典型应用">
+<meta property="og:url" content="http://laijianfeng.org/2018/10/设计模式-中介者模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="本文的主要内容：  介绍备忘录模式 示例 备忘录模式总结  备忘录模式备忘录模式经常可以遇到，譬如下面这些场景：  浏览器回退：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面  数据库备份与还原：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中  编辑">
+<meta property="og:description" content="本文的主要内容：  介绍中介者模式 数据同步示例 中介者模式总结 源码分析中介者模式的典型应用 Java Timer 中的中介者模式    中介者模式世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20181024_233428.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20181024_235908.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20181025_001332.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20181024_113151.png">
+<meta property="og:image" content="http://image.laijianfeng.org/datax-sync.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181025_193152.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20181025_193153.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-10-24T16:44:16.194Z">
+<meta property="og:updated_time" content="2018-10-25T16:49:32.583Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 | 备忘录模式及典型应用">
-<meta name="twitter:description" content="本文的主要内容：  介绍备忘录模式 示例 备忘录模式总结  备忘录模式备忘录模式经常可以遇到，譬如下面这些场景：  浏览器回退：浏览器一般有浏览记录，当我们在一个网页上点击几次链接之后，可在左上角点击左箭头回退到上一次的页面，然后也可以点击右箭头重新回到当前页面  数据库备份与还原：一般的数据库都支持备份与还原操作，备份即将当前已有的数据或者记录保留，还原即将已经保留的数据恢复到对应的表中  编辑">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20181024_233428.png">
+<meta name="twitter:title" content="设计模式 | 中介者模式及典型应用">
+<meta name="twitter:description" content="本文的主要内容：  介绍中介者模式 数据同步示例 中介者模式总结 源码分析中介者模式的典型应用 Java Timer 中的中介者模式    中介者模式世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearc">
+<meta name="twitter:image" content="http://image.laijianfeng.org/datax-sync.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -122,6 +121,8 @@
             
             <li><a target="_blank" href="https://godbmw.com/">GODBMW</a></li>
             
+            <li><a target="_blank" href="http://www.codesheep.cn/">CodeSheep 程序羊</a></li>
+            
         </ul>
     </div>
 </div>
@@ -149,11 +150,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">设计模式</a>
+        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <div class="clearfix"></div>
@@ -1031,7 +1032,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#java','#lucene','#博客','#设计模式',],
+            'data': ['#elasticsearch','#java','#lucene','#设计模式','#博客',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
