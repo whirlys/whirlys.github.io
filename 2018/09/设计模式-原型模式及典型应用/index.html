@@ -6,23 +6,25 @@
   <meta name="keywords" content=" 设计模式 ">
   <meta name="description" content="设计模式 | 原型模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="本文的主要内容：  介绍中介者模式 数据同步示例 中介者模式总结 源码分析中介者模式的典型应用 Java Timer 中的中介者模式    中介者模式世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearc">
-<meta name="keywords" content="Java设计模式,设计模式,中介者模式">
+<meta name="description" content="本文的主要内容：  介绍责任链模式 请假流程示例 责任链模式总结 源码分析Tomcat Filter中的责任链模式  责任链模式一个事件需要经过多个对象处理是一个挺常见的场景，譬如采购审批流程，请假流程，软件开发中的异常处理流程，web请求处理流程等各种各样的流程，可以考虑使用责任链模式来实现。 以请假流程为例，一般公司普通员工的请假流程简化如下：  普通员工发起一个请假申请，当请假天数小于3天时">
+<meta name="keywords" content="Java设计模式,设计模式,责任链模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 | 中介者模式及典型应用">
-<meta property="og:url" content="http://laijianfeng.org/2018/10/设计模式-中介者模式及典型应用/index.html">
+<meta property="og:title" content="设计模式 | 责任链模式及典型应用">
+<meta property="og:url" content="http://laijianfeng.org/2018/10/设计模式-责任链模式及典型应用/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="本文的主要内容：  介绍中介者模式 数据同步示例 中介者模式总结 源码分析中介者模式的典型应用 Java Timer 中的中介者模式    中介者模式世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearc">
+<meta property="og:description" content="本文的主要内容：  介绍责任链模式 请假流程示例 责任链模式总结 源码分析Tomcat Filter中的责任链模式  责任链模式一个事件需要经过多个对象处理是一个挺常见的场景，譬如采购审批流程，请假流程，软件开发中的异常处理流程，web请求处理流程等各种各样的流程，可以考虑使用责任链模式来实现。 以请假流程为例，一般公司普通员工的请假流程简化如下：  普通员工发起一个请假申请，当请假天数小于3天时">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/datax-sync.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20181025_193152.jpg">
-<meta property="og:image" content="http://image.laijianfeng.org/20181025_193153.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181030205552.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20181030205553.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20181030205554.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181030205555.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20181030_225050.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-10-25T16:49:32.583Z">
+<meta property="og:updated_time" content="2018-10-31T07:18:59.386Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 | 中介者模式及典型应用">
-<meta name="twitter:description" content="本文的主要内容：  介绍中介者模式 数据同步示例 中介者模式总结 源码分析中介者模式的典型应用 Java Timer 中的中介者模式    中介者模式世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearc">
-<meta name="twitter:image" content="http://image.laijianfeng.org/datax-sync.png">
+<meta name="twitter:title" content="设计模式 | 责任链模式及典型应用">
+<meta name="twitter:description" content="本文的主要内容：  介绍责任链模式 请假流程示例 责任链模式总结 源码分析Tomcat Filter中的责任链模式  责任链模式一个事件需要经过多个对象处理是一个挺常见的场景，譬如采购审批流程，请假流程，软件开发中的异常处理流程，web请求处理流程等各种各样的流程，可以考虑使用责任链模式来实现。 以请假流程为例，一般公司普通员工的请假流程简化如下：  普通员工发起一个请假申请，当请假天数小于3天时">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20181030205552.jpg">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -101,8 +103,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="30">
-<input type="hidden" id="yelog_site_word_count" value="88.3k">
+<input type="hidden" id="yelog_site_posts_number" value="31">
+<input type="hidden" id="yelog_site_word_count" value="92.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -150,11 +152,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color2">Java编程</a>
     </li>
     
     <div class="clearfix"></div>
@@ -166,6 +172,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/10/设计模式-责任链模式及典型应用/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式 | 责任链模式及典型应用">设计模式 | 责任链模式及典型应用</span>
+            <span class="post-date" title="2018-10-31 15:16:12">2018/10/31</span>
+        </a>
         
         <a  class="后端 "
            href="/2018/10/设计模式-中介者模式及典型应用/"
@@ -914,7 +928,7 @@ com.designpattern.HungrySingleton@52cc8049
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#java','#lucene','#设计模式','#博客',],
+            'data': ['#elasticsearch','#java','#lucene','#博客','#设计模式','#Java编程',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
