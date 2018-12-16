@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Elasticsearch 中的 Guice | 小旋锋</title>
-  <meta name="keywords" content=" elasticsearch ">
-  <meta name="description" content="Elasticsearch 中的 Guice | 小旋锋">
+  <title>Spark SQL 分析 Imooc 访问日志 | 小旋锋</title>
+  <meta name="keywords" content=" spark ">
+  <meta name="description" content="Spark SQL 分析 Imooc 访问日志 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言项目地址Spark SQL 分析 Imooc 访问日志 环境说明 Java版本：1.8 Scala版本：2.11.12 Hadoop版本：hadoop-2.6.0-cdh5.14.0 spark版本：spark-2.3.1-bin-2.6.0-cdh5.14.0（自己编译） MySQL版本：5.7.22 zeppelin版本：0.8  数据集Imooc 访问日志文件：access.201611">
 <meta name="keywords" content="spark,sparkSQL">
@@ -440,9 +440,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Elasticsearch-中的-Guice" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Spark-SQL-分析-Imooc-访问日志" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Elasticsearch 中的 Guice</h1>
+        <h1 class="article-title">Spark SQL 分析 Imooc 访问日志</h1>
     
     <div class="article-meta">
         
@@ -457,19 +457,19 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">elasticsearch</a>
+            <a href="javascript:" class="color1">spark</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-08-31 00:40:14'>2018-08-31 00:39</time>
+        创建时间:<time class="date" title='更新时间: 2018-12-16 19:47:33'>2018-12-16 19:45</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1,397</span>
+        <span>字数:1,462</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -499,7 +499,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Demo"><span class="toc-text">1、Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iTool接口与实现类"><span class="toc-text">iTool接口与实现类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IAnimal-接口与实现类"><span class="toc-text">IAnimal 接口与实现类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ToolModule的实现-它绑了三个实例"><span class="toc-text">ToolModule的实现, 它绑了三个实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Person-类"><span class="toc-text">Person 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CustomModuleBuilder-统一管理-Module"><span class="toc-text">CustomModuleBuilder 统一管理 Module</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Main-方法"><span class="toc-text">Main 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、ES-中Guice的使用"><span class="toc-text">2、ES 中Guice的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TransportClient的初始化代码"><span class="toc-text">TransportClient的初始化代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目地址"><span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境说明"><span class="toc-text">环境说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据集"><span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需求"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计结果可视化-zeppelin展示"><span class="toc-text">统计结果可视化(zeppelin展示)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发步骤"><span class="toc-text">开发步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据清洗"><span class="toc-text">数据清洗</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主程序"><span class="toc-text">主程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关键代码"><span class="toc-text">关键代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark-SQL-统计-TopN"><span class="toc-text">Spark SQL 统计 TopN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主程序-1"><span class="toc-text">主程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关键代码-1"><span class="toc-text">关键代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#统计结果样例"><span class="toc-text">统计结果样例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目开发说明"><span class="toc-text">项目开发说明</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -514,232 +514,159 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Elasticsearch 源代码中使用了Guice框架进行依赖注入. 为了方便阅读源码, 此处我先通过模仿ES guice的使用方式简单写了一个基本Demo 方便理解, 之后再来理一下ES的Guice使用. 编写的测试类原理图如下:</p>
-<p><img src="http://image.laijianfeng.org/2778947-7847f61cf5180bdc.webp" alt="ES Guice Demo"></p>
-<p>总共有两个Module，一个是ToolModule，<strong>用于绑定</strong>IAnimal接口、ITool接口以及Map对象. 另一个是HumanModule 用于绑定Person对象。   </p>
-<p>其中Person的构造函数通过 <code>@Inject</code> 注解注入其他实例</p>
-<p>gradle 需要引入的 Jar 包</p>
-<pre><code>compile group: &#39;com.google.inject.extensions&#39;, name: &#39;guice-multibindings&#39;, version: &#39;4.2.0&#39;
-compile group: &#39;com.google.inject&#39;, name: &#39;guice&#39;, version: &#39;4.2.0&#39;
-</code></pre><h3 id="1、Demo"><a href="#1、Demo" class="headerlink" title="1、Demo"></a>1、Demo</h3><h4 id="iTool接口与实现类"><a href="#iTool接口与实现类" class="headerlink" title="iTool接口与实现类"></a>iTool接口与实现类</h4><pre><code>public interface ITool {
-    public void doWork();
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a href="https://github.com/whirlys/BigData-In-Practice/tree/master/ImoocLogAnalysis" target="_blank" rel="noopener">Spark SQL 分析 Imooc 访问日志</a></p>
+<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><ul>
+<li>Java版本：1.8</li>
+<li>Scala版本：2.11.12</li>
+<li>Hadoop版本：hadoop-2.6.0-cdh5.14.0</li>
+<li>spark版本：spark-2.3.1-bin-2.6.0-cdh5.14.0（自己编译）</li>
+<li>MySQL版本：5.7.22</li>
+<li>zeppelin版本：0.8</li>
+</ul>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p><strong>Imooc 访问日志文件</strong>：access.20161111.log     </p>
+<p><strong>数据量</strong>：一千多万条访问日志、5G多   </p>
+<p><strong>日志格式</strong>：   </p>
+<pre><code>60.165.39.1 - - [10/Nov/2016:00:01:53 +0800] &quot;POST /course/ajaxmediauser HTTP/1.1&quot; 200 54 &quot;www.imooc.com&quot; &quot;http://www.imooc.com/code/1431&quot; mid=1431&amp;time=60 &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 SE 2.X MetaSr 1.0&quot; &quot;-&quot; 10.100.136.64:80 200 0.014 0.014
+14.145.74.175 - - [10/Nov/2016:00:01:53 +0800] &quot;POST /course/ajaxmediauser/ HTTP/1.1&quot; 200 54 &quot;www.imooc.com&quot; &quot;http://www.imooc.com/video/678&quot; mid=678&amp;time=60&amp;learn_time=551.5 &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36&quot; &quot;-&quot; 10.100.136.64:80 200 0.014 0.014
+</code></pre><p><strong>百度云盘下载地址</strong>：链接：<a href="https://pan.baidu.com/s/1VfOG14mGW4P4kj20nzKx8g" target="_blank" rel="noopener">https://pan.baidu.com/s/1VfOG14mGW4P4kj20nzKx8g</a> 提取码：uwjg    </p>
+<p><strong>开发测试数据</strong>：access.1w.log（10000条）   </p>
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul>
+<li>统计某天最受欢迎的TopN课程</li>
+<li>统计某天各个省市各自的 TopN 课程</li>
+<li>按照流量进行统计 TopN 课程</li>
+<li>某天最受欢迎的文章</li>
+<li>某天进行code最多的课程</li>
+<li>统计某天最勤奋的 IP</li>
+<li>欢迎补充……</li>
+</ul>
+<h3 id="统计结果可视化-zeppelin展示"><a href="#统计结果可视化-zeppelin展示" class="headerlink" title="统计结果可视化(zeppelin展示)"></a>统计结果可视化(zeppelin展示)</h3><p><img src="https://user-gold-cdn.xitu.io/2018/12/16/167b6d3d71368a66?w=1861&amp;h=606&amp;f=png&amp;s=71269" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/16/167b6d42299204f6?w=1852&amp;h=603&amp;f=png&amp;s=57034" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/16/167b6d470fdc4e51?w=1856&amp;h=602&amp;f=png&amp;s=53017" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/16/167b6d4b68b1a130?w=1856&amp;h=613&amp;f=png&amp;s=38529" alt=""></p>
+<h2 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h2><h3 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h3><p>根据需求，从日志中解析出我们需要的信息，譬如可能有：</p>
+<ol>
+<li>访问的系统属性： 操作系统、浏览器等等</li>
+<li>访问特征：url、referer (从哪个url跳转过来的)、页面上的停留时间等</li>
+<li>访问信息：session_id、访问ip(访问城市)等</li>
+</ol>
+<h4 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h4><ul>
+<li><p>SparkStatFormatJob.scala  第一步，清洗出 ip, time, url, traffic</p>
+</li>
+<li><p>SparkStatCleanJob.scala 第二步，最终清洗转换得到  url、cmsType、cmsId、traffic、ip、city、time、day</p>
+</li>
+<li>AccessConvertUtil.scala 定义DataFrame schema，将日志信息转为对象，帮助RDD转为DataFrame</li>
+<li>DateUtils.scala 时间格式转换</li>
+</ul>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li>使用 Spark SQL 解析访问日志</li>
+<li>解析出课程编号类型</li>
+<li>根据IP解析出城市名称</li>
+<li>使用 Spark SQL 将访问时间按天进行分区输出</li>
+</ol>
+<h4 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h4><p>清洗第一步</p>
+<pre><code class="scala">accessFile.map(line =&gt; {
+      val splits = line.split(&quot; &quot;) // 按空格分割
+      val ip = splits(0) // 第一个是IP
+      // 原始日志的第三个和第四个字段拼接起来就是完整的访问时间： [10/Nov/2016:00:01:02 +0800] ==&gt; yyyy-MM-dd HH:mm:ss
+      val time = splits(3) + &quot; &quot; + splits(4)
+      val url = splits(11).replaceAll(&quot;\&quot;&quot;, &quot;&quot;) // 第11个是 URL
+      val traffic = splits(9) // 第9个是流量
+      List(DateUtils.parse(time), url, traffic, ip)
+    })
+      // 过滤
+      .filter(item =&gt; !&quot;10.100.0.1&quot;.equals(item(3)))
+      .filter(item =&gt; !&quot;-&quot;.equals(item(1)))
+      // 拼成一个对象 (DateUtils.parse(time), url, traffic, ip)
+      .map(item =&gt; item(0) + &quot;\t&quot; + item(1) + &quot;\t&quot; + item(2) + &quot;\t&quot; + item(3))
+      // 保存
+      .saveAsTextFile(Constants.protocol + Constants.tempOut)
+</code></pre>
+<p>清洗第二步</p>
+<pre><code>val filterRDD = accessRDD.map(line =&gt; AccessConvertUtil.parseLog(line))
+val accessDF = spark.createDataFrame(filterRDD, AccessConvertUtil.struct)
+
+// 保存到 parquet
+accessDF.coalesce(1).write.format(&quot;parquet&quot;).mode(SaveMode.Overwrite).partitionBy(&quot;day&quot;).save(Constants.protocol + Constants.cleanedOut)
+
+</code></pre><p>清洗结果样例</p>
+<pre><code>
++--------------------------------------------+-------+-----+-------+---------------+----+-------------------+--------+
+|url                                         |cmsType|cmsId|traffic|ip             |city|time               |day     |
++--------------------------------------------+-------+-----+-------+---------------+----+-------------------+--------+
+|http://www.imooc.com/code/1852              |code   |1852 |2345   |117.35.88.11   |陕西省 |2016-11-10 00:01:02|20161110|
+|http://www.imooc.com/learn/85/?src=360onebox|learn  |85   |14531  |115.34.187.133 |北京市 |2016-11-10 00:01:27|20161110|
+|http://www.imooc.com/course/list?c=fetool   |course |0    |66     |120.198.231.151|广东省 |2016-11-10 00:01:27|20161110|
+|http://www.imooc.com/code/10047             |code   |10047|54     |101.36.73.155  |北京市 |2016-11-10 00:01:27|20161110|
++--------------------------------------------+-------+-----+-------+---------------+----+-------------------+--------+
+</code></pre><h3 id="Spark-SQL-统计-TopN"><a href="#Spark-SQL-统计-TopN" class="headerlink" title="Spark SQL 统计 TopN"></a>Spark SQL 统计 TopN</h3><h4 id="主程序-1"><a href="#主程序-1" class="headerlink" title="主程序"></a>主程序</h4><ul>
+<li>TopNStatJob.scala Spark SQL 统计主类</li>
+<li>StatDao.scala 将各个统计作业的统计结果写到数据库</li>
+<li>MySQLUtils.scala 管理 MySQL JDBC 连接</li>
+</ul>
+<h4 id="关键代码-1"><a href="#关键代码-1" class="headerlink" title="关键代码"></a>关键代码</h4><pre><code class="scala">/**
+  * 统计某天各个省市各自的 TopN 课程
+  */
+def cityAccessTopNStat(spark: SparkSession, accessDF: DataFrame, day: String): Unit = {
+  import spark.implicits._
+  val cityAccessTopNDF = accessDF.filter($&quot;day&quot; === day &amp;&amp; $&quot;cmsType&quot; === &quot;video&quot; &amp;&amp; $&quot;cmsId&quot; =!= &quot;0&quot;)
+    .groupBy(&quot;city&quot;, &quot;day&quot;, &quot;cmsId&quot;)
+    .agg(count(&quot;cmsId&quot;).as(&quot;times&quot;))
+
+  // Window 函数在Spark SQL的使用: 窗口函数 row_number 的作用是根据表中字段进行分组，然后根据表中的字段排序，
+  //  给组中的每条记录添加一个序号；且每组的序号都是从1开始，可利用它的这个特性进行分组取top-n
+  val top3DF = cityAccessTopNDF.select(
+    cityAccessTopNDF(&quot;day&quot;), cityAccessTopNDF(&quot;city&quot;),
+    cityAccessTopNDF(&quot;cmsId&quot;), cityAccessTopNDF(&quot;times&quot;),
+    row_number().over(Window.partitionBy(cityAccessTopNDF(&quot;city&quot;)) // 根据 city 分组，根据 times 降序排序
+      .orderBy(cityAccessTopNDF(&quot;times&quot;).desc)).as(&quot;times_rank&quot;)
+  ).filter(&quot;times_rank &lt;= 3&quot;)
+
+  // 保存到 MySQL，需创建结果表 day_video_city_access_topn_stat
+  try {
+    top3DF.foreachPartition(partition =&gt; {
+      val list = new ListBuffer[DayCityVideoAccessStat]
+
+      partition.foreach(item =&gt; {
+        val day = item.getAs[String](&quot;day&quot;)
+        val cmsId = item.getAs[Long](&quot;cmsId&quot;)
+        val city = item.getAs[String](&quot;city&quot;)
+        val times = item.getAs[Long](&quot;times&quot;)
+        val timesRank = item.getAs[Int](&quot;times_rank&quot;)
+        list.append(DayCityVideoAccessStat(day, cmsId, city, times, timesRank))
+      })
+      StatDao.insertDayCityVideoAccessTopN(list)
+    })
+  } catch {
+    case e: Exception =&gt; e.printStackTrace()
+  }
 }
-</code></pre><pre><code>import com.whirly.guice.example.ITool;
-
-public class IToolImpl implements ITool {
-    @Override
-    public void doWork() {
-        System.out.println(&quot;use tool to work&quot;);
-    }
-}
-</code></pre><h4 id="IAnimal-接口与实现类"><a href="#IAnimal-接口与实现类" class="headerlink" title="IAnimal 接口与实现类"></a>IAnimal 接口与实现类</h4><pre><code>public interface IAnimal {
-    void work();
-}
-</code></pre><pre><code>public class IAnimalImpl implements IAnimal {
-    @Override
-    public void work() {
-        System.out.println(&quot;animals can also do work&quot;);
-    }
-}
-</code></pre><h4 id="ToolModule的实现-它绑了三个实例"><a href="#ToolModule的实现-它绑了三个实例" class="headerlink" title="ToolModule的实现, 它绑了三个实例"></a>ToolModule的实现, 它绑了三个实例</h4><pre><code>public class ToolModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-        //此处注入的实例可以注入到其他类的构造函数中, 只要那个类使用@Inject进行注入即可
-        bind(IAnimal.class).to(IAnimalImpl.class);
-        bind(ITool.class).to(IToolImpl.class);
-
-        // 注入Map实例
-        MapBinder&lt;String, String&gt; mapBinder = MapBinder.newMapBinder(binder(), String.class, String.class);
-        mapBinder.addBinding(&quot;test1&quot;).toInstance(&quot;test1&quot;);
-        mapBinder.addBinding(&quot;test2&quot;).toInstance(&quot;test2&quot;);
-    }
-}
-</code></pre><p><code>bind(IAnimal.class).to(IAnimalImpl.class);bind(ITool.class).to(IToolImpl.class);</code>  是将接口与其具体实现绑定起来</p>
-<p><code>MapBinder&lt;String,String&gt; mapBinder =MapBinder.newMapBinder(binder(), String.class, String.class);mapBinder.addBinding(&quot;test1&quot;).toInstance(&quot;test1&quot;);mapBinder.addBinding(&quot;test2&quot;).toInstance(&quot;test2&quot;);</code> 则是完成Map的绑定. </p>
-<p>后面来看看Person类和HumanModule</p>
-<h4 id="Person-类"><a href="#Person-类" class="headerlink" title="Person 类"></a>Person 类</h4><pre><code>public class Person {
-
-    private IAnimal iAnimal;
-    private ITool iTool;
-    private Map&lt;String, String&gt; map;
-
-    @Inject
-    public Person(IAnimal iAnimal, ITool iTool, Map&lt;String, String&gt; map) {
-        this.iAnimal = iAnimal;
-        this.iTool = iTool;
-        this.map = map;
-    }
-
-    public void startwork() {
-        iTool.doWork();
-        iAnimal.work();
-        for (Map.Entry entry : map.entrySet()) {
-            System.out.println(&quot;注入的map 是 &quot; + entry.getKey() + &quot; value &quot; + entry.getValue());
-        }
-    }
-}
-</code></pre><p>Person 类中由 <code>IAnimal</code>、<code>ITool</code> 和 <code>Map&lt;String, String&gt;</code> 这三个接口定义的变量，对象将通过 <code>@Inject</code> 从构造方法中注入进来</p>
-<pre><code>public class HumanModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(Person.class).asEagerSingleton();
-    }
-}
-</code></pre><p>Person类的构造函数是通过注入的方式，注入对象实例的</p>
-<p>最后 <code>CustomModuleBuilder</code> 进行<strong>统一管理所有的Module</strong>，实例化所有Module中的对象. 完成依赖注入。</p>
-<p>这里的CustomModuleBuilder是修改自Elasticsearch中的ModulesBuilder，其原理是一样的。</p>
-<p>就是一个迭代器，<strong>内部封装的是Module集合, 统一管理所有的Module</strong></p>
-<h4 id="CustomModuleBuilder-统一管理-Module"><a href="#CustomModuleBuilder-统一管理-Module" class="headerlink" title="CustomModuleBuilder 统一管理 Module"></a>CustomModuleBuilder 统一管理 Module</h4><pre><code>public class CustomModuleBuilder implements Iterable&lt;Module&gt; {
-
-    private final List&lt;Module&gt; modules = new ArrayList&lt;&gt;();
-
-    public CustomModuleBuilder add(Module... newModules) {
-        for (Module module : newModules) {
-            modules.add(module);
-        }
-        return this;
-    }
-
-    @Override
-    public Iterator&lt;Module&gt; iterator() {
-        return modules.iterator();
-    }
-
-    public Injector createInjector() {
-        Injector injector = Guice.createInjector(modules);
-        return injector;
-    }
-}
-</code></pre><p>这样就可以从Main方法是如何进行使用的</p>
-<h4 id="Main-方法"><a href="#Main-方法" class="headerlink" title="Main 方法"></a>Main 方法</h4><pre><code>public class Main {
-    public static void main(String[] args) {
-        CustomModuleBuilder moduleBuilder = new CustomModuleBuilder();
-        moduleBuilder.add(new ToolModule());
-        moduleBuilder.add(new HumanModule());
-        Injector injector = moduleBuilder.createInjector();
-        Person person = injector.getInstance(Person.class);
-        person.startwork();
-    }
-}
-</code></pre><p>运行结果</p>
-<pre><code>use tool to work
-animals can also do work
-注入的map 是 test1 value test1
-注入的map 是 test2 value test2
-</code></pre><p>通过CustomModuleBuilder 的createInjector获取Injector 对象, 根据Injector 对象取相应的具体实例对象.</p>
-<h3 id="2、ES-中Guice的使用"><a href="#2、ES-中Guice的使用" class="headerlink" title="2、ES 中Guice的使用"></a>2、ES 中Guice的使用</h3><p>ES中TransportClient初始化时的Guice的使用是这样的, 如下图所示</p>
-<p><img src="http://image.laijianfeng.org/2778947-ab2035e865492a2b.png" alt="ES中TransportClient初始化时的Guice的使用（ES版本不是6.3.2）"></p>
-<h4 id="TransportClient的初始化代码"><a href="#TransportClient的初始化代码" class="headerlink" title="TransportClient的初始化代码"></a>TransportClient的初始化代码</h4><p>Elasticsearch 6.3.2 </p>
-<pre><code>private static ClientTemplate buildTemplate(Settings providedSettings, Settings defaultSettings,
-                                            Collection&lt;Class&lt;? extends Plugin&gt;&gt; plugins, HostFailureListener failureListner) {
-    // 省略 ...
-    try {
-        // 省略 ...
-
-        // 创建一个迭代器, 然后将各个Module通过add方法加入进去
-        ModulesBuilder modules = new ModulesBuilder();
-        // plugin modules must be added here, before others or we can get crazy injection errors...
-        for (Module pluginModule : pluginsService.createGuiceModules()) {
-            modules.add(pluginModule);
-        }
-        modules.add(b -&gt; b.bind(ThreadPool.class).toInstance(threadPool));
-        ActionModule actionModule = new ActionModule(true, settings, null, settingsModule.getIndexScopedSettings(),
-                settingsModule.getClusterSettings(), settingsModule.getSettingsFilter(), threadPool,
-                pluginsService.filterPlugins(ActionPlugin.class), null, null, null);
-        modules.add(actionModule);
-
-        CircuitBreakerService circuitBreakerService = Node.createCircuitBreakerService(settingsModule.getSettings(),
-            settingsModule.getClusterSettings());
-        resourcesToClose.add(circuitBreakerService);
-        PageCacheRecycler pageCacheRecycler = new PageCacheRecycler(settings);
-        BigArrays bigArrays = new BigArrays(pageCacheRecycler, circuitBreakerService);
-        resourcesToClose.add(bigArrays);
-        modules.add(settingsModule);
-
-        NetworkModule networkModule = new NetworkModule(settings, true, pluginsService.filterPlugins(NetworkPlugin.class), threadPool,
-            bigArrays, pageCacheRecycler, circuitBreakerService, namedWriteableRegistry, xContentRegistry, networkService, null);
-        final Transport transport = networkModule.getTransportSupplier().get();
-        final TransportService transportService = new TransportService(settings, transport, threadPool,
-            networkModule.getTransportInterceptor(),
-            boundTransportAddress -&gt; DiscoveryNode.createLocal(settings, new TransportAddress(TransportAddress.META_ADDRESS, 0),
-                UUIDs.randomBase64UUID()), null, Collections.emptySet());
-        modules.add((b -&gt; {
-            b.bind(BigArrays.class).toInstance(bigArrays);
-            b.bind(PluginsService.class).toInstance(pluginsService);
-            b.bind(CircuitBreakerService.class).toInstance(circuitBreakerService);
-            b.bind(NamedWriteableRegistry.class).toInstance(namedWriteableRegistry);
-            b.bind(Transport.class).toInstance(transport);
-            b.bind(TransportService.class).toInstance(transportService);
-            b.bind(NetworkService.class).toInstance(networkService);
-        }));
-
-        // 注入所有module下的实例
-        Injector injector = modules.createInjector();
-        final TransportClientNodesService nodesService =
-            new TransportClientNodesService(settings, transportService, threadPool, failureListner == null
-                ? (t, e) -&gt; {} : failureListner);
-
-        // construct the list of client actions
-        final List&lt;ActionPlugin&gt; actionPlugins = pluginsService.filterPlugins(ActionPlugin.class);
-        final List&lt;GenericAction&gt; clientActions =
-                actionPlugins.stream().flatMap(p -&gt; p.getClientActions().stream()).collect(Collectors.toList());
-        // add all the base actions
-        final List&lt;? extends GenericAction&lt;?, ?&gt;&gt; baseActions =
-                actionModule.getActions().values().stream().map(ActionPlugin.ActionHandler::getAction).collect(Collectors.toList());
-        clientActions.addAll(baseActions);
-        final TransportProxyClient proxy = new TransportProxyClient(settings, transportService, nodesService, clientActions);
-
-        List&lt;LifecycleComponent&gt; pluginLifecycleComponents = new ArrayList&lt;&gt;(pluginsService.getGuiceServiceClasses().stream()
-            .map(injector::getInstance).collect(Collectors.toList()));
-        resourcesToClose.addAll(pluginLifecycleComponents);
-
-        // 启动服务
-        transportService.start();
-        transportService.acceptIncomingRequests();
-
-        ClientTemplate transportClient = new ClientTemplate(injector, pluginLifecycleComponents, nodesService, proxy, namedWriteableRegistry);
-        resourcesToClose.clear();
-        return transportClient;
-    } finally {
-        IOUtils.closeWhileHandlingException(resourcesToClose);
-    }
-}
-</code></pre><p>可以看到确实是先通 <code>过ModulesBuilder modules = new ModulesBuilder()</code> 创建一个迭代器, 然后将各个Module通过add方法加入进去, 最后通过 <code>Injector injector = modules.createInjector();</code> 创建Injector对象, <strong>之后便可根据Injector对象去获取实例了</strong>. </p>
-<p>各个Module会绑定自己所需要的实例, 这里以 SettingsModule 举例:</p>
-<pre><code>public class SettingsModule extends AbstractModule {
-    private final Settings settings;
-    private final Set&lt;String&gt; settingsFilterPattern = new HashSet&lt;&gt;();
-    private final Map&lt;String, Setting&lt;?&gt;&gt; nodeSettings = new HashMap&lt;&gt;();
-    private final Map&lt;String, Setting&lt;?&gt;&gt; indexSettings = new HashMap&lt;&gt;();
-    private final Logger logger;
-    private final IndexScopedSettings indexScopedSettings;
-    private final ClusterSettings clusterSettings;
-    private final SettingsFilter settingsFilter;
-
-    public SettingsModule(Settings settings, Setting&lt;?&gt;... additionalSettings) {
-        this(settings, Arrays.asList(additionalSettings), Collections.emptyList());
-    }
-
-    @Override
-    public void configure(Binder binder) {
-        binder.bind(Settings.class).toInstance(settings);
-        binder.bind(SettingsFilter.class).toInstance(settingsFilter);
-        binder.bind(ClusterSettings.class).toInstance(clusterSettings);
-        binder.bind(IndexScopedSettings.class).toInstance(indexScopedSettings);
-    }
-
-    //...
-}
-</code></pre><p>可以看到它绑定了四个,分别是 Settings.class，SettingsFilter.class，ClusterSettings.class，IndexScopedSettings.class</p>
-<p>它们的实例对象都可以通过Injector来获取</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>示例代码可在 <a href="https://github.com/whirlys/elastic-example/tree/master/guice" target="_blank" rel="noopener">https://github.com/whirlys/elastic-example/tree/master/guice</a> 处下载</p>
-<blockquote>
-<p>参考：<br>kason_zhang <a href="https://www.jianshu.com/p/0a1e6267b46f" target="_blank" rel="noopener">Elasticsearch Guice 的使用</a></p>
-</blockquote>
+</code></pre>
+<h4 id="统计结果样例"><a href="#统计结果样例" class="headerlink" title="统计结果样例"></a>统计结果样例</h4><pre><code>+--------+-------+-----+-----+----------+
+|day     |city   |cmsId|times|times_rank|
++--------+-------+-----+-----+----------+
+|20161110|北京市    |1309 |20   |1         |
+|20161110|北京市    |3369 |16   |2         |
+|20161110|北京市    |4018 |15   |3         |
+|20161110|辽宁省    |1336 |2    |1         |
+|20161110|辽宁省    |9028 |1    |2         |
+|20161110|辽宁省    |8141 |1    |3         |
+|20161110|浙江省    |3078 |19   |1         |
+|20161110|浙江省    |12552|16   |2         |
+|20161110|浙江省    |3237 |14   |3         |
++--------+-------+-----+-----+----------+
+</code></pre><h2 id="项目开发说明"><a href="#项目开发说明" class="headerlink" title="项目开发说明"></a>项目开发说明</h2><p>1、 CDH相关的软件下载地址：<a href="http://archive.cloudera.com/cdh5/cdh/5/，spark自己编译的，看官方文档即可" target="_blank" rel="noopener">http://archive.cloudera.com/cdh5/cdh/5/，spark自己编译的，看官方文档即可</a></p>
+<p>2、IDEA需要安装Scala插件</p>
+<p>3、 Windows上开发需解压Hadoop和spark源码，然后在环境变量中配置HADOOP_HOME和SPARK_HOME</p>
+<p>4、 windows上需下载相应版本的 <a href="https://github.com/steveloughran/winutils/tree/master/hadoop-2.6.0/bin" target="_blank" rel="noopener">winutils.exe </a> 文件放到 $HADOOP_HOME/bin</p>
+<p>5、 解析IP地址使用  <a href="https://github.com/wzhe06/ipdatabase" target="_blank" rel="noopener">ipdatabase </a> ，三个步骤：</p>
+<pre><code>1）git clone https://github.com/wzhe06/ipdatabase.git
+2）编译下载的项目：mvn clean package -DskipTests
+3）安装jar包到自己的maven仓库
+mvn install:install-file -Dfile=/home/whirly/source/ipdatabase/target/ipdatabase-1.0-SNAPSHOT.jar -DgroupId=com.ggstar -DartifactId=ipdatabase -Dversion=1.0 -Dpackaging=jar
+</code></pre><p>6、 需要创建相应的数据库和数据表，用于存储统计结果，具体的表结构见 imooc_log.sql ，Navicat 导入MySQL即可，创建库表完毕后须修改 MySQLUtils.scala 中的配置信息</p>
+<p>7、 zeppelin 可导入 最受欢迎的TopN课程.json 文件查看结果，也可以使用可视化方案，譬如echarts、highcharts、D3.js、HUE等等…</p>
 <hr>
-<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
-<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+<p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -753,12 +680,12 @@ animals can also do work
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>Elasticsearch 中的 Guice</p>
-    <p><span>文章字数:</span><span class="post-count">1,397</span></p>
+    <p><span>文章标题:</span>Spark SQL 分析 Imooc 访问日志</p>
+    <p><span>文章字数:</span><span class="post-count">1,462</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-08-31, 00:39:17</p>
-    <p><span>最后更新:</span>2018-08-31, 00:40:14</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/08/Elasticsearch-中的-Guice/" title="Elasticsearch 中的 Guice">http://laijianfeng.org/2018/08/Elasticsearch-中的-Guice/</a>
+    <p><span>发布时间:</span>2018-12-16, 19:45:35</p>
+    <p><span>最后更新:</span>2018-12-16, 19:47:33</p>
+    <span>原始链接:</span><a class="post-url" href="/2018/12/Spark-SQL-分析-Imooc-访问日志/" title="Spark SQL 分析 Imooc 访问日志">http://laijianfeng.org/2018/12/Spark-SQL-分析-Imooc-访问日志/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -770,7 +697,7 @@ animals can also do work
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'Elasticsearch 中的 Guice', // 可选。默认为 location.href
+        id: 'Spark SQL 分析 Imooc 访问日志', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
