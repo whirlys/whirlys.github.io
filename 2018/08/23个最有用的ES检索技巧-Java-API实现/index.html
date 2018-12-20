@@ -6,24 +6,23 @@
   <meta name="keywords" content=" elasticsearch ">
   <meta name="description" content="23个最有用的ES检索技巧(Java API实现) | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言项目地址Spark SQL 分析 Imooc 访问日志 环境说明 Java版本：1.8 Scala版本：2.11.12 Hadoop版本：hadoop-2.6.0-cdh5.14.0 spark版本：spark-2.3.1-bin-2.6.0-cdh5.14.0（自己编译） MySQL版本：5.7.22 zeppelin版本：0.8  数据集Imooc 访问日志文件：access.201611">
-<meta name="keywords" content="spark,sparkSQL">
+<meta name="description" content="动态代理在Java中有着广泛的应用，比如Spring AOP、Hibernate数据查询、测试框架的后端mock、RPC远程调用、Java注解对象获取、日志、用户鉴权、全局性异常处理、性能监控，甚至事务处理等。 本文主要介绍Java中两种常见的动态代理方式：JDK原生动态代理和CGLIB动态代理。 由于Java动态代理与java反射机制关系紧密，请读者确保已经了解了Java反射机制，可参考上一篇文">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spark SQL 分析 Nginx 访问日志">
-<meta property="og:url" content="http://laijianfeng.org/2018/12/Spark-SQL-分析-Imooc-访问日志/index.html">
+<meta property="og:title" content="Java 动态代理详解">
+<meta property="og:url" content="http://laijianfeng.org/2018/12/Java-动态代理详解/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="前言项目地址Spark SQL 分析 Imooc 访问日志 环境说明 Java版本：1.8 Scala版本：2.11.12 Hadoop版本：hadoop-2.6.0-cdh5.14.0 spark版本：spark-2.3.1-bin-2.6.0-cdh5.14.0（自己编译） MySQL版本：5.7.22 zeppelin版本：0.8  数据集Imooc 访问日志文件：access.201611">
+<meta property="og:description" content="动态代理在Java中有着广泛的应用，比如Spring AOP、Hibernate数据查询、测试框架的后端mock、RPC远程调用、Java注解对象获取、日志、用户鉴权、全局性异常处理、性能监控，甚至事务处理等。 本文主要介绍Java中两种常见的动态代理方式：JDK原生动态代理和CGLIB动态代理。 由于Java动态代理与java反射机制关系紧密，请读者确保已经了解了Java反射机制，可参考上一篇文">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/16/167b6d3d71368a66?w=1861&h=606&f=png&s=71269">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/16/167b6d42299204f6?w=1852&h=603&f=png&s=57034">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/16/167b6d470fdc4e51?w=1856&h=602&f=png&s=53017">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/16/167b6d4b68b1a130?w=1856&h=613&f=png&s=38529">
+<meta property="og:image" content="http://image.laijianfeng.org/2018_12_20_proxyUML.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20181220_171031.png">
+<meta property="og:image" content="http://image.laijianfeng.org/2018_12_20_JDKProxy.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2018-12-16T15:15:35.531Z">
+<meta property="og:updated_time" content="2018-12-20T17:49:36.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark SQL 分析 Nginx 访问日志">
-<meta name="twitter:description" content="前言项目地址Spark SQL 分析 Imooc 访问日志 环境说明 Java版本：1.8 Scala版本：2.11.12 Hadoop版本：hadoop-2.6.0-cdh5.14.0 spark版本：spark-2.3.1-bin-2.6.0-cdh5.14.0（自己编译） MySQL版本：5.7.22 zeppelin版本：0.8  数据集Imooc 访问日志文件：access.201611">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/12/16/167b6d3d71368a66?w=1861&h=606&f=png&s=71269">
+<meta name="twitter:title" content="Java 动态代理详解">
+<meta name="twitter:description" content="动态代理在Java中有着广泛的应用，比如Spring AOP、Hibernate数据查询、测试框架的后端mock、RPC远程调用、Java注解对象获取、日志、用户鉴权、全局性异常处理、性能监控，甚至事务处理等。 本文主要介绍Java中两种常见的动态代理方式：JDK原生动态代理和CGLIB动态代理。 由于Java动态代理与java反射机制关系紧密，请读者确保已经了解了Java反射机制，可参考上一篇文">
+<meta name="twitter:image" content="http://image.laijianfeng.org/2018_12_20_proxyUML.jpg">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -102,8 +101,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="33">
-<input type="hidden" id="yelog_site_word_count" value="98.3k">
+<input type="hidden" id="yelog_site_posts_number" value="34">
+<input type="hidden" id="yelog_site_word_count" value="104.0k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -151,6 +150,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">lucene</a>
     </li>
     
@@ -162,10 +165,6 @@
         <a href="javascript:" class="color5">设计模式</a>
     </li>
     
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
-    </li>
-    
     <div class="clearfix"></div>
 </div>
 
@@ -175,6 +174,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2018/12/Java-动态代理详解/"
+           data-tag="Java编程"
+           data-author="" >
+            <span class="post-title" title="Java 动态代理详解">Java 动态代理详解</span>
+            <span class="post-date" title="2018-12-21 01:46:11">2018/12/21</span>
+        </a>
         
         <a  class="后端 "
            href="/2018/12/Java反射机制详解/"
@@ -1276,7 +1283,7 @@ public class BasicMatchQueryService {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#Java编程','#spark','#lucene','#java','#设计模式','#博客',],
+            'data': ['#elasticsearch','#Java编程','#spark','#博客','#lucene','#java','#设计模式',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
