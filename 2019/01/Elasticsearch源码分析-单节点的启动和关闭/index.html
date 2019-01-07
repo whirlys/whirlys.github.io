@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>设计模式 | 单例模式及典型应用 | 小旋锋</title>
-  <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="设计模式 | 单例模式及典型应用 | 小旋锋">
+  <title>Elasticsearch源码分析 | 单节点的启动和关闭 | 小旋锋</title>
+  <meta name="keywords" content=" Elasticsearch ">
+  <meta name="description" content="Elasticsearch源码分析 | 单节点的启动和关闭 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="本文主要简要介绍Elasticsearch单节点的启动和关闭流程。Elasticsearch版本：6.3.2    相关文章1、Google Guice 快速入门2、Elasticsearch 中的 Guice3、教你编译调试Elasticsearch 6.3.2源码4、Elasticsearch 6.3.2 启动过程 创建节点Elasticsearch的启动引导类为 Bootstrap 类，在创">
 <meta name="keywords" content="Elasticsearch">
@@ -478,9 +478,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-设计模式-单例模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Elasticsearch源码分析-单节点的启动和关闭" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">设计模式 | 单例模式及典型应用</h1>
+        <h1 class="article-title">Elasticsearch源码分析 | 单节点的启动和关闭</h1>
     
     <div class="article-meta">
         
@@ -488,26 +488,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="后端">后端</a>
+            <a href="javascript:" data-rel="大数据">大数据</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">设计模式</a>
+            <a href="javascript:" class="color4">Elasticsearch</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-01-07 01:37:03'>2019-01-07 01:35</time>
+        创建时间:<time class="date" title='更新时间: 2019-01-08 02:01:38'>2019-01-08 01:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:5,251</span>
+        <span>字数:2,202</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -537,7 +537,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式"><span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式的七种写法"><span class="toc-text">单例模式的七种写法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、饿汉式"><span class="toc-text">1、饿汉式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、饿汉式变种"><span class="toc-text">2、饿汉式变种</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、懒汉式"><span class="toc-text">3、懒汉式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、懒汉式变种"><span class="toc-text">4、懒汉式变种</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、双重检查锁"><span class="toc-text">5、双重检查锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6、静态内部类"><span class="toc-text">6、静态内部类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7、枚举"><span class="toc-text">7、枚举</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式的安全性"><span class="toc-text">单例模式的安全性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#序列化攻击"><span class="toc-text">序列化攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Java-序列化机制"><span class="toc-text">Java 序列化机制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#序列化破坏单例模式的解决方案"><span class="toc-text">序列化破坏单例模式的解决方案</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反射攻击"><span class="toc-text">反射攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#反射攻击解决方案"><span class="toc-text">反射攻击解决方案</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么推荐使用枚举单例"><span class="toc-text">为什么推荐使用枚举单例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#那么，为什么推荐使用枚举单例呢？"><span class="toc-text">那么，为什么推荐使用枚举单例呢？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式总结"><span class="toc-text">单例模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式的主要优点"><span class="toc-text">单例模式的主要优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式的主要缺点"><span class="toc-text">单例模式的主要缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景"><span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式的典型应用"><span class="toc-text">单例模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JDK-Runtime-饿汉单例"><span class="toc-text">JDK Runtime 饿汉单例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AWT-Desktop-容器单例"><span class="toc-text">AWT Desktop 容器单例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring-AbstractFactoryBean"><span class="toc-text">spring AbstractFactoryBean</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mybatis-ErrorContext-ThreadLocal"><span class="toc-text">Mybatis ErrorContext ThreadLocal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建节点"><span class="toc-text">创建节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动节点"><span class="toc-text">启动节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境检测"><span class="toc-text">环境检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#keepAlive-线程"><span class="toc-text">keepAlive 线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭节点"><span class="toc-text">关闭节点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -552,537 +552,328 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>单例是最常见的设计模式之一，实现的方式非常多，同时需要注意的问题也非常多。</p>
-<p>本文主要内容：</p>
-<ul>
-<li>介绍单例模式</li>
-<li>介绍单例模式的N中写法</li>
-<li>单例模式的安全性<ul>
-<li>序列化攻击</li>
-<li>反射攻击</li>
-</ul>
-</li>
-<li>单例模式总结</li>
-<li>介绍单例模式的典型应用</li>
-</ul>
-<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p><strong>单例模式(Singleton Pattern)</strong>：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式是一种对象创建型模式。</p>
-<p>单例模式有三个要点：</p>
-<ol>
-<li>构造方法私有化；</li>
-<li>实例化的变量引用私有化；</li>
-<li>获取实例的方法共有</li>
-</ol>
-<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p><strong>Singleton（单例）</strong>：在单例类的内部实现只生成一个实例，同时它提供一个静态的 <code>getInstance()</code> 工厂方法，让客户可以访问它的唯一实例；为了防止在外部对其实例化，将其构造函数设计为私有；在单例类内部定义了一个 <code>Singleton</code> 类型的静态对象，作为外部共享的唯一实例。</p>
-<h3 id="单例模式的七种写法"><a href="#单例模式的七种写法" class="headerlink" title="单例模式的七种写法"></a>单例模式的七种写法</h3><h4 id="1、饿汉式"><a href="#1、饿汉式" class="headerlink" title="1、饿汉式"></a>1、饿汉式</h4><pre><code>// 线程安全
-public class Singleton {
-
-    private final static Singleton INSTANCE = new Singleton();
-
-    private Singleton(){}
-
-    public static Singleton getInstance(){
-        return INSTANCE;
+        <p>本文主要简要介绍Elasticsearch单节点的启动和关闭流程。Elasticsearch版本：6.3.2   </p>
+<h4 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h4><p>1、<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483683&amp;idx=1&amp;sn=0d77085a0234b2c5b7c679e62200e6f5&amp;chksm=e9c2ed2edeb56438010b5f5d487bcb7f0529c85d50ac7c858e1a8e3a9279c15007341170c5ac&amp;mpshare=1&amp;scene=1&amp;srcid=0107YiaAuX3EDzO9XLEBCDHq#rd" target="_blank" rel="noopener">Google Guice 快速入门</a><br>2、<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483691&amp;idx=1&amp;sn=3c7175d318bce6728c2105d27ae6bafe&amp;chksm=e9c2ed26deb56430289edabd15cef1a0cf777c5dfe4f4ad5013655e9d3607958e0fe16ac5436&amp;mpshare=1&amp;scene=1&amp;srcid=01079MoANk2UViY4CftnPRVo#rd" target="_blank" rel="noopener">Elasticsearch 中的 Guice</a><br>3、<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483676&amp;idx=1&amp;sn=1d88a883ce21d7dcacd073a8fa85dbfc&amp;chksm=e9c2ed11deb56407879ba0b22a4ef96916f8a9e7931e1efb99df57991966a3dc475eb3e23101&amp;mpshare=1&amp;scene=1&amp;srcid=0107L5Z1RW5tpECUU13Ymxwg#rd" target="_blank" rel="noopener">教你编译调试Elasticsearch 6.3.2源码</a><br>4、<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483695&amp;idx=1&amp;sn=c434b83ca67cfd1e2e0cbf416b3ee28e&amp;chksm=e9c2ed22deb56434978446cd05c8b8235783a3f28ce940b601206fb76a8025e1a69a33e1c64a&amp;mpshare=1&amp;scene=1&amp;srcid=0107LgY2cJ3bNjMZFLX58mVz#rd" target="_blank" rel="noopener">Elasticsearch 6.3.2 启动过程</a></p>
+<h4 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h4><p>Elasticsearch的启动引导类为 Bootstrap 类，在创建节点 Node 对象之前，Bootstrap 会解析配置和进行一些安全检查等</p>
+<p><img src="http://image.laijianfeng.org/20190107_223512.png" alt="创建节点对象"></p>
+<p>environment 对象主要是解析出来的配置信息</p>
+<p><img src="http://image.laijianfeng.org/20190107_223749.png" alt="environment 对象"></p>
+<p>创建节点过程的主要工作是创建各个模块对象和服务对象，<strong>完成 Guice 依赖绑定</strong>，获取并初始化探测器。</p>
+<p>ModulesBuilder 用于统一管理 Module</p>
+<pre><code>ModulesBuilder modules = new ModulesBuilder();
+ClusterModule clusterModule = new ClusterModule(settings, clusterService, clusterPlugins, clusterInfoService);
+modules.add(clusterModule);     // 将模块加入管理
+//....
+// 实例绑定
+modules.add(b -&gt; {
+        b.bind(Node.class).toInstance(this);
+        b.bind(NodeService.class).toInstance(nodeService);
+        b.bind(NamedXContentRegistry.class).toInstance(xContentRegistry);
+        b.bind(PluginsService.class).toInstance(pluginsService);
+        b.bind(Client.class).toInstance(client);
+        b.bind(NodeClient.class).toInstance(client);
+        b.bind(Environment.class).toInstance(this.environment);
+        b.bind(ThreadPool.class).toInstance(threadPool);
+        b.bind(NodeEnvironment.class).toInstance(nodeEnvironment);
+        // ....
     }
-}
-</code></pre><p><strong>优点</strong>：简单，使用时没有延迟；在类装载时就完成实例化，天生的线程安全</p>
-<p><strong>缺点</strong>：没有懒加载，启动较慢；如果从始至终都没使用过这个实例，则会造成内存的浪费。</p>
-<h4 id="2、饿汉式变种"><a href="#2、饿汉式变种" class="headerlink" title="2、饿汉式变种"></a>2、饿汉式变种</h4><pre><code>// 线程安全
-public class Singleton {
-
-    private static Singleton instance;
-
-    static {
-        instance = new Singleton();
-    }
-
-    private Singleton() {}
-
-    public static Singleton getInstance() {
-        return instance;
-    }
-}
-</code></pre><p>将类实例化的过程放在了静态代码块中，在类装载的时执行静态代码块中的代码，初始化类的实例。优缺点同上。</p>
-<h4 id="3、懒汉式"><a href="#3、懒汉式" class="headerlink" title="3、懒汉式"></a>3、懒汉式</h4><pre><code>// 线程不安全
-public class Singleton {
-
-    private static Singleton singleton;
-
-    private Singleton() {}
-
-    public static Singleton getInstance() {
-        if (singleton == null) {
-            singleton = new Singleton();
-        }
-        return singleton;
-    }
-}
-</code></pre><p><strong>优点</strong>：懒加载，启动速度快、如果从始至终都没使用过这个实例，则不会初始化该实力，可节约资源</p>
-<p><strong>缺点</strong>：多线程环境下线程不安全。<code>if (singleton == null)</code> 存在竞态条件，可能会有多个线程同时进入 <code>if 语句</code>，导致产生多个实例</p>
-<h4 id="4、懒汉式变种"><a href="#4、懒汉式变种" class="headerlink" title="4、懒汉式变种"></a>4、懒汉式变种</h4><pre><code>// 线程安全，效率低
-public class Singleton {
-
-    private static Singleton singleton;
-
-    private Singleton() {}
-
-    public static synchronized Singleton getInstance() {
-        if (singleton == null) {
-            singleton = new Singleton();
-        }
-        return singleton;
-    }
-}
-</code></pre><p><strong>优点</strong>：解决了上一种实现方式的线程不安全问题</p>
-<p><strong>缺点</strong>：synchronized 对整个 <code>getInstance()</code> 方法都进行了同步，每次只有一个线程能够进入该方法，并发性能极差</p>
-<h4 id="5、双重检查锁"><a href="#5、双重检查锁" class="headerlink" title="5、双重检查锁"></a>5、双重检查锁</h4><pre><code>// 线程安全
-public class Singleton {
-    // 注意：这里有 volatile 关键字修饰
-    private static volatile Singleton singleton;
-
-    private Singleton() {}
-
-    public static Singleton getInstance() {
-        if (singleton == null) {
-            synchronized (Singleton.class) {
-                if (singleton == null) {
-                    singleton = new Singleton();
-                }
+);
+injector = modules.createInjector();    // 生成注入器
+</code></pre><p>主要的服务类简介如下：</p>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ResourceWatcherService</td>
+<td>通用资源监视服务</td>
+</tr>
+<tr>
+<td>HttpServerTransport</td>
+<td>HTTP传输服务，提供Rest接口服务</td>
+</tr>
+<tr>
+<td>SnapshotsService</td>
+<td>快照服务</td>
+</tr>
+<tr>
+<td>SnapshotShardsService</td>
+<td>负责启动和停止shard级快照</td>
+</tr>
+<tr>
+<td>IndicesClusterStateService</td>
+<td>根据收到的集群状态信息，处理相关索引</td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>集群拓扑管理</td>
+</tr>
+<tr>
+<td>RoutingService</td>
+<td>处理路由（节点之间迁移shard）</td>
+</tr>
+<tr>
+<td>ClusterService</td>
+<td>集群管理服务，主要处理集群任务，发布集群状态</td>
+</tr>
+<tr>
+<td>NodeConnectionsService</td>
+<td>节点连接管理服务</td>
+</tr>
+<tr>
+<td>MonitorService</td>
+<td>提供进程级、系统级、文件系统和JVM的监控服务</td>
+</tr>
+<tr>
+<td>GatewayService</td>
+<td>负责集群元数据持久化与恢复</td>
+</tr>
+<tr>
+<td>SearchService</td>
+<td>处理搜索请求</td>
+</tr>
+<tr>
+<td>TransportService</td>
+<td>底层传输服务</td>
+</tr>
+<tr>
+<td>plugins</td>
+<td>插件</td>
+</tr>
+<tr>
+<td>IndicesService</td>
+<td>负责创建、删除索引等索引操作</td>
+</tr>
+</tbody>
+</table>
+<h4 id="启动节点"><a href="#启动节点" class="headerlink" title="启动节点"></a>启动节点</h4><p>启动节点的主要工作是启动各个模块的服务对象，服务对象从注入器 <code>injector</code> 中取出来，然后调用它们的 <code>start</code> 方法，服务对象的 <code>start</code> 方法的工作基本是初始化内部数据、创建线程池、启动线程池等，详细的流程留到后面的文章中再介绍。</p>
+<pre><code class="java">injector.getInstance(MappingUpdatedAction.class).setClient(client);
+injector.getInstance(IndicesService.class).start();
+injector.getInstance(IndicesClusterStateService.class).start();
+</code></pre>
+<p>在启动 Discovery 和 ClusterService 之前，还会调用 validateNodeBeforeAcceptingRequests 方法来检测环境外部，外部环境主要是JVM、操作系统相关参数，将一些影响性能的配置标记为错误以引起用户的重视。</p>
+<h4 id="环境检测"><a href="#环境检测" class="headerlink" title="环境检测"></a>环境检测</h4><p>节点的环境检测代码都封装在 BootstrapChecks 类中，BootstrapChecks 类通过责任链模式对十几个检测项进行检测，关于责任链模式可以翻看这篇文章《<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483778&amp;idx=1&amp;sn=aa816aec86370806ab9ee4b366760bcb&amp;scene=19#wechat_redirect" target="_blank" rel="noopener">设计模式之责任链模式及典型应用</a>》</p>
+<p>这里的责任链模式中的抽象处理者由 BootstrapCheck 接口扮演，它定义了一个处理方法 <code>check</code>，而每个检查项则是具体处理者，都有对应的一个静态类，具体的检查则在 <code>check</code> 接口中完成</p>
+<p>以第一个检查项 “堆大小检查” 为例，从 JvmInfo 类中获取配置的堆的初始值和最大值进行比较，不相等则格式化提示信息，最后返回检查结果</p>
+<pre><code class="java">    static class HeapSizeCheck implements BootstrapCheck {
+        @Override
+        public BootstrapCheckResult check(BootstrapContext context) {
+            final long initialHeapSize = getInitialHeapSize();
+            final long maxHeapSize = getMaxHeapSize();
+            if (initialHeapSize != 0 &amp;&amp; maxHeapSize != 0 &amp;&amp; initialHeapSize != maxHeapSize) {
+                final String message = String.format(Locale.ROOT,
+                        &quot;initial heap size [%d] not equal to maximum heap size [%d]; &quot; +
+                                &quot;this can cause resize pauses and prevents mlockall from locking the entire heap&quot;,
+                        getInitialHeapSize(), getMaxHeapSize());
+                return BootstrapCheckResult.failure(message);
+            } else {
+                return BootstrapCheckResult.success();
             }
         }
-        return singleton;
+        long getInitialHeapSize() { 
+            return JvmInfo.jvmInfo().getConfiguredInitialHeapSize();
+        }
+        long getMaxHeapSize() {
+            return JvmInfo.jvmInfo().getConfiguredMaxHeapSize();
+        }
+    }
+</code></pre>
+<p>把所有检查项的对象添加到一个 List 链中</p>
+<pre><code>    static List&lt;BootstrapCheck&gt; checks() {
+        final List&lt;BootstrapCheck&gt; checks = new ArrayList&lt;&gt;();
+        checks.add(new HeapSizeCheck());
+        final FileDescriptorCheck fileDescriptorCheck
+            = Constants.MAC_OS_X ? new OsXFileDescriptorCheck() : new FileDescriptorCheck();
+        checks.add(fileDescriptorCheck);
+        checks.add(new MlockallCheck());
+        if (Constants.LINUX) {
+            checks.add(new MaxNumberOfThreadsCheck());
+        }
+        if (Constants.LINUX || Constants.MAC_OS_X) {
+            checks.add(new MaxSizeVirtualMemoryCheck());
+        }
+        if (Constants.LINUX || Constants.MAC_OS_X) {
+            checks.add(new MaxFileSizeCheck());
+        }
+        if (Constants.LINUX) {
+            checks.add(new MaxMapCountCheck());
+        }
+        checks.add(new ClientJvmCheck());
+        checks.add(new UseSerialGCCheck());
+        checks.add(new SystemCallFilterCheck());
+        checks.add(new OnErrorCheck());
+        checks.add(new OnOutOfMemoryErrorCheck());
+        checks.add(new EarlyAccessCheck());
+        checks.add(new G1GCCheck());
+        checks.add(new AllPermissionCheck());
+        return Collections.unmodifiableList(checks);
+    }
+</code></pre><p>for 循环分别调用 check 方法进行检查，有些检查项检查不通过是可以忽略的，如果有不能忽略的错误则会抛出异常</p>
+<pre><code>for (final BootstrapCheck check : checks) {
+    final BootstrapCheck.BootstrapCheckResult result = check.check(context);
+    if (result.isFailure()) {
+        if (!(enforceLimits || enforceBootstrapChecks) &amp;&amp; !check.alwaysEnforce()) {
+            ignoredErrors.add(result.getMessage());
+        } else {
+            errors.add(result.getMessage());
+        }
     }
 }
-</code></pre><p><strong>优点</strong>：线程安全；延迟加载；效率较高。</p>
-<p>由于 JVM 具有指令重排的特性，在多线程环境下可能出现  singleton 已经赋值但还没初始化的情况，导致一个线程获得还没有初始化的实例。volatile 关键字的作用：</p>
+</code></pre><p><strong>那么检查项有哪些呢？</strong></p>
 <ul>
-<li>保证了不同线程对这个变量进行操作时的可见性</li>
-<li>禁止进行指令重排序</li>
+<li><code>堆大小检查</code>：如果开启了<code>bootstrap.memory_lock</code>，则JVM在启动时将锁定堆的初始大小，若配置的初始值与最大值不等，堆变化后无法保证堆都锁定在内存中</li>
+<li><code>文件描述符检查</code>：ES进程需要非常多的文件描述符，所以须配置系统的文件描述符的最大数量 <code>ulimit -n 65535</code></li>
+<li><code>内存锁定检查</code>：ES允许进程只使用物理内存，若使用交换分区可能会带来很多问题，所以最好让ES锁定内存</li>
+<li><code>最大线程数检查</code>：ES进程会创建很多线程，这个数最少需2048</li>
+<li><code>最大虚拟内存检查</code></li>
+<li><code>最大文件大小检查</code>：段文件和事务日志文件可能会非常大，建议这个数设置为无限</li>
+<li><code>虚拟内存区域最大数量检查</code></li>
+<li><code>JVM Client模式检查</code></li>
+<li><code>串行收集检查</code>：ES默认使用 CMS 垃圾回收器，而不是 Serial 收集器</li>
+<li><code>系统调用过滤器检查</code></li>
+<li><code>OnError与OnOutOfMemoryError检查</code></li>
+<li><code>Early-access检查</code>：ES最好运行在JVM的稳定版本上</li>
+<li><code>G1GC检查</code></li>
 </ul>
-<h4 id="6、静态内部类"><a href="#6、静态内部类" class="headerlink" title="6、静态内部类"></a>6、静态内部类</h4><pre><code>// 线程安全
-public class Singleton {
-
-    private Singleton() {}
-
-    private static class SingletonInstance {
-        private static final Singleton INSTANCE = new Singleton();
-    }
-
-    public static Singleton getInstance() {
-        return SingletonInstance.INSTANCE;
-    }
+<p>顺便一提，JvmInfo 则是<strong>利用了 JavaSDK 自带的 ManagementFactory 类来获取JVM信息</strong>的，获取的 JVM 属性如下所示</p>
+<pre><code>long pid;   // 进程ID
+String version; // Java版本
+String vmName;  // JVM名称
+String vmVersion;   // JVM版本
+String vmVendor;    // JVM开发商
+long startTime;     // 启动时间
+long configuredInitialHeapSize; // 配置的堆的初始值
+long configuredMaxHeapSize;     // 配置的堆的最大值
+Mem mem;            // 内存信息
+String[] inputArguments;    // JVM启动时输入的参数
+String bootClassPath;
+String classPath;   
+Map&lt;String, String&gt; systemProperties;   // 系统环境变量
+String[] gcCollectors;
+String[] memoryPools;
+String onError;
+String onOutOfMemoryError;
+String useCompressedOops;
+String useG1GC;     // 是否使用 G1 垃圾回收器
+String useSerialGC; // 是否使用 Serial 垃圾回收器
+</code></pre><h4 id="keepAlive-线程"><a href="#keepAlive-线程" class="headerlink" title="keepAlive 线程"></a>keepAlive 线程</h4><p>在启动引导类 Bootstrap 的 start 方法中，启动节点之后还会启动一个 keepAlive 线程</p>
+<pre><code>private void start() throws NodeValidationException {
+    node.start();
+    keepAliveThread.start();
 }
-</code></pre><p><strong>优点</strong>：避免了线程不安全，延迟加载，效率高。</p>
-<p>静态内部类的方式利用了类装载机制来保证线程安全，只有在第一次调用getInstance方法时，才会装载SingletonInstance内部类，完成Singleton的实例化，所以也有懒加载的效果。</p>
-<p><strong>加入参数 <code>-verbose:class</code> 可以查看类加载顺序</strong></p>
-<pre><code>$ javac Singleton.java
-$ java -verbose:class Singleton
-</code></pre><h4 id="7、枚举"><a href="#7、枚举" class="headerlink" title="7、枚举"></a>7、枚举</h4><pre><code>// 线程安全
-public enum Singleton {
-    INSTANCE;
-    public void whateverMethod() {
-    }
-}
-</code></pre><p><strong>优点</strong>：通过JDK1.5中添加的枚举来实现单例模式，<strong>写法简单</strong>，且不仅能<strong>避免多线程同步问题</strong>，而且还能<strong>防止反序列化重新创建新的对象</strong>。</p>
-<h3 id="单例模式的安全性"><a href="#单例模式的安全性" class="headerlink" title="单例模式的安全性"></a>单例模式的安全性</h3><p>单例模式的目标是，任何时候该类都只有唯一的一个对象。但是上面我们写的大部分单例模式都存在漏洞，被攻击时会产生多个对象，破坏了单例模式。</p>
-<h4 id="序列化攻击"><a href="#序列化攻击" class="headerlink" title="序列化攻击"></a>序列化攻击</h4><p>通过Java的序列化机制来攻击单例模式</p>
-<pre><code>public class HungrySingleton {
-    private static final HungrySingleton instance = new HungrySingleton();
-    private HungrySingleton() {
-    }
-    public static HungrySingleton getInstance() {
-        return instance;
-    }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        HungrySingleton singleton = HungrySingleton.getInstance();
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;singleton_file&quot;));
-        oos.writeObject(singleton); // 序列化
-
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(&quot;singleton_file&quot;));
-        HungrySingleton newSingleton = (HungrySingleton) ois.readObject(); // 反序列化
-
-        System.out.println(singleton);
-        System.out.println(newSingleton);
-        System.out.println(singleton == newSingleton);
-    }
-}
-</code></pre><p>结果</p>
-<pre><code>com.singleton.HungrySingleton@ed17bee
-com.singleton.HungrySingleton@46f5f779
-false
-</code></pre><p>Java 序列化是如何攻击单例模式的呢？我们需要先复习一下Java的序列化机制</p>
-<h5 id="Java-序列化机制"><a href="#Java-序列化机制" class="headerlink" title="Java 序列化机制"></a>Java 序列化机制</h5><p><code>java.io.ObjectOutputStream</code> 是Java实现序列化的关键类，它可以将一个对象转换成二进制流，然后可以通过 <code>ObjectInputStream</code> 将二进制流还原成对象。具体的序列化过程不是本文的重点，在此仅列出几个要点。</p>
-<p><strong>Java 序列化机制的要点</strong>：</p>
-<ul>
-<li>需要序列化的类必须实现<code>java.io.Serializable</code>接口，否则会抛出<code>NotSerializableException</code>异常 </li>
-<li>若没有显示地声明一个<code>serialVersionUID</code>变量，Java序列化机制会根据编译时的class自动生成一个<code>serialVersionUID</code>作为序列化版本比较（验证一致性），如果检测到反序列化后的类的<code>serialVersionUID</code>和对象二进制流的<code>serialVersionUID</code>不同，则会抛出异常</li>
-<li>Java的序列化会将一个类包含的引用中所有的成员变量保存下来（深度复制），所以里面的引用类型必须也要实现<code>java.io.Serializable</code>接口</li>
-<li>当某个字段被声明为<code>transient</code>后，默认序列化机制就会忽略该字段，反序列化后自动获得0或者null值</li>
-<li>静态成员不参与序列化</li>
-<li>每个类可以实现<code>readObject</code>、<code>writeObject</code>方法实现自己的序列化策略，即使是<code>transient</code>修饰的成员变量也可以手动调用<code>ObjectOutputStream</code>的<code>writeInt</code>等方法将这个成员变量序列化。</li>
-<li>任何一个readObject方法，不管是显式的还是默认的，它都会返回一个新建的实例，这个新建的实例不同于该类初始化时创建的实例</li>
-<li>每个类可以实现<code>private Object readResolve()</code>方法，在调用<code>readObject</code>方法之后，如果存在<code>readResolve</code>方法则自动调用该方法，<code>readResolve</code>将对<code>readObject</code>的结果进行处理，而最终<code>readResolve</code>的处理结果将作为<code>readObject</code>的结果返回。<code>readResolve</code>的目的是保护性恢复对象，其最重要的应用就是保护性恢复单例、枚举类型的对象</li>
-<li><code>Serializable</code>接口是一个标记接口，可自动实现序列化，而<code>Externalizable</code>继承自<code>Serializable</code>，它强制必须手动实现序列化和反序列化算法，相对来说更加高效</li>
-</ul>
-<h5 id="序列化破坏单例模式的解决方案"><a href="#序列化破坏单例模式的解决方案" class="headerlink" title="序列化破坏单例模式的解决方案"></a>序列化破坏单例模式的解决方案</h5><p>根据上面对Java序列化机制的复习，我们可以自定义一个 <code>readResolve</code>，在其中返回类的单例对象，替换掉 <code>readObject</code> 方法反序列化生成的对象，让我们自己写的单例模式实现保护性恢复对象</p>
-<pre><code>public class HungrySingleton implements Serializable {
-    private static final HungrySingleton instance = new HungrySingleton();
-    private HungrySingleton() {
-    }
-    public static HungrySingleton getInstance() {
-        return instance;
-    }
-
-    private Object readResolve() {
-        return instance;
-    }
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        HungrySingleton singleton = HungrySingleton.getInstance();
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(&quot;singleton_file&quot;));
-        HungrySingleton newSingleton = (HungrySingleton) ois.readObject();
-
-        System.out.println(singleton);
-        System.out.println(newSingleton);
-        System.out.println(singleton == newSingleton);
-    }
-}
-</code></pre><p>再次运行</p>
-<pre><code>com.singleton.HungrySingleton@24273305
-com.singleton.HungrySingleton@24273305
-true
-</code></pre><p>注意：自己实现的单例模式都需要避免被序列化破坏</p>
-<h4 id="反射攻击"><a href="#反射攻击" class="headerlink" title="反射攻击"></a>反射攻击</h4><p>在单例模式中，构造器都是私有的，而反射可以通过构造器对象调用 <code>setAccessible(true)</code> 来获得权限，这样就可以创建多个对象，来破坏单例模式了</p>
-<pre><code>public class HungrySingleton {
-    private static final HungrySingleton instance = new HungrySingleton();
-
-    private HungrySingleton() {
-    }
-
-    public static HungrySingleton getInstance() {
-        return instance;
-    }
-
-    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        HungrySingleton instance = HungrySingleton.getInstance();
-        Constructor constructor = HungrySingleton.class.getDeclaredConstructor();
-        constructor.setAccessible(true);    // 获得权限
-        HungrySingleton newInstance = (HungrySingleton) constructor.newInstance();
-
-        System.out.println(instance);
-        System.out.println(newInstance);
-        System.out.println(instance == newInstance);
-    }
-}
-</code></pre><p>输出结果</p>
-<pre><code>com.singleton.HungrySingleton@3b192d32
-com.singleton.HungrySingleton@16f65612
-false
-</code></pre><h5 id="反射攻击解决方案"><a href="#反射攻击解决方案" class="headerlink" title="反射攻击解决方案"></a>反射攻击解决方案</h5><p>反射是通过它的Class对象来调用构造器创建新的对象，我们只需要在构造器中检测并抛出异常就可以达到目的了</p>
-<pre><code>private HungrySingleton() {
-    // instance 不为空，说明单例对象已经存在
-    if (instance != null) {
-        throw new RuntimeException(&quot;单例模式禁止反射调用！&quot;);
-    }
-}
-</code></pre><p>运行结果</p>
-<pre><code>Exception in thread &quot;main&quot; java.lang.reflect.InvocationTargetException
-    at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-    at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-    at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-    at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-    at com.singleton.HungrySingleton.main(HungrySingleton.java:32)
-Caused by: java.lang.RuntimeException: 单例模式禁止反射调用！
-    at com.singleton.HungrySingleton.&lt;init&gt;(HungrySingleton.java:20)
-    ... 5 more
-</code></pre><p><strong>注意</strong>，上述方法针对饿汉式单例模式是有效的，但<strong>对懒汉式的单例模式是无效的，懒汉式的单例模式是无法避免反射攻击的！</strong></p>
-<p>为什么对饿汉有效，对懒汉无效？因为饿汉的初始化是在类加载的时候，反射一定是在饿汉初始化之后才能使用；而懒汉是在第一次调用 <code>getInstance()</code> 方法的时候才初始化，我们无法控制反射和懒汉初始化的先后顺序，如果反射在前，不管反射创建了多少对象，instance都将一直为null，直到调用 <code>getInstance()</code>。</p>
-<p><strong>事实上，实现单例模式的唯一推荐方法，是使用枚举类来实现。</strong></p>
-<h4 id="为什么推荐使用枚举单例"><a href="#为什么推荐使用枚举单例" class="headerlink" title="为什么推荐使用枚举单例"></a>为什么推荐使用枚举单例</h4><p>写下我们的枚举单例模式</p>
-<pre><code>package com.singleton;
-
-import java.io.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
-public enum SerEnumSingleton implements Serializable {
-    INSTANCE;   // 单例对象
-    private String content;
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    private SerEnumSingleton() {
-    }
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        SerEnumSingleton singleton1 = SerEnumSingleton.INSTANCE;
-        singleton1.setContent(&quot;枚举单例序列化&quot;);
-        System.out.println(&quot;枚举序列化前读取其中的内容：&quot; + singleton1.getContent());
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;SerEnumSingleton.obj&quot;));
-        oos.writeObject(singleton1);
-        oos.flush();
-        oos.close();
-
-        FileInputStream fis = new FileInputStream(&quot;SerEnumSingleton.obj&quot;);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        SerEnumSingleton singleton2 = (SerEnumSingleton) ois.readObject();
-        ois.close();
-        System.out.println(singleton1 + &quot;\n&quot; + singleton2);
-        System.out.println(&quot;枚举序列化后读取其中的内容：&quot; + singleton2.getContent());
-        System.out.println(&quot;枚举序列化前后两个是否同一个：&quot; + (singleton1 == singleton2));
-
-        Constructor&lt;SerEnumSingleton&gt; constructor = SerEnumSingleton.class.getDeclaredConstructor();
-        constructor.setAccessible(true);
-        SerEnumSingleton singleton3 = constructor.newInstance(); // 通过反射创建对象
-        System.out.println(&quot;反射后读取其中的内容：&quot; + singleton3.getContent());
-        System.out.println(&quot;反射前后两个是否同一个：&quot; + (singleton1 == singleton3));
-    }
-}
-</code></pre><p>运行结果，序列化前后的对象是同一个对象，而反射的时候抛出了异常</p>
-<pre><code>枚举序列化前读取其中的内容：枚举单例序列化
-INSTANCE
-INSTANCE
-枚举序列化后读取其中的内容：枚举单例序列化
-枚举序列化前后两个是否同一个：true
-Exception in thread &quot;main&quot; java.lang.NoSuchMethodException: com.singleton.SerEnumSingleton.&lt;init&gt;()
-    at java.lang.Class.getConstructor0(Class.java:3082)
-    at java.lang.Class.getDeclaredConstructor(Class.java:2178)
-    at com.singleton.SerEnumSingleton.main(SerEnumSingleton.java:39)
-</code></pre><p>编译后，再通过 JAD 进行反编译得到下面的代码</p>
-<pre><code>// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   SerEnumSingleton.java
-
-package com.singleton;
-
-import java.io.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
-public final class SerEnumSingleton extends Enum
-    implements Serializable
-{
-
-    public static SerEnumSingleton[] values()
-    {
-        return (SerEnumSingleton[])$VALUES.clone();
-    }
-
-    public static SerEnumSingleton valueOf(String name)
-    {
-        return (SerEnumSingleton)Enum.valueOf(com/singleton/SerEnumSingleton, name);
-    }
-
-    public String getContent()
-    {
-        return content;
-    }
-
-    public void setContent(String content)
-    {
-        this.content = content;
-    }
-
-    private SerEnumSingleton(String s, int i)
-    {
-        super(s, i);
-    }
-
-    public static void main(String args[])
-        throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException
-    {
-        SerEnumSingleton singleton1 = INSTANCE;
-        singleton1.setContent(&quot;\u679A\u4E3E\u5355\u4F8B\u5E8F\u5217\u5316&quot;);
-        System.out.println((new StringBuilder()).append(&quot;\u679A\u4E3E\u5E8F\u5217\u5316\u524D\u8BFB\u53D6\u5176\u4E2D\u7684\u5185\u5BB9\uFF1A&quot;).append(singleton1.getContent()).toString());
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;SerEnumSingleton.obj&quot;));
-        oos.writeObject(singleton1);
-        oos.flush();
-        oos.close();
-        FileInputStream fis = new FileInputStream(&quot;SerEnumSingleton.obj&quot;);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        SerEnumSingleton singleton2 = (SerEnumSingleton)ois.readObject();
-        ois.close();
-        System.out.println((new StringBuilder()).append(singleton1).append(&quot;\n&quot;).append(singleton2).toString());
-        System.out.println((new StringBuilder()).append(&quot;\u679A\u4E3E\u5E8F\u5217\u5316\u540E\u8BFB\u53D6\u5176\u4E2D\u7684\u5185\u5BB9\uFF1A&quot;).append(singleton2.getContent()).toString());
-        System.out.println((new StringBuilder()).append(&quot;\u679A\u4E3E\u5E8F\u5217\u5316\u524D\u540E\u4E24\u4E2A\u662F\u5426\u540C\u4E00\u4E2A\uFF1A&quot;).append(singleton1 == singleton2).toString());
-        Constructor constructor = com/singleton/SerEnumSingleton.getDeclaredConstructor(new Class[0]);
-        constructor.setAccessible(true);
-        SerEnumSingleton singleton3 = (SerEnumSingleton)constructor.newInstance(new Object[0]);
-        System.out.println((new StringBuilder()).append(&quot;\u53CD\u5C04\u540E\u8BFB\u53D6\u5176\u4E2D\u7684\u5185\u5BB9\uFF1A&quot;).append(singleton3.getContent()).toString());
-        System.out.println((new StringBuilder()).append(&quot;\u53CD\u5C04\u524D\u540E\u4E24\u4E2A\u662F\u5426\u540C\u4E00\u4E2A\uFF1A&quot;).append(singleton1 == singleton3).toString());
-    }
-
-    public static final SerEnumSingleton INSTANCE;
-    private String content;
-    private static final SerEnumSingleton $VALUES[];
-
-    static 
-    {
-        INSTANCE = new SerEnumSingleton(&quot;INSTANCE&quot;, 0);
-        $VALUES = (new SerEnumSingleton[] {
-            INSTANCE
-        });
-    }
-}
-</code></pre><p>通过反编译后代码我们可以看到，<code>ublic final class T extends Enum</code>，说明，当我们使用enmu来定义一个枚举类型的时候，编译器会自动帮我们创建一个final类型的类继承Enum类，所以枚举类型不能被继承。</p>
-<h5 id="那么，为什么推荐使用枚举单例呢？"><a href="#那么，为什么推荐使用枚举单例呢？" class="headerlink" title="那么，为什么推荐使用枚举单例呢？"></a>那么，为什么推荐使用枚举单例呢？</h5><p><strong>1. 枚举单例写法简单</strong></p>
-<p><strong>2. 线程安全&amp;懒加载</strong></p>
-<p>代码中 INSTANCE 变量被 <code>public static final</code> 修饰，因为static类型的属性是在类加载之后初始化的，JVM可以保证线程安全；且Java类是在引用到的时候才进行类加载，所以枚举单例也有懒加载的效果。</p>
-<p><strong>3. 枚举自己能避免序列化攻击</strong></p>
-<p>为了保证枚举类型像Java规范中所说的那样，每一个枚举类型极其定义的枚举变量在JVM中都是唯一的，在枚举类型的序列化和反序列化上，Java做了特殊的规定。</p>
-<p>在序列化的时候Java<strong>仅仅是将枚举对象的name属性输出到结果中</strong>，反序列化的时候则是通过java.lang.Enum的valueOf方法来<strong>根据名字查找枚举对象</strong>。同时，<strong>编译器是不允许任何对这种序列化机制的定制</strong>，因此禁用了writeObject、readObject、readObjectNoData、writeReplace和readResolve等方法。 我们看一下Enum类的valueOf方法：</p>
-<pre><code>    public static &lt;T extends Enum&lt;T&gt;&gt; T valueOf(Class&lt;T&gt; enumType, String name) {
-        T result = enumType.enumConstantDirectory().get(name);
-        if (result != null)
-            return result;
-        if (name == null)
-            throw new NullPointerException(&quot;Name is null&quot;);
-        throw new IllegalArgumentException(
-            &quot;No enum constant &quot; + enumType.getCanonicalName() + &quot;.&quot; + name);
-    }
-</code></pre><p>从代码中可以看到，代码会尝试从调用enumType这个Class对象的<code>enumConstantDirectory()</code>方法返回的map中获取名字为name的枚举对象，如果不存在就会抛出异常。再进一步跟到<code>enumConstantDirectory()</code>方法，就会发现到最后会以反射的方式调用enumType这个类型的values()静态方法，也就是上面我们看到的编译器为我们创建的那个方法，然后用返回结果填充enumType这个Class对象中的<code>enumConstantDirectory</code>属性。所以，JVM对序列化有保证。</p>
-<p><strong>4. 枚举能够避免反射攻击，因为反射不支持创建枚举对象</strong></p>
-<p><code>Constructor</code>类的 <code>newInstance</code>方法中会判断是否为 enum，若是会抛出异常</p>
-<pre><code>    @CallerSensitive
-    public T newInstance(Object ... initargs) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        if (!override) {
-            if (!Reflection.quickCheckMemberAccess(clazz, modifiers)) {
-                Class&lt;?&gt; caller = Reflection.getCallerClass();
-                checkAccess(caller, clazz, null, modifiers);
+// CountDownLatch 初始值为 1
+private final CountDownLatch keepAliveLatch = new CountDownLatch(1);
+Bootstrap() {
+    keepAliveThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                keepAliveLatch.await(); // 一直等待直到 CountDownLatch 减为 0
+            } catch (InterruptedException e) {
+                // bail out
             }
         }
-        // 不能为 ENUM，否则抛出异常：不能通过反射创建 enum 对象
-        if ((clazz.getModifiers() &amp; Modifier.ENUM) != 0)
-            throw new IllegalArgumentException(&quot;Cannot reflectively create enum objects&quot;);
-        ConstructorAccessor ca = constructorAccessor;   // read volatile
-        if (ca == null) {
-            ca = acquireConstructorAccessor();
+    }, &quot;elasticsearch[keepAlive/&quot; + Version.CURRENT + &quot;]&quot;);
+    keepAliveThread.setDaemon(false);   // false 用户线程
+    // keep this thread alive (non daemon thread) until we shutdown
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+        @Override
+        public void run() {
+            // 当进程收到关闭 SIGTERM 或 SIGINT 信号时，CountDownLatch 减1 
+            keepAliveLatch.countDown();
         }
-        @SuppressWarnings(&quot;unchecked&quot;)
-        T inst = (T) ca.newInstance(initargs);
-        return inst;
-    }
-</code></pre><h3 id="单例模式总结"><a href="#单例模式总结" class="headerlink" title="单例模式总结"></a>单例模式总结</h3><p>单例模式作为一种目标明确、结构简单、理解容易的设计模式，在软件开发中使用频率相当高，在很多应用软件和框架中都得以广泛应用。</p>
-<h4 id="单例模式的主要优点"><a href="#单例模式的主要优点" class="headerlink" title="单例模式的主要优点"></a>单例模式的主要优点</h4><ul>
-<li>单例模式提供了对唯一实例的受控访问。</li>
-<li>由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象，单例模式可以提高系统的性能。</li>
-<li>允许可变数目的实例。基于单例模式我们可以进行扩展，使用与单例控制相似的方法来获得指定个数的对象实例，既节省系统资源，又解决了单例单例对象共享过多有损性能的问题。</li>
-</ul>
-<h4 id="单例模式的主要缺点"><a href="#单例模式的主要缺点" class="headerlink" title="单例模式的主要缺点"></a>单例模式的主要缺点</h4><ul>
-<li>由于单例模式中没有抽象层，因此单例类的扩展有很大的困难。</li>
-<li>单例类的职责过重，在一定程度上违背了 “单一职责原则”。</li>
-<li>如果实例化的共享对象长时间不被利用，系统可能会认为它是垃圾，会自动销毁并回收资源，下次利用时又将重新实例化，这将导致共享的单例对象状态的丢失。</li>
-</ul>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
-<li>系统只需要一个实例对象，如系统要求提供一个唯一的序列号生成器或资源管理器，或者需要考虑资源消耗太大而只允许创建一个对象。</li>
-<li>客户调用类的单个实例只允许使用一个公共访问点，除了该公共访问点，不能通过其他途径访问该实例。</li>
-</ul>
-<h3 id="单例模式的典型应用"><a href="#单例模式的典型应用" class="headerlink" title="单例模式的典型应用"></a>单例模式的典型应用</h3><h4 id="JDK-Runtime-饿汉单例"><a href="#JDK-Runtime-饿汉单例" class="headerlink" title="JDK Runtime 饿汉单例"></a>JDK Runtime 饿汉单例</h4><p>JDK Runtime类代表着Java程序的运行时环境，每个Java程序都有一个Runtime实例，该类会被自动创建，我们可以通过 Runtime.getRuntime() 方法来获取当前程序的Runtime实例。一旦得到了一个当前的Runtime对象的引用，就可以调用Runtime对象的方法去控制Java虚拟机的状态和行为。</p>
-<p>Runtime 应用了饿汉式单例模式</p>
-<pre><code>public class Runtime {
-    private static Runtime currentRuntime = new Runtime();
-
-    public static Runtime getRuntime() {
-        return currentRuntime;
-    }
-
-    private Runtime() {
-    }
-    //....
+    });
 }
-</code></pre><p>API 介绍</p>
-<pre><code>addShutdownHook(Thread hook) 注册新的虚拟机来关闭挂钩。 
-availableProcessors() 向 Java 虚拟机返回可用处理器的数目。 
-exec(String command) 在单独的进程中执行指定的字符串命令。 
-exec(String[] cmdarray) 在单独的进程中执行指定命令和变量。 
-exec(String[] cmdarray, String[] envp) 在指定环境的独立进程中执行指定命令和变量。 
-exec(String[] cmdarray, String[] envp, File dir) 在指定环境和工作目录的独立进程中执行指定的命令和变量。 
-exec(String command, String[] envp) 在指定环境的单独进程中执行指定的字符串命令。 
-exec(String command, String[] envp, File dir) 在有指定环境和工作目录的独立进程中执行指定的字符串命令。 
-exit(int status) 通过启动虚拟机的关闭序列，终止当前正在运行的 Java 虚拟机。 
-freeMemory() 返回 Java 虚拟机中的空闲内存量。 
-gc() 运行垃圾回收器。  
-getRuntime() 返回与当前 Java 应用程序相关的运行时对象。 
-halt(int status) 强行终止目前正在运行的 Java 虚拟机。 
-load(String filename) 加载作为动态库的指定文件名。 
-loadLibrary(String libname) 加载具有指定库名的动态库。 
-maxMemory() 返回 Java 虚拟机试图使用的最大内存量。 
-removeShutdownHook(Thread hook) 取消注册某个先前已注册的虚拟机关闭挂钩。 
-runFinalization() 运行挂起 finalization 的所有对象的终止方法。 
-totalMemory() 返回 Java 虚拟机中的内存总量。 
-traceInstructions(on) 启用／禁用指令跟踪。 
-traceMethodCalls(on) 启用／禁用方法调用跟踪。
-</code></pre><h4 id="AWT-Desktop-容器单例"><a href="#AWT-Desktop-容器单例" class="headerlink" title="AWT Desktop 容器单例"></a>AWT Desktop 容器单例</h4><p>Desktop 类允许 Java 应用程序启动已在本机桌面上注册的关联应用程序，以处理 URI 或文件。支持的操作包括:</p>
+
+if (addShutdownHook) {
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+        @Override
+        public void run() {
+            try {
+                IOUtils.close(node, spawner);
+                LoggerContext context = (LoggerContext) LogManager.getContext(false);
+                Configurator.shutdown(context);
+            } catch (IOException ex) {
+                throw new ElasticsearchException(&quot;failed to stop node&quot;, ex);
+            }
+        }
+    });
+}
+</code></pre><p>keepAliveThread 线程本身不做具体的工作。主线程执行完启动流程后会退出，keepAliveThread 线程是唯一的用户线程，<strong>作用是保持进程运行</strong>。在Java程序中，一个进程至少需要有一个用户线程，当用户线程为零时将退出进程。</p>
+<p>做个试验，将 <code>keepAliveThread.setDaemon(false);</code> 中的 <code>false</code> 改为 <code>true</code>，会发现Elasticsearch启动后马上就停止了</p>
+<pre><code>[2019-01-08T01:28:47,522][INFO ][o.e.n.Node               ] [1yGidog] started
+[2019-01-08T01:28:47,525][INFO ][o.e.n.Node               ] [1yGidog] stopping ...
+</code></pre><h4 id="关闭节点"><a href="#关闭节点" class="headerlink" title="关闭节点"></a>关闭节点</h4><p>关闭的顺序大致为：</p>
 <ul>
-<li>打开浏览器: 启动用户默认浏览器来显示指定的 URI；</li>
-<li>打开邮件客户端: 启动带有可选 mailto URI 的用户默认邮件客户端；</li>
-<li>打开文件/文件夹: 启动已注册的应用程序，以打开、编辑 或 打印 指定的文件。</li>
+<li>关闭快照和HTTPServer，不再响应用户REST请求</li>
+<li>关闭集群拓扑管理，不再响应ping请求</li>
+<li>关闭网络模块，让节点离线</li>
+<li>执行各个插件的关闭流程</li>
+<li>关闭IndicesService，这期间需要等待释放的资源最多，时间最长</li>
 </ul>
-<p>Desktop 通过一个容器来管理单例对象</p>
-<pre><code>public class Desktop {
-    // synchronized 同步方法
-    public static synchronized Desktop getDesktop(){
-        if (GraphicsEnvironment.isHeadless()) throw new HeadlessException();
-        if (!Desktop.isDesktopSupported()) {
-            throw new UnsupportedOperationException(&quot;Desktop API is not &quot; + &quot;supported on the current platform&quot;);
+<pre><code class="java">public static void close(final Exception ex, final Iterable&lt;? extends Closeable&gt; objects) throws IOException {
+    Exception firstException = ex;
+    for (final Closeable object : objects) {
+        try {
+            if (object != null) {
+                object.close();
+            }
+        } catch (final IOException | RuntimeException e) {
+            if (firstException == null) {
+                firstException = e;
+            } else {
+                firstException.addSuppressed(e);
+            }
         }
-        sun.awt.AppContext context = sun.awt.AppContext.getAppContext();
-        Desktop desktop = (Desktop)context.get(Desktop.class); // 获取单例对象
-        // 存在则返回，不存在则创建，创建后put进容器
-        if (desktop == null) {
-            desktop = new Desktop(); 
-            context.put(Desktop.class, desktop);
-        }
-        return desktop;
     }
-</code></pre><p>AppContext 中有一个 HashMap 对象table，是实际的容器对象</p>
-<pre><code>private final Map&lt;Object, Object&gt; table = new HashMap();
-</code></pre><h4 id="spring-AbstractFactoryBean"><a href="#spring-AbstractFactoryBean" class="headerlink" title="spring AbstractFactoryBean"></a>spring AbstractFactoryBean</h4><p>AbstractFactoryBean 类</p>
-<pre><code>public final T getObject() throws Exception {
-    if (this.isSingleton()) {
-        return this.initialized ? this.singletonInstance : this.getEarlySingletonInstance();
-    } else {
-        return this.createInstance();
-    }
+    // ...
 }
 
-private T getEarlySingletonInstance() throws Exception {
-    Class&lt;?&gt;[] ifcs = this.getEarlySingletonInterfaces();
-    if (ifcs == null) {
-        throw new FactoryBeanNotInitializedException(this.getClass().getName() + &quot; does not support circular references&quot;);
-    } else {
-        if (this.earlySingletonInstance == null) {
-            // 通过代理创建对象
-            this.earlySingletonInstance = Proxy.newProxyInstance(this.beanClassLoader, ifcs, new AbstractFactoryBean.EarlySingletonInvocationHandler());
-        }
-        return this.earlySingletonInstance;
+private Node stop() {
+    if (!lifecycle.moveToStopped()) {
+        return this;
     }
-}
-</code></pre><h4 id="Mybatis-ErrorContext-ThreadLocal"><a href="#Mybatis-ErrorContext-ThreadLocal" class="headerlink" title="Mybatis ErrorContext ThreadLocal"></a>Mybatis ErrorContext ThreadLocal</h4><p>ErrorContext 类，通过 ThreadLocal 管理单例对象，一个线程一个ErrorContext对象，ThreadLocal可以保证线程安全</p>
-<pre><code>public class ErrorContext {
-    private static final ThreadLocal&lt;ErrorContext&gt; LOCAL = new ThreadLocal&lt;ErrorContext&gt;();
-    private ErrorContext() {
+    Logger logger = Loggers.getLogger(Node.class, NODE_NAME_SETTING.get(settings));
+    logger.info(&quot;stopping ...&quot;);
+
+    injector.getInstance(ResourceWatcherService.class).stop();
+    if (NetworkModule.HTTP_ENABLED.get(settings)) {
+        injector.getInstance(HttpServerTransport.class).stop();
     }
 
-    public static ErrorContext instance() {
-        ErrorContext context = LOCAL.get();
-        if (context == null) {
-          context = new ErrorContext();
-          LOCAL.set(context);
-        }
-        return context;
-    }
-    //...
+    injector.getInstance(SnapshotsService.class).stop();
+    injector.getInstance(SnapshotShardsService.class).stop();
+    // stop any changes happening as a result of cluster state changes
+    injector.getInstance(IndicesClusterStateService.class).stop();
+    // close discovery early to not react to pings anymore.
+    // This can confuse other nodes and delay things - mostly if we&#39;re the master and we&#39;re running tests.
+    injector.getInstance(Discovery.class).stop();
+    // we close indices first, so operations won&#39;t be allowed on it
+    injector.getInstance(RoutingService.class).stop();
+    injector.getInstance(ClusterService.class).stop();
+    injector.getInstance(NodeConnectionsService.class).stop();
+    nodeService.getMonitorService().stop();
+    injector.getInstance(GatewayService.class).stop();
+    injector.getInstance(SearchService.class).stop();
+    injector.getInstance(TransportService.class).stop();
+
+    pluginLifecycleComponents.forEach(LifecycleComponent::stop);
+    // we should stop this last since it waits for resources to get released
+    // if we had scroll searchers etc or recovery going on we wait for to finish.
+    injector.getInstance(IndicesService.class).stop();
+    logger.info(&quot;stopped&quot;);
+
+    return this;
 }
-</code></pre><blockquote>
-<p>参考：<br><a href="http://www.hollischuang.com/archives/197" target="_blank" rel="noopener">http://www.hollischuang.com/archives/197</a><br><a href="https://www.cnblogs.com/chiclee/p/9097772.html" target="_blank" rel="noopener">https://www.cnblogs.com/chiclee/p/9097772.html</a><br><a href="https://blog.csdn.net/abc123lzf/article/details/82318148" target="_blank" rel="noopener">https://blog.csdn.net/abc123lzf/article/details/82318148</a></p>
+</code></pre>
+<p>节点的关闭当然没那么简单。更多细节敬请期待。</p>
+<blockquote>
+<p>参考：<br>张超.Elasticsearch源码解析与优化实战</p>
 </blockquote>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>欢迎评论、转发、分享，您的支持是我最大的动力</p>
 <p>更多内容可访问我的个人博客：<a href="http://laijianfeng.org">http://laijianfeng.org</a></p>
@@ -1101,12 +892,12 @@ private T getEarlySingletonInstance() throws Exception {
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>设计模式 | 单例模式及典型应用</p>
-    <p><span>文章字数:</span><span class="post-count">5,251</span></p>
+    <p><span>文章标题:</span>Elasticsearch源码分析 | 单节点的启动和关闭</p>
+    <p><span>文章字数:</span><span class="post-count">2,202</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2019-01-07, 01:35:54</p>
-    <p><span>最后更新:</span>2019-01-07, 01:37:03</p>
-    <span>原始链接:</span><a class="post-url" href="/2019/01/设计模式-单例模式及典型应用/" title="设计模式 | 单例模式及典型应用">http://laijianfeng.org/2019/01/设计模式-单例模式及典型应用/</a>
+    <p><span>发布时间:</span>2019-01-08, 01:58:56</p>
+    <p><span>最后更新:</span>2019-01-08, 02:01:38</p>
+    <span>原始链接:</span><a class="post-url" href="/2019/01/Elasticsearch源码分析-单节点的启动和关闭/" title="Elasticsearch源码分析 | 单节点的启动和关闭">http://laijianfeng.org/2019/01/Elasticsearch源码分析-单节点的启动和关闭/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -1118,7 +909,7 @@ private T getEarlySingletonInstance() throws Exception {
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '设计模式 | 单例模式及典型应用', // 可选。默认为 location.href
+        id: 'Elasticsearch源码分析 | 单节点的启动和关闭', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
