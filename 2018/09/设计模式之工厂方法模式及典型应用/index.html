@@ -141,10 +141,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">Elasticsearch</a>
     </li>
     
@@ -166,6 +162,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">设计模式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <div class="clearfix"></div>
@@ -911,7 +911,7 @@ private class Itr implements Iterator&lt;E&gt; {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#java','#Elasticsearch','#Java编程','#lucene','#spark','#博客','#设计模式',],
+            'data': ['#elasticsearch','#Elasticsearch','#Java编程','#lucene','#spark','#博客','#设计模式','#java',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
