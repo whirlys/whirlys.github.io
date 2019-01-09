@@ -6,22 +6,20 @@
   <meta name="keywords" content=" 设计模式 ">
   <meta name="description" content="设计模式 | 抽象工厂模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="本文主要简要介绍Elasticsearch单节点的启动和关闭流程。Elasticsearch版本：6.3.2    相关文章1、Google Guice 快速入门2、Elasticsearch 中的 Guice3、教你编译调试Elasticsearch 6.3.2源码4、Elasticsearch 6.3.2 启动过程 创建节点Elasticsearch的启动引导类为 Bootstrap 类，在创">
-<meta name="keywords" content="Elasticsearch">
+<meta name="description" content="以下源码分析使用的 Java 版本为 1.8   1. 概览ArrayList 是基于数组实现的，继承 AbstractList， 实现了 List、RandomAccess、Cloneable、Serializable 接口，支持随机访问。 java.util public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt;">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Elasticsearch源码分析 | 单节点的启动和关闭">
-<meta property="og:url" content="http://laijianfeng.org/2019/01/Elasticsearch源码分析-单节点的启动和关闭/index.html">
+<meta property="og:title" content="ArrayList 源码分析">
+<meta property="og:url" content="http://laijianfeng.org/2019/01/ArrayList-源码分析/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="本文主要简要介绍Elasticsearch单节点的启动和关闭流程。Elasticsearch版本：6.3.2    相关文章1、Google Guice 快速入门2、Elasticsearch 中的 Guice3、教你编译调试Elasticsearch 6.3.2源码4、Elasticsearch 6.3.2 启动过程 创建节点Elasticsearch的启动引导类为 Bootstrap 类，在创">
+<meta property="og:description" content="以下源码分析使用的 Java 版本为 1.8   1. 概览ArrayList 是基于数组实现的，继承 AbstractList， 实现了 List、RandomAccess、Cloneable、Serializable 接口，支持随机访问。 java.util public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20190107_223512.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20190107_223749.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2019-01-08T13:10:43.142Z">
+<meta property="og:updated_time" content="2019-01-09T12:22:21.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Elasticsearch源码分析 | 单节点的启动和关闭">
-<meta name="twitter:description" content="本文主要简要介绍Elasticsearch单节点的启动和关闭流程。Elasticsearch版本：6.3.2    相关文章1、Google Guice 快速入门2、Elasticsearch 中的 Guice3、教你编译调试Elasticsearch 6.3.2源码4、Elasticsearch 6.3.2 启动过程 创建节点Elasticsearch的启动引导类为 Bootstrap 类，在创">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20190107_223512.png">
+<meta name="twitter:title" content="ArrayList 源码分析">
+<meta name="twitter:description" content="以下源码分析使用的 Java 版本为 1.8   1. 概览ArrayList 是基于数组实现的，继承 AbstractList， 实现了 List、RandomAccess、Cloneable、Serializable 接口，支持随机访问。 java.util public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt;">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20180913_001328.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -149,15 +147,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">spark</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">spark</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -765,7 +763,7 @@ public class PythonCourseFactory implements CourseFactory {
 
     </div>
     <div class="copyright">
-        <p class="footer-entry">©2019 小旋锋</p>
+        <p class="footer-entry">© 2018-2019, 小旋锋. All rights reserved.</p>
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
@@ -811,7 +809,7 @@ public class PythonCourseFactory implements CourseFactory {
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#Java编程','#java','#spark','#lucene','#博客','#设计模式',],
+            'data': ['#elasticsearch','#Java编程','#java','#lucene','#博客','#spark','#设计模式',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
