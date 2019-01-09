@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://image.laijianfeng.org/20190107_223512.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20190107_223749.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2019-01-07T18:01:38.745Z">
+<meta property="og:updated_time" content="2019-01-08T13:10:43.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch源码分析 | 单节点的启动和关闭">
 <meta name="twitter:description" content="本文主要简要介绍Elasticsearch单节点的启动和关闭流程。Elasticsearch版本：6.3.2    相关文章1、Google Guice 快速入门2、Elasticsearch 中的 Guice3、教你编译调试Elasticsearch 6.3.2源码4、Elasticsearch 6.3.2 启动过程 创建节点Elasticsearch的启动引导类为 Bootstrap 类，在创">
@@ -100,8 +100,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="36">
-<input type="hidden" id="yelog_site_word_count" value="111.4k">
+<input type="hidden" id="yelog_site_posts_number" value="37">
+<input type="hidden" id="yelog_site_word_count" value="114.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -141,19 +141,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">Elasticsearch</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">Java编程</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color1">spark</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -162,10 +162,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">设计模式</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
     </li>
     
     <div class="clearfix"></div>
@@ -178,9 +174,17 @@
     
     <nav id="title-list-nav">
         
+        <a  class="后端 "
+           href="/2019/01/ArrayList-源码分析/"
+           data-tag="Java编程"
+           data-author="" >
+            <span class="post-title" title="ArrayList 源码分析">ArrayList 源码分析</span>
+            <span class="post-date" title="2019-01-09 20:21:09">2019/01/09</span>
+        </a>
+        
         <a  class="大数据 "
            href="/2019/01/Elasticsearch源码分析-单节点的启动和关闭/"
-           data-tag="Elasticsearch"
+           data-tag="elasticsearch"
            data-author="" >
             <span class="post-title" title="Elasticsearch源码分析 | 单节点的启动和关闭">Elasticsearch源码分析 | 单节点的启动和关闭</span>
             <span class="post-date" title="2019-01-08 01:58:56">2019/01/08</span>
@@ -984,7 +988,7 @@ false
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#Elasticsearch','#Java编程','#lucene','#spark','#博客','#设计模式','#java',],
+            'data': ['#elasticsearch','#Java编程','#java','#spark','#lucene','#博客','#设计模式',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
