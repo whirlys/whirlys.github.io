@@ -83,9 +83,9 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="生活杂记"> 生活杂记 </li>
-    
     <li data-rel="大数据"> 大数据 </li>
+    
+    <li data-rel="生活杂记"> 生活杂记 </li>
     
     <li data-rel="后端"> 后端 </li>
     
@@ -119,6 +119,8 @@
             <li><a target="_blank" href="https://godbmw.com/">GODBMW</a></li>
             
             <li><a target="_blank" href="http://www.codesheep.cn/">CodeSheep 程序羊</a></li>
+            
+            <li><a target="_blank" href="http://www.hualong.me/">刘华龙的小窝</a></li>
             
         </ul>
     </div>
@@ -155,11 +157,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">spark</a>
+        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">设计模式</a>
+        <a href="javascript:" class="color1">spark</a>
     </li>
     
     <div class="clearfix"></div>
@@ -1093,7 +1095,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#Java编程','#java','#lucene','#博客','#spark','#设计模式',],
+            'data': ['#elasticsearch','#Java编程','#java','#lucene','#博客','#设计模式','#spark',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
