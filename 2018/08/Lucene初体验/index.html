@@ -6,20 +6,29 @@
   <meta name="keywords" content=" lucene ">
   <meta name="description" content="Lucene初体验 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="单例是最常见的设计模式之一，实现的方式非常多，同时需要注意的问题也非常多。 本文主要内容：  介绍单例模式 介绍单例模式的N中写法 单例模式的安全性 序列化攻击 反射攻击   单例模式总结 介绍单例模式的典型应用  单例模式单例模式(Singleton Pattern)：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式是一种对象创建">
-<meta name="keywords" content="Java,设计模式,单例模式">
+<meta name="description" content="CAP定理是分布系统中的一个基本定理，它指出任何分布系统最多可以具有以下三个属性中的两个。  一致性 (Consistency)  可用性 (Availability)   分区容错性 (Partition tolerance)     本文将以图解的形式简明地对 Gilbert and Lynch’s specification and proof of the CAP Theorem (CAP">
+<meta name="keywords" content="Java,cap,cap定理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 | 单例模式及典型应用">
-<meta property="og:url" content="http://laijianfeng.org/2019/01/设计模式-单例模式及典型应用/index.html">
+<meta property="og:title" content="分布式系统 | CAP 定理图解">
+<meta property="og:url" content="http://laijianfeng.org/2019/01/分布式系统-CAP-定理图解/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="单例是最常见的设计模式之一，实现的方式非常多，同时需要注意的问题也非常多。 本文主要内容：  介绍单例模式 介绍单例模式的N中写法 单例模式的安全性 序列化攻击 反射攻击   单例模式总结 介绍单例模式的典型应用  单例模式单例模式(Singleton Pattern)：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式是一种对象创建">
+<meta property="og:description" content="CAP定理是分布系统中的一个基本定理，它指出任何分布系统最多可以具有以下三个属性中的两个。  一致性 (Consistency)  可用性 (Availability)   分区容错性 (Partition tolerance)     本文将以图解的形式简明地对 Gilbert and Lynch’s specification and proof of the CAP Theorem (CAP">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.laijianfeng.org/cap1.svg">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_182005.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_182219.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_223824.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_225536.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_225537.svg">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_225537.svg">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_230826.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20190115_231317.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2019-01-06T17:37:03.276Z">
+<meta property="og:updated_time" content="2019-01-15T17:20:56.449Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 | 单例模式及典型应用">
-<meta name="twitter:description" content="单例是最常见的设计模式之一，实现的方式非常多，同时需要注意的问题也非常多。 本文主要内容：  介绍单例模式 介绍单例模式的N中写法 单例模式的安全性 序列化攻击 反射攻击   单例模式总结 介绍单例模式的典型应用  单例模式单例模式(Singleton Pattern)：确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。单例模式是一种对象创建">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20180913_001328.png">
+<meta name="twitter:title" content="分布式系统 | CAP 定理图解">
+<meta name="twitter:description" content="CAP定理是分布系统中的一个基本定理，它指出任何分布系统最多可以具有以下三个属性中的两个。  一致性 (Consistency)  可用性 (Availability)   分区容错性 (Partition tolerance)     本文将以图解的形式简明地对 Gilbert and Lynch’s specification and proof of the CAP Theorem (CAP">
+<meta name="twitter:image" content="http://image.laijianfeng.org/cap1.svg">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -85,9 +94,9 @@
     
     <li data-rel="生活杂记"> 生活杂记 </li>
     
-    <li data-rel="后端"> 后端 </li>
-    
     <li data-rel="大数据"> 大数据 </li>
+    
+    <li data-rel="后端"> 后端 </li>
     
     <li data-rel="读书"> 读书 </li>
     
@@ -98,8 +107,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="38">
-<input type="hidden" id="yelog_site_word_count" value="116.8k">
+<input type="hidden" id="yelog_site_posts_number" value="39">
+<input type="hidden" id="yelog_site_word_count" value="118.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -137,11 +146,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Java编程</a>
+        <a href="javascript:" class="color4">elasticsearch</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">elasticsearch</a>
+        <a href="javascript:" class="color2">Java编程</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -153,15 +162,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">spark</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">分布式系统理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">设计模式</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">spark</a>
     </li>
     
     <div class="clearfix"></div>
@@ -173,6 +186,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="大数据 "
+           href="/2019/01/分布式系统-CAP-定理图解/"
+           data-tag="分布式系统理论"
+           data-author="" >
+            <span class="post-title" title="分布式系统 | CAP 定理图解">分布式系统 | CAP 定理图解</span>
+            <span class="post-date" title="2019-01-16 01:18:59">2019/01/16</span>
+        </a>
         
         <a  class="后端 "
            href="/2019/01/设计模式-解释器模式及典型应用/"
@@ -1103,7 +1124,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Java编程','#elasticsearch','#java','#lucene','#spark','#博客','#设计模式',],
+            'data': ['#elasticsearch','#Java编程','#java','#lucene','#博客','#分布式系统理论','#设计模式','#spark',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
