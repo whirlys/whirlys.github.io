@@ -6,29 +6,23 @@
   <meta name="keywords" content=" 设计模式 ">
   <meta name="description" content="设计模式 | 原型模式及典型应用 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="CAP定理是分布系统中的一个基本定理，它指出任何分布系统最多可以具有以下三个属性中的两个。  一致性 (Consistency)  可用性 (Availability)   分区容错性 (Partition tolerance)     本文将以图解的形式简明地对 Gilbert and Lynch’s specification and proof of the CAP Theorem (CAP">
-<meta name="keywords" content="Java,cap,cap定理">
+<meta name="description" content="分布式系统分布式系统的简单定义：分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统。 分布式系统的特征：  分布性：系统中的计算机在空间上随意分布和随时变动 对等性：系统中的计算机是对等的，没有主从之分 并发性：并发性操作是非常常见的行为 缺乏全局时钟：系统中的计算机具有明显的分布性，且缺乏一个全局的时钟序列控制，所以很难比较两个事件的先后 故障总">
+<meta name="keywords" content="Zookeeper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式系统 | CAP 定理图解">
-<meta property="og:url" content="http://laijianfeng.org/2019/01/分布式系统-CAP-定理图解/index.html">
+<meta property="og:title" content="Zookeeper 分布式协调服务介绍">
+<meta property="og:url" content="http://laijianfeng.org/2019/01/Zookeeper-分布式协调服务介绍/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="CAP定理是分布系统中的一个基本定理，它指出任何分布系统最多可以具有以下三个属性中的两个。  一致性 (Consistency)  可用性 (Availability)   分区容错性 (Partition tolerance)     本文将以图解的形式简明地对 Gilbert and Lynch’s specification and proof of the CAP Theorem (CAP">
+<meta property="og:description" content="分布式系统分布式系统的简单定义：分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统。 分布式系统的特征：  分布性：系统中的计算机在空间上随意分布和随时变动 对等性：系统中的计算机是对等的，没有主从之分 并发性：并发性操作是非常常见的行为 缺乏全局时钟：系统中的计算机具有明显的分布性，且缺乏一个全局的时钟序列控制，所以很难比较两个事件的先后 故障总">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/cap1.svg">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_182005.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_182219.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_223824.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_225536.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_225537.svg">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_225537.svg">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_230826.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20190115_231317.png">
-<meta property="og:image" content="http://image.laijianfeng.org/20180913_001328.png">
-<meta property="og:updated_time" content="2019-01-15T17:20:56.449Z">
+<meta property="og:image" content="http://image.laijianfeng.org/zkservice.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20190121_141804.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20190121_174457.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20190116_014816.png">
+<meta property="og:updated_time" content="2019-01-21T13:25:33.534Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式系统 | CAP 定理图解">
-<meta name="twitter:description" content="CAP定理是分布系统中的一个基本定理，它指出任何分布系统最多可以具有以下三个属性中的两个。  一致性 (Consistency)  可用性 (Availability)   分区容错性 (Partition tolerance)     本文将以图解的形式简明地对 Gilbert and Lynch’s specification and proof of the CAP Theorem (CAP">
-<meta name="twitter:image" content="http://image.laijianfeng.org/cap1.svg">
+<meta name="twitter:title" content="Zookeeper 分布式协调服务介绍">
+<meta name="twitter:description" content="分布式系统分布式系统的简单定义：分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统。 分布式系统的特征：  分布性：系统中的计算机在空间上随意分布和随时变动 对等性：系统中的计算机是对等的，没有主从之分 并发性：并发性操作是非常常见的行为 缺乏全局时钟：系统中的计算机具有明显的分布性，且缺乏一个全局的时钟序列控制，所以很难比较两个事件的先后 故障总">
+<meta name="twitter:image" content="http://image.laijianfeng.org/zkservice.jpg">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -107,8 +101,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="39">
-<input type="hidden" id="yelog_site_word_count" value="118.2k">
+<input type="hidden" id="yelog_site_posts_number" value="40">
+<input type="hidden" id="yelog_site_word_count" value="122.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -150,11 +144,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Java编程</a>
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
+        <a href="javascript:" class="color2">Java编程</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -167,6 +161,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">分布式系统理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Zookeeper</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -186,6 +184,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="大数据 "
+           href="/2019/01/Zookeeper-分布式协调服务介绍/"
+           data-tag="Zookeeper"
+           data-author="" >
+            <span class="post-title" title="Zookeeper 分布式协调服务介绍">Zookeeper 分布式协调服务介绍</span>
+            <span class="post-date" title="2019-01-21 21:24:09">2019/01/21</span>
+        </a>
         
         <a  class="大数据 "
            href="/2019/01/分布式系统-CAP-定理图解/"
@@ -1006,7 +1012,7 @@ com.designpattern.HungrySingleton@52cc8049
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#Java编程','#java','#lucene','#博客','#分布式系统理论','#设计模式','#spark',],
+            'data': ['#elasticsearch','#java','#Java编程','#lucene','#博客','#分布式系统理论','#Zookeeper','#设计模式','#spark',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

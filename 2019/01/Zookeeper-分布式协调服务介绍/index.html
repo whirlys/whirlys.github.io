@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Elasticsearch 6.x Mapping设置 | 小旋锋</title>
-  <meta name="keywords" content=" elasticsearch ">
-  <meta name="description" content="Elasticsearch 6.x Mapping设置 | 小旋锋">
+  <title>Zookeeper 分布式协调服务介绍 | 小旋锋</title>
+  <meta name="keywords" content=" Zookeeper ">
+  <meta name="description" content="Zookeeper 分布式协调服务介绍 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分布式系统分布式系统的简单定义：分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统。 分布式系统的特征：  分布性：系统中的计算机在空间上随意分布和随时变动 对等性：系统中的计算机是对等的，没有主从之分 并发性：并发性操作是非常常见的行为 缺乏全局时钟：系统中的计算机具有明显的分布性，且缺乏一个全局的时钟序列控制，所以很难比较两个事件的先后 故障总">
 <meta name="keywords" content="Zookeeper">
@@ -517,9 +517,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Elasticsearch-6-x-Mapping设置" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Zookeeper-分布式协调服务介绍" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Elasticsearch 6.x Mapping设置</h1>
+        <h1 class="article-title">Zookeeper 分布式协调服务介绍</h1>
     
     <div class="article-meta">
         
@@ -534,19 +534,19 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">elasticsearch</a>
+            <a href="javascript:" class="color5">Zookeeper</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-08-16 21:19:49'>2018-08-16 21:14</time>
+        创建时间:<time class="date" title='更新时间: 2019-01-21 21:25:33'>2019-01-21 21:24</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3,908</span>
+        <span>字数:3,974</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -576,7 +576,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mapping"><span class="toc-text">Mapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#核心数据类型"><span class="toc-text">核心数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂数据类型"><span class="toc-text">复杂数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#嵌套类型与Object类型的区别"><span class="toc-text">嵌套类型与Object类型的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#地理位置数据类型"><span class="toc-text">地理位置数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#专用数据类型"><span class="toc-text">专用数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多字段特性-multi-fields"><span class="toc-text">多字段特性 multi-fields</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置Mapping"><span class="toc-text">设置Mapping</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mapping参数"><span class="toc-text">Mapping参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#analyzer"><span class="toc-text">analyzer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#boost"><span class="toc-text">boost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dynamic"><span class="toc-text">dynamic</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#copy-to"><span class="toc-text">copy_to</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index"><span class="toc-text">index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index-options"><span class="toc-text">index_options</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fielddata"><span class="toc-text">fielddata</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#eager-global-ordinals"><span class="toc-text">eager_global_ordinals</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#doc-values"><span class="toc-text">doc_values</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fields"><span class="toc-text">fields</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#format"><span class="toc-text">format</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#properties"><span class="toc-text">properties</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#normalizer"><span class="toc-text">normalizer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他字段"><span class="toc-text">其他字段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-Mapping"><span class="toc-text">Dynamic Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#日期的自动识别"><span class="toc-text">日期的自动识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数字的自动识别"><span class="toc-text">数字的自动识别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-templates"><span class="toc-text">Dynamic templates</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Dynamic-templates-API"><span class="toc-text">Dynamic templates API</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#自定义Mapping的建议"><span class="toc-text">自定义Mapping的建议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Index-Template-索引模板"><span class="toc-text">Index Template 索引模板</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式系统"><span class="toc-text">分布式系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择Zookeeper"><span class="toc-text">选择Zookeeper</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zookeeper-基本概念"><span class="toc-text">Zookeeper 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ZNode-节点"><span class="toc-text">ZNode 节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#watcher机制"><span class="toc-text">watcher机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端命令"><span class="toc-text">客户端命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#四字命令"><span class="toc-text">四字命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Curator-客户端代码实例"><span class="toc-text">Curator 客户端代码实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-增删查改"><span class="toc-text">示例 - 增删查改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-异步接口"><span class="toc-text">示例 - 异步接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-watcher-事件监听-NodeCache"><span class="toc-text">示例 - watcher 事件监听 - NodeCache</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-watcher-事件监听-PathChildrenCache"><span class="toc-text">示例 - watcher 事件监听 - PathChildrenCache</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zookeeper的典型应用场景"><span class="toc-text">Zookeeper的典型应用场景</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -591,986 +591,406 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Mapping"><a href="#Mapping" class="headerlink" title="Mapping"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html" target="_blank" rel="noopener">Mapping</a></h3><p>类似于数据库中的表结构定义，主要作用如下：</p>
+        <h4 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h4><p>分布式系统的简单定义：分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统。</p>
+<p>分布式系统的特征：</p>
 <ul>
-<li>定义Index下字段名（Field Name）</li>
-<li>定义字段的类型，比如数值型，字符串型、布尔型等</li>
-<li>定义倒排索引的相关配置，比如是否索引、记录postion等   </li>
+<li>分布性：系统中的计算机在空间上随意分布和随时变动</li>
+<li>对等性：系统中的计算机是对等的，没有主从之分</li>
+<li>并发性：并发性操作是非常常见的行为</li>
+<li>缺乏全局时钟：系统中的计算机具有明显的分布性，且缺乏一个全局的时钟序列控制，所以很难比较两个事件的先后</li>
+<li>故障总是会发生：任何在设计阶段考虑到的异常情况，一定会在系统实际运行中发生，并且还会遇到很多在设计时未考虑到的异常故障</li>
 </ul>
-<p>需要注意的是，在索引中定义太多字段可能会导致索引膨胀，出现内存不足和难以恢复的情况，下面有几个设置：</p>
+<p>随着分布式架构的出现，越来越多的分布式应用会面临数据一致性问题。</p>
+<h4 id="选择Zookeeper"><a href="#选择Zookeeper" class="headerlink" title="选择Zookeeper"></a>选择Zookeeper</h4><p>Zookeeper是一个典型的分布式数据一致性解决方案，分布式应用程序可以基于它实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、master选举、分布式锁和分布式队列等功能。</p>
+<p>Zookeeper致力于提供一个高性能、高可用，具有严格的顺序访问控制能力的分布式协调服务；其主要的设计目标是简单的数据模型、可以构建集群、顺序访问、高性能。Zookeeper已经成为很多大型分布式项目譬如Hadoop、HBase、Storm、Solr等中的核心组件，用于分布式协调。</p>
+<p>Zookeeper可以保证如下<strong>分布式一致性特性</strong>：</p>
 <ul>
-<li>index.mapping.total_fields.limit：一个索引中能定义的字段的最大数量，默认是 1000</li>
-<li>index.mapping.depth.limit：字段的最大深度，以内部对象的数量来计算，默认是20</li>
-<li>index.mapping.nested_fields.limit：索引中嵌套字段的最大数量，默认是50</li>
+<li>顺序一致性：从同一个客户端发起的事务请求，最终将会严格地按照其发起顺序被应用到Zookeeper中去</li>
+<li>原子性：所有事务请求的处理结果在整个集群中所有的机器上的应用情况是一致的</li>
+<li>单一视图：无论客户端连接的是哪个Zookeeper服务器，其看到的服务器数据模型都是一致的</li>
+<li>可靠性：一旦服务端成功地应用了一个事务，并完成对客户端的响应，那么该事务所引起的服务端状态变更将会被一直保留下来，除非有另一个事务又对其进行了变更</li>
+<li>实时性：在一定的时间内，客户端最终一定能够从服务端上读取到最新的数据状态</li>
 </ul>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html" target="_blank" rel="noopener">数据类型</a></h3><h4 id="核心数据类型"><a href="#核心数据类型" class="headerlink" title="核心数据类型"></a>核心数据类型</h4><ul>
-<li>字符串 - text<ul>
-<li>用于全文索引，该类型的字段将通过分词器进行分词，最终用于构建索引</li>
-</ul>
-</li>
-<li>字符串 - keyword<ul>
-<li>不分词，只能搜索该字段的完整的值，只用于 filtering </li>
-</ul>
-</li>
-<li>数值型 <ul>
-<li>long：有符号64-bit integer：-2^63 ~ 2^63 - 1 </li>
-<li>integer：有符号32-bit integer，-2^31 ~ 2^31 - 1 </li>
-<li>short：有符号16-bit integer，-32768 ~ 32767</li>
-<li>byte： 有符号8-bit integer，-128 ~ 127</li>
-<li>double：64-bit IEEE 754 浮点数</li>
-<li>float：32-bit IEEE 754 浮点数</li>
-<li>half_float：16-bit IEEE 754 浮点数</li>
-<li>scaled_float</li>
-</ul>
-</li>
-<li>布尔 - boolean<ul>
-<li>值：false, “false”, true, “true”</li>
-</ul>
-</li>
-<li>日期 - date<ul>
-<li>由于Json没有date类型，所以es通过识别字符串是否符合format定义的格式来判断是否为date类型</li>
-<li>format默认为：<code>strict_date_optional_time||epoch_millis</code> <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html" target="_blank" rel="noopener">format</a></li>
-</ul>
-</li>
-<li>二进制 - binary<ul>
-<li>该类型的字段把值当做经过 base64 编码的字符串，默认不存储，且不可搜索</li>
-</ul>
-</li>
-<li><p>范围类型</p>
+<p><img src="http://image.laijianfeng.org/zkservice.jpg" alt="Zookeeper服务架构图"></p>
+<h3 id="Zookeeper-基本概念"><a href="#Zookeeper-基本概念" class="headerlink" title="Zookeeper 基本概念"></a>Zookeeper 基本概念</h3><ul>
+<li><p>集群角色</p>
 <ul>
-<li>范围类型表示值是一个范围，而不是一个具体的值</li>
-<li>譬如 age 的类型是 integer_range，那么值可以是  {“gte” : 10, “lte” : 20}；搜索 “term” : {“age”: 15} 可以搜索该值；搜索 “range”: {“age”: {“gte”:11, “lte”: 15}} 也可以搜索到</li>
-<li>range参数 relation 设置匹配模式<ul>
-<li>INTERSECTS ：默认的匹配模式，只要搜索值与字段值有交集即可匹配到</li>
-<li>WITHIN：字段值需要完全包含在搜索值之内，也就是字段值是搜索值的子集才能匹配</li>
-<li>CONTAINS：与WITHIN相反，只搜索字段值包含搜索值的文档</li>
+<li>Leader：客户端提供读和写服务</li>
+<li>Follower：提供读服务，所有写服务都需要转交给Leader角色，参与选举</li>
+<li>Observer：提供读服务，不参与选举过程，一般是为了增强Zookeeper集群的读请求并发能力</li>
 </ul>
 </li>
-<li>integer_range</li>
-<li>float_range</li>
-<li>long_range</li>
-<li>double_range</li>
-<li>date_range：64-bit 无符号整数，时间戳（单位：毫秒）</li>
-<li><p>ip_range：IPV4 或 IPV6 格式的字符串</p>
-<p>​</p>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code># 创建range索引
-PUT range_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;properties&quot;: {
-        &quot;expected_attendees&quot;: {
-          &quot;type&quot;: &quot;integer_range&quot;
-        },
-        &quot;time_frame&quot;: {
-          &quot;type&quot;: &quot;date_range&quot;, 
-          &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis&quot;
-        }
-      }
-    }
-  }
-}
-
-# 插入一个文档
-PUT range_index/_doc/1
-{
-  &quot;expected_attendees&quot; : { 
-    &quot;gte&quot; : 10,
-    &quot;lte&quot; : 20
-  },
-  &quot;time_frame&quot; : { 
-    &quot;gte&quot; : &quot;2015-10-31 12:00:00&quot;, 
-    &quot;lte&quot; : &quot;2015-11-05&quot;
-  }
-}
-
-# 12在 10~20的范围内，可以搜索到文档1
-GET range_index/_search
-{
-  &quot;query&quot; : {
-    &quot;term&quot; : {
-      &quot;expected_attendees&quot; : {
-        &quot;value&quot;: 12
-      }
-    }
-  }
-}
-
-# within可以搜索到文档
-# 可以修改日期，然后分别对比CONTAINS，WITHIN，INTERSECTS的区别
-GET range_index/_search
-{
-  &quot;query&quot; : {
-    &quot;range&quot; : {
-      &quot;time_frame&quot; : { 
-        &quot;gte&quot; : &quot;2015-11-02&quot;,
-        &quot;lte&quot; : &quot;2015-11-03&quot;,
-        &quot;relation&quot; : &quot;within&quot; 
-      }
-    }
-  }
-}
-</code></pre><h4 id="复杂数据类型"><a href="#复杂数据类型" class="headerlink" title="复杂数据类型"></a>复杂数据类型</h4><ul>
-<li>数组类型 Array<ul>
-<li>字符串数组 [ “one”, “two” ]</li>
-<li>整数数组 [ 1, 2 ]</li>
-<li>数组的数组  [ 1, [ 2, 3 ]]，相当于 [ 1, 2, 3 ]</li>
-<li>Object对象数组 [ { “name”: “Mary”, “age”: 12 }, { “name”: “John”, “age”: 10 }]</li>
-<li>同一个数组只能存同类型的数据，不能混存，譬如 [ 10, “some string” ] 是错误的</li>
-<li>数组中的 null 值将被 null_value 属性设置的值代替或者被忽略</li>
-<li>空数组 [] 被当做 missing field 处理</li>
-</ul>
-</li>
-<li><p>对象类型 Object</p>
+<li><p>会话 (session)</p>
 <ul>
-<li>对象类型可能有内部对象</li>
-<li><p>被索引的形式为：manager.name.first</p>
-<p>​</p>
-</li>
+<li>Zk的客户端与zk的服务端之间的连接</li>
+<li>通过心跳检测保持客户端连接的存活</li>
+<li>接收来自服务端的watch事件通知</li>
+<li>可以设置超时时间</li>
 </ul>
 </li>
 </ul>
-<pre><code># tags字符串数组，lists 对象数组
-PUT my_index/_doc/1
-{
-  &quot;message&quot;: &quot;some arrays in this document...&quot;,
-  &quot;tags&quot;:  [ &quot;elasticsearch&quot;, &quot;wow&quot; ], 
-  &quot;lists&quot;: [ 
-    {
-      &quot;name&quot;: &quot;prog_list&quot;,
-      &quot;description&quot;: &quot;programming list&quot;
-    },
-    {
-      &quot;name&quot;: &quot;cool_list&quot;,
-      &quot;description&quot;: &quot;cool stuff list&quot;
-    }
-  ]
-}
-
-</code></pre><ul>
-<li>嵌套类型 Nested<ul>
-<li>nested 类型是一种对象类型的特殊版本，它允许索引对象数组，<strong>独立地索引每个对象</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="嵌套类型与Object类型的区别"><a href="#嵌套类型与Object类型的区别" class="headerlink" title="嵌套类型与Object类型的区别"></a>嵌套类型与Object类型的区别</h4><p>通过例子来说明:</p>
-<ol>
-<li>插入一个文档，不设置mapping，此时 user 字段被自动识别为<strong>对象数组</strong></li>
-</ol>
-<pre><code>DELETE my_index
-
-PUT my_index/_doc/1
-{
-  &quot;group&quot; : &quot;fans&quot;,
-  &quot;user&quot; : [ 
-    {
-      &quot;first&quot; : &quot;John&quot;,
-      &quot;last&quot; :  &quot;Smith&quot;
-    },
-    {
-      &quot;first&quot; : &quot;Alice&quot;,
-      &quot;last&quot; :  &quot;White&quot;
-    }
-  ]
-}
-
-</code></pre><ol start="2">
-<li>查询 user.first为 Alice，user.last 为 Smith的文档，理想中应该找不到匹配的文档</li>
-<li>结果是查到了文档1，为什么呢？</li>
-</ol>
-<pre><code>GET my_index/_search
-{
-  &quot;query&quot;: {
-    &quot;bool&quot;: {
-      &quot;must&quot;: [
-        { &quot;match&quot;: { &quot;user.first&quot;: &quot;Alice&quot; }},
-        { &quot;match&quot;: { &quot;user.last&quot;:  &quot;Smith&quot; }}
-      ]
-    }
-  }
-}
-</code></pre><ol start="4">
-<li>是由于Object对象类型在内部被转化成如下格式的文档：<pre><code>{
-&quot;group&quot; :        &quot;fans&quot;,
-&quot;user.first&quot; : [ &quot;alice&quot;, &quot;john&quot; ],
-&quot;user.last&quot; :  [ &quot;smith&quot;, &quot;white&quot; ]
-}
-</code></pre></li>
-<li>user.first 和 user.last 扁平化为多值字段，alice 和 white 的<strong>关联关系丢失了</strong>。导致这个文档错误地匹配对 alice 和 smith 的查询</li>
-<li>如果最开始就把user设置为 nested 嵌套对象呢？</li>
-</ol>
-<pre><code>DELETE my_index
-PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;properties&quot;: {
-        &quot;user&quot;: {
-          &quot;type&quot;: &quot;nested&quot; 
-        }
-      }
-    }
-  }
-}
-
-PUT my_index/_doc/1
-{
-  &quot;group&quot;: &quot;fans&quot;,
-  &quot;user&quot;: [
-    {
-      &quot;first&quot;: &quot;John&quot;,
-      &quot;last&quot;: &quot;Smith&quot;
-    },
-    {
-      &quot;first&quot;: &quot;Alice&quot;,
-      &quot;last&quot;: &quot;White&quot;
-    }
-  ]
-}
-</code></pre><ol start="7">
-<li>再来进行查询，可以发现以下第一个查不到文档，第二个查询到文档1，符合我们预期</li>
-</ol>
-<pre><code>GET my_index/_search
-{
-  &quot;query&quot;: {
-    &quot;nested&quot;: {
-      &quot;path&quot;: &quot;user&quot;,
-      &quot;query&quot;: {
-        &quot;bool&quot;: {
-          &quot;must&quot;: [
-            { &quot;match&quot;: { &quot;user.first&quot;: &quot;Alice&quot; }},
-            { &quot;match&quot;: { &quot;user.last&quot;:  &quot;Smith&quot; }} 
-          ]
-        }
-      }
-    }
-  }
-}
-
-GET my_index/_search
-{
-  &quot;query&quot;: {
-    &quot;nested&quot;: {
-      &quot;path&quot;: &quot;user&quot;,
-      &quot;query&quot;: {
-        &quot;bool&quot;: {
-          &quot;must&quot;: [
-            { &quot;match&quot;: { &quot;user.first&quot;: &quot;Alice&quot; }},
-            { &quot;match&quot;: { &quot;user.last&quot;:  &quot;White&quot; }} 
-          ]
-        }
-      },
-      &quot;inner_hits&quot;: { 
-        &quot;highlight&quot;: {
-          &quot;fields&quot;: {
-            &quot;user.first&quot;: {}
-          }
-        }
-      }
-    }
-  }
-}
-</code></pre><ol start="8">
-<li><p>nested对象将数组中每个对象作为独立隐藏文档来索引，这意味着每个嵌套对象都可以独立被搜索</p>
-</li>
-<li><p>需要注意的是：</p>
-</li>
-</ol>
+<h4 id="ZNode-节点"><a href="#ZNode-节点" class="headerlink" title="ZNode 节点"></a>ZNode 节点</h4><p>ZNode 是Zookeeper中数据的最小单元，每个ZNode上可以保存数据(byte[]类型)，同时可以挂在子节点，因此构成了一个层次化的命名空间，我们称之为树</p>
+<p><img src="http://image.laijianfeng.org/20190121_141804.jpg" alt="Zookeeper数据模型"></p>
 <ul>
-<li>使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-nested-query.html" target="_blank" rel="noopener">nested 查询</a>来搜索</li>
-<li>使用 nested 和 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-reverse-nested-aggregation.html" target="_blank" rel="noopener">reverse_nested</a> 聚合来分析</li>
-<li>使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-sort.html#nested-sorting" target="_blank" rel="noopener">nested sorting</a> 来排序</li>
-<li>使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-inner-hits.html#nested-inner-hits" target="_blank" rel="noopener">nested inner hits</a> 来检索和高亮</li>
-</ul>
-<h4 id="地理位置数据类型"><a href="#地理位置数据类型" class="headerlink" title="地理位置数据类型"></a>地理位置数据类型</h4><ul>
-<li>geo_point<ul>
-<li>地理位置，其值可以有如下四中表现形式：<ul>
-<li>object对象：”location”: {“lat”: 41.12, “lon”: -71.34}</li>
-<li>字符串：”location”: “41.12,-71.34”</li>
-<li><a href="http://geohash.gofreerange.com/" target="_blank" rel="noopener">geohash</a>：”location”: “drm3btev3e86” </li>
-<li>数组：”location”: [ -71.34, 41.12 ] </li>
-</ul>
-</li>
-<li>查询的时候通过 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-bounding-box-query.html" target="_blank" rel="noopener">Geo Bounding Box Query </a> 进行查询</li>
-</ul>
-</li>
-<li>geo_shape</li>
-</ul>
-<h4 id="专用数据类型"><a href="#专用数据类型" class="headerlink" title="专用数据类型"></a>专用数据类型</h4><ul>
-<li>记录IP地址 ip</li>
-<li>实现自动补全 completion</li>
-<li>记录分词数 token_count</li>
-<li>记录字符串hash值 murmur3</li>
-<li>Percolator</li>
-</ul>
-<pre><code># ip类型，存储IP
-PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;properties&quot;: {
-        &quot;ip_addr&quot;: {
-          &quot;type&quot;: &quot;ip&quot;
-        }
-      }
-    }
-  }
-}
-
-PUT my_index/_doc/1
-{
-  &quot;ip_addr&quot;: &quot;192.168.1.1&quot;
-}
-
-GET my_index/_search
-{
-  &quot;query&quot;: {
-    &quot;term&quot;: {
-      &quot;ip_addr&quot;: &quot;192.168.0.0/16&quot;
-    }
-  }
-}
-
-</code></pre><h4 id="多字段特性-multi-fields"><a href="#多字段特性-multi-fields" class="headerlink" title="多字段特性 multi-fields"></a>多字段特性 multi-fields</h4><ul>
-<li>允许对同一个字段采用不同的配置，比如分词，常见例子如对人名实现拼音搜索，只需要在人名中新增一个<strong>子字段</strong>为 pinyin 即可</li>
-<li>通过参数 fields 设置</li>
-</ul>
-<h4 id="设置Mapping"><a href="#设置Mapping" class="headerlink" title="设置Mapping"></a>设置Mapping</h4><p><img src="http://image.laijianfeng.org/20180804_024134.png" alt="image"></p>
-<pre><code>GET my_index/_mapping
-
-# 结果
-{
-  &quot;my_index&quot;: {
-    &quot;mappings&quot;: {
-      &quot;doc&quot;: {
-        &quot;properties&quot;: {
-          &quot;age&quot;: {
-            &quot;type&quot;: &quot;integer&quot;
-          },
-          &quot;created&quot;: {
-            &quot;type&quot;: &quot;date&quot;
-          },
-          &quot;name&quot;: {
-            &quot;type&quot;: &quot;text&quot;
-          },
-          &quot;title&quot;: {
-            &quot;type&quot;: &quot;text&quot;
-          }
-        }
-      }
-    }
-  }
-}
-</code></pre><h3 id="Mapping参数"><a href="#Mapping参数" class="headerlink" title="Mapping参数"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-params.html" target="_blank" rel="noopener">Mapping参数</a></h3><h4 id="analyzer"><a href="#analyzer" class="headerlink" title="analyzer"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html" target="_blank" rel="noopener">analyzer</a></h4><ul>
-<li>分词器，默认为standard analyzer，当该字段被索引和搜索时对字段进行分词处理</li>
-</ul>
-<h4 id="boost"><a href="#boost" class="headerlink" title="boost"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-boost.html" target="_blank" rel="noopener">boost</a></h4><ul>
-<li>字段权重，默认为1.0</li>
-</ul>
-<h4 id="dynamic"><a href="#dynamic" class="headerlink" title="dynamic"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic.html" target="_blank" rel="noopener">dynamic</a></h4><ul>
-<li>Mapping中的字段类型一旦设定后，禁止直接修改，原因是：Lucene实现的倒排索引生成后不允许修改</li>
-<li>只能新建一个索引，然后reindex数据</li>
-<li>默认允许新增字段</li>
-<li><p>通过dynamic参数来控制字段的新增：</p>
+<li><p>节点是有生命周期的，生命周期由<strong>节点类型</strong>决定：</p>
 <ul>
-<li>true（默认）允许自动新增字段</li>
-<li>false 不允许自动新增字段，但是文档可以正常写入，但无法对新增字段进行查询等操作</li>
-<li><p>strict 文档不能写入，报错</p>
-<p>​</p>
-</li>
+<li>持久节点(PERSISTENT)：节点创建后就一直存在于Zookeeper服务器上，直到有删除操作主动将其删除</li>
+<li>持久顺序节点(PERSISTENT_SEQUENTIAL)：基本特性与持久节点一致，额外的特性在于Zookeeper会记录其子节点创建的先后顺序</li>
+<li>临时节点(EPHEMERAL)：声明周期与客户端的会话绑定，客户端会话失效时节点将被自动清除</li>
+<li>临时顺序节点(EPHEMERAL_SEQUENTIAL)：基本特性与临时节点一致，但添加了顺序的特性</li>
 </ul>
 </li>
-</ul>
-<pre><code>PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;dynamic&quot;: false, 
-      &quot;properties&quot;: {
-        &quot;user&quot;: { 
-          &quot;properties&quot;: {
-            &quot;name&quot;: {
-              &quot;type&quot;: &quot;text&quot;
-            },
-            &quot;social_networks&quot;: { 
-              &quot;dynamic&quot;: true,
-              &quot;properties&quot;: {}
-            }
-          }
-        }
-      }
-    }
-  }
-}
-</code></pre><p>定义后my_index这个索引下不能自动新增字段，但是在user.social_networks下可以自动新增子字段</p>
-<h4 id="copy-to"><a href="#copy-to" class="headerlink" title="copy_to"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/copy-to.html" target="_blank" rel="noopener">copy_to</a></h4><ul>
-<li>将该字段复制到目标字段，实现类似_all的作用</li>
-<li>不会出现在_source中，只用来搜索</li>
-</ul>
-<pre><code>DELETE my_index
-PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;doc&quot;: {
-      &quot;properties&quot;: {
-        &quot;first_name&quot;: {
-          &quot;type&quot;: &quot;text&quot;,
-          &quot;copy_to&quot;: &quot;full_name&quot; 
-        },
-        &quot;last_name&quot;: {
-          &quot;type&quot;: &quot;text&quot;,
-          &quot;copy_to&quot;: &quot;full_name&quot; 
-        },
-        &quot;full_name&quot;: {
-          &quot;type&quot;: &quot;text&quot;
-        }
-      }
-    }
-  }
-}
-
-PUT my_index/doc/1
-{
-  &quot;first_name&quot;: &quot;John&quot;,
-  &quot;last_name&quot;: &quot;Smith&quot;
-}
-
-GET my_index/_search
-{
-  &quot;query&quot;: {
-    &quot;match&quot;: {
-      &quot;full_name&quot;: { 
-        &quot;query&quot;: &quot;John Smith&quot;,
-        &quot;operator&quot;: &quot;and&quot;
-      }
-    }
-  }
-}
-</code></pre><h4 id="index"><a href="#index" class="headerlink" title="index"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-index.html" target="_blank" rel="noopener">index</a></h4><ul>
-<li>控制当前字段是否索引，默认为true，即记录索引，false不记录，即不可搜索</li>
-</ul>
-<h4 id="index-options"><a href="#index-options" class="headerlink" title="index_options"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-options.html" target="_blank" rel="noopener">index_options</a></h4><ul>
-<li>index_options参数控制将哪些信息添加到倒排索引，以用于搜索和突出显示，可选的值有：docs，freqs，positions，offsets</li>
-<li>docs：只索引 doc id</li>
-<li>freqs：索引 doc id 和词频，平分时可能要用到词频</li>
-<li>positions：索引 doc id、词频、位置，做 proximity or phrase queries 时可能要用到位置信息</li>
-<li>offsets：索引doc id、词频、位置、开始偏移和结束偏移，高亮功能需要用到offsets</li>
-</ul>
-<h4 id="fielddata"><a href="#fielddata" class="headerlink" title="fielddata"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/fielddata.html" target="_blank" rel="noopener">fielddata</a></h4><ul>
-<li>是否预加载 fielddata，默认为false</li>
-<li>Elasticsearch第一次查询时完整加载这个字段所有 Segment 中的倒排索引到内存中</li>
-<li>如果我们有一些 5 GB 的索引段，并希望加载 10 GB 的 fielddata 到内存中，这个过程可能会要数十秒</li>
-<li>将 fielddate 设置为 true ,将载入 fielddata 的代价转移到索引刷新的时候，而不是查询时，从而大大提高了搜索体验</li>
-<li>参考：<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/preload-fielddata.html" target="_blank" rel="noopener">预加载 fielddata</a></li>
-</ul>
-<h4 id="eager-global-ordinals"><a href="#eager-global-ordinals" class="headerlink" title="eager_global_ordinals"></a>eager_global_ordinals</h4><ul>
-<li>是否预构建全局序号，默认false</li>
-<li>参考：<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/preload-fielddata.html#global-ordinals" target="_blank" rel="noopener">预构建全局序号（Eager global ordinals）</a></li>
-</ul>
-<h4 id="doc-values"><a href="#doc-values" class="headerlink" title="doc_values"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc-values.html" target="_blank" rel="noopener">doc_values</a></h4><ul>
-<li>参考：<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/docvalues-and-fielddata.html" target="_blank" rel="noopener">Doc Values and Fielddata</a></li>
-</ul>
-<h4 id="fields"><a href="#fields" class="headerlink" title="fields"></a>fields</h4><ul>
-<li>该参数的目的是为了实现 multi-fields</li>
-<li>一个字段，多种数据类型</li>
-<li>譬如：一个字段 city 的数据类型为 text ，用于全文索引，可以通过 fields 为该字段定义 keyword 类型，用于排序和聚合</li>
-</ul>
-<pre><code># 设置 mapping
-PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;properties&quot;: {
-        &quot;city&quot;: {
-          &quot;type&quot;: &quot;text&quot;,
-          &quot;fields&quot;: {
-            &quot;raw&quot;: { 
-              &quot;type&quot;:  &quot;keyword&quot;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-# 插入两条数据
-PUT my_index/_doc/1
-{
-  &quot;city&quot;: &quot;New York&quot;
-}
-
-PUT my_index/_doc/2
-{
-  &quot;city&quot;: &quot;York&quot;
-}
-
-# 查询，city用于全文索引 match，city.raw用于排序和聚合
-GET my_index/_search
-{
-  &quot;query&quot;: {
-    &quot;match&quot;: {
-      &quot;city&quot;: &quot;york&quot; 
-    }
-  },
-  &quot;sort&quot;: {
-    &quot;city.raw&quot;: &quot;asc&quot; 
-  },
-  &quot;aggs&quot;: {
-    &quot;Cities&quot;: {
-      &quot;terms&quot;: {
-        &quot;field&quot;: &quot;city.raw&quot; 
-      }
-    }
-  }
-}
-</code></pre><h4 id="format"><a href="#format" class="headerlink" title="format"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html" target="_blank" rel="noopener">format</a></h4><ul>
-<li>由于JSON没有date类型，Elasticsearch预先通过format参数定义时间格式，将匹配的字符串识别为date类型，转换为时间戳（单位：毫秒）</li>
-<li>format默认为：<code>strict_date_optional_time||epoch_millis</code></li>
-<li>Elasticsearch内建的时间格式:</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>格式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>epoch_millis</td>
-<td>时间戳（单位：毫秒）</td>
-</tr>
-<tr>
-<td>epoch_second</td>
-<td>时间戳（单位：秒）</td>
-</tr>
-<tr>
-<td>date_optional_time</td>
-<td></td>
-</tr>
-<tr>
-<td>basic_date</td>
-<td>yyyyMMdd</td>
-</tr>
-<tr>
-<td>basic_date_time</td>
-<td>yyyyMMdd’T’HHmmss.SSSZ</td>
-</tr>
-<tr>
-<td>basic_date_time_no_millis</td>
-<td>yyyyMMdd’T’HHmmssZ</td>
-</tr>
-<tr>
-<td>basic_ordinal_date</td>
-<td>yyyyDDD</td>
-</tr>
-<tr>
-<td>basic_ordinal_date_time</td>
-<td>yyyyDDD’T’HHmmss.SSSZ</td>
-</tr>
-<tr>
-<td>basic_ordinal_date_time_no_millis</td>
-<td>yyyyDDD’T’HHmmssZ</td>
-</tr>
-<tr>
-<td>basic_time</td>
-<td>HHmmss.SSSZ</td>
-</tr>
-<tr>
-<td>basic_time_no_millis</td>
-<td>HHmmssZ</td>
-</tr>
-<tr>
-<td>basic_t_time</td>
-<td>‘T’HHmmss.SSSZ</td>
-</tr>
-<tr>
-<td>basic_t_time_no_millis</td>
-<td>‘T’HHmmssZ</td>
-</tr>
-</tbody>
-</table>
+<li><p>每个节点都有<strong>状态信息</strong>，抽象为 Stat 对象，状态属性如下：</p>
 <ul>
-<li>上述名称加前缀 <code>strict_</code> 表示为严格格式</li>
-<li>更多的查看文档</li>
-</ul>
-<h4 id="properties"><a href="#properties" class="headerlink" title="properties"></a>properties</h4><ul>
-<li>用于_doc，object和nested类型的字段定义<strong>子字段</strong></li>
-</ul>
-<pre><code>PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: { 
-      &quot;properties&quot;: {
-        &quot;manager&quot;: { 
-          &quot;properties&quot;: {
-            &quot;age&quot;:  { &quot;type&quot;: &quot;integer&quot; },
-            &quot;name&quot;: { &quot;type&quot;: &quot;text&quot;  }
-          }
-        },
-        &quot;employees&quot;: { 
-          &quot;type&quot;: &quot;nested&quot;,
-          &quot;properties&quot;: {
-            &quot;age&quot;:  { &quot;type&quot;: &quot;integer&quot; },
-            &quot;name&quot;: { &quot;type&quot;: &quot;text&quot;  }
-          }
-        }
-      }
-    }
-  }
-}
-
-PUT my_index/_doc/1 
-{
-  &quot;region&quot;: &quot;US&quot;,
-  &quot;manager&quot;: {
-    &quot;name&quot;: &quot;Alice White&quot;,
-    &quot;age&quot;: 30
-  },
-  &quot;employees&quot;: [
-    {
-      &quot;name&quot;: &quot;John Smith&quot;,
-      &quot;age&quot;: 34
-    },
-    {
-      &quot;name&quot;: &quot;Peter Brown&quot;,
-      &quot;age&quot;: 26
-    }
-  ]
-}
-
-</code></pre><h4 id="normalizer"><a href="#normalizer" class="headerlink" title="normalizer"></a>normalizer</h4><ul>
-<li>与 analyzer 类似，只不过 analyzer 用于 text 类型字段，分词产生多个 token，而 normalizer 用于 keyword 类型，只产生一个 token（整个字段的值作为一个token，而不是分词拆分为多个token）</li>
-<li>定义一个自定义 normalizer，使用大写uppercase过滤器</li>
-</ul>
-<pre><code>PUT test_index_4
-{
-  &quot;settings&quot;: {
-    &quot;analysis&quot;: {
-      &quot;normalizer&quot;: {
-        &quot;my_normalizer&quot;: {
-          &quot;type&quot;: &quot;custom&quot;,
-          &quot;char_filter&quot;: [],
-          &quot;filter&quot;: [&quot;uppercase&quot;, &quot;asciifolding&quot;]
-        }
-      }
-    }
-  },
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;properties&quot;: {
-        &quot;foo&quot;: {
-          &quot;type&quot;: &quot;keyword&quot;,
-          &quot;normalizer&quot;: &quot;my_normalizer&quot;
-        }
-      }
-    }
-  }
-}
-
-# 插入数据
-POST test_index_4/_doc/1
-{
-  &quot;foo&quot;: &quot;hello world&quot;
-}
-
-POST test_index_4/_doc/2
-{
-  &quot;foo&quot;: &quot;Hello World&quot;
-}
-
-POST test_index_4/_doc/3
-{
-  &quot;foo&quot;: &quot;hello elasticsearch&quot;
-}
-
-# 搜索hello，结果为空，而不是3条！！ 
-GET test_index_4/_search
-{
-  &quot;query&quot;: {
-    &quot;match&quot;: {
-      &quot;foo&quot;: &quot;hello&quot;
-    }
-  }
-}
-
-# 搜索 hello world，结果2条，1 和 2
-GET test_index_4/_search
-{
-  &quot;query&quot;: {
-    &quot;match&quot;: {
-      &quot;foo&quot;: &quot;hello world&quot;
-    }
-  }
-}
-</code></pre><h4 id="其他字段"><a href="#其他字段" class="headerlink" title="其他字段"></a>其他字段</h4><ul>
-<li>coerce<ul>
-<li>强制类型转换，把json中的值转为ES中字段的数据类型，譬如：把字符串”5”转为integer的5</li>
-<li>coerce默认为 true</li>
-<li>如果coerce设置为 false，当json的值与es字段类型不匹配将会 rejected</li>
-<li>通过 “settings”: { “index.mapping.coerce”: false } 设置索引的 coerce</li>
+<li>czxid：节点被创建时的事务ID</li>
+<li>mzxid：节点最后一个被更新时的事务ID</li>
+<li>ctime：节点创建时间</li>
+<li>mtime：节点最后一个被更新时间</li>
+<li>version：节点版本号</li>
+<li>cversion：子节点版本号</li>
+<li>aversion：节点的ACL版本号</li>
+<li>ephemeralOwner：创建该临时节点的会话的sessionID，若为持久节点则为0</li>
+<li>dataLength：数据内容长度</li>
+<li>numChildren：子节点数量</li>
 </ul>
 </li>
-<li>enabled<ul>
-<li>是否索引，默认为 true</li>
-<li>可以在_doc和字段两个粒度进行设置</li>
-</ul>
-</li>
-<li>ignore_above<ul>
-<li>设置能被索引的字段的长度</li>
-<li>超过这个长度，该字段将不被索引，所以无法搜索，但聚合的terms可以看到</li>
-</ul>
-</li>
-<li>null_value<ul>
-<li>该字段定义遇到null值时的处理策略，默认为Null，即空值，此时ES会忽略该值</li>
-<li>通过设定该值可以设定字段为 null 时的默认值</li>
-</ul>
-</li>
-<li>ignore_malformed<ul>
-<li>当数据类型不匹配且 coerce 强制转换时,默认情况会抛出异常,并拒绝整个文档的插入</li>
-<li>若设置该参数为 true，则忽略该异常，并强制赋值，但是不会被索引，其他字段则照常</li>
-</ul>
-</li>
-<li>norms<ul>
-<li>norms 存储各种标准化因子，为后续查询计算文档对该查询的匹配分数提供依据</li>
-<li>norms 参数对<strong>评分</strong>很有用，但需要占用大量的磁盘空间</li>
-<li>如果不需要计算字段的评分，可以取消该字段 norms 的功能</li>
-</ul>
-</li>
-<li>position_increment_gap<ul>
-<li>与 proximity queries（近似查询）和 phrase queries（短语查询）有关</li>
-<li>默认值 100</li>
-</ul>
-</li>
-<li>search_analyzer<ul>
-<li>搜索分词器，查询时使用</li>
-<li>默认与 analyzer 一样</li>
-</ul>
-</li>
-<li>similarity<ul>
-<li>设置相关度算法，ES5.x 和 ES6.x 默认的算法为 BM25</li>
-<li>另外也可选择 classic 和 boolean</li>
-</ul>
-</li>
-<li>store<ul>
-<li>store 的意思是：是否在 _source 之外在独立存储一份，默认值为 false</li>
-<li>es在存储数据的时候把json对象存储到”_source”字段里，”_source”把所有字段保存为一份文档存储（读取需要1次IO），要取出某个字段则通过 source filtering 过滤</li>
-<li>当字段比较多或者内容比较多，并且不需要取出所有字段的时候，可以把特定字段的store设置为true单独存储（读取需要1次IO），同时在_source设置exclude</li>
-<li>关于该字段的理解，参考： <a href="https://blog.csdn.net/helllochun/article/details/52136954" target="_blank" rel="noopener">es设置mapping store属性</a></li>
-</ul>
-</li>
-<li>term_vector<ul>
-<li>与倒排索引相关</li>
-</ul>
-</li>
-</ul>
-<h3 id="Dynamic-Mapping"><a href="#Dynamic-Mapping" class="headerlink" title="Dynamic Mapping"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-mapping.html" target="_blank" rel="noopener">Dynamic Mapping</a></h3><p>ES是依靠JSON文档的字段类型来实现自动识别字段类型，支持的类型如下：</p>
-<table>
-<thead>
-<tr>
-<th>JSON 类型</th>
-<th>ES 类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>null</td>
-<td>忽略</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>boolean</td>
-</tr>
-<tr>
-<td>浮点类型</td>
-<td>float</td>
-</tr>
-<tr>
-<td>整数</td>
-<td>long</td>
-</tr>
-<tr>
-<td>object</td>
-<td>object</td>
-</tr>
-<tr>
-<td>array</td>
-<td>由第一个非 null 值的类型决定</td>
-</tr>
-<tr>
-<td>string</td>
-<td>匹配为日期则设为date类型（默认开启）；<br>匹配为数字则设置为 float或long类型（默认关闭）；<br>设为text类型，并附带keyword的子字段</td>
-</tr>
-</tbody>
-</table>
-<p>举栗子</p>
-<pre><code>POST my_index/doc
-{
-  &quot;username&quot;:&quot;whirly&quot;,
-  &quot;age&quot;:22,
-  &quot;birthday&quot;:&quot;1995-01-01&quot;
-}
-GET my_index/_mapping
-
-# 结果
-{
-  &quot;my_index&quot;: {
-    &quot;mappings&quot;: {
-      &quot;doc&quot;: {
-        &quot;properties&quot;: {
-          &quot;age&quot;: {
-            &quot;type&quot;: &quot;long&quot;
-          },
-          &quot;birthday&quot;: {
-            &quot;type&quot;: &quot;date&quot;
-          },
-          &quot;username&quot;: {
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;fields&quot;: {
-              &quot;keyword&quot;: {
-                &quot;type&quot;: &quot;keyword&quot;,
-                &quot;ignore_above&quot;: 256
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-</code></pre><h4 id="日期的自动识别"><a href="#日期的自动识别" class="headerlink" title="日期的自动识别"></a>日期的自动识别</h4><ul>
-<li>dynamic_date_formats 参数为自动识别的日期格式，默认为 [ “strict_date_optional_time”,”yyyy/MM/dd HH:mm:ss Z||yyyy/MM/dd Z”]</li>
-<li>date_detection可以关闭日期自动识别机制</li>
-</ul>
-<pre><code># 自定义日期识别格式
-PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;dynamic_date_formats&quot;: [&quot;MM/dd/yyyy&quot;]
-    }
-  }
-}
-# 关闭日期自动识别机制
-PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;date_detection&quot;: false
-    }
-  }
-}
-</code></pre><h4 id="数字的自动识别"><a href="#数字的自动识别" class="headerlink" title="数字的自动识别"></a>数字的自动识别</h4><ul>
-<li>字符串是数字时，默认不会自动识别为整形，因为字符串中出现数字完全是合理的</li>
-<li>numeric_detection 参数可以开启字符串中数字的自动识别</li>
-</ul>
-<h3 id="Dynamic-templates"><a href="#Dynamic-templates" class="headerlink" title="Dynamic templates"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-templates.html" target="_blank" rel="noopener">Dynamic templates</a></h3><p>允许根据ES自动识别的数据类型、字段名等来动态设定字段类型，可以实现如下效果：</p>
+<li><p>权限控制ACL (Access Control Lists) </p>
 <ul>
-<li>所有字符串类型都设定为keyword类型，即不分词</li>
-<li>所有以message开头的字段都设定为text类型，即分词</li>
-<li>所有以long_开头的字段都设定为long类型</li>
-<li>所有自动匹配为double类型的都设定为float类型，以节省空间</li>
-</ul>
-<h4 id="Dynamic-templates-API"><a href="#Dynamic-templates-API" class="headerlink" title="Dynamic templates API"></a>Dynamic templates API</h4><pre><code>&quot;dynamic_templates&quot;: [
-    {
-      &quot;my_template_name&quot;: { 
-        ...  match conditions ... 
-        &quot;mapping&quot;: { ... } 
-      }
-    },
-    ...
-]
-</code></pre><p>匹配规则一般有如下几个参数：</p>
-<ul>
-<li>match_mapping_type 匹配ES自动识别的字段类型，如boolean，long，string等</li>
-<li>match, unmatch 匹配字段名</li>
-<li>match_pattern 匹配正则表达式</li>
-<li>path_match, path_unmatch 匹配路径</li>
-</ul>
-<pre><code># double类型的字段设定为float以节省空间
-PUT my_index
-{
-  &quot;mappings&quot;: {
-    &quot;_doc&quot;: {
-      &quot;dynamic_templates&quot;: [
-        {
-          &quot;integers&quot;: {
-            &quot;match_mapping_type&quot;: &quot;double&quot;,
-            &quot;mapping&quot;: {
-              &quot;type&quot;: &quot;float&quot;
-            }
-          }
-        }
-      ]
-    }
-  }
-}
-</code></pre><h5 id="自定义Mapping的建议"><a href="#自定义Mapping的建议" class="headerlink" title="自定义Mapping的建议"></a>自定义Mapping的建议</h5><ol>
-<li>写入一条文档到ES的临时索引中，获取ES自动生成的Mapping</li>
-<li>修改步骤1得到的Mapping，自定义相关配置</li>
-<li>使用步骤2的Mapping创建实际所需索引</li>
-</ol>
-<h3 id="Index-Template-索引模板"><a href="#Index-Template-索引模板" class="headerlink" title="Index Template 索引模板"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.3/indices-templates.html" target="_blank" rel="noopener">Index Template 索引模板</a></h3><ul>
-<li>索引模板，主要用于在新建索引时自动应用预先设定的配置，简化索引创建的操作步骤<ul>
-<li>可以设定索引的setting和mapping</li>
-<li>可以有多个模板，根据order设置，order大的覆盖小的配置</li>
+<li>CREATE：创建子节点的权限</li>
+<li>READ：获取节点数据和子节点列表的权限</li>
+<li>WRITE：更新节点数据的权限</li>
+<li>DELETE：删除子节点的权限</li>
+<li>ADMIN：设置节点ACL的权限</li>
 </ul>
 </li>
-<li>索引模板API，endpoint为 _template</li>
 </ul>
-<pre><code># 创建索引模板，匹配 test-index-map 开头的索引
-PUT _template/template_1
-{
-  &quot;index_patterns&quot;: [&quot;test-index-map*&quot;],
-  &quot;order&quot;: 2,
-  &quot;settings&quot;: {
-    &quot;number_of_shards&quot;: 1
-  },
-  &quot;mappings&quot;: {
-    &quot;doc&quot;: {
-      &quot;_source&quot;: {
-        &quot;enabled&quot;: false
-      },
-      &quot;properties&quot;: {
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;keyword&quot;
-        },
-        &quot;created_at&quot;: {
-          &quot;type&quot;: &quot;date&quot;,
-          &quot;format&quot;: &quot;YYYY/MM/dd HH:mm:ss&quot;
-        }
-      }
-    }
-  }
-}
-
-# 插入一个文档
-POST test-index-map_1/doc
-{
-  &quot;name&quot; : &quot;小旋锋&quot;,
-  &quot;created_at&quot;: &quot;2018/08/16 20:11:11&quot;
-}
-
-# 获取该索引的信息，可以发现 settings 和 mappings 和索引模板里设置的一样
-GET test-index-map_1
-
-# 删除
-DELETE /_template/template_1
-
-# 查询
-GET /_template/template_1
-</code></pre><blockquote>
-<p>参考文档： </p>
-<ol>
-<li>elasticsearch 官方文档</li>
-<li><a href="https://coding.imooc.com/class/181.html" target="_blank" rel="noopener">慕课网 Elastic Stack从入门到实践</a></li>
-</ol>
+<h4 id="watcher机制"><a href="#watcher机制" class="headerlink" title="watcher机制"></a>watcher机制</h4><p>Zookeeper 引入watcher机制来实现发布/订阅功能，能够让多个订阅者同时监听某一个节点对象，当这个节点对象状态发生变化时，会通知所有订阅者。</p>
+<p>Zookeeper的watcher机制主要包括客户端线程、客户端WatchManager、Zookeeper服务器三个部分。其工作流程简单来说：客户端在向Zookeeper服务器注册Watcher的同时，会将Watcher对象存储在客户端的WatchManager中；当Zookeeper服务器端触发Watcher事件后，会向客户端发送通知，客户端线程从WatchManager中取出对应的Watcher对象来执行回调逻辑</p>
+<p><img src="http://image.laijianfeng.org/20190121_174457.png" alt="Zookeeper Watcher机制概述"></p>
+<p>可以设置的两种 Watcher</p>
+<ul>
+<li><p>NodeCache</p>
+<ul>
+<li>监听数据节点的内容变更</li>
+<li>监听节点的创建，即如果指定的节点不存在，则节点创建后，会触发这个监听</li>
+</ul>
+</li>
+<li><p>PathChildrenCache</p>
+<ul>
+<li>监听指定节点的子节点变化情况</li>
+<li>包括新增子节点、子节点数据变更和子节点删除</li>
+</ul>
+</li>
+</ul>
+<h3 id="客户端命令"><a href="#客户端命令" class="headerlink" title="客户端命令"></a>客户端命令</h3><p>Zookeeper的安装可参考官方文档</p>
+<pre><code class="shell"># 启动客户端，默认为 localhost:2181
+bin/zkCli.sh     
+# 启动客户端，指定连接的Zookeeper地址
+bin/zkCli.sh -server ip:port 
+# create 创建一个节点，路径为 /test，内容为 some test data 
+create /test &quot;some test data&quot;
+# ls 列出指定节点下的所有子节点 
+ls /
+# get 获取指定节点的数据内容和属性
+get /test
+# set 更新指定节点的数据内容
+set /test &quot;new test data&quot;
+# delete 删除节点
+delete /test
+# rmr 删除非空节点
+rmr /test
+# stat 输出节点的状态信息
+stat /test
+</code></pre>
+<h4 id="四字命令"><a href="#四字命令" class="headerlink" title="四字命令"></a>四字命令</h4><p>四字命令可以查看Zookeeper服务器的一些信息，可以通过 telnet 和 nc 等方式执行四字命令，以执行 conf 命令为例</p>
+<pre><code># telnet 方式 执行Zookeeper的 conf 命令
+telnet localhost 2181
+conf
+# nc 方式 执行Zookeeper的 conf 命令
+echo conf | nc localhost 2181
+</code></pre><p><strong>四字命令介绍</strong>：</p>
+<ul>
+<li>conf 命令用于输出Zookeeper服务器运行时的基本配置信息</li>
+<li>cons 命令用于输出这台服务器上所有客户端连接的详细信息</li>
+<li>crst 命令用于重置所有客户端的连接统计信息</li>
+<li>dump 命令用于输出当前集群的所有会话信息</li>
+<li>envi 命令用于输出Zookeeper所在服务器的运行时信息</li>
+<li>ruok 命令用于输出当前Zookeeper服务器是否正在运行</li>
+<li>stat 命令用于获取Zookeeper服务器的运行状态信息</li>
+<li>srvr 命令与stat命令功能一致，但仅输出服务器自身的信息</li>
+<li>srst 命令用于重置所有服务器的统计信息</li>
+<li>wchs 命令用于输出当前服务器上管理的 watcher 的概要信息</li>
+<li>wchc 命令用于输出当前服务器上管理的 watcher 的详细信息</li>
+<li>wchp 命令与wchc功能非常相似，但输出信息以节点路径为单位进行归组</li>
+<li>mntr 命令用于输出比stat命令更为详细的服务器统计信息</li>
+</ul>
+<h3 id="Curator-客户端代码实例"><a href="#Curator-客户端代码实例" class="headerlink" title="Curator 客户端代码实例"></a>Curator 客户端代码实例</h3><p>Curator 是 Apache 基金会的顶级项目之一，解决了很多Zookeeper客户端非常底层的细节开发工作，包括会话超时重连、反复注册Watcher、NodeExistsException异常等，提供了一套易用性和可读性更强的Fluent风格的客户端API框架，除此之外，curator还提供了Zookeeper各种应用场景（Recipe，如共享锁服务、master选举、分布式计数器等）的抽象封装。</p>
+<p>Zookeeper 的核心提交者 Patrick Hunt 对 Curator 的高度评价：</p>
+<blockquote>
+<p>Guava is to Java what Curator is to Zookeeper</p>
 </blockquote>
+<h4 id="示例-增删查改"><a href="#示例-增删查改" class="headerlink" title="示例 - 增删查改"></a>示例 - 增删查改</h4><pre><code class="java">import org.apache.curator.RetryPolicy;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.imps.CuratorFrameworkState;
+import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.data.Stat;
+
+public class CuratorCrud {
+    // 集群模式则是多个ip
+    private static final String zkServerIps = &quot;master:2181,hadoop2:2181&quot;;
+
+    public static void main(String[] args) throws Exception {
+        // 创建节点
+        String nodePath = &quot;/testZK&quot;; // 节点路径
+        byte[] data = &quot;this is a test data&quot;.getBytes(); // 节点数据
+        byte[] newData = &quot;new test data&quot;.getBytes(); // 节点数据
+
+        // 设置重连策略ExponentialBackoffRetry, baseSleepTimeMs：初始sleep的时间,maxRetries：最大重试次数,maxSleepMs：最大重试时间
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(10000, 5);
+        //（推荐）curator链接zookeeper的策略:RetryNTimes n：重试的次数 sleepMsBetweenRetries：每次重试间隔的时间
+        // RetryPolicy retryPolicy = new RetryNTimes(3, 5000);
+        // （不推荐） curator链接zookeeper的策略:RetryOneTime sleepMsBetweenRetry:每次重试间隔的时间,这个策略只会重试一次
+        // RetryPolicy retryPolicy2 = new RetryOneTime(3000);
+        // 永远重试，不推荐使用
+        // RetryPolicy retryPolicy3 = new RetryForever(retryIntervalMs)
+        // curator链接zookeeper的策略:RetryUntilElapsed maxElapsedTimeMs:最大重试时间 sleepMsBetweenRetries:每次重试间隔 重试时间超过maxElapsedTimeMs后，就不再重试
+        // RetryPolicy retryPolicy4 = new RetryUntilElapsed(2000, 3000);
+
+        // Curator客户端
+        CuratorFramework client = null;
+        // 实例化Curator客户端，Curator的编程风格可以让我们使用方法链的形式完成客户端的实例化
+        client = CuratorFrameworkFactory.builder()  // 使用工厂类来建造客户端的实例对象
+                .connectString(zkServerIps) // 放入zookeeper服务器ip
+                .sessionTimeoutMs(10000).retryPolicy(retryPolicy)  // 设定会话时间以及重连策略
+                // .namespace(&quot;testApp&quot;)    // 隔离的命名空间
+                .build(); // 建立连接通道
+        // 启动Curator客户端
+        client.start();
+
+        boolean isZkCuratorStarted = client.getState().equals(CuratorFrameworkState.STARTED);
+        System.out.println(&quot;当前客户端的状态：&quot; + (isZkCuratorStarted ? &quot;连接中...&quot; : &quot;已关闭...&quot;));
+        try {
+            // 检查节点是否存在
+            Stat s = client.checkExists().forPath(nodePath);
+            if (s == null) {
+                System.out.println(&quot;节点不存在，创建节点&quot;);
+                // 创建节点
+                String result = client.create().creatingParentsIfNeeded()    // 创建父节点，也就是会递归创建
+                        .withMode(CreateMode.PERSISTENT) // 节点类型
+                        .withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE) // 节点的ACL权限
+                        .forPath(nodePath, data);
+                System.out.println(result + &quot;节点，创建成功...&quot;);
+            } else {
+                System.out.println(&quot;节点已存在，&quot; + s);
+            }
+            getData(client, nodePath);  // 输出节点信息
+
+            // 更新指定节点的数据
+            int version = s == null ? 0 : s.getVersion();  // 版本不一致时的异常：KeeperErrorCode = BadVersion
+            Stat resultStat = client.setData().withVersion(version)   // 指定数据版本
+                    .forPath(nodePath, newData);    // 需要修改的节点路径以及新数据
+            System.out.println(&quot;更新节点数据成功&quot;);
+            getData(client, nodePath);  // 输出节点信息
+
+            // 删除节点
+            client.delete().guaranteed()    // 如果删除失败，那么在后端还是会继续删除，直到成功
+                    .deletingChildrenIfNeeded() // 子节点也一并删除，也就是会递归删除
+                    .withVersion(resultStat.getVersion())
+                    .forPath(nodePath);
+            System.out.println(&quot;删除节点：&quot; + nodePath);
+            Thread.sleep(1000);
+        } finally {
+            // 关闭客户端
+            if (!client.getState().equals(CuratorFrameworkState.STOPPED)) {
+                System.out.println(&quot;关闭客户端.....&quot;);
+                client.close();
+            }
+            isZkCuratorStarted = client.getState().equals(CuratorFrameworkState.STARTED);
+            System.out.println(&quot;当前客户端的状态：&quot; + (isZkCuratorStarted ? &quot;连接中...&quot; : &quot;已关闭...&quot;));
+        }
+    }
+
+    /**
+     * 读取节点的数据
+     */
+    private static byte[] getData(CuratorFramework client, String nodePath) throws Exception {
+        Stat stat = new Stat();
+        byte[] nodeData = client.getData().storingStatIn(stat).forPath(nodePath);
+        System.out.println(&quot;节点 &quot; + nodePath + &quot; 的数据为：&quot; + new String(nodeData));
+        System.out.println(&quot;该节点的数据版本号为：&quot; + stat.getVersion() + &quot;\n&quot;);
+        return nodeData;
+    }
+}
+
+// 输出
+当前客户端的状态：连接中...
+节点不存在，创建节点
+/testZK节点，创建成功...
+节点 /testZK 的数据为：this is a test data
+该节点的数据版本号为：0
+更新节点数据成功
+节点 /testZK 的数据为：new test data
+该节点的数据版本号为：1
+删除节点：/testZK
+关闭客户端.....
+当前客户端的状态：已关闭...
+</code></pre>
+<h4 id="示例-异步接口"><a href="#示例-异步接口" class="headerlink" title="示例 - 异步接口"></a>示例 - 异步接口</h4><pre><code class="java">public class CuratorBackGround {
+    private static final String zkServerIps = &quot;master:2181,hadoop2:2181&quot;;
+
+    public static void main(String[] args) throws Exception {
+        CountDownLatch samphore = new CountDownLatch(2);
+        ExecutorService tp = Executors.newFixedThreadPool(2);   // 线程池
+        String nodePath = &quot;/testZK&quot;;
+        byte[] data = &quot;this is a test data&quot;.getBytes();
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(10000, 5);
+        CuratorFramework client = CuratorFrameworkFactory.builder().connectString(zkServerIps)
+                .sessionTimeoutMs(10000).retryPolicy(retryPolicy).build();
+        client.start();
+
+        // 异步创建节点，传入 ExecutorService，这样比较复杂的就会放到线程池中执行
+        client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL)
+                .inBackground(new BackgroundCallback() {
+                    @Override
+                    public void processResult(CuratorFramework curatorFramework, CuratorEvent curatorEvent) throws Exception {
+                        System.out.println(&quot;event[code: &quot; + curatorEvent.getResultCode() + &quot;, type: &quot; + curatorEvent.getType() + &quot;]&quot;);
+                        System.out.println(&quot;当前线程：&quot; + Thread.currentThread().getName());
+                        samphore.countDown();
+                    }
+                }, tp).forPath(nodePath, data); // 此处传入 ExecutorService tp
+
+        // 异步创建节点
+        client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL)
+                .inBackground(new BackgroundCallback() {
+                    @Override
+                    public void processResult(CuratorFramework curatorFramework, CuratorEvent curatorEvent) throws Exception {
+                        System.out.println(&quot;event[code: &quot; + curatorEvent.getResultCode() + &quot;, type: &quot; + curatorEvent.getType() + &quot;]&quot;);
+                        System.out.println(&quot;当前线程：&quot; + Thread.currentThread().getName());
+                        samphore.countDown();
+                    }
+                }).forPath(nodePath, data); // 此处没有传入 ExecutorService tp
+
+        samphore.await();
+        tp.shutdown();
+    }
+}
+
+// 输出
+event[code: -110, type: CREATE]
+当前线程：main-EventThread
+event[code: 0, type: CREATE]
+当前线程：pool-1-thread-1
+</code></pre>
+<h4 id="示例-watcher-事件监听-NodeCache"><a href="#示例-watcher-事件监听-NodeCache" class="headerlink" title="示例 - watcher 事件监听 - NodeCache"></a>示例 - watcher 事件监听 - NodeCache</h4><pre><code class="java">public class CuratorWatcher {
+    private static final String zkServerIps = &quot;master:2181,hadoop2:2181&quot;;
+
+    public static void main(String[] args) throws Exception {
+        final String nodePath = &quot;/testZK&quot;;
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(10000, 5);
+        CuratorFramework client = CuratorFrameworkFactory.builder().connectString(zkServerIps)
+                .sessionTimeoutMs(10000).retryPolicy(retryPolicy).build();
+        try {
+            client.start();
+            client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(nodePath, &quot;this is a test data&quot;.getBytes());
+
+            final NodeCache cacheNode = new NodeCache(client, nodePath, false);
+            cacheNode.start(true);  // true 表示启动时立即从Zookeeper上获取节点
+            cacheNode.getListenable().addListener(new NodeCacheListener() {
+                @Override
+                public void nodeChanged() throws Exception {
+                    System.out.println(&quot;节点数据更新，新的内容是： &quot; + new String(cacheNode.getCurrentData().getData()));
+                }
+            });
+            for (int i = 0; i &lt; 5; i++) {
+                client.setData().forPath(nodePath, (&quot;new test data &quot; + i).getBytes());
+                Thread.sleep(1000);
+            }
+            Thread.sleep(10000); // 等待100秒，手动在 zkCli 客户端操作节点，触发事件
+        } finally {
+            client.delete().deletingChildrenIfNeeded().forPath(nodePath);
+            client.close();
+            System.out.println(&quot;客户端关闭......&quot;);
+        }
+    }
+}
+</code></pre>
+<h4 id="示例-watcher-事件监听-PathChildrenCache"><a href="#示例-watcher-事件监听-PathChildrenCache" class="headerlink" title="示例 - watcher 事件监听 - PathChildrenCache"></a>示例 - watcher 事件监听 - PathChildrenCache</h4><pre><code>public class CuratorPCWatcher {
+    private static final String zkServerIps = &quot;master:2181,hadoop2:2181&quot;;
+
+    public static void main(String[] args) throws Exception {
+        final String nodePath = &quot;/testZK&quot;;
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(10000, 5);
+        CuratorFramework client = CuratorFrameworkFactory.builder().connectString(zkServerIps)
+                .sessionTimeoutMs(10000).retryPolicy(retryPolicy).build();
+        client.start();
+        try {
+            // 为子节点添加watcher，PathChildrenCache: 监听数据节点的增删改，可以设置触发的事件
+            final PathChildrenCache childrenCache = new PathChildrenCache(client, nodePath, true);
+
+            /**
+             * StartMode: 初始化方式
+             *  - POST_INITIALIZED_EVENT：异步初始化，初始化之后会触发事件
+             *  - NORMAL：异步初始化
+             *  - BUILD_INITIAL_CACHE：同步初始化
+             */
+            childrenCache.start(PathChildrenCache.StartMode.BUILD_INITIAL_CACHE);
+
+            // 列出子节点数据列表，需要使用BUILD_INITIAL_CACHE同步初始化模式才能获得，异步是获取不到的
+            List&lt;ChildData&gt; childDataList = childrenCache.getCurrentData();
+            System.out.println(&quot;当前节点的子节点详细数据列表：&quot;);
+            for (ChildData childData : childDataList) {
+                System.out.println(&quot;\t* 子节点路径：&quot; + new String(childData.getPath()) + &quot;，该节点的数据为：&quot; + new String(childData.getData()));
+            }
+
+            // 添加事件监听器
+            childrenCache.getListenable().addListener(new PathChildrenCacheListener() {
+                @Override
+                public void childEvent(CuratorFramework curatorFramework, PathChildrenCacheEvent event) throws Exception {
+                    // 通过判断event type的方式来实现不同事件的触发
+                    if (event.getType().equals(PathChildrenCacheEvent.Type.INITIALIZED)) {  // 子节点初始化时触发
+                        System.out.println(&quot;子节点初始化成功&quot;);
+                    } else if (event.getType().equals(PathChildrenCacheEvent.Type.CHILD_ADDED)) {  // 添加子节点时触发
+                        System.out.print(&quot;子节点：&quot; + event.getData().getPath() + &quot; 添加成功，&quot;);
+                        System.out.println(&quot;该子节点的数据为：&quot; + new String(event.getData().getData()));
+                    } else if (event.getType().equals(PathChildrenCacheEvent.Type.CHILD_REMOVED)) {  // 删除子节点时触发
+                        System.out.println(&quot;子节点：&quot; + event.getData().getPath() + &quot; 删除成功&quot;);
+                    } else if (event.getType().equals(PathChildrenCacheEvent.Type.CHILD_UPDATED)) {  // 修改子节点数据时触发
+                        System.out.print(&quot;子节点：&quot; + event.getData().getPath() + &quot; 数据更新成功，&quot;);
+                        System.out.println(&quot;子节点：&quot; + event.getData().getPath() + &quot; 新的数据为：&quot; + new String(event.getData().getData()));
+                    }
+                }
+            });
+            Thread.sleep(100000); // sleep 100秒，在 zkCli.sh 操作子节点，注意查看控制台的输出
+        } finally {
+            client.close();
+        }
+    }
+}
+
+// 输出
+当前节点的子节点详细数据列表：
+    * 子节点路径：/testZK/node1，该节点的数据为：hello world
+子节点：/testZK/node2 添加成功，该子节点的数据为：hello node2
+子节点：/testZK/node2 数据更新成功，子节点：/testZK/node2 新的数据为：hello zookeeper
+子节点：/testZK/node2 删除成功
+</code></pre><h3 id="Zookeeper的典型应用场景"><a href="#Zookeeper的典型应用场景" class="headerlink" title="Zookeeper的典型应用场景"></a>Zookeeper的典型应用场景</h3><p>下一篇文章将使用 Curator 客户端来实现 Zookeeper 的典型应用场景的示例，这里简单概括一下Zookeeper的典型应用场景：</p>
+<ul>
+<li>数据发布/订阅，即所谓的配置中心</li>
+<li>负载均衡</li>
+<li>命名服务</li>
+<li>分布式协调/通知</li>
+<li>集群管理</li>
+<li>master 选举</li>
+<li>分布式锁</li>
+<li>分布式队列</li>
+</ul>
+<blockquote>
+<p>参考：<br>《从Paxos到Zookeeper分布式一致性原理与实践》</p>
+</blockquote>
+<p><img src="http://image.laijianfeng.org/20190116_014816.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -1584,12 +1004,12 @@ GET /_template/template_1
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>Elasticsearch 6.x Mapping设置</p>
-    <p><span>文章字数:</span><span class="post-count">3,908</span></p>
+    <p><span>文章标题:</span>Zookeeper 分布式协调服务介绍</p>
+    <p><span>文章字数:</span><span class="post-count">3,974</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-08-16, 21:14:33</p>
-    <p><span>最后更新:</span>2018-08-16, 21:19:49</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/08/Elasticsearch-6-x-Mapping设置/" title="Elasticsearch 6.x Mapping设置">http://laijianfeng.org/2018/08/Elasticsearch-6-x-Mapping设置/</a>
+    <p><span>发布时间:</span>2019-01-21, 21:24:09</p>
+    <p><span>最后更新:</span>2019-01-21, 21:25:33</p>
+    <span>原始链接:</span><a class="post-url" href="/2019/01/Zookeeper-分布式协调服务介绍/" title="Zookeeper 分布式协调服务介绍">http://laijianfeng.org/2019/01/Zookeeper-分布式协调服务介绍/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -1601,7 +1021,7 @@ GET /_template/template_1
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'Elasticsearch 6.x Mapping设置', // 可选。默认为 location.href
+        id: 'Zookeeper 分布式协调服务介绍', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
