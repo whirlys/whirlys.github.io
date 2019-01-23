@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>设计模式 | 简单工厂模式及典型应用 | 小旋锋</title>
-  <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="设计模式 | 简单工厂模式及典型应用 | 小旋锋">
+  <title>利用Zookeeper实现数据发布订阅 | 小旋锋</title>
+  <meta name="keywords" content=" Zookeeper ">
+  <meta name="description" content="利用Zookeeper实现数据发布订阅 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Zookeeper 是一个高可用的分布式数据管理与协调框架，基于ZAB协议算法的实现，该框架能够很好的保证分布式环境中数据的一致性。Zookeeper的典型应用场景主要有：数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、分布式锁和分布式队列等。 本文主要介绍如何利用Zookeeper实现Master选举。 Master选举Master选举在分布式系统中是一个非常常">
 <meta name="keywords" content="Zookeeper">
@@ -531,9 +531,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-设计模式-简单工厂模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-利用Zookeeper实现-数据发布订阅" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">设计模式 | 简单工厂模式及典型应用</h1>
+        <h1 class="article-title">利用Zookeeper实现数据发布订阅</h1>
     
     <div class="article-meta">
         
@@ -541,26 +541,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="后端">后端</a>
+            <a href="javascript:" data-rel="大数据">大数据</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">设计模式</a>
+            <a href="javascript:" class="color5">Zookeeper</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-09-07 23:14:50'>2018-09-07 23:13</time>
+        创建时间:<time class="date" title='更新时间: 2019-01-24 02:18:19'>2019-01-24 02:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2,373</span>
+        <span>字数:2,116</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -590,7 +590,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单工厂模式"><span class="toc-text">简单工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#简单工厂模式总结"><span class="toc-text">简单工厂模式总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单工厂模式的典型应用及源码分析"><span class="toc-text">简单工厂模式的典型应用及源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Calendar-类获取日历类对象"><span class="toc-text">Calendar 类获取日历类对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JDBC-获取数据库连接"><span class="toc-text">JDBC 获取数据库连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Logback-中的-LoggerFactory-获取-Logger-对象"><span class="toc-text">Logback 中的 LoggerFactory 获取 Logger 对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据发布-订阅"><span class="toc-text">数据发布/订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源配置中心"><span class="toc-text">开源配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ctrip-Apollo"><span class="toc-text">Ctrip Apollo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Disconf"><span class="toc-text">Disconf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-Cloud-Config"><span class="toc-text">Spring Cloud Config</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nacos"><span class="toc-text">Nacos</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用Zookeeper实现一个配置中心"><span class="toc-text">利用Zookeeper实现一个配置中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后序"><span class="toc-text">后序</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -605,244 +605,191 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>设计模式(Design Pattern)是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结，使用设计模式是为了可重用代码、让代码更容易被他人<br>理解并且保证代码可靠性。</p>
-<p>本文主要介绍简单工厂模式及典型应用，内容如下：</p>
+        <h3 id="数据发布-订阅"><a href="#数据发布-订阅" class="headerlink" title="数据发布/订阅"></a>数据发布/订阅</h3><p>所谓的数据发布/订阅，意思是发布者将数据发布到Zookeeper上的一个或一系列节点上，通过watcher机制，客户端可以监听(订阅)这些数据节点，当这些节点发生变化时，Zookeeper及时地通知客户端，从而达到动态获取数据的目的。</p>
+<p>一种常见的场景就是配置中心。随着应用越来越多，功能越来越复杂，机器也越来越多，对于一些公共的程序配置，譬如各种功能的开关、数据库的配置、服务器的地址等，如果每个应用每个机器仍然单独维护，当要修改配置时就得一个一个地修改，这样显然非常不方便。</p>
+<p>这些公共的配置信息通常具备以下3个特性：</p>
 <ul>
-<li>简单工厂模式的介绍</li>
-<li>简单工厂模式的典型应用及源码分析<ul>
-<li>Calendar 类获取日历类对象</li>
-<li>JDBC 获取数据库连接</li>
-<li>LoggerFactory 获取 Logger 对象</li>
+<li>数据量通常比较小</li>
+<li>数据内容在运行时发生动态变化</li>
+<li>集群中各机器共享、配置一致</li>
 </ul>
-</li>
-</ul>
-<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>工厂模式是最常用的一类创建型设计模式，包括 抽象工厂模式，工厂方法模式和简单工厂模式 这三种，简单工厂模式是其中最简单的一种</p>
-<p>简单工厂模式(Simple Factory Pattern)：定义一个工厂类，它可以<strong>根据参数的不同</strong>返回不同类的实例，被创建的实例通常都具有共同的父类。</p>
-<p>因为在简单工厂模式中用于创建实例的方法是静态(static)方法，因此简单工厂模式又被称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式，但不属于GOF23种设计模式</p>
-<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p><strong>Factory（工厂角色）</strong>：工厂角色即工厂类，它是<strong>简单工厂模式的核心</strong>，负责实现创建所有产品实例的内部逻辑；工厂类可以被外界直接调用，创建所需的产品对象；在工厂类中提供了静态的工厂方法factoryMethod()，它的返回类型为抽象产品类型Product</p>
-<p><strong>Product（抽象产品角色）</strong>：它是工厂类所创建的所有对象的父类，封装了各种产品对象的公有方法，它的引入将提高系统的灵活性，使得在工厂类中只需定义一个通用的工厂方法，因为所有创建的具体产品对象都是其子类对象。</p>
-<p><strong>ConcreteProduct（具体产品角色）</strong>：它是简单工厂模式的创建目标，所有被创建的对象都充当这个角色的某个具体类的实例。每一个具体产品角色都继承了抽象产品角色，需要实现在抽象产品中声明的抽象方法</p>
-<p>在简单工厂模式中，客户端通过工厂类来创建一个产品类的实例，而无须直接使用new关键字来创建对象，它是工厂模式家族中最简单的一员</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>抽象产品类 Video，定义了抽象方法 produce()</p>
-<pre><code>public abstract class Video {
-    public abstract void produce();
+<p>可以将这些配置抽取出来，交给配置中心统一管理起来。配置中心的架构一般是这样：</p>
+<p><img src="http://image.laijianfeng.org/20190123_133414.jpg" alt="配置中心结构图"></p>
+<h3 id="开源配置中心"><a href="#开源配置中心" class="headerlink" title="开源配置中心"></a>开源配置中心</h3><p>开源的配置中心有很多，各有特点，这里只列出几个进行简单地介绍。</p>
+<h4 id="Ctrip-Apollo"><a href="#Ctrip-Apollo" class="headerlink" title="Ctrip Apollo"></a>Ctrip Apollo</h4><p>github地址：<a href="https://github.com/ctripcorp/apollo" target="_blank" rel="noopener">https://github.com/ctripcorp/apollo</a></p>
+<p>介绍：Apollo（阿波罗）是携程框架部门研发的分布式配置中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。</p>
+<h4 id="Disconf"><a href="#Disconf" class="headerlink" title="Disconf"></a>Disconf</h4><p>github地址：<a href="https://github.com/knightliao/disconf" target="_blank" rel="noopener">https://github.com/knightliao/disconf</a></p>
+<p>介绍：专注于各种「分布式系统配置管理」的「通用组件」和「通用平台」, 提供统一的「配置管理服务」。主要目标是部署极其简单、部署动态化、统一管理、一个jar包，到处运行。</p>
+<h4 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a>Spring Cloud Config</h4><p>github地址：<a href="https://github.com/spring-cloud/spring-cloud-config" target="_blank" rel="noopener">https://github.com/spring-cloud/spring-cloud-config</a></p>
+<p>介绍：Spring Cloud Config是一个基于http协议的远程配置实现方式，通过统一的配置管理服务器进行配置管理，客户端通过https协议主动的拉取服务的的配置信息，完成配置获取。</p>
+<h4 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h4><p>github地址：<a href="https://github.com/alibaba/nacos" target="_blank" rel="noopener">https://github.com/alibaba/nacos</a></p>
+<p>介绍：Nacos是阿里最近才开源的一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。Nacos 致力于帮助您发现、配置和管理微服务。Nacos提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。</p>
+<h4 id="利用Zookeeper实现一个配置中心"><a href="#利用Zookeeper实现一个配置中心" class="headerlink" title="利用Zookeeper实现一个配置中心"></a>利用Zookeeper实现一个配置中心</h4><p>开源的配置中心当然都很优秀，但是现在我们还是先利用Zookeeper来实现一个属于自己的配置中心。</p>
+<p>我们的配置中心保存的配置信息十分简单，就是JDBC连接MySQL需要用的连接信息。这些连接信息将转化为JSON字符串，保存在Zookeeper上的一个节点中；应用程序(通过线程模拟的)从Zookeeper中读取这些配置信息，然后查询数据库；当修改数据库连接信息时(<strong>切换数据库</strong>)，应用程序能及时的拉取新的连接信息，使用新的连接查询数据库。</p>
+<p>定义一个 MysqlConfig 类，方便使用 FastJSON 将配置信息在JSON字符串与对象之间做转换。</p>
+<pre><code class="java">@AllArgsConstructor
+@Data
+public class MysqlConfig {
+    private String url;
+    private String driver;
+    private String username;
+    private String password;
 }
-</code></pre><p>具体产品类 JavaVideo 和 PythonVideo，都继承了抽象产品类 Video</p>
-<pre><code>public class JavaVideo extends Video {
-    @Override
-    public void produce() {
-        System.out.println(&quot;录制Java课程视频&quot;);
+</code></pre>
+<p>最开始，将Zookeeper上节点的配置信息初始化为 test 数据库的连接信息，然后启动 N 个线程(模拟应用程序)，读取连接信息并查询数据，同时设置监听节点；等待 10 秒钟之后，将配置切换为 test2 数据库的连接信息，这时应用程序将受到配置变更的通知，然后获取信息连接信息，重新查询数据库。</p>
+<pre><code class="java">// 工具类
+public class ZKUtils {
+    private static final String zkServerIps = &quot;master:2181,hadoop2:2181&quot;;
+
+    public static synchronized CuratorFramework getClient() {
+        CuratorFramework client = CuratorFrameworkFactory.builder().connectString(zkServerIps)
+                .sessionTimeoutMs(6000).connectionTimeoutMs(3000) //.namespace(&quot;LeaderLatchTest&quot;)
+                .retryPolicy(new ExponentialBackoffRetry(1000, 3)).build();
+        return client;
     }
 }
 
-public class PythonVideo extends Video {
-    @Override
-    public void produce() {
-        System.out.println(&quot;录制Python课程视频&quot;);
-    }
-}
-</code></pre><p>工厂类实现的两种方法：使用<code>if-else</code>判断和使用反射来创建对象</p>
-<pre><code>public class VideoFactory {
-    /**
-     * 使用if else 判断类型，type 为 Java 则返回 JavaVideo， type为Python则返回 PythonVideo
-     */
-    public Video getVideo(String type) {
-        if (&quot;java&quot;.equalsIgnoreCase(type)) {
-            return new JavaVideo();
-        } else if (&quot;python&quot;.equalsIgnoreCase(type)) {
-            return new PythonVideo();
-        }
-        return null;
-    }
+// 配置中心示例，模拟数据库切换
+public class ConfigCenterTest {
+    // test 数据库的 test1 表
+    private static final MysqlConfig mysqlConfig_1 = new MysqlConfig(&quot;jdbc:mysql://master:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&quot;, &quot;com.mysql.jdbc.Driver&quot;, &quot;root&quot;, &quot;123456&quot;);
+    // test2 数据库的 test1 表
+    private static final MysqlConfig mysqlConfig_2 = new MysqlConfig(&quot;jdbc:mysql://master:3306/test2?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&quot;, &quot;com.mysql.jdbc.Driver&quot;, &quot;root&quot;, &quot;123456&quot;);
+    // 存储MySQL配置信息的节点路径
+    private static final String configPath = &quot;/testZK/jdbc/mysql&quot;;
+    private static final Integer clientNums = 3;
+    private static CountDownLatch countDownLatch = new CountDownLatch(clientNums);
 
-    /**
-     * 使用反射来创建对象
-     */
-    public Video getVideo(Class c) {
-        Video video = null;
-        try {
-            video = (Video) Class.forName(c.getName()).newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return video;
-    }
-}
-</code></pre><p>使用一个客户端来调用工厂类</p>
-<pre><code>public class Test {
-    public static void main(String[] args) {
-        VideoFactory videoFactory = new VideoFactory();
-        Video video1 = videoFactory.getVideo(&quot;python&quot;);
-        if (video1 == null) {
-            return;
-        }
-        video1.produce();
+    public static void main(String[] args) throws Exception {
+        // 最开始时设置MySQL配置信息为 mysqlConfig_1
+        setMysqlConfig(mysqlConfig_1);
+        // 启动 clientNums 个线程，模拟分布式系统中的节点，
+        // 从Zookeeper中获取MySQL的配置信息，查询数据
+        for (int i = 0; i &lt; clientNums; i++) {
+            String clientName = &quot;client#&quot; + i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CuratorFramework client = ZKUtils.getClient();
+                    client.start();
+                    try {
+                        Stat stat = new Stat();
+                        // 如果要监听多个子节点则应该使用 PathChildrenCache
+                        final NodeCache cacheNode = new NodeCache(client, configPath, false);
+                        cacheNode.start(true);  // true 表示启动时立即从Zookeeper上获取节点
 
-        Video video2 = videoFactory.getVideo(JavaVideo.class);
-        if (video2 == null) {
-            return;
-        }
-        video2.produce();
-    }
-}
-</code></pre><p>输出</p>
-<pre><code>录制Python课程视频
-录制Java课程视频
-</code></pre><p><img src="http://image.laijianfeng.org/20180907_211234.png" alt="示例.简单工厂模式类图"></p>
-<p>Test 类通过传递参数给 <code>VideoFactory.getVideo()</code> 来获取对象，创建对象的逻辑交给了工厂类 <code>VideoFactory</code> 来完成</p>
-<h4 id="简单工厂模式总结"><a href="#简单工厂模式总结" class="headerlink" title="简单工厂模式总结"></a>简单工厂模式总结</h4><p>简单工厂模式的<strong>主要优点</strong>如下：</p>
-<ul>
-<li>工厂类包含必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的职责，而仅仅“消费”产品，简单工厂模式实现了对象创建和使用的分离。</li>
-<li>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以在一定程度减少使用者的记忆量。</li>
-<li>通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类，在一定程度上提高了系统的灵活性。</li>
-</ul>
-<p>简单工厂模式的<strong>主要缺点</strong>如下：</p>
-<ul>
-<li>由于工厂类集中了所有产品的创建逻辑，职责过重，一旦不能正常工作，整个系统都要受到影响。</li>
-<li>使用简单工厂模式势必会增加系统中类的个数（引入了新的工厂类），增加了系统的复杂度和理解难度。</li>
-<li>系统扩展困难，一旦添加新产品就不得不修改工厂逻辑，在产品类型较多时，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护，且违背开闭原则。</li>
-<li>简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。</li>
-</ul>
-<p><strong>适用场景</strong>：</p>
-<ul>
-<li>工厂类负责创建的对象比较少，由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。</li>
-<li>客户端只知道传入工厂类的参数，对于如何创建对象并不关心。</li>
-</ul>
-<h3 id="简单工厂模式的典型应用及源码分析"><a href="#简单工厂模式的典型应用及源码分析" class="headerlink" title="简单工厂模式的典型应用及源码分析"></a>简单工厂模式的典型应用及源码分析</h3><h4 id="Calendar-类获取日历类对象"><a href="#Calendar-类获取日历类对象" class="headerlink" title="Calendar 类获取日历类对象"></a>Calendar 类获取日历类对象</h4><p><code>Calendar</code> 抽象类，该类的子类有 <code>BuddhistCalendar</code>、<code>JapaneseImperialCalendar</code>、<code>GregorianCalendar</code>、<code>RollingCalendar</code>等</p>
-<p><code>getInstance</code>方法，根据参数获取一个<code>Calendar</code>子类对象，该方法实际将参数传给 <code>createCalendar</code> 方法，<code>createCalendar</code> 在根据参数通过 <code>provider</code> 或 <code>switch</code> 或者 <code>if-else</code> 创建相应的子类对象</p>
-<p>以下为 Java8 中的 <code>Calendar</code> 类代码，Java7 中的实现为 <code>if-else</code> 方式</p>
-<pre><code>public static Calendar getInstance(TimeZone zone, Locale aLocale) {
-    return createCalendar(zone, aLocale);
-}
+                        byte[] nodeData = cacheNode.getCurrentData().getData();
+                        MysqlConfig mysqlConfig = JSON.parseObject(new String(nodeData), MysqlConfig.class);
+                        queryMysql(clientName, mysqlConfig);    // 查询数据
 
-private static Calendar createCalendar(TimeZone zone, Locale aLocale) {
-    CalendarProvider provider = LocaleProviderAdapter.getAdapter(CalendarProvider.class, aLocale).getCalendarProvider();
-    if (provider != null) {
-        try {
-            return provider.getInstance(zone, aLocale);
-        } catch (IllegalArgumentException iae) {
-        }
-    }
-
-    Calendar cal = null;
-
-    if (aLocale.hasExtensions()) {
-        String caltype = aLocale.getUnicodeLocaleType(&quot;ca&quot;);
-        if (caltype != null) {
-            switch (caltype) {
-                case &quot;buddhist&quot;:
-                    cal = new BuddhistCalendar(zone, aLocale); break;
-                case &quot;japanese&quot;:
-                    cal = new JapaneseImperialCalendar(zone, aLocale); break;
-                case &quot;gregory&quot;:
-                    cal = new GregorianCalendar(zone, aLocale); break;
-            }
-        }
-    }
-    if (cal == null) {
-        if (aLocale.getLanguage() == &quot;th&quot; &amp;&amp; aLocale.getCountry() == &quot;TH&quot;) {
-            cal = new BuddhistCalendar(zone, aLocale);
-        } else if (aLocale.getVariant() == &quot;JP&quot; &amp;&amp; aLocale.getLanguage() == &quot;ja&quot; &amp;&amp; aLocale.getCountry() == &quot;JP&quot;) {
-            cal = new JapaneseImperialCalendar(zone, aLocale);
-        } else {
-            cal = new GregorianCalendar(zone, aLocale);
-        }
-    }
-    return cal;
-}
-</code></pre><p><img src="http://image.laijianfeng.org/20180907_213426.png" alt="Calendar的继承关系"></p>
-<p>可以看到<code>抽象产品角色</code>和<code>工厂角色</code>都由  <code>Calendar</code> 担任，<code>具体产品角色</code>由 <code>Calendar</code> 的子类担任</p>
-<h4 id="JDBC-获取数据库连接"><a href="#JDBC-获取数据库连接" class="headerlink" title="JDBC 获取数据库连接"></a>JDBC 获取数据库连接</h4><p>一般JDBC获取MySQL连接的写法如下：</p>
-<pre><code>//加载MySql驱动
-Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-DriverManager.getConnection(&quot;jdbc:mysql://127.0.0.1:3306/test&quot;, &quot;root&quot;, &quot;123456&quot;);
-</code></pre><p>首先通过反射加载驱动类 <code>com.mysql.jdbc.Driver</code> 类，然后再通过 <code>DriverManager</code> 获取连接</p>
-<p>看看 <code>com.mysql.jdbc.Driver</code> 的代码，该类主要的内容是静态代码块，其会随着类的加载一块执行</p>
-<pre><code>public class Driver extends NonRegisteringDriver implements java.sql.Driver {
-    public Driver() throws SQLException {
-    }
-    static {
-        try {
-            DriverManager.registerDriver(new Driver());
-        } catch (SQLException var1) {
-            throw new RuntimeException(&quot;Can&#39;t register driver!&quot;);
-        }
-    }
-}
-</code></pre><p>静态代码块：new 一个 <code>Driver</code> 类并注册到 <code>DriverManager</code> 驱动管理类中</p>
-<pre><code>public static synchronized void registerDriver(java.sql.Driver driver, DriverAction da) throws SQLException {
-    /* Register the driver if it has not already been added to our list */
-    if(driver != null) {
-        registeredDrivers.addIfAbsent(new DriverInfo(driver, da));
-    } else {
-        throw new NullPointerException();
-    }
-    println(&quot;registerDriver: &quot; + driver);
-}
-</code></pre><p>其中的 <code>registeredDrivers</code> 是一个 <code>CopyOnWriteArrayList</code> 对象</p>
-<pre><code>private final static CopyOnWriteArrayList&lt;DriverInfo&gt; registeredDrivers = new CopyOnWriteArrayList&lt;&gt;();
-</code></pre><blockquote>
-<p>CopyOnWriteArrayList是Java并发包中提供的一个并发容器，它是个线程安全且读操作无锁的ArrayList，写操作则通过创建底层数组的新副本来实现，是一种读写分离的并发策略，我们也可以称这种容器为”写时复制器”，Java并发包中类似的容器还有CopyOnWriteSet<br>一篇CopyOnWriteArrayList的文章：<a href="https://www.cnblogs.com/chengxiao/p/6881974.html" target="_blank" rel="noopener">https://www.cnblogs.com/chengxiao/p/6881974.html</a></p>
-</blockquote>
-<p>再通过 <code>DriverManager.getConnection</code> 获取连接对象的主要代码如下：通过for循环从已注册的驱动中(registeredDrivers)获取驱动，尝试连接，成功则返回连接</p>
-<pre><code>private static Connection getConnection(String url, java.util.Properties info, Class&lt;?&gt; caller) throws SQLException {
-    // ...省略...
-    println(&quot;DriverManager.getConnection(\&quot;&quot; + url + &quot;\&quot;)&quot;);
-    for(DriverInfo aDriver : registeredDrivers) {
-        // If the caller does not have permission to load the driver then skip it.
-        if(isDriverAllowed(aDriver.driver, callerCL)) {
-            try {
-                println(&quot;    trying &quot; + aDriver.driver.getClass().getName());
-                Connection con = aDriver.driver.connect(url, info);
-                if (con != null) {
-                    // Success!
-                    println(&quot;getConnection returning &quot; + aDriver.driver.getClass().getName());
-                    return (con);
+                        cacheNode.getListenable().addListener(new NodeCacheListener() {
+                            @Override
+                            public void nodeChanged() throws Exception {
+                                byte[] newData = cacheNode.getCurrentData().getData();
+                                MysqlConfig newMysqlConfig = JSON.parseObject(new String(newData), MysqlConfig.class);
+                                queryMysql(clientName, newMysqlConfig);    // 查询数据
+                            }
+                        });
+                        Thread.sleep(20 * 1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        client.close();
+                        countDownLatch.countDown();
+                    }
                 }
-            } catch (SQLException ex) {
-                if (reason == null) {
-                    reason = ex;
-                }
-            }
-        } else {
-            println(&quot;    skipping: &quot; + aDriver.getClass().getName());
+            }).start();
         }
+        Thread.sleep(10 * 1000);
+        System.out.println(&quot;\n---------10秒钟后将MySQL配置信息修改为 mysqlConfig_2---------\n&quot;);
+        setMysqlConfig(mysqlConfig_2);
+        countDownLatch.await();
     }
-    // ...省略...
-}
-</code></pre><p><img src="http://image.laijianfeng.org/20180907_225826.png" alt="Connection 接口及子类实现关系"></p>
-<p>工厂角色为 <code>DriverManager</code> 类，抽象产品角色为 <code>Connection</code>，具体产品角色则很多</p>
-<h4 id="Logback-中的-LoggerFactory-获取-Logger-对象"><a href="#Logback-中的-LoggerFactory-获取-Logger-对象" class="headerlink" title="Logback 中的 LoggerFactory 获取 Logger 对象"></a>Logback 中的 LoggerFactory 获取 Logger 对象</h4><p>查看 <code>LoggerFactory</code> 类的 <code>getLogger</code> 方法，可看到调用了 <code>iLoggerFactory.getLogger()</code>，其中 <code>iLoggerFactory</code> 是一个接口</p>
-<pre><code>public static Logger getLogger(String name) {
-    ILoggerFactory iLoggerFactory = getILoggerFactory();
-    return iLoggerFactory.getLogger(name);
-}
 
-public static Logger getLogger(Class clazz) {
-    return getLogger(clazz.getName());
+    /**
+     * 初始化，最开始的时候的MySQL配置为 mysqlConfig_1
+     */
+    public static void setMysqlConfig(MysqlConfig config) throws Exception {
+        CuratorFramework client = ZKUtils.getClient();
+        client.start();
+        String mysqlConfigStr = JSON.toJSONString(config);
+        Stat s = client.checkExists().forPath(configPath);
+        if (s != null) {
+            Stat resultStat = client.setData().forPath(configPath, mysqlConfigStr.getBytes());
+            System.out.println(String.format(&quot;节点 %s 已存在，更新数据为：%s&quot;, configPath, mysqlConfigStr));
+        } else {
+            client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(configPath, mysqlConfigStr.getBytes());
+            System.out.println(String.format(&quot;创建节点：%s，初始化数据为：%s&quot;, configPath, mysqlConfigStr));
+        }
+        System.out.println();
+        client.close();
+    }
+
+    /**
+     * 通过配置信息，查询MySQL数据库
+     */
+    public static synchronized void queryMysql(String clientName, MysqlConfig mysqlConfig) throws ClassNotFoundException, SQLException {
+        System.out.println(clientName + &quot; 查询MySQL数据，使用的MySQL配置信息：&quot; + mysqlConfig);
+        Class.forName(mysqlConfig.getDriver());
+        Connection connection = DriverManager.getConnection(mysqlConfig.getUrl(), mysqlConfig.getUsername(), mysqlConfig.getPassword());
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(&quot;select * from test1&quot;);
+        while (resultSet.next()) {
+            System.out.println(String.format(&quot;id=%s, name=%s, age=%s&quot;, resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+        }
+        System.out.println();
+        resultSet.close();
+        statement.close();
+        connection.close();
+    }
 }
-</code></pre><p><code>iLoggerFactory</code> 接口只有一个 <code>getLogger</code> 方法</p>
-<pre><code>public interface ILoggerFactory {
-    Logger getLogger(String var1);
-}
-</code></pre><p>查看其子类依赖关系</p>
-<p><img src="http://image.laijianfeng.org/20180907_223038.png" alt="iLoggerFactory接口子类的依赖关系"></p>
-<p>再看一个子类 <code>LoggerContext</code> 对 ILoggerFactory 的实现</p>
-<p><img src="http://image.laijianfeng.org/20180907_222610.png" alt="image"></p>
-<p>可看到这是通过 <code>if-else</code> 方式的简单工厂模式</p>
-<p><img src="http://image.laijianfeng.org/20180907_230131.png" alt="Logger 接口及子类实现关系"></p>
-<p>工厂角色为 <code>iLoggerFactory</code> 接口的子类如 <code>LoggerContext</code>，抽象产品角色为 <code>Logger</code>，具体产品角色为 <code>Logger</code> 的子类，主要是 <code>NOPLogger</code> 和 <code>Logger</code> 类</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>下一篇介绍工厂方法及典型应用</p>
+</code></pre>
+<p>控制台打印日志</p>
+<pre><code>client#2 查询MySQL数据，使用的MySQL配置信息：MysqlConfig(url=jdbc:mysql://master:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false, driver=com.mysql.jdbc.Driver, username=root, password=123456)
+id=2, name=赖键锋, age=25
+id=3, name=小旋锋, age=22000
+id=4, name=test, age=100
+
+client#1 查询MySQL数据，使用的MySQL配置信息：MysqlConfig(url=jdbc:mysql://master:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false, driver=com.mysql.jdbc.Driver, username=root, password=123456)
+id=2, name=赖键锋, age=25
+id=3, name=小旋锋, age=22000
+id=4, name=test, age=100
+
+client#0 查询MySQL数据，使用的MySQL配置信息：MysqlConfig(url=jdbc:mysql://master:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false, driver=com.mysql.jdbc.Driver, username=root, password=123456)
+id=2, name=赖键锋, age=25
+id=3, name=小旋锋, age=22000
+id=4, name=test, age=100
+
+
+---------10秒钟后将MySQL配置信息修改为 mysqlConfig_2---------
+
+节点 /testZK/jdbc/mysql 已存在，更新数据为：{&quot;driver&quot;:&quot;com.mysql.jdbc.Driver&quot;,&quot;password&quot;:&quot;123456&quot;,&quot;url&quot;:&quot;jdbc:mysql://master:3306/test2?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&quot;,&quot;username&quot;:&quot;root&quot;}
+
+client#1 查询MySQL数据，使用的MySQL配置信息：MysqlConfig(url=jdbc:mysql://master:3306/test2?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false, driver=com.mysql.jdbc.Driver, username=root, password=123456)
+id=2, name=赖键锋, age=23
+id=3, name=小旋锋, age=22
+id=4, name=whirly, age=24
+
+client#2 查询MySQL数据，使用的MySQL配置信息：MysqlConfig(url=jdbc:mysql://master:3306/test2?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false, driver=com.mysql.jdbc.Driver, username=root, password=123456)
+id=2, name=赖键锋, age=23
+id=3, name=小旋锋, age=22
+id=4, name=whirly, age=24
+
+client#0 查询MySQL数据，使用的MySQL配置信息：MysqlConfig(url=jdbc:mysql://master:3306/test2?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false, driver=com.mysql.jdbc.Driver, username=root, password=123456)
+id=2, name=赖键锋, age=23
+id=3, name=小旋锋, age=22
+id=4, name=whirly, age=24
+</code></pre><p>上面采用的示例是通过 NodeCache 来监听单个节点，如果要监听多个子节点则须使用 PathChildrenCache，使用示例可以参考《<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483840&amp;idx=1&amp;sn=615f280b8006333e3b943135e2156ce7&amp;chksm=e9c2edcddeb564dba4cfae6f1c7d125b374b3fb8caf36f0f5da3d48a7ca05d0190e7a98abff6&amp;scene=0&amp;xtrack=1#rd" target="_blank" rel="noopener">Zookeeper 分布式协调服务介绍</a>》</p>
+<h4 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h4><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483840&amp;idx=1&amp;sn=615f280b8006333e3b943135e2156ce7&amp;chksm=e9c2edcddeb564dba4cfae6f1c7d125b374b3fb8caf36f0f5da3d48a7ca05d0190e7a98abff6&amp;scene=0&amp;xtrack=1#rd" target="_blank" rel="noopener">Zookeeper 分布式协调服务介绍</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI1NDU0MTE1NA==&amp;mid=2247483848&amp;idx=1&amp;sn=dea24723c9e578cf1deaf540dc8f00ed&amp;chksm=e9c2edc5deb564d3f126329ce0940fadbdede07559c9d86a88a42b8038fcae8b1994ff6e45a9&amp;scene=0#rd" target="_blank" rel="noopener">利用Zookeeper实现 - Master选举</a></li>
+</ul>
+<h4 id="后序"><a href="#后序" class="headerlink" title="后序"></a>后序</h4><p>代码下载：<a href="http://t.cn/E5ncvDR" target="_blank" rel="noopener">http://t.cn/E5ncvDR</a></p>
+<p>我的博客：laijianfeng.org</p>
 <blockquote>
-<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析</p>
+<p>参考：<br>《从Paxos到Zookeeper分布式一致性原理与实践》     </p>
 </blockquote>
-<hr>
-<p>打开微信扫一扫，关注【小旋锋】微信公众号，及时接收博文推送</p>
-<p><img src="http://image.laijianfeng.org/%E5%B0%8F%E6%97%8B%E9%94%8B%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7_%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="小旋锋的微信公众号"></p>
+<p><img src="http://image.laijianfeng.org/20190116_014816.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -856,12 +803,12 @@ public static Logger getLogger(Class clazz) {
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>设计模式 | 简单工厂模式及典型应用</p>
-    <p><span>文章字数:</span><span class="post-count">2,373</span></p>
+    <p><span>文章标题:</span>利用Zookeeper实现数据发布订阅</p>
+    <p><span>文章字数:</span><span class="post-count">2,116</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-09-07, 23:13:45</p>
-    <p><span>最后更新:</span>2018-09-07, 23:14:50</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/09/设计模式-简单工厂模式及典型应用/" title="设计模式 | 简单工厂模式及典型应用">http://laijianfeng.org/2018/09/设计模式-简单工厂模式及典型应用/</a>
+    <p><span>发布时间:</span>2019-01-24, 02:13:43</p>
+    <p><span>最后更新:</span>2019-01-24, 02:18:19</p>
+    <span>原始链接:</span><a class="post-url" href="/2019/01/利用Zookeeper实现-数据发布订阅/" title="利用Zookeeper实现数据发布订阅">http://laijianfeng.org/2019/01/利用Zookeeper实现-数据发布订阅/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -873,7 +820,7 @@ public static Logger getLogger(Class clazz) {
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '设计模式 | 简单工厂模式及典型应用', // 可选。默认为 location.href
+        id: '利用Zookeeper实现数据发布订阅', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
