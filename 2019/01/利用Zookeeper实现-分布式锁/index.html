@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>设计模式 | 中介者模式及典型应用 | 小旋锋</title>
-  <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="设计模式 | 中介者模式及典型应用 | 小旋锋">
+  <title>利用Zookeeper实现 - 分布式锁 | 小旋锋</title>
+  <meta name="keywords" content=" Zookeeper ">
+  <meta name="description" content="利用Zookeeper实现 - 分布式锁 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="数据发布/订阅所谓的数据发布/订阅，意思是发布者将数据发布到Zookeeper上的一个或一系列节点上，通过watcher机制，客户端可以监听(订阅)这些数据节点，当这些节点发生变化时，Zookeeper及时地通知客户端，从而达到动态获取数据的目的。 一种常见的场景就是配置中心。随着应用越来越多，功能越来越复杂，机器也越来越多，对于一些公共的程序配置，譬如各种功能的开关、数据库的配置、服务器的地址等">
 <meta name="keywords" content="Zookeeper">
@@ -539,9 +539,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-设计模式-中介者模式及典型应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-利用Zookeeper实现-分布式锁" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">设计模式 | 中介者模式及典型应用</h1>
+        <h1 class="article-title">利用Zookeeper实现 - 分布式锁</h1>
     
     <div class="article-meta">
         
@@ -549,26 +549,26 @@
         
         <span class="book">
             
-            <a href="javascript:" data-rel="后端">后端</a>
+            <a href="javascript:" data-rel="大数据">大数据</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">设计模式</a>
+            <a href="javascript:" class="color5">Zookeeper</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2018-10-26 00:49:32'>2018-10-26 00:45</time>
+        创建时间:<time class="date" title='更新时间: 2019-01-28 11:06:30'>2019-01-28 11:03</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:4,092</span>
+        <span>字数:6,167</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -598,7 +598,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#中介者模式"><span class="toc-text">中介者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角色"><span class="toc-text">角色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中介者模式总结"><span class="toc-text">中介者模式总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#中介者模式的主要优点"><span class="toc-text">中介者模式的主要优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中介者模式的主要缺点"><span class="toc-text">中介者模式的主要缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景"><span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中介者模式的典型应用"><span class="toc-text">中介者模式的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Timer-中的中介者模式"><span class="toc-text">Java Timer 中的中介者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他的中介者模式应用"><span class="toc-text">其他的中介者模式应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于分布式锁"><span class="toc-text">关于分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于数据库"><span class="toc-text">基于数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于缓存"><span class="toc-text">基于缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于Zookeeper"><span class="toc-text">基于Zookeeper</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zookeeper-如何实现分布式锁？"><span class="toc-text">Zookeeper 如何实现分布式锁？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#排他锁"><span class="toc-text">排他锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#共享锁"><span class="toc-text">共享锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#羊群效应"><span class="toc-text">羊群效应</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Curator客户端实现分布式锁"><span class="toc-text">基于Curator客户端实现分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可重入锁"><span class="toc-text">可重入锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不可重入锁"><span class="toc-text">不可重入锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可重入读写锁"><span class="toc-text">可重入读写锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信号量"><span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多锁"><span class="toc-text">多锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -613,489 +613,491 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文的主要内容：</p>
+        <p>在许多场景中，<strong>数据一致性</strong>是一个比较重要的话题，在单机环境中，我们可以通过Java提供的<strong>并发API</strong>来解决；而在分布式环境(会遇到网络故障、消息重复、消息丢失等各种问题)下要复杂得多，常见的解决方案是<strong>分布式事务</strong>、<strong>分布式锁</strong>等。</p>
+<p>本文主要探讨如何利用Zookeeper来实现分布式锁。</p>
+<h3 id="关于分布式锁"><a href="#关于分布式锁" class="headerlink" title="关于分布式锁"></a>关于分布式锁</h3><p>分布式锁是控制分布式系统之间<strong>同步访问共享资源</strong>的一种方式。</p>
+<p>在<strong>实现</strong>分布式锁的过程中需要注意的：</p>
 <ul>
-<li>介绍中介者模式</li>
-<li>数据同步示例</li>
-<li>中介者模式总结</li>
-<li>源码分析中介者模式的典型应用<ul>
-<li>Java Timer 中的中介者模式</li>
+<li>锁的可重入性(递归调用不应该被阻塞、避免死锁)</li>
+<li>锁的超时(避免死锁、死循环等意外情况)</li>
+<li>锁的阻塞(保证原子性等)</li>
+<li>锁的特性支持(阻塞锁、可重入锁、公平锁、联锁、信号量、读写锁)</li>
 </ul>
-</li>
-</ul>
-<h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><p>世界上存在着各种各样的数据库，不同数据库有各自的应用场景，对于同一份数据，最开始可能使用关系型数据库（如MySQL）进行存储查询，使用Redis作为缓存数据库，当数据量较大时使用MySQL进行查询可能较慢，所以需要将数据同步到Elasticsearch或者列式数据库如Hbase中进行大数据查询。</p>
-<p><strong>如何设计数据同步方案</strong>是一个重要的问题。数据源众多，目标端也众多，设计得不好可能 “牵一发而动全身”。</p>
-<p>如果我们这样设计：每个数据源直接同步数据到目标端数据库的，如果数据库有 N 个，那么最多可能的同步作业将达到 <code>N * N</code> 个，当修改了其中一个数据库的某些配置，可能需要修改另外的 <code>N - 1</code> 个数据库的同步作业。</p>
-<p>现在介绍另一种方案，DataX 是阿里巴巴集团内被广泛使用的离线数据同步工具/平台，实现包括 MySQL、Oracle、SqlServer、Postgre、HDFS、Hive、ADS、HBase、TableStore(OTS)、MaxCompute(ODPS)、DRDS 等各种异构数据源之间高效的数据同步功能。</p>
-<p><img src="http://image.laijianfeng.org/datax-sync.png" alt="DataX"></p>
-<p>DataX 其实相当于一个中介，从数据源读取数据，写入到目标端，数据源不再需要维护到目标端的同步作业，只需要与 DataX 通信即可。DataX 体现了中介者模式的思想。</p>
-<p><strong>中介者模式(Mediator Pattern)</strong>：用一个中介对象（中介者）来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。中介者模式又称为调停者模式，它是一种对象行为型模式。</p>
-<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p><strong>Mediator（抽象中介者）</strong>：它定义一个接口，该接口用于与各同事对象之间进行通信。</p>
-<p><strong>ConcreteMediator（具体中介者）</strong>：它是抽象中介者的子类，通过协调各个同事对象来实现协作行为，它维持了对各个同事对象的引用。</p>
-<p><strong>Colleague（抽象同事类）</strong>：它定义各个同事类公有的方法，并声明了一些抽象方法来供子类实现，同时它维持了一个对抽象中介者类的引用，其子类可以通过该引用来与中介者通信。</p>
-<p><strong>ConcreteColleague（具体同事类）</strong>：它是抽象同事类的子类；每一个同事对象在需要和其他同事对象通信时，先与中介者通信，通过中介者来间接完成与其他同事类的通信；在具体同事类中实现了在抽象同事类中声明的抽象方法。</p>
-<p>中介者模式的核心在于中介者类的引入，在中介者模式中，<strong>中介者类承担了两方面的职责</strong>：</p>
+<p>在<strong>使用</strong>分布式锁时需要注意：</p>
 <ul>
-<li><strong>中转作用（结构性）</strong>：通过中介者提供的中转作用，各个同事对象就不再需要显式引用其他同事，当需要和其他同事进行通信时，可通过中介者来实现间接调用。该中转作用属于中介者在结构上的支持。</li>
-<li><strong>协调作用（行为性）</strong>：中介者可以更进一步的对同事之间的关系进行封装，同事可以一致的和中介者进行交互，而不需要指明中介者需要具体怎么做，中介者根据封装在自身内部的协调逻辑，对同事的请求进行进一步处理，将同事成员之间的关系行为进行分离和封装。</li>
+<li>分布式锁的开销(分布式锁一般能不用就不用，有些场景可以用乐观锁代替)</li>
+<li>加锁的粒度(控制加锁的粒度，可以优化系统的性能)</li>
+<li>加锁的方式</li>
 </ul>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>我们来实现一个简化版的数据同步方案，有三种数据库 Mysql、Redis、Elasticsearch，其中的 Mysql 作为主数据库，当增加一条数据时<strong>需要</strong>同步到另外两个数据库中；Redis 作为缓存数据库，当增加一条数据时<strong>不需要</strong>同步到另外另个数据库；而 Elasticsearch 作为大数据查询数据库，有一个统计功能，当增加一条数据时<strong>只需要</strong>同步到 Mysql，所以它们之间的关系图如下所示。</p>
-<p><img src="http://image.laijianfeng.org/20181025_193152.jpg" alt="简化的数据同步需求"></p>
-<p>首先我们来实现第一种<strong>不使用</strong>中介者模式的数据同步方案，各数据源维护各自的同步作业。</p>
-<p>抽象数据库</p>
-<pre><code class="java">public abstract class AbstractDatabase {
-    public abstract void add(String data);
-
-    public abstract void addData(String data);
-}
-</code></pre>
-<p>具体数据库 Mysql，维护同步到 Redis和Elasticsearch 的同步作业</p>
-<pre><code class="java">public class MysqlDatabase extends AbstractDatabase {
-    private List&lt;String&gt; dataset = new ArrayList&lt;String&gt;();
-    @Setter
-    private RedisDatabase redisDatabase;
-    @Setter
-    private EsDatabase esDatabase;
-
-    @Override
-    public void addData(String data) {
-        System.out.println(&quot;Mysql 添加数据：&quot; + data);
-        this.dataset.add(data);
-    }
-
-    @Override
-    public void add(String data) {
-        addData(data);
-        this.redisDatabase.addData(data);   // 维护同步到Redis的同步作业
-        this.esDatabase.addData(data);  // 维护同步到Elasticsearch的同步作业
-    }
-
-    public void select() {
-        System.out.println(&quot;- Mysql 查询，数据：&quot; + this.dataset.toString());
-    }
-}
-</code></pre>
-<p>具体数据库 Redis，不需要同步到其它数据库</p>
-<pre><code class="java">public class RedisDatabase extends AbstractDatabase {
-    private List&lt;String&gt; dataset = new LinkedList&lt;String&gt;();
-
-    @Override
-    public void addData(String data) {
-        System.out.println(&quot;Redis 添加数据：&quot; + data);
-        this.dataset.add(data);
-    }
-
-    @Override
-    public void add(String data) {
-        addData(data); // 不同步到其它数据库
-    }
-
-    public void cache() {
-        System.out.println(&quot;- Redis 缓存的数据：&quot; + this.dataset.toString());
-    }
-}
-</code></pre>
-<p>Elasticsearch ，只需要同步到Mysql</p>
-<pre><code class="java">public class EsDatabase extends AbstractDatabase {
-    private List&lt;String&gt; dataset = new CopyOnWriteArrayList&lt;String&gt;();
-    @Setter
-    private MysqlDatabase mysqlDatabase;
-    @Override
-    public void addData(String data) {
-        System.out.println(&quot;ES 添加数据：&quot; + data);
-        this.dataset.add(data);
-    }
-
-    @Override
-    public void add(String data) {
-        addData(data);
-        this.mysqlDatabase.addData(data);   // 维护同步到MySQL的同步作业
-    }
-
-    public void count() {
-        int count = this.dataset.size();
-        System.out.println(&quot;- Elasticsearch 统计，目前有 &quot; + count + &quot; 条数据，数据：&quot; + this.dataset.toString());
-    }
-}
-</code></pre>
-<p>测试客户端，分别往三个数据库中加入一些数据查看同步效果</p>
-<pre><code class="java">public class Client {
-    public static void main(String[] args) {
-        MysqlDatabase mysqlDatabase = new MysqlDatabase();
-        RedisDatabase redisDatabase = new RedisDatabase();
-        EsDatabase esDatabase = new EsDatabase();
-
-        mysqlDatabase.setRedisDatabase(redisDatabase);
-        mysqlDatabase.setEsDatabase(esDatabase);
-        esDatabase.setMysqlDatabase(mysqlDatabase);
-
-        System.out.println(&quot;\n---------mysql 添加数据 1，将同步到Redis和ES中-----------&quot;);
-        mysqlDatabase.add(&quot;1&quot;);
-
-        mysqlDatabase.select();
-        redisDatabase.cache();
-        esDatabase.count();
-
-        System.out.println(&quot;\n---------Redis添加数据 2，将不同步到其它数据库-----------&quot;);
-        redisDatabase.add(&quot;2&quot;);
-
-        mysqlDatabase.select();
-        redisDatabase.cache();
-        esDatabase.count();
-
-        System.out.println(&quot;\n---------ES 添加数据 3，只同步到 Mysql-----------&quot;);
-        esDatabase.add(&quot;3&quot;);
-
-        mysqlDatabase.select();
-        redisDatabase.cache();
-        esDatabase.count();
-    }
-}
-</code></pre>
-<p>输出结果</p>
-<pre><code class="java">---------mysql 添加数据 1，将同步到Redis和ES中-----------
-Mysql 添加数据：1
-Redis 添加数据：1
-ES 添加数据：1
-- Mysql 查询，数据：[1]
-- Redis 缓存的数据：[1]
-- Elasticsearch 统计，目前有 1 条数据，数据：[1]
-
----------Redis添加数据 2，将不同步到其它数据库-----------
-Redis 添加数据：2
-- Mysql 查询，数据：[1]
-- Redis 缓存的数据：[1, 2]
-- Elasticsearch 统计，目前有 1 条数据，数据：[1]
-
----------ES 添加数据 3，只同步到 Mysql-----------
-ES 添加数据：3
-Mysql 添加数据：3
-- Mysql 查询，数据：[1, 3]
-- Redis 缓存的数据：[1, 2]
-- Elasticsearch 统计，目前有 2 条数据，数据：[1, 3]
-</code></pre>
-<p>其实这样已经实现了我们的需求，但是<strong>存在一些问题</strong>：</p>
+<p>以下是几种常见的实现分布式锁的方案及其优缺点。</p>
+<h4 id="基于数据库"><a href="#基于数据库" class="headerlink" title="基于数据库"></a>基于数据库</h4><p><strong>1. 基于数据库表</strong></p>
+<p>最简单的方式可能就是直接创建一张锁表，当我们要锁住某个方法或资源时，我们就在该表中增加一条记录，想要释放锁的时候就删除这条记录。给某字段添加唯一性约束，如果有多个请求同时提交到数据库的话，<strong>数据库会保证只有一个操作可以成功</strong>，那么我们就可以认为操作成功的那个线程获得了该方法的锁，可以执行方法体内容。</p>
+<p>会引入数据库单点、无失效时间、不阻塞、不可重入等问题。</p>
+<p><strong>2. 基于数据库排他锁</strong></p>
+<p>如果使用的是MySql的InnoDB引擎，在查询语句后面增加<code>for update</code>，数据库会在查询过程中(须通过唯一索引查询)给数据库表增加排他锁，我们可以认为获得排它锁的线程即可获得分布式锁，通过 connection.commit() 操作来释放锁。</p>
+<p>会引入数据库单点、不可重入、无法保证一定使用行锁(部分情况下MySQL自动使用表锁而不是行锁)、排他锁长时间不提交导致占用数据库连接等问题。</p>
+<p><strong>3. 数据库实现分布式锁总结</strong></p>
+<p>优点：</p>
 <ul>
-<li><strong>系统结构复杂且耦合度高</strong>。数据源需要维护目标端数据库的引用，以便完成数据同步</li>
-<li><strong>组件的可重用性差</strong>。由于每一个数据源和目标端之间具有很强的关联，若没有目标端的支持，这个组件很难被另一个系统或模块重用</li>
-<li><strong>系统的可扩展性差</strong>：如果需要增加、修改或删除其中一个数据库、将导致多个类的源代码需要修改，这违反了 “开闭原则”，可扩展性和灵活性欠佳。</li>
+<li>直接借助数据库，容易理解。</li>
 </ul>
-<p>我们<strong>使用中介者模式来重构</strong>，将数据同步的功能迁移到中介者中，由中介者来管理数据同步作业</p>
-<p>首先还是抽象数据库类（抽象同事类），维护了一个中介者</p>
-<pre><code class="java">public abstract class AbstractDatabase {
-    public static final String MYSQL = &quot;mysql&quot;;
-    public static final String REDIS = &quot;redis&quot;;
-    public static final String ELASTICSEARCH = &quot;elasticsearch&quot;;
-
-    protected AbstractMediator mediator;    // 中介者
-
-    public AbstractDatabase(AbstractMediator mediator) {
-        this.mediator = mediator;
-    }
-
-    public abstract void addData(String data);
-
-    public abstract void add(String data);
-}
-</code></pre>
-<p>Mysql 数据库（具体同事类）</p>
-<pre><code class="java">public class MysqlDatabase extends AbstractDatabase {
-    private List&lt;String&gt; dataset = new ArrayList&lt;String&gt;();
-
-    public MysqlDatabase(AbstractMediator mediator) {
-        super(mediator);
-    }
-
-    @Override
-    public void addData(String data) {
-        System.out.println(&quot;Mysql 添加数据：&quot; + data);
-        this.dataset.add(data);
-    }
-
-    @Override
-    public void add(String data) {
-        addData(data);
-        this.mediator.sync(AbstractDatabase.MYSQL, data); // 数据同步作业交给中介者管理
-    }
-
-    public void select() {
-        System.out.println(&quot;Mysql 查询，数据：&quot; + this.dataset.toString());
-    }
-}
-</code></pre>
-<p>Redis 数据库（具体同事类）</p>
-<pre><code class="java">public class RedisDatabase extends AbstractDatabase {
-    private List&lt;String&gt; dataset = new LinkedList&lt;String&gt;();
-
-    public RedisDatabase(AbstractMediator mediator) {
-        super(mediator);
-    }
-
-    @Override
-    public void addData(String data) {
-        System.out.println(&quot;Redis 添加数据：&quot; + data);
-        this.dataset.add(data);
-    }
-
-    @Override
-    public void add(String data) {
-        addData(data);
-        this.mediator.sync(AbstractDatabase.REDIS, data);    // 数据同步作业交给中介者管理
-    }
-
-    public void cache() {
-        System.out.println(&quot;Redis 缓存的数据：&quot; + this.dataset.toString());
-    }
-}
-</code></pre>
-<p>Elasticsearch（具体同事类）</p>
-<pre><code class="java">public class EsDatabase extends AbstractDatabase {
-    private List&lt;String&gt; dataset = new CopyOnWriteArrayList&lt;String&gt;();
-
-    public EsDatabase(AbstractMediator mediator) {
-        super(mediator);
-    }
-
-    @Override
-    public void addData(String data) {
-        System.out.println(&quot;ES 添加数据：&quot; + data);
-        this.dataset.add(data);
-    }
-
-    @Override
-    public void add(String data) {
-        addData(data);
-        this.mediator.sync(AbstractDatabase.ELASTICSEARCH, data);    // 数据同步作业交给中介者管理
-    }
-
-    public void count() {
-        int count = this.dataset.size();
-        System.out.println(&quot;Elasticsearch 统计，目前有 &quot; + count + &quot; 条数据，数据：&quot; + this.dataset.toString());
-    }
-}
-</code></pre>
-<p>抽象中介者</p>
-<pre><code class="java">@Data
-public abstract class AbstractMediator {
-    protected MysqlDatabase mysqlDatabase;
-    protected RedisDatabase redisDatabase;
-    protected EsDatabase esDatabase;
-
-    public abstract void sync(String databaseName, String data);
-}
-</code></pre>
-<p>具体中介者</p>
-<pre><code class="java">public class SyncMediator extends AbstractMediator {
-    @Override
-    public void sync(String databaseName, String data) {
-        if (AbstractDatabase.MYSQL.equals(databaseName)) {
-            // mysql 同步到 redis 和 Elasticsearch
-            this.redisDatabase.addData(data);
-            this.esDatabase.addData(data);
-        } else if (AbstractDatabase.REDIS.equals(databaseName)) {
-            // redis 缓存同步，不需要同步到其他数据库
-        } else if (AbstractDatabase.ELASTICSEARCH.equals(databaseName)) {
-            // Elasticsearch 同步到 Mysql
-            this.mysqlDatabase.addData(data);
-        }
-    }
-}
-</code></pre>
-<p>测试客户端</p>
-<pre><code class="java">public class Client {
-    public static void main(String[] args) {
-        AbstractMediator syncMediator = new SyncMediator();
-        MysqlDatabase mysqlDatabase = new MysqlDatabase(syncMediator);
-        RedisDatabase redisDatabase = new RedisDatabase(syncMediator);
-        EsDatabase esDatabase = new EsDatabase(syncMediator);
-
-        syncMediator.setMysqlDatabase(mysqlDatabase);
-        syncMediator.setRedisDatabase(redisDatabase);
-        syncMediator.setEsDatabase(esDatabase);
-
-        System.out.println(&quot;\n---------mysql 添加数据 1，将同步到Redis和ES中-----------&quot;);
-        mysqlDatabase.add(&quot;1&quot;);
-        mysqlDatabase.select();
-        redisDatabase.cache();
-        esDatabase.count();
-
-        System.out.println(&quot;\n---------Redis添加数据 2，将不同步到其它数据库-----------&quot;);
-        redisDatabase.add(&quot;2&quot;);
-        mysqlDatabase.select();
-        redisDatabase.cache();
-        esDatabase.count();
-
-        System.out.println(&quot;\n---------ES 添加数据 3，只同步到 Mysql-----------&quot;);
-        esDatabase.add(&quot;3&quot;);
-        mysqlDatabase.select();
-        redisDatabase.cache();
-        esDatabase.count();
-    }
-}
-</code></pre>
-<p>输出结果，与预期一致</p>
-<pre><code>---------mysql 添加数据 1，将同步到Redis和ES中-----------
-Mysql 添加数据：1
-Redis 添加数据：1
-ES 添加数据：1
-- Mysql 查询，数据：[1]
-- Redis 缓存的数据：[1]
-- Elasticsearch 统计，目前有 1 条数据，数据：[1]
-
----------Redis添加数据 2，将不同步到其它数据库-----------
-Redis 添加数据：2
-- Mysql 查询，数据：[1]
-- Redis 缓存的数据：[1, 2]
-- Elasticsearch 统计，目前有 1 条数据，数据：[1]
-
----------ES 添加数据 3，只同步到 Mysql-----------
-ES 添加数据：3
-Mysql 添加数据：3
-- Mysql 查询，数据：[1, 3]
-- Redis 缓存的数据：[1, 2]
-- Elasticsearch 统计，目前有 2 条数据，数据：[1, 3]
-</code></pre><p>画出类图如下</p>
-<p><img src="http://image.laijianfeng.org/20181025_193153.png" alt="示例.中介者模式"></p>
-<h2 id="中介者模式总结"><a href="#中介者模式总结" class="headerlink" title="中介者模式总结"></a>中介者模式总结</h2><h3 id="中介者模式的主要优点"><a href="#中介者模式的主要优点" class="headerlink" title="中介者模式的主要优点"></a>中介者模式的主要优点</h3><ul>
-<li><p>中介者模式<strong>简化了对象之间的交互</strong>，它用中介者和同事的一对多交互代替了原来同事之间的多对多交互，一对多关系更容易理解、维护和扩展，将原本难以理解的网状结构转换成相对简单的星型结构。</p>
-</li>
-<li><p>中介者模式可<strong>将各同事对象解耦</strong>。中介者有利于各同事之间的松耦合，我们可以独立的改变和复用每一个同事和中介者，增加新的中介者和新的同事类都比较方便，更好地符合 “开闭原则”。</p>
-</li>
-<li><p>可以<strong>减少子类生成</strong>，中介者将原本分布于多个对象间的行为集中在一起，改变这些行为只需生成新的中介者子类即可，这使各个同事类可被重用，无须对同事类进行扩展。</p>
+<p>缺点：</p>
+<ul>
+<li>会引入更多的问题，使整个方案变得越来越复杂</li>
+<li>操作数据库需要一定的开销，有一定的性能问题</li>
+<li>使用数据库的行级锁并不一定靠谱，尤其是当我们的锁表并不大的时候</li>
+</ul>
+<h4 id="基于缓存"><a href="#基于缓存" class="headerlink" title="基于缓存"></a>基于缓存</h4><p>相比较于基于数据库实现分布式锁的方案来说，基于缓存来实现在性能方面会表现的更好一点。目前有很多成熟的缓存产品，包括Redis、memcached、tair等。</p>
+<p>这里以Redis为例举出几种实现方法：</p>
+<p><strong>1. 基于 redis 的 setnx()、expire() 方法做分布式锁</strong></p>
+<p>setnx 的含义就是 <code>SET if Not Exists</code>，其主要有两个参数 <code>setnx(key, value)</code>。该方法是原子的，如果 key 不存在，则设置当前 key 成功，返回 1；如果当前 key 已经存在，则设置当前 key 失败，返回 0。</p>
+<p>expire 设置过期时间，要注意的是 setnx 命令不能设置 key 的超时时间，只能通过 expire() 来对 key 设置。</p>
+<p><strong>2. 基于 redis 的 setnx()、get()、getset()方法做分布式锁</strong></p>
+<p>getset 这个命令主要有两个参数 <code>getset(key，newValue)</code>，该方法是原子的，对 key 设置 newValue 这个值，并且返回 key 原来的旧值。</p>
+<p><strong>3. 基于 Redlock 做分布式锁</strong></p>
+<p>Redlock 是 Redis 的作者 antirez 给出的集群模式的 Redis 分布式锁，它基于 N 个完全独立的 Redis 节点（通常情况下 N 可以设置成 5）</p>
+<p><strong>4. 基于 redisson 做分布式锁</strong></p>
+<p>redisson 是 redis 官方的分布式锁组件，GitHub 地址：<a href="https://github.com/redisson/redisson" target="_blank" rel="noopener">https://github.com/redisson/redisson</a></p>
+<p><strong>基于缓存实现分布式锁总结</strong></p>
+<p>优点：</p>
+<ul>
+<li>性能好</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>实现中需要考虑的因素太多</li>
+<li>通过超时时间来控制锁的失效时间并不是十分的靠谱</li>
+</ul>
+<h4 id="基于Zookeeper"><a href="#基于Zookeeper" class="headerlink" title="基于Zookeeper"></a>基于Zookeeper</h4><p><strong>大致思想</strong>为：每个客户端对某个方法加锁时，在 Zookeeper 上与该方法对应的指定节点的目录下，<strong>生成一个唯一的临时有序节点</strong>。 判断是否获取锁的方式很简单，只需要判断有序节点中<strong>序号最小的一个</strong>。 当释放锁的时候，只需将这个临时节点删除即可。同时，其可以避免服务宕机导致的锁无法释放，而产生的死锁问题</p>
+<p><strong>Zookeeper实现分布式锁总结</strong></p>
+<p>优点：</p>
+<ul>
+<li>有效的解决单点问题，不可重入问题，非阻塞问题以及锁无法释放的问题</li>
+<li>实现较为简单</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>性能上不如使用缓存实现的分布式锁，因为每次在创建锁和释放锁的过程中，都要动态创建、销毁临时节点来实现锁功能</li>
+<li>需要对Zookeeper的原理有所了解</li>
+</ul>
+<h3 id="Zookeeper-如何实现分布式锁？"><a href="#Zookeeper-如何实现分布式锁？" class="headerlink" title="Zookeeper 如何实现分布式锁？"></a>Zookeeper 如何实现分布式锁？</h3><p>下面讲如何实现排他锁和共享锁，以及如何解决羊群效应。</p>
+<h4 id="排他锁"><a href="#排他锁" class="headerlink" title="排他锁"></a>排他锁</h4><p>排他锁，又称写锁或独占锁。如果事务T1对数据对象O1加上了排他锁，那么在整个加锁期间，只允许事务T1对O1进行读取或更新操作，其他任务事务都不能对这个数据对象进行任何操作，直到T1释放了排他锁。</p>
+<p>排他锁核心是<strong>保证当前有且仅有一个事务获得锁，并且锁释放之后，所有正在等待获取锁的事务都能够被通知到</strong>。</p>
+<p>Zookeeper 的强一致性特性，能够很好地保证在分布式高并发情况下<strong>节点的创建一定能够保证全局唯一性</strong>，即Zookeeper将会保证客户端无法重复创建一个已经存在的数据节点。可以利用Zookeeper这个特性，实现排他锁。</p>
+<ul>
+<li><strong>定义锁</strong>：通过Zookeeper上的数据节点来表示一个锁</li>
+<li><strong>获取锁</strong>：客户端通过调用 <code>create</code> 方法创建表示锁的临时节点，可以认为创建成功的客户端获得了锁，同时可以让没有获得锁的节点在该节点上注册Watcher监听，以便实时监听到lock节点的变更情况</li>
+<li><strong>释放锁</strong>：以下两种情况都可以让锁释放<ul>
+<li>当前获得锁的客户端发生宕机或异常，那么Zookeeper上这个临时节点就会被删除</li>
+<li>正常执行完业务逻辑，客户端主动删除自己创建的临时节点</li>
+</ul>
 </li>
 </ul>
-<h3 id="中介者模式的主要缺点"><a href="#中介者模式的主要缺点" class="headerlink" title="中介者模式的主要缺点"></a>中介者模式的主要缺点</h3><ul>
-<li>在<strong>具体中介者类中包含了大量同事之间的交互细节</strong>，可能会导致具体中介者类非常复杂，使得系统难以维护。（也就是把具体同事类之间的交互复杂性集中到了中介者类中，结果中介者成了最复杂的类）</li>
+<p>基于Zookeeper实现排他锁流程：</p>
+<p><img src="http://image.laijianfeng.org/20190124_133414.jpg" alt="基于Zookeeper实现排他锁流程"></p>
+<h4 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h4><p>共享锁，又称读锁。如果事务T1对数据对象O1加上了共享锁，那么当前事务只能对O1进行<strong>读取操作</strong>，其他事务也只能对这个数据对象加共享锁，直到该数据对象上的所有共享锁都被释放。</p>
+<p>共享锁与排他锁的区别在于，加了排他锁之后，数据对象只对当前事务可见，而加了共享锁之后，数据对象对所有事务都可见。</p>
+<ul>
+<li><strong>定义锁</strong>：通过Zookeeper上的数据节点来表示一个锁，是一个类似于 <code>/lockpath/[hostname]-请求类型-序号</code> 的临时顺序节点</li>
+<li><strong>获取锁</strong>：客户端通过调用 <code>create</code> 方法创建表示锁的临时顺序节点，如果是读请求，则创建 <code>/lockpath/[hostname]-R-序号</code> 节点，如果是写请求则创建 <code>/lockpath/[hostname]-W-序号</code> 节点</li>
+<li><strong>判断读写顺序</strong>：大概分为4个步骤<ul>
+<li>1)创建完节点后，获取 <code>/lockpath</code> 节点下的所有子节点，并对该节点注册子节点变更的Watcher监听</li>
+<li>2)确定自己的节点序号在所有子节点中的顺序</li>
+<li>3.1)对于读请求：1. 如果没有比自己序号更小的子节点，或者比自己序号小的子节点都是读请求，那么表明自己已经成功获取到了共享锁，同时开始执行读取逻辑 2. 如果有比自己序号小的子节点有写请求，那么等待 3. </li>
+<li>3.2)对于写请求，如果自己不是序号最小的节点，那么等待</li>
+<li>4)接收到Watcher通知后，重复步骤1)</li>
 </ul>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
-<li><p>系统中对象之间存在复杂的引用关系，系统结构混乱且难以理解。</p>
 </li>
-<li><p>一个对象由于引用了其他很多对象并且直接和这些对象通信，导致难以复用该对象。</p>
+<li><strong>释放锁</strong>：与排他锁逻辑一致</li>
+</ul>
+<p><img src="http://image.laijianfeng.org/2019-01-28_20-08-52.jpg" alt="Zookeeper实现共享锁节点树"></p>
+<p>基于Zookeeper实现共享锁流程：</p>
+<p><img src="http://image.laijianfeng.org/2019-01-28_20-08-50.jpg" alt="基于Zookeeper实现共享锁流程"></p>
+<h4 id="羊群效应"><a href="#羊群效应" class="headerlink" title="羊群效应"></a>羊群效应</h4><p>在实现共享锁的 “判断读写顺序” 的第1个步骤是：创建完节点后，获取 <code>/lockpath</code> 节点下的所有子节点，并对该节点注册子节点变更的Watcher监听。这样的话，任何一次客户端移除共享锁之后，Zookeeper将会发送子节点变更的Watcher通知给所有机器，系统中将有大量的 “Watcher通知” 和 “子节点列表获取” 这个操作重复执行，然后所有节点再判断自己是否是序号最小的节点(写请求)或者判断比自己序号小的子节点是否都是读请求(读请求)，从而继续等待下一次通知。</p>
+<p>然而，这些重复操作很多都是 “无用的”，实际上<strong>每个锁竞争者只需要关注序号比自己小的那个节点是否存在即可</strong></p>
+<p>当集群规模比较大时，这些 “无用的” 操作不仅会对Zookeeper造成巨大的性能影响和网络冲击，更为严重的是，如果同一时间有多个客户端释放了共享锁，Zookeeper服务器就会在短时间内向其余客户端发送大量的事件通知–这就是所谓的 “<strong>羊群效应</strong>“。</p>
+<p><strong>改进后的分布式锁实现</strong>：</p>
+<p>具体实现如下：</p>
+<ul>
+<li><ol>
+<li>客户端调用 <code>create</code> 方法创建一个类似于 <code>/lockpath/[hostname]-请求类型-序号</code> 的临时顺序节点</li>
+</ol>
 </li>
-<li><p>想通过一个中间类来封装多个类中的行为，而又不想生成太多的子类。可以通过引入中介者类来实现，在中介者中定义对象交互的公共行为，如果需要改变行为则可以增加新的具体中介者类。</p>
+<li><ol start="2">
+<li>客户端调用 <code>getChildren</code> 方法获取所有已经创建的子节点列表(这里不注册任何Watcher)</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>如果无法获取任何共享锁，那么调用 <code>exist</code> 来对比自己小的那个节点注册Watcher<ul>
+<li>读请求：向比自己序号小的最后一个<strong>写请求节点</strong>注册Watcher监听</li>
+<li>写请求：向比自己序号小的最后一个<strong>节点</strong>注册Watcher监听</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>等待Watcher监听，继续进入步骤2</li>
+</ol>
 </li>
 </ul>
-<h2 id="中介者模式的典型应用"><a href="#中介者模式的典型应用" class="headerlink" title="中介者模式的典型应用"></a>中介者模式的典型应用</h2><h3 id="Java-Timer-中的中介者模式"><a href="#Java-Timer-中的中介者模式" class="headerlink" title="Java Timer 中的中介者模式"></a>Java Timer 中的中介者模式</h3><p>敲一个 <code>java.util.Timer</code> 的Demo</p>
-<p>两个任务类</p>
-<pre><code class="java">public class MyOneTask extends TimerTask {
-    private static int num = 0;
-    @Override
-    public void run() {
-        System.out.println(&quot;I&#39;m MyOneTask &quot; + ++num);
-    }
-}
-
-public class MyTwoTask extends TimerTask {
-    private static int num = 1000;
-    @Override
-    public void run() {
-        System.out.println(&quot;I&#39;m MyTwoTask &quot; + num--);
-    }
-}
-</code></pre>
-<p>客户端测试，3秒后开始执行，循环周期为 1秒</p>
-<pre><code class="java">public class TimerTest {
-    public static void main(String[] args) {
-        // 注意：多线程并行处理定时任务时，Timer运行多个TimeTask时，只要其中之一没有捕获抛出的异常，
-        // 其它任务便会自动终止运行，使用ScheduledExecutorService则没有这个问题
-        Timer timer = new Timer();
-        timer.schedule(new MyOneTask(), 3000, 1000); // 3秒后开始运行，循环周期为 1秒
-        timer.schedule(new MyTwoTask(), 3000, 1000);
-    }
-}
-</code></pre>
-<p>输出</p>
-<pre><code>I&#39;m MyOneTask 1
-I&#39;m MyTwoTask 1000
-I&#39;m MyTwoTask 999
-I&#39;m MyOneTask 2
-I&#39;m MyOneTask 3
-I&#39;m MyTwoTask 998
-I&#39;m MyTwoTask 997
-I&#39;m MyOneTask 4
-I&#39;m MyOneTask 5
-I&#39;m MyTwoTask 996
-I&#39;m MyTwoTask 995
-I&#39;m MyOneTask 6
-...
-</code></pre><p><code>Timer</code> 的部分关键源码如下</p>
-<pre><code class="java">public class Timer {
-
-    private final TaskQueue queue = new TaskQueue();
-    private final TimerThread thread = new TimerThread(queue);
-
-    public void schedule(TimerTask task, long delay) {
-        if (delay &lt; 0)
-            throw new IllegalArgumentException(&quot;Negative delay.&quot;);
-        sched(task, System.currentTimeMillis()+delay, 0);
-    }
-
-    public void schedule(TimerTask task, Date time) {
-        sched(task, time.getTime(), 0);
-    }
-
-    private void sched(TimerTask task, long time, long period) {
-        if (time &lt; 0)
-            throw new IllegalArgumentException(&quot;Illegal execution time.&quot;);
-
-        if (Math.abs(period) &gt; (Long.MAX_VALUE &gt;&gt; 1))
-            period &gt;&gt;= 1;
-
-        // 获取任务队列的锁(同一个线程多次获取这个锁并不会被阻塞,不同线程获取时才可能被阻塞)
-        synchronized(queue) {
-            // 如果定时调度线程已经终止了,则抛出异常结束
-            if (!thread.newTasksMayBeScheduled)
-                throw new IllegalStateException(&quot;Timer already cancelled.&quot;);
-
-            // 再获取定时任务对象的锁(为什么还要再加这个锁呢?想不清)
-            synchronized(task.lock) {
-                // 判断线程的状态,防止多线程同时调度到一个任务时多次被加入任务队列
-                if (task.state != TimerTask.VIRGIN)
-                    throw new IllegalStateException(
-                        &quot;Task already scheduled or cancelled&quot;);
-                // 初始化定时任务的下次执行时间
-                task.nextExecutionTime = time;
-                // 重复执行的间隔时间
-                task.period = period;
-                // 将定时任务的状态由TimerTask.VIRGIN(一个定时任务的初始化状态)设置为TimerTask.SCHEDULED
-                task.state = TimerTask.SCHEDULED;
-            }
-
-            // 将任务加入任务队列
-            queue.add(task);
-            // 如果当前加入的任务是需要第一个被执行的(也就是他的下一次执行时间离现在最近)
-            // 则唤醒等待queue的线程(对应到上面提到的queue.wait())
-            if (queue.getMin() == task)
-                queue.notify();
-        }
-    }
-
-    // cancel会等到所有定时任务执行完后立刻终止定时线程
-    public void cancel() {
-        synchronized(queue) {
-            thread.newTasksMayBeScheduled = false;
-            queue.clear();
-            queue.notify();  // In case queue was already empty.
-        }
-    }
-    // ...
-}
-</code></pre>
-<p><code>Timer</code> 中在 <code>schedulexxx</code> 方法中通过 <code>TaskQueue</code> 协调各种 <code>TimerTask</code> 定时任务，<code>Timer</code> 是中介者，<code>TimerTask</code> 是抽象同事类，而我们自己写的任务则是具体同事类</p>
-<p><code>TimerThread</code> 是 <code>Timer</code> 中定时调度线程类的定义，这个类会做为一个线程一直运行来执行 <code>Timer</code> 中任务队列中的任务。</p>
-<p><code>Timer</code> 这个中介者的功能就是<strong>定时调度我们写的各种任务</strong>，将任务添加到 <code>TaskQueue</code> 任务队列中，给 <code>TimerThread</code> 执行，让任务与执行线程解耦</p>
-<h3 id="其他的中介者模式应用"><a href="#其他的中介者模式应用" class="headerlink" title="其他的中介者模式应用"></a>其他的中介者模式应用</h3><ul>
-<li><p><code>java.util.concurrent.Executor#execute</code> 和 <code>java.util.concurrent.ExecutorService#submit</code> 与 <code>Timer#schedule</code> 类似</p>
-</li>
-<li><p>MVC模式中，Controller 是中介者，根据 View 层的请求来操作 Model 层</p>
-</li>
+<p>Zookeeper羊群效应改进前后Watcher监听图</p>
+<p><img src="http://image.laijianfeng.org/2019-01-28_20-08-53.jpg" alt="Zookeeper羊群效应改进前后"></p>
+<h3 id="基于Curator客户端实现分布式锁"><a href="#基于Curator客户端实现分布式锁" class="headerlink" title="基于Curator客户端实现分布式锁"></a>基于Curator客户端实现分布式锁</h3><p>Apache Curator是一个Zookeeper的开源客户端，它提供了Zookeeper各种应用场景（Recipe，如共享锁服务、master选举、分布式计数器等）的抽象封装，接下来将利用Curator提供的类来实现分布式锁。</p>
+<p>Curator提供的跟分布式锁相关的类有5个，分别是：</p>
+<ul>
+<li>Shared Reentrant Lock 可重入锁</li>
+<li>Shared Lock 共享不可重入锁</li>
+<li>Shared Reentrant Read Write Lock 可重入读写锁</li>
+<li>Shared Semaphore 信号量</li>
+<li>Multi Shared Lock 多锁</li>
 </ul>
 <blockquote>
-<p>参考：<br>刘伟：设计模式Java版<br>慕课网java设计模式精讲 Debug 方式+内存分析<br><a href="https://www.jianshu.com/p/58a5b0853451" target="_blank" rel="noopener">java.util系列源码解读之Timer定时器</a></p>
+<p>关于错误处理：还是强烈推荐使用ConnectionStateListener处理连接状态的改变。当连接LOST时你不再拥有锁。</p>
 </blockquote>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>欢迎评论、转发、分享，您的支持是我最大的动力</p>
-<p>关注【小旋锋】微信公众号，及时接收博文推送</p>
-<p><img src="http://image.laijianfeng.org/20180913_001328.png" alt="关注_小旋锋_微信公众号"></p>
+<h4 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h4><p>Shared Reentrant Lock，全局可重入锁，所有客户端都可以请求，同一个客户端在拥有锁的同时，可以多次获取，不会被阻塞。它是由类 <code>InterProcessMutex</code> 来实现，它的主要方法：</p>
+<pre><code class="java">// 构造方法
+public InterProcessMutex(CuratorFramework client, String path)
+public InterProcessMutex(CuratorFramework client, String path, LockInternalsDriver driver)
+// 通过acquire获得锁,并提供超时机制：
+public void acquire() throws Exception
+public boolean acquire(long time, TimeUnit unit) throws Exception
+// 撤销锁
+public void makeRevocable(RevocationListener&lt;InterProcessMutex&gt; listener)
+public void makeRevocable(final RevocationListener&lt;InterProcessMutex&gt; listener, Executor executor)
+</code></pre>
+<p>定义一个 FakeLimitedResource 类来模拟一个共享资源，该资源一次只能被一个线程使用，直到使用结束，下一个线程才能使用，否则会抛出异常</p>
+<pre><code class="java">public class FakeLimitedResource {
+    private final AtomicBoolean inUse = new AtomicBoolean(false);
+
+    // 模拟只能单线程操作的资源
+    public void use() throws InterruptedException {
+        if (!inUse.compareAndSet(false, true)) {
+            // 在正确使用锁的情况下，此异常不可能抛出
+            throw new IllegalStateException(&quot;Needs to be used by one client at a time&quot;);
+        }
+        try {
+            Thread.sleep((long) (100 * Math.random()));
+        } finally {
+            inUse.set(false);
+        }
+    }
+}
+</code></pre>
+<p>下面的代码将创建 N 个线程来模拟分布式系统中的节点，系统将通过 InterProcessMutex 来控制对资源的同步使用；每个节点都将发起10次请求，完成 <code>请求锁--访问资源--再次请求锁--释放锁--释放锁</code> 的过程；客户端通过 <code>acquire</code> 请求锁，通过 <code>release</code> 释放锁，获得几把锁就要释放几把锁；这个共享资源一次只能被一个线程使用，如果控制同步失败，将抛异常。</p>
+<pre><code class="java">public class SharedReentrantLockTest {
+    private static final String lockPath = &quot;/testZK/sharedreentrantlock&quot;;
+    private static final Integer clientNums = 5;
+    final static FakeLimitedResource resource = new FakeLimitedResource(); // 共享的资源
+    private static CountDownLatch countDownLatch = new CountDownLatch(clientNums);
+
+    public static void main(String[] args) throws InterruptedException {
+        for (int i = 0; i &lt; clientNums; i++) {
+            String clientName = &quot;client#&quot; + i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CuratorFramework client = ZKUtils.getClient();
+                    client.start();
+                    Random random = new Random();
+                    try {
+                        final InterProcessMutex lock = new InterProcessMutex(client, lockPath);
+                        // 每个客户端请求10次共享资源
+                        for (int j = 0; j &lt; 10; j++) {
+                            if (!lock.acquire(10, TimeUnit.SECONDS)) {
+                                throw new IllegalStateException(j + &quot;. &quot; + clientName + &quot; 不能得到互斥锁&quot;);
+                            }
+                            try {
+                                System.out.println(j + &quot;. &quot; + clientName + &quot; 已获取到互斥锁&quot;);
+                                resource.use(); // 使用资源
+                                if (!lock.acquire(10, TimeUnit.SECONDS)) {
+                                    throw new IllegalStateException(j + &quot;. &quot; + clientName + &quot; 不能再次得到互斥锁&quot;);
+                                }
+                                System.out.println(j + &quot;. &quot; + clientName + &quot; 已再次获取到互斥锁&quot;);
+                                lock.release(); // 申请几次锁就要释放几次锁
+                            } finally {
+                                System.out.println(j + &quot;. &quot; + clientName + &quot; 释放互斥锁&quot;);
+                                lock.release(); // 总是在finally中释放
+                            }
+                            Thread.sleep(random.nextInt(100));
+                        }
+                    } catch (Throwable e) {
+                        System.out.println(e.getMessage());
+                    } finally {
+                        CloseableUtils.closeQuietly(client);
+                        System.out.println(clientName + &quot; 客户端关闭！&quot;);
+                        countDownLatch.countDown();
+                    }
+                }
+            }).start();
+        }
+        countDownLatch.await();
+        System.out.println(&quot;结束！&quot;);
+    }
+}
+</code></pre>
+<p>控制台打印日志，可以看到对资源的同步访问控制成功，并且锁是可重入的</p>
+<pre><code>0. client#3 已获取到互斥锁
+0. client#3 已再次获取到互斥锁
+0. client#3 释放互斥锁
+0. client#1 已获取到互斥锁
+0. client#1 已再次获取到互斥锁
+0. client#1 释放互斥锁
+0. client#2 已获取到互斥锁
+0. client#2 已再次获取到互斥锁
+0. client#2 释放互斥锁
+0. client#0 已获取到互斥锁
+0. client#0 已再次获取到互斥锁
+0. client#0 释放互斥锁
+0. client#4 已获取到互斥锁
+0. client#4 已再次获取到互斥锁
+0. client#4 释放互斥锁
+1. client#1 已获取到互斥锁
+1. client#1 已再次获取到互斥锁
+1. client#1 释放互斥锁
+2. client#1 已获取到互斥锁
+2. client#1 已再次获取到互斥锁
+2. client#1 释放互斥锁
+1. client#4 已获取到互斥锁
+1. client#4 已再次获取到互斥锁
+1. client#4 释放互斥锁
+1. client#3 已获取到互斥锁
+1. client#3 已再次获取到互斥锁
+1. client#3 释放互斥锁
+1. client#2 已获取到互斥锁
+1. client#2 已再次获取到互斥锁
+1. client#2 释放互斥锁
+2. client#4 已获取到互斥锁
+2. client#4 已再次获取到互斥锁
+2. client#4 释放互斥锁
+....
+....
+client#2 客户端关闭！
+9. client#0 已获取到互斥锁
+9. client#0 已再次获取到互斥锁
+9. client#0 释放互斥锁
+9. client#3 已获取到互斥锁
+9. client#3 已再次获取到互斥锁
+9. client#3 释放互斥锁
+client#0 客户端关闭！
+8. client#4 已获取到互斥锁
+8. client#4 已再次获取到互斥锁
+8. client#4 释放互斥锁
+9. client#4 已获取到互斥锁
+9. client#4 已再次获取到互斥锁
+9. client#4 释放互斥锁
+client#3 客户端关闭！
+client#4 客户端关闭！
+结束！
+</code></pre><p>同时在程序运行期间查看Zookeeper节点树，可以发现每一次请求的锁实际上对应一个临时顺序节点</p>
+<pre><code>[zk: localhost:2181(CONNECTED) 42] ls /testZK/sharedreentrantlock
+[leases, _c_208d461b-716d-43ea-ac94-1d2be1206db3-lock-0000001659, locks, _c_64b19dba-3efa-46a6-9344-19a52e9e424f-lock-0000001658, _c_cee02916-d7d5-4186-8867-f921210b8815-lock-0000001657]
+</code></pre><h4 id="不可重入锁"><a href="#不可重入锁" class="headerlink" title="不可重入锁"></a>不可重入锁</h4><p>Shared Lock 与 Shared Reentrant Lock 相似，但是<strong>不可重入</strong>。这个不可重入锁由类 InterProcessSemaphoreMutex 来实现，使用方法和上面的类类似。</p>
+<p>将上面程序中的 InterProcessMutex 换成不可重入锁 InterProcessSemaphoreMutex，如果再运行上面的代码，结果就会发现线程被阻塞在第二个 <code>acquire</code> 上，直到超时，也就是此锁不是可重入的。</p>
+<p>控制台输出日志</p>
+<pre><code>0. client#2 已获取到互斥锁
+0. client#1 不能得到互斥锁
+0. client#4 不能得到互斥锁
+0. client#0 不能得到互斥锁
+0. client#3 不能得到互斥锁
+client#1 客户端关闭！
+client#4 客户端关闭！
+client#3 客户端关闭！
+client#0 客户端关闭！
+0. client#2 释放互斥锁
+0. client#2 不能再次得到互斥锁
+client#2 客户端关闭！
+结束！
+</code></pre><p>把第二个获取锁的代码注释，程序才能正常执行</p>
+<pre><code>0. client#1 已获取到互斥锁
+0. client#1 释放互斥锁
+0. client#2 已获取到互斥锁
+0. client#2 释放互斥锁
+0. client#0 已获取到互斥锁
+0. client#0 释放互斥锁
+0. client#4 已获取到互斥锁
+0. client#4 释放互斥锁
+0. client#3 已获取到互斥锁
+0. client#3 释放互斥锁
+1. client#1 已获取到互斥锁
+1. client#1 释放互斥锁
+1. client#2 已获取到互斥锁
+1. client#2 释放互斥锁
+....
+....
+9. client#4 已获取到互斥锁
+9. client#4 释放互斥锁
+9. client#0 已获取到互斥锁
+client#2 客户端关闭！
+9. client#0 释放互斥锁
+9. client#1 已获取到互斥锁
+client#0 客户端关闭！
+client#4 客户端关闭！
+9. client#1 释放互斥锁
+9. client#3 已获取到互斥锁
+client#1 客户端关闭！
+9. client#3 释放互斥锁
+client#3 客户端关闭！
+结束！
+</code></pre><h4 id="可重入读写锁"><a href="#可重入读写锁" class="headerlink" title="可重入读写锁"></a>可重入读写锁</h4><p>Shared Reentrant Read Write Lock，可重入读写锁，一个读写锁管理一对相关的锁，一个负责读操作，另外一个负责写操作；读操作在写锁没被使用时可同时由多个进程使用，而写锁在使用时不允许读(阻塞)；此锁是可重入的；一个拥有写锁的线程可重入读锁，但是读锁却不能进入写锁，这也意味着写锁可以降级成读锁， 比如 <code>请求写锁 ---&gt;读锁 ----&gt;释放写锁</code>；从读锁升级成写锁是不行的。</p>
+<p>可重入读写锁主要由两个类实现：InterProcessReadWriteLock、InterProcessMutex，使用时首先创建一个 InterProcessReadWriteLock 实例，然后再根据你的需求得到读锁或者写锁，读写锁的类型是 InterProcessMutex。</p>
+<pre><code class="java">    public static void main(String[] args) throws InterruptedException {
+        for (int i = 0; i &lt; clientNums; i++) {
+            final String clientName = &quot;client#&quot; + i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CuratorFramework client = ZKUtils.getClient();
+                    client.start();
+                    final InterProcessReadWriteLock lock = new InterProcessReadWriteLock(client, lockPath);
+                    final InterProcessMutex readLock = lock.readLock();
+                    final InterProcessMutex writeLock = lock.writeLock();
+
+                    try {
+                        // 注意只能先得到写锁再得到读锁，不能反过来！！！
+                        if (!writeLock.acquire(10, TimeUnit.SECONDS)) {
+                            throw new IllegalStateException(clientName + &quot; 不能得到写锁&quot;);
+                        }
+                        System.out.println(clientName + &quot; 已得到写锁&quot;);
+                        if (!readLock.acquire(10, TimeUnit.SECONDS)) {
+                            throw new IllegalStateException(clientName + &quot; 不能得到读锁&quot;);
+                        }
+                        System.out.println(clientName + &quot; 已得到读锁&quot;);
+                        try {
+                            resource.use(); // 使用资源
+                        } finally {
+                            System.out.println(clientName + &quot; 释放读写锁&quot;);
+                            readLock.release();
+                            writeLock.release();
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    } finally {
+                        CloseableUtils.closeQuietly(client);
+                        countDownLatch.countDown();
+                    }
+                }
+            }).start();
+        }
+        countDownLatch.await();
+        System.out.println(&quot;结束！&quot;);
+    }
+}
+</code></pre>
+<p>控制台打印日志</p>
+<pre><code>client#1 已得到写锁
+client#1 已得到读锁
+client#1 释放读写锁
+client#2 已得到写锁
+client#2 已得到读锁
+client#2 释放读写锁
+client#0 已得到写锁
+client#0 已得到读锁
+client#0 释放读写锁
+client#4 已得到写锁
+client#4 已得到读锁
+client#4 释放读写锁
+client#3 已得到写锁
+client#3 已得到读锁
+client#3 释放读写锁
+结束！
+</code></pre><h4 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h4><p>Shared Semaphore，一个计数的信号量类似JDK的 Semaphore，JDK中 Semaphore 维护的一组许可(permits)，而Cubator中称之为租约(Lease)。有两种方式可以决定 semaphore 的最大租约数，第一种方式是由用户给定的 path 决定，第二种方式使用 SharedCountReader 类。如果不使用 SharedCountReader，没有内部代码检查进程是否假定有10个租约而进程B假定有20个租约。 所以所有的实例必须使用相同的 numberOfLeases 值.</p>
+<p>信号量主要实现类有：</p>
+<pre><code>InterProcessSemaphoreV2 - 信号量实现类
+Lease - 租约(单个信号)
+SharedCountReader - 计数器，用于计算最大租约数量
+</code></pre><p>调用 <code>acquire</code> 会返回一个租约对象，客户端必须在 finally 中 close 这些租约对象，否则这些租约会丢失掉。但是，如果客户端session由于某种原因比如crash丢掉，那么这些客户端持有的租约会自动close，这样其它客户端可以继续使用这些租约。租约还可以通过下面的方式返还：</p>
+<pre><code>public void returnLease(Lease lease)
+public void returnAll(Collection&lt;Lease&gt; leases) 
+</code></pre><p>注意一次你可以请求多个租约，如果 Semaphore 当前的租约不够，则请求线程会被阻塞。同时还提供了超时的重载方法。</p>
+<pre><code>public Lease acquire() throws Exception
+public Collection&lt;Lease&gt; acquire(int qty) throws Exception
+public Lease acquire(long time, TimeUnit unit) throws Exception
+public Collection&lt;Lease&gt; acquire(int qty, long time, TimeUnit unit) throws Exception
+</code></pre><p>一个Demo程序如下</p>
+<pre><code class="java">public class SharedSemaphoreTest {
+    private static final int MAX_LEASE = 10;
+    private static final String PATH = &quot;/testZK/semaphore&quot;;
+    private static final FakeLimitedResource resource = new FakeLimitedResource();
+
+    public static void main(String[] args) throws Exception {
+        CuratorFramework client = ZKUtils.getClient();
+        client.start();
+        InterProcessSemaphoreV2 semaphore = new InterProcessSemaphoreV2(client, PATH, MAX_LEASE);
+        Collection&lt;Lease&gt; leases = semaphore.acquire(5);
+        System.out.println(&quot;获取租约数量：&quot; + leases.size());
+        Lease lease = semaphore.acquire();
+        System.out.println(&quot;获取单个租约&quot;);
+        resource.use(); // 使用资源
+        // 再次申请获取5个leases，此时leases数量只剩4个，不够，将超时
+        Collection&lt;Lease&gt; leases2 = semaphore.acquire(5, 10, TimeUnit.SECONDS);
+        System.out.println(&quot;获取租约，如果超时将为null： &quot; + leases2);
+        System.out.println(&quot;释放租约&quot;);
+        semaphore.returnLease(lease);
+        // 再次申请获取5个，这次刚好够
+        leases2 = semaphore.acquire(5, 10, TimeUnit.SECONDS);
+        System.out.println(&quot;获取租约，如果超时将为null： &quot; + leases2);
+        System.out.println(&quot;释放集合中的所有租约&quot;);
+        semaphore.returnAll(leases);
+        semaphore.returnAll(leases2);
+        client.close();
+        System.out.println(&quot;结束!&quot;);
+    }
+}
+</code></pre>
+<p>控制台打印日志</p>
+<pre><code>获取租约数量：5
+获取单个租约
+获取租约，如果超时将为null： null
+释放租约
+获取租约，如果超时将为null： [org.apache.curator.framework.recipes.locks.InterProcessSemaphoreV2$3@3108bc, org.apache.curator.framework.recipes.locks.InterProcessSemaphoreV2$3@370736d9, org.apache.curator.framework.recipes.locks.InterProcessSemaphoreV2$3@5f9d02cb, org.apache.curator.framework.recipes.locks.InterProcessSemaphoreV2$3@63753b6d, org.apache.curator.framework.recipes.locks.InterProcessSemaphoreV2$3@6b09bb57]
+释放集合中的所有租约
+结束!
+</code></pre><p>注意：上面所讲的4种锁都是公平锁(fair)。从ZooKeeper的角度看，每个客户端都按照请求的顺序获得锁，相当公平。</p>
+<h4 id="多锁"><a href="#多锁" class="headerlink" title="多锁"></a>多锁</h4><p>Multi Shared Lock 是一个锁的容器。当调用 <code>acquire</code>，所有的锁都会被 <code>acquire</code>，如果请求失败，所有的锁都会被 <code>release</code>。同样调用 <code>release</code> 时所有的锁都被 <code>release</code>(失败被忽略)。基本上，它就是组锁的代表，在它上面的请求释放操作都会传递给它包含的所有的锁。</p>
+<p>主要涉及两个类：</p>
+<pre><code>InterProcessMultiLock - 对所对象实现类
+InterProcessLock - 分布式锁接口类
+</code></pre><p>它的构造函数需要包含的锁的集合，或者一组 ZooKeeper 的 path，用法和 Shared Lock 相同</p>
+<pre><code>public InterProcessMultiLock(CuratorFramework client, List&lt;String&gt; paths)
+public InterProcessMultiLock(List&lt;InterProcessLock&gt; locks)
+</code></pre><p>一个Demo程序如下</p>
+<pre><code class="java">public class MultiSharedLockTest {
+    private static final String lockPath1 = &quot;/testZK/MSLock1&quot;;
+    private static final String lockPath2 = &quot;/testZK/MSLock2&quot;;
+    private static final FakeLimitedResource resource = new FakeLimitedResource();
+
+    public static void main(String[] args) throws Exception {
+        CuratorFramework client = ZKUtils.getClient();
+        client.start();
+
+        InterProcessLock lock1 = new InterProcessMutex(client, lockPath1); // 可重入锁
+        InterProcessLock lock2 = new InterProcessSemaphoreMutex(client, lockPath2); // 不可重入锁
+        // 组锁，多锁
+        InterProcessMultiLock lock = new InterProcessMultiLock(Arrays.asList(lock1, lock2));
+        if (!lock.acquire(10, TimeUnit.SECONDS)) {
+            throw new IllegalStateException(&quot;不能获取多锁&quot;);
+        }
+        System.out.println(&quot;已获取多锁&quot;);
+        System.out.println(&quot;是否有第一个锁: &quot; + lock1.isAcquiredInThisProcess());
+        System.out.println(&quot;是否有第二个锁: &quot; + lock2.isAcquiredInThisProcess());
+        try {
+            resource.use(); // 资源操作
+        } finally {
+            System.out.println(&quot;释放多个锁&quot;);
+            lock.release(); // 释放多锁
+        }
+        System.out.println(&quot;是否有第一个锁: &quot; + lock1.isAcquiredInThisProcess());
+        System.out.println(&quot;是否有第二个锁: &quot; + lock2.isAcquiredInThisProcess());
+        client.close();
+        System.out.println(&quot;结束!&quot;);
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>代码下载地址</strong>：<a href="http://t.cn/EtVc1s4" target="_blank" rel="noopener">http://t.cn/EtVc1s4</a></p>
+</blockquote>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>1、 《从Paxos到Zookeeper分布式一致性原理与实践》<br>2、 <a href="http://curator.apache.org/curator-recipes/index.html" target="_blank" rel="noopener">Apache Curator Recipes Docs</a><br>3、 <a href="http://www.hollischuang.com/archives/1716" target="_blank" rel="noopener">分布式锁的几种实现方式~</a><br>4、 <a href="http://www.spring4all.com/question/158" target="_blank" rel="noopener">技术专题讨论第四期：漫谈分布式锁</a><br>5、 <a href="https://zhuanlan.zhihu.com/p/42056183" target="_blank" rel="noopener">分布式锁看这篇就够了</a><br>6、 <a href="https://www.cnblogs.com/LiZhiW/p/4931577.html" target="_blank" rel="noopener">Curator分布式锁</a></p>
+<p><img src="http://image.laijianfeng.org/20190116_014816.png" alt="关注_小旋锋_微信公众号"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 whirlys@163.com </span>
@@ -1109,12 +1111,12 @@ I&#39;m MyOneTask 6
 
 
 <div class="article_copyright">
-    <p><span>文章标题:</span>设计模式 | 中介者模式及典型应用</p>
-    <p><span>文章字数:</span><span class="post-count">4,092</span></p>
+    <p><span>文章标题:</span>利用Zookeeper实现 - 分布式锁</p>
+    <p><span>文章字数:</span><span class="post-count">6,167</span></p>
     <p><span>本文作者:</span><a href="javascript:void(0)" title="小旋锋">小旋锋</a></p>
-    <p><span>发布时间:</span>2018-10-26, 00:45:30</p>
-    <p><span>最后更新:</span>2018-10-26, 00:49:32</p>
-    <span>原始链接:</span><a class="post-url" href="/2018/10/设计模式-中介者模式及典型应用/" title="设计模式 | 中介者模式及典型应用">http://laijianfeng.org/2018/10/设计模式-中介者模式及典型应用/</a>
+    <p><span>发布时间:</span>2019-01-28, 11:03:44</p>
+    <p><span>最后更新:</span>2019-01-28, 11:06:30</p>
+    <span>原始链接:</span><a class="post-url" href="/2019/01/利用Zookeeper实现-分布式锁/" title="利用Zookeeper实现 - 分布式锁">http://laijianfeng.org/2019/01/利用Zookeeper实现-分布式锁/</a>
     <p>
         <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -1126,7 +1128,7 @@ I&#39;m MyOneTask 6
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '设计模式 | 中介者模式及典型应用', // 可选。默认为 location.href
+        id: '利用Zookeeper实现 - 分布式锁', // 可选。默认为 location.href
         owner: 'whirlys',
         repo: 'whirlys.github.io',
         oauth: {
