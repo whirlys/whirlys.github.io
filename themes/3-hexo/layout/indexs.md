@@ -2,33 +2,34 @@
 title: 小旋锋的博客
 ---
 
+<pre>
+          JJJJ分享JJJJ                                                             
+          J:::::::::J                                                             
+          J:::::::::J                                                             
+          JJ:::::::JJ                                                             
+            J:::::J    Elasticsearch   v大数据v          v分布式v  aaaaaaaaaaaaa   
+            J:::::J    a::::::::::::a   v:::::v         v:::::v   a::::::::::::a  
+            J:::::J    aaaaNetty:::::a   v:::::v       v:::::v    a设计模式::::::a 
+            J:::::j             a::::a    v:::::v     v:::::v              a::::a 
+            J:::::J      a知识体系:::a     v:::::v   v:::::v        Springa:::::a 
+JHbaseJ     J:::::J    aa::::::::::::a      v:::::v v:::::v       aa::::::::::::a 
+J:::::J     J:::::J   a::::aaaa::::::a       v:::::v:::::v       a::::Spark:::::a 
+J::::::J   J::::::J  a::::a    a:::::a        v:::::::::v       a::::a    a:::::a 
+J:::::::JJJ:::::::J  a::::a    a:::::a         v::JVM::v        a::::a    a:::::a 
+ JJ:::::::::::::JJ   a:::::Hive::::::a          v:::::v         a:::::aaaa::::::a 
+   JJ:::::::::JJ      a::::::::::aa:::a          v:::v           a::::::::::aa:::a
+     J写作JJJJ         aaa深入aaa  aaaa           vvv             aaaaaKafka  算法a
+</pre>
 
-## 为什么写博客
-> 1. 记录与分享
-2. 锤炼技术，提高写作能力和表达能力
-3. 树立个人品牌，提高影响力
 
-## 写博客的原则
-> 1. 原创：即须经过自己学习、思考或实践后写出来的，而不是复制粘贴而来
-2. 高质量：内容充实，足够深入透彻，引用可循
-3. 成体系：对一个技术须成体系的学习，再整理成一系列的博文发表出来，而不是散乱地记录
-
-
-## 内容规划
-> * 后端：包括计算机基础、Java编程、JVM、软件工程、设计模式、Linux、数据库、算法与数据结构、分布式系统、算法实践等
-> * 大数据：Elasticsearch、Hbase、Hadoop、spark、hive、kafka等大数据组件
-> * 专题：对以上两个大分类中的博文进行索引，形成专题
-> * 读书：非技术书籍的阅读笔记或读后感
-> * 生活杂记：记录生活故事与感悟
-
-
-## 个人信息
+## CONTACT ME
 
 > * 姓名：赖键锋
 > * 邮箱： whirlys@163.com
 > * github：https://github.com/whirlys 
-> * csdn：[小旋锋的博客](https://blog.csdn.net/wwwdc1012)  
+> * csdn：[小旋锋的博客](https://whirlys.blog.csdn.net)  
 > * 微信公众号：[小旋锋](http://image.laijianfeng.org/1536383438.png)
+> * 简书：[小旋锋的简书](https://www.jianshu.com/u/ae269fd3620a)
 
 
 

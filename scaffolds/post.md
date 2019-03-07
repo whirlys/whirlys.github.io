@@ -11,6 +11,4 @@ keywords: Java
 
 
 
-
-![关注_小旋锋_微信公众号](http://image.laijianfeng.org/20180913_001328.png)
-
+![关注_小旋锋_微信公众号](http://image.laijianfeng.org/20190116_014816.png)
