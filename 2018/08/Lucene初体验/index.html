@@ -6,21 +6,22 @@
   <meta name="keywords" content=" lucene ">
   <meta name="description" content="Lucene初体验 | 小旋锋">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="数据发布/订阅所谓的数据发布/订阅，意思是发布者将数据发布到Zookeeper上的一个或一系列节点上，通过watcher机制，客户端可以监听(订阅)这些数据节点，当这些节点发生变化时，Zookeeper及时地通知客户端，从而达到动态获取数据的目的。 一种常见的场景就是配置中心。随着应用越来越多，功能越来越复杂，机器也越来越多，对于一些公共的程序配置，譬如各种功能的开关、数据库的配置、服务器的地址等">
-<meta name="keywords" content="Zookeeper">
+<meta name="description" content="Binlog 简介MySQL中一般有以下几种日志：    日志类型 写入日志的信息     错误日志 记录在启动，运行或停止mysqld时遇到的问题   通用查询日志 记录建立的客户端连接和执行的语句   二进制日志 记录更改数据的语句   中继日志 从复制主服务器接收的数据更改   慢查询日志 记录所有执行时间超过 long_query_time 秒的所有查询或不使用索引的查询   DDL日志（">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用Zookeeper实现 - 数据发布订阅">
-<meta property="og:url" content="http://laijianfeng.org/2019/01/利用Zookeeper实现-数据发布订阅/index.html">
+<meta property="og:title" content="MySQL Binlog 介绍">
+<meta property="og:url" content="http://laijianfeng.org/2019/03/MySQL-Binlog-介绍/index.html">
 <meta property="og:site_name" content="小旋锋">
-<meta property="og:description" content="数据发布/订阅所谓的数据发布/订阅，意思是发布者将数据发布到Zookeeper上的一个或一系列节点上，通过watcher机制，客户端可以监听(订阅)这些数据节点，当这些节点发生变化时，Zookeeper及时地通知客户端，从而达到动态获取数据的目的。 一种常见的场景就是配置中心。随着应用越来越多，功能越来越复杂，机器也越来越多，对于一些公共的程序配置，譬如各种功能的开关、数据库的配置、服务器的地址等">
+<meta property="og:description" content="Binlog 简介MySQL中一般有以下几种日志：    日志类型 写入日志的信息     错误日志 记录在启动，运行或停止mysqld时遇到的问题   通用查询日志 记录建立的客户端连接和执行的语句   二进制日志 记录更改数据的语句   中继日志 从复制主服务器接收的数据更改   慢查询日志 记录所有执行时间超过 long_query_time 秒的所有查询或不使用索引的查询   DDL日志（">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.laijianfeng.org/20190123_133414.jpg">
+<meta property="og:image" content="http://image.laijianfeng.org/20190309_185754.png">
+<meta property="og:image" content="http://image.laijianfeng.org/20190309_191336.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20190116_014816.png">
-<meta property="og:updated_time" content="2019-01-23T18:28:27.269Z">
+<meta property="og:updated_time" content="2019-03-09T12:31:06.777Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用Zookeeper实现 - 数据发布订阅">
-<meta name="twitter:description" content="数据发布/订阅所谓的数据发布/订阅，意思是发布者将数据发布到Zookeeper上的一个或一系列节点上，通过watcher机制，客户端可以监听(订阅)这些数据节点，当这些节点发生变化时，Zookeeper及时地通知客户端，从而达到动态获取数据的目的。 一种常见的场景就是配置中心。随着应用越来越多，功能越来越复杂，机器也越来越多，对于一些公共的程序配置，譬如各种功能的开关、数据库的配置、服务器的地址等">
-<meta name="twitter:image" content="http://image.laijianfeng.org/20190123_133414.jpg">
+<meta name="twitter:title" content="MySQL Binlog 介绍">
+<meta name="twitter:description" content="Binlog 简介MySQL中一般有以下几种日志：    日志类型 写入日志的信息     错误日志 记录在启动，运行或停止mysqld时遇到的问题   通用查询日志 记录建立的客户端连接和执行的语句   二进制日志 记录更改数据的语句   中继日志 从复制主服务器接收的数据更改   慢查询日志 记录所有执行时间超过 long_query_time 秒的所有查询或不使用索引的查询   DDL日志（">
+<meta name="twitter:image" content="http://image.laijianfeng.org/20190309_185754.png">
 
 
 <link rel="icon" href="/img/favicon.jpg">
@@ -86,11 +87,9 @@
     
     <li data-rel="生活杂记"> 生活杂记 </li>
     
-    <li data-rel="后端"> 后端 </li>
-    
     <li data-rel="大数据"> 大数据 </li>
     
-    <li data-rel="读书"> 读书 </li>
+    <li data-rel="后端"> 后端 </li>
     
 </ul>
 <div class="left-bottom">
@@ -100,7 +99,7 @@
     <div><a  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="43">
-<input type="hidden" id="yelog_site_word_count" value="132.6k">
+<input type="hidden" id="yelog_site_word_count" value="136.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -138,11 +137,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Java编程</a>
+        <a href="javascript:" class="color4">elasticsearch</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">elasticsearch</a>
+        <a href="javascript:" class="color2">Java编程</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -150,15 +149,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">spark</a>
+        <a href="javascript:" class="color1">mysql</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color2">lucene</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -173,6 +168,14 @@
         <a href="javascript:" class="color5">设计模式</a>
     </li>
     
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">spark</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
@@ -182,6 +185,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="后端 "
+           href="/2019/03/MySQL-Binlog-介绍/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="MySQL Binlog 介绍">MySQL Binlog 介绍</span>
+            <span class="post-date" title="2019-03-09 20:29:41">2019/03/09</span>
+        </a>
         
         <a  class="大数据 "
            href="/2019/01/利用Zookeeper实现-分布式锁/"
@@ -445,14 +456,6 @@
            data-author="" >
             <span class="post-title" title="Elasticsearch 中的 Guice">Elasticsearch 中的 Guice</span>
             <span class="post-date" title="2018-08-31 00:39:17">2018/08/31</span>
-        </a>
-        
-        <a  class="读书 "
-           href="/2018/08/鼓舞人心/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="鼓舞人心">鼓舞人心</span>
-            <span class="post-date" title="2018-08-27 19:51:31">2018/08/27</span>
         </a>
         
         <a  class="大数据 "
@@ -1152,7 +1155,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Java编程','#elasticsearch','#java','#spark','#lucene','#博客','#Zookeeper','#分布式系统理论','#设计模式',],
+            'data': ['#elasticsearch','#Java编程','#java','#mysql','#lucene','#Zookeeper','#分布式系统理论','#设计模式','#博客','#spark',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
