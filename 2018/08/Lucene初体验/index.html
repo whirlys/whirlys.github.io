@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://image.laijianfeng.org/20190310_163023.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20190310_234508.png">
 <meta property="og:image" content="http://image.laijianfeng.org/20190116_014816.png">
-<meta property="og:updated_time" content="2019-03-10T18:22:18.731Z">
+<meta property="og:updated_time" content="2019-03-12T04:52:09.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL Binlog 解析工具 Maxwell 详解">
 <meta name="twitter:description" content="maxwell 简介Maxwell是一个能实时读取MySQL二进制日志binlog，并生成 JSON 格式的消息，作为生产者发送给 Kafka，Kinesis、RabbitMQ、Redis、Google Cloud Pub/Sub、文件或其它平台的应用程序。它的常见应用场景有ETL、维护缓存、收集表级别的dml指标、增量到搜索引擎、数据分区迁移、切库binlog回滚方案等。官网(http://ma">
@@ -145,10 +145,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">mysql</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">lucene</a>
     </li>
     
@@ -157,7 +153,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">分布式系统理论</a>
+        <a href="javascript:" class="color1">spark</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -165,15 +161,19 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">博客</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">设计模式</a>
+        <a href="javascript:" class="color3">分布式系统理论</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">spark</a>
+        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <div class="clearfix"></div>
@@ -1163,7 +1163,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#Java编程','#mysql','#lucene','#java','#分布式系统理论','#Zookeeper','#博客','#设计模式','#spark',],
+            'data': ['#elasticsearch','#Java编程','#lucene','#java','#spark','#Zookeeper','#mysql','#博客','#分布式系统理论','#设计模式',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
