@@ -85,11 +85,11 @@
 <ul>
     <li class="all active">全部文章</li>
     
+    <li data-rel="后端"> 后端 </li>
+    
     <li data-rel="生活杂记"> 生活杂记 </li>
     
     <li data-rel="大数据"> 大数据 </li>
-    
-    <li data-rel="后端"> 后端 </li>
     
 </ul>
 <div class="left-bottom">
@@ -137,11 +137,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">elasticsearch</a>
+        <a href="javascript:" class="color2">Java编程</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Java编程</a>
+        <a href="javascript:" class="color4">elasticsearch</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -157,11 +157,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Zookeeper</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">mysql</a>
+        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -170,10 +174,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">分布式系统理论</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <div class="clearfix"></div>
@@ -1117,7 +1117,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
 
     </div>
     <div class="copyright">
-        <p class="footer-entry">© 2018-2019, 小旋锋. All rights reserved.</p>
+        <p class="footer-entry">© 2018-2019, 小旋锋. All rights reserved. 粤ICP备17087743号</p>
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
@@ -1163,7 +1163,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#elasticsearch','#Java编程','#lucene','#java','#spark','#Zookeeper','#mysql','#博客','#分布式系统理论','#设计模式',],
+            'data': ['#Java编程','#elasticsearch','#lucene','#java','#spark','#mysql','#Zookeeper','#设计模式','#博客','#分布式系统理论',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
