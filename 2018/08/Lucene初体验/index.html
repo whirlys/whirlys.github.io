@@ -85,9 +85,9 @@
 <ul>
     <li class="all active">全部文章</li>
     
-    <li data-rel="后端"> 后端 </li>
-    
     <li data-rel="生活杂记"> 生活杂记 </li>
+    
+    <li data-rel="后端"> 后端 </li>
     
     <li data-rel="大数据"> 大数据 </li>
     
@@ -122,6 +122,8 @@
             
             <li><a target="_blank" href="http://www.hualong.me/">刘华龙的小窝</a></li>
             
+            <li><a target="_blank" href="http://www.liangsonghua.me/">梁松华</a></li>
+            
         </ul>
     </div>
 </div>
@@ -137,15 +139,19 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Java编程</a>
+        <a href="javascript:" class="color3">博客</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">分布式系统理论</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">设计模式</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">elasticsearch</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -157,23 +163,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">mysql</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Zookeeper</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">设计模式</a>
+        <a href="javascript:" class="color2">Java编程</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">博客</a>
+        <a href="javascript:" class="color2">lucene</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">分布式系统理论</a>
+        <a href="javascript:" class="color1">mysql</a>
     </li>
     
     <div class="clearfix"></div>
@@ -1163,7 +1165,7 @@ TopDocs会记录前N个结果中每个结果的int docID和浮点数型分数(�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Java编程','#elasticsearch','#lucene','#java','#spark','#mysql','#Zookeeper','#设计模式','#博客','#分布式系统理论',],
+            'data': ['#博客','#分布式系统理论','#设计模式','#elasticsearch','#java','#spark','#Zookeeper','#Java编程','#lucene','#mysql',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
